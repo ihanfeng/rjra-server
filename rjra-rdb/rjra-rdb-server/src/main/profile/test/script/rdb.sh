@@ -12,7 +12,7 @@ SERVER_PID_FILE=$SERVER_LOG_DIR/server.pid
 ###启动
 function func_start(){
 
-    MAINCLASS=com.hdg.rjra.rdb.server.Rdb
+    MAINCLASS=com.hdg.rjra.rdb.server.RjraRdb
 
     LIB=$SERVER_HOME/lib
     for jar in $LIB/*
@@ -24,7 +24,7 @@ function func_start(){
     #Djava.ext.dirs=%CLASSPATH%
     JAVA_OPS="-Xmx2048m -Xms2048m -server -cp $CLASSPATH -DSERVER_LOG_DIR=$SERVER_LOG_DIR -DSERVER_HOME=$SERVER_HOME"
 
-    nohup java $JAVA_OPS $MAINCLASS_rjra >/dev/null 2>$SERVER_ERROR_FILE &
+    nohup java $JAVA_OPS $MAINCLASS >/dev/null 2>$SERVER_ERROR_FILE &
     echo $! > $SERVER_PID_FILE
 }
 

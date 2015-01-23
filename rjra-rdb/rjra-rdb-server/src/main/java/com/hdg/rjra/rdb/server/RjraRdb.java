@@ -10,8 +10,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * Created by Rock on 2014/10/20.
  */
-public class Rdb {
-    private static Logger logger = LoggerFactory.getLogger(Rdb.class);
+public class RjraRdb {
+    private static Logger logger = LoggerFactory.getLogger(RjraRdb.class);
     public static void main(String[] args) throws Exception {
         ApplicationContext applicationContext = null;
         applicationContext = new ClassPathXmlApplicationContext("rjra-rdb-server-bean.xml");
