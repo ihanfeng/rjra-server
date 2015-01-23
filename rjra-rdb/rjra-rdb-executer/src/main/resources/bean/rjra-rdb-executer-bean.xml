@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+          http://www.springframework.org/schema/aop
+          http://www.springframework.org/schema/aop/spring-aop-3.1.xsd"
+          default-autowire="byName">
+
+
+    <import resource="classpath:bean/execute/rdb-rdbsql-executer.xml"/>
+
+    <import resource="classpath:bean/execute/rdb-area-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-city-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-province-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-category-level1-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-category-level2-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-category-level3-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-education-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-recruitment-info-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-wage-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-welfare-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-workexperience-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-user-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-company-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-account-file-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-employ-executer.xml"/>
+
+    <!-- handler相关 -->
+    <bean id="requestHandler" class="com.hdg.rjra.rdb.executer.RequestHandler">
+        <property name="map">
+            <map>
+                <entry key="rdb-rdbsql" value-ref="rdb-rdbsql-executer"/>
+                <entry key="rdb-area" value-ref="rdb-area-executer"/>
+                <entry key="rdb-city" value-ref="rdb-city-executer"/>
+                <entry key="rdb-province" value-ref="rdb-province-executer"/>
+                <entry key="rdb-category-level1" value-ref="rdb-category-level1-executer"/>
+                <entry key="rdb-category-level2" value-ref="rdb-category-level2-executer"/>
+                <entry key="rdb-category-level3" value-ref="rdb-category-level3-executer"/>
+                <entry key="rdb-education" value-ref="rdb-education-executer"/>
+                <entry key="rdb-recruitment-info" value-ref="rdb-recruitment-info-executer"/>
+                <entry key="rdb-wage" value-ref="rdb-wage-executer"/>
+                <entry key="rdb-welfare" value-ref="rdb-welfare-executer"/>
+                <entry key="rdb-workexperience" value-ref="rdb-workexperience-executer"/>
+                <entry key="rdb-user" value-ref="rdb-user-executer"/>
+                <entry key="rdb-company" value-ref="rdb-company-executer"/>
+                <entry key="rdb-account-file" value-ref="rdb-account-file-executer"/>
+                <entry key="rdb-employ" value-ref="rdb-employ-executer"/>
+            </map>
+        </property>
+    </bean>
+</beans>

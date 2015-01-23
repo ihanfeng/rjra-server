@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+          http://www.springframework.org/schema/util
+          http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+    <bean id="categoryLevel2RowMapper" class="com.hdg.rjra.rdb.executer.categorylevel2.rowmapper.CategoryLevel2RowMapper"/>
+
+    <bean id="findCategoryLevel2ByCategoryLevel2Id" class="com.hdg.rjra.rdb.executer.categorylevel2.FindCategoryLevel2ByCategoryLevel2Id">
+        <property name="rowMapper" ref="categoryLevel2RowMapper"></property>
+    </bean>
+    <bean id="findCategoryLevel2ByCategoryLevel1Id" class="com.hdg.rjra.rdb.executer.categorylevel2.FindCategoryLevel2ByCategoryLevel1Id">
+        <property name="rowMapper" ref="categoryLevel2RowMapper"></property>
+    </bean>
+
+    <util:map id="rdb-category-level2-executer">
+        <entry key="findCategoryLevel2ByCategoryLevel2Id" value-ref="findCategoryLevel2ByCategoryLevel2Id"/>
+        <entry key="findCategoryLevel2ByCategoryLevel1Id" value-ref="findCategoryLevel2ByCategoryLevel1Id"/>
+    </util:map>
+</beans>

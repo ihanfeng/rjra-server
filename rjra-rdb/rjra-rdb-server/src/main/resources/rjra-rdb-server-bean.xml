@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <bean id="propertyConfigurer" class="com.hdg.rjra.base.properties.CustomizedPropertyConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:rjra-rdb-server.properties</value>
+                <value>classpath*:database.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
+        <property name="driverClassName" value="${database.driverClassName}"/>
+        <property name="url" value="${database.url}"/>
+        <property name="username" value="${database.username}"/>
+        <property name="password" value="${database.password}"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="timeBetweenEvictionRunsMillis" value="1800000"/>
+        <property name="numTestsPerEvictionRun" value="3"/>
+        <property name="minEvictableIdleTimeMillis" value="1800000"/>
+        <property name="validationQuery" value="SELECT 1"/>
+
+        <!--initialSize: 初始化连接-->
+        <property name="initialSize" value="0"/>
+        <!--maxIdle: 最大空闲连接-->
+        <property name="maxIdle" value="20"/>
+        <!--minIdle: 最小空闲连接-->
+        <property name="minIdle" value="5"/>
+        <!--maxActive: 最大连接数量-->
+        <property name="maxActive" value="50"/>
+        <!--removeAbandoned: 是否自动回收超时连接-->
+        <property name="removeAbandoned" value="true"/>
+        <!--removeAbandonedTimeout: 超时时间(以秒数为单位)-->
+        <property name="removeAbandonedTimeout" value="180"/>
+        <!--maxWait: 超时等待时间以毫秒为单位-->
+        <property name="maxWait" value="60000"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="daoManager" class="com.hdg.rjra.rdb.proxy.utils.DaoUtils">
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
+    <!-- rpc 相关 -->
+    <bean id="thriftServer" class="com.hdg.rjra.rdb.server.rpcserver.ThriftServer">
+        <property name="port" value="${thrift-port}"></property>
+        <property name="daoProxy" ref="daoProxyRpc"></property>
+    </bean>
+
+    <bean id="daoProxyRpc" name="daoProxyRpc" class="com.hdg.rjra.rdb.server.rpcserver.DaoProxyRpcImpl">
+        <property name="requestHandler" ref="requestHandler"></property>
+    </bean>
+
+    <import resource="classpath:bean/rjra-rdb-executer-bean.xml"/>
+</beans>

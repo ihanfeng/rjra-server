@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+          http://www.springframework.org/schema/util
+          http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+    <bean id="recruitmentInfoRowMapper" class="com.hdg.rjra.rdb.executer.recruitmentinfo.rowmapper.RecruitmentInfoRowMapper"/>
+
+    <bean id="findAllRecruitmentInfoByCompanyId" class="com.hdg.rjra.rdb.executer.recruitmentinfo.FindAllRecruitmentInfoByCompanyId">
+        <property name="rowMapper" ref="recruitmentInfoRowMapper"></property>
+    </bean>
+    <bean id="findAllRecruitmentInfoByCompanyIdPager" class="com.hdg.rjra.rdb.executer.recruitmentinfo.FindAllRecruitmentInfoByCompanyIdPager">
+        <property name="rowMapper" ref="recruitmentInfoRowMapper"></property>
+    </bean>
+    <bean id="findAllRecruitmentInfo" class="com.hdg.rjra.rdb.executer.recruitmentinfo.FindAllRecruitmentInfo">
+        <property name="rowMapper" ref="recruitmentInfoRowMapper"></property>
+    </bean>
+    <bean id="findAllRecruitmentInfoPager" class="com.hdg.rjra.rdb.executer.recruitmentinfo.FindAllRecruitmentInfoPager">
+        <property name="rowMapper" ref="recruitmentInfoRowMapper"></property>
+    </bean>
+    <bean id="findRecruitmentInfoByRecruitmentInfoId" class="com.hdg.rjra.rdb.executer.recruitmentinfo.FindRecruitmentInfoByRecruitmentInfoId">
+        <property name="rowMapper" ref="recruitmentInfoRowMapper"></property>
+    </bean>
+    <bean id="updateRecruitmentInfoStatus" class="com.hdg.rjra.rdb.executer.recruitmentinfo.UpdateRecruitmentInfoStatus">
+        <property name="rowMapper" ref="recruitmentInfoRowMapper"></property>
+    </bean>
+    <bean id="saveRecruitmentInfo" class="com.hdg.rjra.rdb.executer.recruitmentinfo.SaveRecruitmentInfo">
+        <property name="rowMapper" ref="recruitmentInfoRowMapper"></property>
+    </bean>
+    <bean id="updateRecruitmentInfo" class="com.hdg.rjra.rdb.executer.recruitmentinfo.UpdateRecruitmentInfo">
+        <property name="rowMapper" ref="recruitmentInfoRowMapper"></property>
+    </bean>
+    <bean id="findNearRecruitmentInfoByLocationPager" class="com.hdg.rjra.rdb.executer.recruitmentinfo.FindNearRecruitmentInfoByLocationPager">
+        <property name="rowMapper" ref="recruitmentInfoRowMapper"></property>
+    </bean>
+
+    <util:map id="rdb-recruitment-info-executer">
+        <entry key="findAllRecruitmentInfoByCompanyId" value-ref="findAllRecruitmentInfoByCompanyId"/>
+        <entry key="findAllRecruitmentInfo" value-ref="findAllRecruitmentInfo"/>
+        <entry key="findAllRecruitmentInfoByCompanyIdPager" value-ref="findAllRecruitmentInfoByCompanyIdPager"/>
+        <entry key="findAllRecruitmentInfoPager" value-ref="findAllRecruitmentInfoPager"/>
+        <entry key="updateRecruitmentInfoStatus" value-ref="updateRecruitmentInfoStatus"/>
+        <entry key="saveRecruitmentInfo" value-ref="saveRecruitmentInfo"/>
+        <entry key="updateRecruitmentInfo" value-ref="updateRecruitmentInfo"/>
+        <entry key="findRecruitmentInfoByRecruitmentInfoId" value-ref="findRecruitmentInfoByRecruitmentInfoId"/>
+        <entry key="findNearRecruitmentInfoByLocationPager" value-ref="findNearRecruitmentInfoByLocationPager"/>
+    </util:map>
+</beans>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+          http://www.springframework.org/schema/aop
+          http://www.springframework.org/schema/aop/spring-aop-3.1.xsd"
+          default-autowire="byName">
+
+    <!-- DBA 迁移配置-->
+    <bean id="daoClient" class="com.hdg.rjra.rdb.client.RdbDefaultClient" scope="prototype" destroy-method="close">
+        <constructor-arg type="java.lang.String" index="0" value="${rdb.serverIp}"></constructor-arg>
+        <constructor-arg type="java.lang.Integer" index="1" value="${rdb.serverPort}"></constructor-arg>
+    </bean>
+
+    <bean id="rdbSqlProxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.RdbSqlProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="userProxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.UserProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="companyProxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.CompanyProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="areaProxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.AreaProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="categoryLevel1Proxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.CategoryLevel1ProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="categoryLevel2Proxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.CategoryLevel2ProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="categoryLevel3Proxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.CategoryLevel3ProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="cityProxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.CityProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="educationProxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.EducationProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="provinceProxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.ProvinceProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="recruitmentInfo" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.RecruitmentInfoProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="wageProxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.WageProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="welfareProxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.WelfareProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="workExperienceProxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.WorkExperienceProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="accountFileProxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.AccountFileProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+    <bean id="employProxy" class="com.hdg.rjra.rdb.proxyimpl.daoproxyimpl.EmployProxyImpl">
+        <property name="daoClient" ref="daoClient"/>
+    </bean>
+</beans>

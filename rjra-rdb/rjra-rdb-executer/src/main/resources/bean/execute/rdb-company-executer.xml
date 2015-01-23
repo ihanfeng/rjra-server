@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+          http://www.springframework.org/schema/util
+          http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+    <bean id="companyRowMapper" class="com.hdg.rjra.rdb.executer.company.rowmapper.CompanyRowMapper"/>
+
+    <bean id="saveCompany" class="com.hdg.rjra.rdb.executer.company.SaveCompany">
+        <property name="rowMapper" ref="companyRowMapper"></property>
+    </bean>
+    <bean id="updateCompany" class="com.hdg.rjra.rdb.executer.company.UpdateCompany">
+        <property name="rowMapper" ref="companyRowMapper"></property>
+    </bean>
+    <bean id="findCompanyByCompanyId" class="com.hdg.rjra.rdb.executer.company.FindCompanyByCompanyId">
+        <property name="rowMapper" ref="companyRowMapper"></property>
+    </bean>
+    <bean id="findAllCompanyPager" class="com.hdg.rjra.rdb.executer.company.FindAllCompanyPager">
+        <property name="rowMapper" ref="companyRowMapper"></property>
+    </bean>
+    <bean id="updateCompanyBizlicense" class="com.hdg.rjra.rdb.executer.company.UpdateCompanyBizlicense">
+        <property name="rowMapper" ref="companyRowMapper"></property>
+    </bean>
+    <bean id="updateCompanyLogo" class="com.hdg.rjra.rdb.executer.company.UpdateCompanyLogo">
+        <property name="rowMapper" ref="companyRowMapper"></property>
+    </bean>
+    <bean id="findCompanyByMobileAndPwd" class="com.hdg.rjra.rdb.executer.company.FindCompanyByMobileAndPwd">
+        <property name="rowMapper" ref="companyRowMapper"></property>
+    </bean>
+    <bean id="findCompanyExistsByMobile" class="com.hdg.rjra.rdb.executer.company.FindCompanyExistsByMobile">
+        <property name="rowMapper" ref="companyRowMapper"></property>
+    </bean>
+    <util:map id="rdb-company-executer">
+        <entry key="saveCompany" value-ref="saveCompany"/>
+        <entry key="updateCompany" value-ref="updateCompany"/>
+        <entry key="findCompanyByCompanyId" value-ref="findCompanyByCompanyId"/>
+        <entry key="findAllCompanyPager" value-ref="findAllCompanyPager"/>
+        <entry key="updateCompanyBizlicense" value-ref="updateCompanyBizlicense"/>
+        <entry key="updateCompanyLogo" value-ref="updateCompanyLogo"/>
+        <entry key="findCompanyByMobileAndPwd" value-ref="findCompanyByMobileAndPwd"/>
+        <entry key="findCompanyExistsByMobile" value-ref="findCompanyExistsByMobile"/>
+
+    </util:map>
+</beans>
