@@ -1,6 +1,6 @@
 #!/bin/bash
 #cd `pwd`;cd ..
-export SERVER_HOME="/var/app/gdd/rdb/rdb-server"
+export SERVER_HOME="/var/app/rjra/rdb/rdb-server"
 
 SERVER_CONF_DIR=$SERVER_HOME/conf
 SERVER_LOG_DIR=$SERVER_HOME/../logs
@@ -24,7 +24,7 @@ function func_start(){
     #Djava.ext.dirs=%CLASSPATH%
     JAVA_OPS="-Xmx2048m -Xms2048m -server -cp $CLASSPATH -DSERVER_LOG_DIR=$SERVER_LOG_DIR -DSERVER_HOME=$SERVER_HOME"
 
-    nohup java $JAVA_OPS $MAINCLASS >/dev/null 2>$SERVER_ERROR_FILE &
+    nohup java $JAVA_OPS $MAINCLASS_rjra >/dev/null 2>$SERVER_ERROR_FILE &
     echo $! > $SERVER_PID_FILE
 }
 
