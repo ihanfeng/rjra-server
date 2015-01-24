@@ -16,7 +16,7 @@ public class FindAccountFileByIds extends AbstractExecuter {
         executeSql.append(SqlUtils.appendPlaceholder(fileIds.length));
         executeSql.append(") and file_status in (");
         executeSql.append(SqlUtils.appendPlaceholder(status.length));
-        executeSql.append(") order by file_upload_time desc");
+        executeSql.append(")");
         int fileIdsCount = fileIds.length;
         int count = status.length;
         Object[] objects = new Object[count + fileIdsCount];

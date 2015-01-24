@@ -14,4 +14,6 @@ public interface FileService {
     public Long upload(MultipartFile file, String type, String path, String key, String fileName, String fileType, String fileFormat) throws IOException;
 
     public List<AccountFileBo> findAccountFileByIds(Long[] fileIds);
+
+    public AccountFileBo findAccountFileById(Long fileId);
 }

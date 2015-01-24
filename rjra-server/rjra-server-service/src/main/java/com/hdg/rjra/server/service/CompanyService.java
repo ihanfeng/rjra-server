@@ -1,5 +1,6 @@
 package com.hdg.rjra.server.service;
 
+import com.hdg.rjra.rdb.proxy.domain.Company;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.server.model.bo.company.CompanyBo;
 
@@ -8,9 +9,9 @@ import com.hdg.rjra.server.model.bo.company.CompanyBo;
  */
 public interface CompanyService {
 
-    public Long saveCompany(String mobile, String pwd);
+    public Long createCompany();
 
-    public Integer updateCompany(CompanyBo companyBo);
+    public Integer updateCompany(CompanyBo company);
 
     public CompanyBo findCompanyByCompanyId(Long companyId);
 
@@ -20,7 +21,7 @@ public interface CompanyService {
 
     public Integer updateCompanyLogo(Long companyId, Long fileId);
 
-    public CompanyBo findCompanyByMobileAndPwd(String mobile, String pwd);
+    public Integer updateCompanyUserIdCard(Long companyId, Long fileId);
 
-    public Integer findCompanyExistsByMobile(String mobile);
+    public Integer updateCompanyFacade(Long companyId, Long fileId);
 }

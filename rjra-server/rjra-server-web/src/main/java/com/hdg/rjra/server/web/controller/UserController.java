@@ -184,51 +184,6 @@ public class UserController {
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
-    /**
-     * 上传身份证
-     *
-     * @param request
-     * @return
-     */
-    @RequestMapping("updateUserIdcard")
-    @ResponseBody
-    public ResponseEntity<String> updateUserIdcard(HttpServletRequest request) {
-        ErrorType errorType = null;
-        Long data = null;
-        try {
-            MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
-            MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
-            // 获取内容类型
-            String contentType = request.getContentType();
-            // 获得上传文件列表
-            MultipartFile file = multiRequest.getFile("userIdcardImageFile");
-            if (file == null || contentType == null || !contentType.toLowerCase(Locale.getDefault()).startsWith("multipart")) {
-                errorType = ErrorType.UPLOAD_IMAGE_FAIL;
-                LOG.error("updateUserIdcard->contentType is " + contentType);
-            } else {
-                String userId = multiRequest.getParameter("userId");
-                String userIdcardImageFileName = multiRequest.getParameter("userIdcardImageFileName");
-                String userIdcardImageFileType = multiRequest.getParameter("userIdcardImageFileType");
-                String userIdcardImageFileFormat = multiRequest.getParameter("userIdcardImageFileFormat");
-                // 文件保存目录路径
-                String savePath = request.getSession().getServletContext().getRealPath("/");
-                data = fileService.upload(file, "user", savePath, userId, userIdcardImageFileName, userIdcardImageFileType, userIdcardImageFileFormat);
-                if (null == data) {
-                    errorType = ErrorType.UPLOAD_IMAGE_FAIL;
-                } else {
-                    userService.updateUserIdcard(Long.valueOf(userId), data);
-                }
-            }
-        } catch (Exception e) {
-            errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
-            LOG.error("updateUserIdcard->", e);
-        }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
-    }
-
     @RequestMapping(value = "findNearUserPager")
     @ResponseBody
     public ResponseEntity<String> findNearUserPager(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {

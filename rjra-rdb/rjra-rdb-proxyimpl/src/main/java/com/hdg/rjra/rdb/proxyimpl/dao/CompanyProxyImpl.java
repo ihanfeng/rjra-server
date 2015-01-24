@@ -59,16 +59,4 @@ public class CompanyProxyImpl extends BaseProxy implements ICompanyProxy {
         return daoClient.invoke(moduleName, "updateCompanyFacade",
                 new Object[]{companyId, fileId});
     }
-
-    @Override
-    public Company findCompanyByMobileAndPwd(String mobile, String pwd) {
-        return daoClient.invoke(moduleName, "findCompanyByMobileAndPwd",
-                new Object[]{mobile, pwd});
-    }
-
-    @Override
-    public Integer findCompanyExistsByMobile(String mobile) {
-        return daoClient.invoke(moduleName, "findCompanyExistsByMobile",
-                new Object[]{mobile});
-    }
 }

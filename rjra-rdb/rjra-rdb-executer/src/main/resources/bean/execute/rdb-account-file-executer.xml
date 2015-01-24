@@ -12,11 +12,15 @@
     <bean id="findAccountFileByIds" class="com.hdg.rjra.rdb.executer.accountfile.FindAccountFileByIds">
         <property name="rowMapper" ref="accountFileRowMapper"></property>
     </bean>
+    <bean id="findAccountFileById" class="com.hdg.rjra.rdb.executer.accountfile.FindAccountFileById">
+        <property name="rowMapper" ref="accountFileRowMapper"></property>
+    </bean>
     <bean id="saveAccountFile" class="com.hdg.rjra.rdb.executer.accountfile.SaveAccountFile">
         <property name="rowMapper" ref="accountFileRowMapper"></property>
     </bean>
     <util:map id="rdb-account-file-executer">
         <entry key="findAccountFileByIds" value-ref="findAccountFileByIds"/>
+        <entry key="findAccountFileById" value-ref="findAccountFileById"/>
         <entry key="saveAccountFile" value-ref="saveAccountFile"/>
     </util:map>
 </beans>

@@ -8,30 +8,18 @@ import com.hdg.rjra.server.model.bo.file.AccountFileBo;
  * Created by Rock on 2015/1/10 0010.
  */
 public class UserBo {
+
     private Long userId;
     private String userMobile;
-    private String userName;
+    private String userPwd;
+    private Long resumeId;
+    private AccountFileBo resumeDetail;
+    private Long companyId;
+    private AccountFileBo companyDetail;
+    private String userNickName;
     private Long userHeadImageFile;
     private AccountFileBo userHeadImageFileDetail;
-    private String userEmail;
-    private Integer userWorkStatus;
-    private Long userProvinceId;
-    private Long userCityId;
-    private Long userAreaId;
-    private String userAddress;
-    private Long userNowProvinceId;
-    private Long userNowCityId;
-    private Long userNowAreaId;
-    private String userNowAddress;
-    private Long userHopeProvinceId;
-    private Long userHopeCityId;
-    private Long userHopeAreaId;
-    private Long[] userSkillsLevel1;
-    private Long[] userSkillsLevel2;
-    private Long[] userSkillsLevel3;
-    private String userIdcard;
-    private Long userIdcardImageFile;
-    private AccountFileBo userIdcardImageFileDetail;
+    private String userGender;
     private Double userLoginLongitude;
     private Double userLoginLatitude;
     private String userStatus;
@@ -39,6 +27,7 @@ public class UserBo {
     private String userCreateTime;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String userUpdateTime;
+    private Integer userLoginType;
 
     public Long getUserId() {
         return userId;
@@ -56,12 +45,52 @@ public class UserBo {
         this.userMobile = userMobile;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUserPwd() {
+        return userPwd;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserPwd(String userPwd) {
+        this.userPwd = userPwd;
+    }
+
+    public Long getResumeId() {
+        return resumeId;
+    }
+
+    public void setResumeId(Long resumeId) {
+        this.resumeId = resumeId;
+    }
+
+    public AccountFileBo getResumeDetail() {
+        return resumeDetail;
+    }
+
+    public void setResumeDetail(AccountFileBo resumeDetail) {
+        this.resumeDetail = resumeDetail;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
+
+    public AccountFileBo getCompanyDetail() {
+        return companyDetail;
+    }
+
+    public void setCompanyDetail(AccountFileBo companyDetail) {
+        this.companyDetail = companyDetail;
+    }
+
+    public String getUserNickName() {
+        return userNickName;
+    }
+
+    public void setUserNickName(String userNickName) {
+        this.userNickName = userNickName;
     }
 
     public Long getUserHeadImageFile() {
@@ -72,148 +101,20 @@ public class UserBo {
         this.userHeadImageFile = userHeadImageFile;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public AccountFileBo getUserHeadImageFileDetail() {
+        return userHeadImageFileDetail;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setUserHeadImageFileDetail(AccountFileBo userHeadImageFileDetail) {
+        this.userHeadImageFileDetail = userHeadImageFileDetail;
     }
 
-    public Integer getUserWorkStatus() {
-        return userWorkStatus;
+    public String getUserGender() {
+        return userGender;
     }
 
-    public void setUserWorkStatus(Integer userWorkStatus) {
-        this.userWorkStatus = userWorkStatus;
-    }
-
-    public Long getUserProvinceId() {
-        return userProvinceId;
-    }
-
-    public void setUserProvinceId(Long userProvinceId) {
-        this.userProvinceId = userProvinceId;
-    }
-
-    public Long getUserCityId() {
-        return userCityId;
-    }
-
-    public void setUserCityId(Long userCityId) {
-        this.userCityId = userCityId;
-    }
-
-    public Long getUserAreaId() {
-        return userAreaId;
-    }
-
-    public void setUserAreaId(Long userAreaId) {
-        this.userAreaId = userAreaId;
-    }
-
-    public String getUserAddress() {
-        return userAddress;
-    }
-
-    public void setUserAddress(String userAddress) {
-        this.userAddress = userAddress;
-    }
-
-    public Long getUserNowProvinceId() {
-        return userNowProvinceId;
-    }
-
-    public void setUserNowProvinceId(Long userNowProvinceId) {
-        this.userNowProvinceId = userNowProvinceId;
-    }
-
-    public Long getUserNowCityId() {
-        return userNowCityId;
-    }
-
-    public void setUserNowCityId(Long userNowCityId) {
-        this.userNowCityId = userNowCityId;
-    }
-
-    public Long getUserNowAreaId() {
-        return userNowAreaId;
-    }
-
-    public void setUserNowAreaId(Long userNowAreaId) {
-        this.userNowAreaId = userNowAreaId;
-    }
-
-    public String getUserNowAddress() {
-        return userNowAddress;
-    }
-
-    public void setUserNowAddress(String userNowAddress) {
-        this.userNowAddress = userNowAddress;
-    }
-
-    public Long getUserHopeProvinceId() {
-        return userHopeProvinceId;
-    }
-
-    public void setUserHopeProvinceId(Long userHopeProvinceId) {
-        this.userHopeProvinceId = userHopeProvinceId;
-    }
-
-    public Long getUserHopeCityId() {
-        return userHopeCityId;
-    }
-
-    public void setUserHopeCityId(Long userHopeCityId) {
-        this.userHopeCityId = userHopeCityId;
-    }
-
-    public Long getUserHopeAreaId() {
-        return userHopeAreaId;
-    }
-
-    public void setUserHopeAreaId(Long userHopeAreaId) {
-        this.userHopeAreaId = userHopeAreaId;
-    }
-
-    public Long[] getUserSkillsLevel1() {
-        return userSkillsLevel1;
-    }
-
-    public void setUserSkillsLevel1(Long[] userSkillsLevel1) {
-        this.userSkillsLevel1 = userSkillsLevel1;
-    }
-
-    public Long[] getUserSkillsLevel2() {
-        return userSkillsLevel2;
-    }
-
-    public void setUserSkillsLevel2(Long[] userSkillsLevel2) {
-        this.userSkillsLevel2 = userSkillsLevel2;
-    }
-
-    public Long[] getUserSkillsLevel3() {
-        return userSkillsLevel3;
-    }
-
-    public void setUserSkillsLevel3(Long[] userSkillsLevel3) {
-        this.userSkillsLevel3 = userSkillsLevel3;
-    }
-
-    public String getUserIdcard() {
-        return userIdcard;
-    }
-
-    public void setUserIdcard(String userIdcard) {
-        this.userIdcard = userIdcard;
-    }
-
-    public Long getUserIdcardImageFile() {
-        return userIdcardImageFile;
-    }
-
-    public void setUserIdcardImageFile(Long userIdcardImageFile) {
-        this.userIdcardImageFile = userIdcardImageFile;
+    public void setUserGender(String userGender) {
+        this.userGender = userGender;
     }
 
     public Double getUserLoginLongitude() {
@@ -256,19 +157,11 @@ public class UserBo {
         this.userUpdateTime = userUpdateTime;
     }
 
-    public AccountFileBo getUserHeadImageFileDetail() {
-        return userHeadImageFileDetail;
+    public Integer getUserLoginType() {
+        return userLoginType;
     }
 
-    public void setUserHeadImageFileDetail(AccountFileBo userHeadImageFileDetail) {
-        this.userHeadImageFileDetail = userHeadImageFileDetail;
-    }
-
-    public AccountFileBo getUserIdcardImageFileDetail() {
-        return userIdcardImageFileDetail;
-    }
-
-    public void setUserIdcardImageFileDetail(AccountFileBo userIdcardImageFileDetail) {
-        this.userIdcardImageFileDetail = userIdcardImageFileDetail;
+    public void setUserLoginType(Integer userLoginType) {
+        this.userLoginType = userLoginType;
     }
 }

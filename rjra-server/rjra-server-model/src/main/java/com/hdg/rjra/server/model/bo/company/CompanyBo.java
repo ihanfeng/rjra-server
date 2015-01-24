@@ -8,31 +8,30 @@ import com.hdg.rjra.server.model.bo.file.AccountFileBo;
  * Created by Rock on 2015/1/10 0010.
  */
 public class CompanyBo {
+
     private Long companyId;
     private String companyName;
-    private String companyEmail;
-    private String companyMobile;
-    private Long companyLogoImageFile;
-    private AccountFileBo companyLogoImageFileDetail;
     private Long companyAreaId;
     private Long companyCityId;
     private Long companyProvinceId;
     private String companyAddress;
     private String companyContact;
     private String companyContactMobile;
-    private String companyFixedPhone;
-    private String companyBizlicenseNumber;
+    private Long companyLogoImageFile;
+    private AccountFileBo companyLogoImageFileDetail;
     private Long companyBizlicenseImageFile;
     private AccountFileBo companyBizlicenseImageFileDetail;
-    private Integer examineStatus;
-    private String examineResultInfo;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String examineTime;
+    private Long companyUserIdCardImageFile;
+    private AccountFileBo companyUserIdCardImageFileDetail;
+    private Long companyFacadeImageFile;
+    private AccountFileBo companyFacadeImageFileDetail;
     private Integer companyStatus;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String companyCreateTime;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String companyUpdateTime;
+    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
+    private String companyChangeTime;
     private String companyDesc;
 
     public Long getCompanyId() {
@@ -49,30 +48,6 @@ public class CompanyBo {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
-    }
-
-    public String getCompanyEmail() {
-        return companyEmail;
-    }
-
-    public void setCompanyEmail(String companyEmail) {
-        this.companyEmail = companyEmail;
-    }
-
-    public String getCompanyMobile() {
-        return companyMobile;
-    }
-
-    public void setCompanyMobile(String companyMobile) {
-        this.companyMobile = companyMobile;
-    }
-
-    public Long getCompanyLogoImageFile() {
-        return companyLogoImageFile;
-    }
-
-    public void setCompanyLogoImageFile(Long companyLogoImageFile) {
-        this.companyLogoImageFile = companyLogoImageFile;
     }
 
     public Long getCompanyAreaId() {
@@ -123,20 +98,20 @@ public class CompanyBo {
         this.companyContactMobile = companyContactMobile;
     }
 
-    public String getCompanyFixedPhone() {
-        return companyFixedPhone;
+    public Long getCompanyLogoImageFile() {
+        return companyLogoImageFile;
     }
 
-    public void setCompanyFixedPhone(String companyFixedPhone) {
-        this.companyFixedPhone = companyFixedPhone;
+    public void setCompanyLogoImageFile(Long companyLogoImageFile) {
+        this.companyLogoImageFile = companyLogoImageFile;
     }
 
-    public String getCompanyBizlicenseNumber() {
-        return companyBizlicenseNumber;
+    public AccountFileBo getCompanyLogoImageFileDetail() {
+        return companyLogoImageFileDetail;
     }
 
-    public void setCompanyBizlicenseNumber(String companyBizlicenseNumber) {
-        this.companyBizlicenseNumber = companyBizlicenseNumber;
+    public void setCompanyLogoImageFileDetail(AccountFileBo companyLogoImageFileDetail) {
+        this.companyLogoImageFileDetail = companyLogoImageFileDetail;
     }
 
     public Long getCompanyBizlicenseImageFile() {
@@ -147,28 +122,44 @@ public class CompanyBo {
         this.companyBizlicenseImageFile = companyBizlicenseImageFile;
     }
 
-    public Integer getExamineStatus() {
-        return examineStatus;
+    public AccountFileBo getCompanyBizlicenseImageFileDetail() {
+        return companyBizlicenseImageFileDetail;
     }
 
-    public void setExamineStatus(Integer examineStatus) {
-        this.examineStatus = examineStatus;
+    public void setCompanyBizlicenseImageFileDetail(AccountFileBo companyBizlicenseImageFileDetail) {
+        this.companyBizlicenseImageFileDetail = companyBizlicenseImageFileDetail;
     }
 
-    public String getExamineResultInfo() {
-        return examineResultInfo;
+    public Long getCompanyUserIdCardImageFile() {
+        return companyUserIdCardImageFile;
     }
 
-    public void setExamineResultInfo(String examineResultInfo) {
-        this.examineResultInfo = examineResultInfo;
+    public void setCompanyUserIdCardImageFile(Long companyUserIdCardImageFile) {
+        this.companyUserIdCardImageFile = companyUserIdCardImageFile;
     }
 
-    public String getExamineTime() {
-        return examineTime;
+    public AccountFileBo getCompanyUserIdCardImageFileDetail() {
+        return companyUserIdCardImageFileDetail;
     }
 
-    public void setExamineTime(String examineTime) {
-        this.examineTime = examineTime;
+    public void setCompanyUserIdCardImageFileDetail(AccountFileBo companyUserIdCardImageFileDetail) {
+        this.companyUserIdCardImageFileDetail = companyUserIdCardImageFileDetail;
+    }
+
+    public Long getCompanyFacadeImageFile() {
+        return companyFacadeImageFile;
+    }
+
+    public void setCompanyFacadeImageFile(Long companyFacadeImageFile) {
+        this.companyFacadeImageFile = companyFacadeImageFile;
+    }
+
+    public AccountFileBo getCompanyFacadeImageFileDetail() {
+        return companyFacadeImageFileDetail;
+    }
+
+    public void setCompanyFacadeImageFileDetail(AccountFileBo companyFacadeImageFileDetail) {
+        this.companyFacadeImageFileDetail = companyFacadeImageFileDetail;
     }
 
     public Integer getCompanyStatus() {
@@ -195,27 +186,19 @@ public class CompanyBo {
         this.companyUpdateTime = companyUpdateTime;
     }
 
+    public String getCompanyChangeTime() {
+        return companyChangeTime;
+    }
+
+    public void setCompanyChangeTime(String companyChangeTime) {
+        this.companyChangeTime = companyChangeTime;
+    }
+
     public String getCompanyDesc() {
         return companyDesc;
     }
 
     public void setCompanyDesc(String companyDesc) {
         this.companyDesc = companyDesc;
-    }
-
-    public AccountFileBo getCompanyLogoImageFileDetail() {
-        return companyLogoImageFileDetail;
-    }
-
-    public void setCompanyLogoImageFileDetail(AccountFileBo companyLogoImageFileDetail) {
-        this.companyLogoImageFileDetail = companyLogoImageFileDetail;
-    }
-
-    public AccountFileBo getCompanyBizlicenseImageFileDetail() {
-        return companyBizlicenseImageFileDetail;
-    }
-
-    public void setCompanyBizlicenseImageFileDetail(AccountFileBo companyBizlicenseImageFileDetail) {
-        this.companyBizlicenseImageFileDetail = companyBizlicenseImageFileDetail;
     }
 }

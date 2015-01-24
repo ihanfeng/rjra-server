@@ -28,8 +28,8 @@ public class CompanyServiceImpl implements CompanyService {
     FileService fileService;
 
     @Override
-    public Long saveCompany(String mobile, String pwd) {
-        return companyProxy.saveCompany(mobile, pwd);
+    public Long createCompany() {
+        return companyProxy.createCompany();
     }
 
     @Override
@@ -53,18 +53,23 @@ public class CompanyServiceImpl implements CompanyService {
         CompanyBo companyBo = new CompanyBo();
         Long logoImage = company.getCompanyLogoImageFile();
         Long bizlicenseImageFile = company.getCompanyBizlicenseImageFile();
-        if (null != logoImage) {
-
-            List<AccountFileBo> companyImageInfo = fileService.findAccountFileByIds(new Long[]{logoImage});
-            if (companyImageInfo != null && companyImageInfo.size() > 0) {
-                companyBo.setCompanyLogoImageFileDetail(companyImageInfo.get(0));
-            }
+        Long idCardImageFile = company.getCompanyUserIdCardImageFile();
+        Long facadeImageFile = company.getCompanyFacadeImageFile();
+        if (logoImage != null) {
+            AccountFileBo companyImageInfo = fileService.findAccountFileById(logoImage);
+            companyBo.setCompanyLogoImageFileDetail(companyImageInfo);
         }
-        if (null != bizlicenseImageFile) {
-            List<AccountFileBo> companyImageInfo = fileService.findAccountFileByIds(new Long[]{bizlicenseImageFile});
-            if (companyImageInfo != null && companyImageInfo.size() > 0) {
-                companyBo.setCompanyBizlicenseImageFileDetail(companyImageInfo.get(0));
-            }
+        if (bizlicenseImageFile != null) {
+            AccountFileBo companyImageInfo = fileService.findAccountFileById(bizlicenseImageFile);
+            companyBo.setCompanyBizlicenseImageFileDetail(companyImageInfo);
+        }
+        if (idCardImageFile != null) {
+            AccountFileBo companyImageInfo = fileService.findAccountFileById(idCardImageFile);
+            companyBo.setCompanyUserIdCardImageFileDetail(companyImageInfo);
+        }
+        if (facadeImageFile != null) {
+            AccountFileBo companyImageInfo = fileService.findAccountFileById(facadeImageFile);
+            companyBo.setCompanyFacadeImageFileDetail(companyImageInfo);
         }
         ConversionUtils.conversion(company, companyBo);
         return companyBo;
@@ -95,14 +100,12 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public CompanyBo findCompanyByMobileAndPwd(String mobile, String pwd) {
-        Company company = companyProxy.findCompanyByMobileAndPwd(mobile, pwd);
-        CompanyBo companyBo = getCompanyBo(company);
-        return companyBo;
+    public Integer updateCompanyUserIdCard(Long companyId, Long fileId) {
+        return companyProxy.updateCompanyUserIdCard(companyId, fileId);
     }
 
     @Override
-    public Integer findCompanyExistsByMobile(String mobile) {
-        return companyProxy.findCompanyExistsByMobile(mobile);
+    public Integer updateCompanyFacade(Long companyId, Long fileId) {
+        return companyProxy.updateCompanyFacade(companyId, fileId);
     }
 }

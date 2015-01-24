@@ -12,5 +12,7 @@ public interface IAccountFileProxy extends Serializable {
 
     public List<AccountFile> findAccountFileByIds(Long[] ids, Integer[] status);
 
+    public AccountFile findAccountFileById(Long fileId);
+
     public Long saveAccountFile(AccountFile file);
 }

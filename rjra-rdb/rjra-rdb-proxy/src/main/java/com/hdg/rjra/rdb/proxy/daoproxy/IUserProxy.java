@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 public interface IUserProxy extends Serializable {
 
-    public Long saveUser(Integer resumeId, Integer companyId, String mobile, String pwd);
+    public Long saveUser(Long resumeId, Long companyId, String mobile, String pwd);
 
     public Integer updateUser(User user);
 

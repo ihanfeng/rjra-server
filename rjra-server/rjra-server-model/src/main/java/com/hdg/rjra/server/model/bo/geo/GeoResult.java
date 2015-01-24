@@ -1,4 +1,4 @@
-package com.hdg.rjra.server.model.bo.coordinate;
+package com.hdg.rjra.server.model.bo.geo;
 
 /**
  * Created by Rock on 2015/1/17 0017.

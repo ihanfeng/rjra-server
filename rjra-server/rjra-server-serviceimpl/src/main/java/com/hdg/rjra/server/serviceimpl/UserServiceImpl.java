@@ -2,6 +2,8 @@ package com.hdg.rjra.server.serviceimpl;
 
 import com.hdg.rjra.base.enumerate.UserStatus;
 import com.hdg.rjra.base.utils.ConversionUtils;
+import com.hdg.rjra.rdb.proxy.daoproxy.ICompanyProxy;
+import com.hdg.rjra.rdb.proxy.daoproxy.IResumeProxy;
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.User;
@@ -25,11 +27,19 @@ public class UserServiceImpl implements UserService {
     IUserProxy userProxy;
 
     @Autowired
+    IResumeProxy resumeProxy;
+
+    @Autowired
+    ICompanyProxy companyProxy;
+
+    @Autowired
     FileService fileService;
 
     @Override
     public Long saveUser(String mobile, String pwd) {
-        return userProxy.saveUser(mobile, pwd);
+        Long resumeId = resumeProxy.createResume(mobile);
+        Long companyId = companyProxy.createCompany();
+        return userProxy.saveUser(resumeId, companyId, mobile, pwd);
     }
 
     @Override
@@ -51,18 +61,11 @@ public class UserServiceImpl implements UserService {
         }
         UserBo userBo = new UserBo();
         Long hadeImage = user.getUserHeadImageFile();
-        Long idCardImageFile = user.getUserIdcardImageFile();
         if (null != hadeImage) {
 
             List<AccountFileBo> userImageInfo = fileService.findAccountFileByIds(new Long[]{hadeImage});
             if (userImageInfo != null && userImageInfo.size() > 0) {
                 userBo.setUserHeadImageFileDetail(userImageInfo.get(0));
-            }
-        }
-        if (null != idCardImageFile) {
-            List<AccountFileBo> userImageInfo = fileService.findAccountFileByIds(new Long[]{idCardImageFile});
-            if (userImageInfo != null && userImageInfo.size() > 0) {
-                userBo.setUserIdcardImageFileDetail(userImageInfo.get(0));
             }
         }
         ConversionUtils.conversion(user, userBo);
@@ -85,11 +88,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer updateUserHead(Long userId, Long fileId) {
         return userProxy.updateUserHead(userId, fileId);
-    }
-
-    @Override
-    public Integer updateUserIdcard(Long userId, Long fileId) {
-        return userProxy.updateUserIdcard(userId, fileId);
     }
 
     @Override

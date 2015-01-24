@@ -51,6 +51,11 @@ public class FileServiceImpl implements FileService {
         return accountFileBoList;
     }
 
+    @Override
+    public AccountFileBo findAccountFileById(Long fileId) {
+        return null;
+    }
+
     private AccountFile uploadFile(MultipartFile file, String type, String path, String key, String fileName, String fileType, String fileFormat) throws IOException {
 
         String cd = CustomizedPropertyConfigurer.getContextPropertyForString("upload_file_path");

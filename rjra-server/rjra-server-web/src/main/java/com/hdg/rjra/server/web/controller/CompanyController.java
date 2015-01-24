@@ -51,31 +51,6 @@ public class CompanyController {
     @Autowired
     FileService fileService;
 
-    @RequestMapping(value = "saveCompany")
-    @ResponseBody
-    public ResponseEntity<String> saveCompany(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
-        Long data = null;
-        try {
-            LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);
-            Integer count = companyService.findCompanyExistsByMobile(loginParam.getMobile());
-            if(count == null || count.intValue() == 0) {
-                String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
-                String pwd = AESUtils.encrypt(loginParam.getPwd(), loginParam.getMobile(), encryptionFactor);
-                data = companyService.saveCompany(loginParam.getMobile(), pwd);
-            } else {
-                errorType = ErrorType.MOBILE_ALREADY_EXISTS;
-            }
-        } catch (Exception e) {
-            errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
-            LOG.error("saveCompany->", e);
-        }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
-    }
-
     @RequestMapping(value = "updateCompany")
     @ResponseBody
     public ResponseEntity<String> updateCompany(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
@@ -182,7 +157,7 @@ public class CompanyController {
     }
 
     /**
-     * 上传身份证
+     * 上传营业执照
      *
      * @param request
      * @return
@@ -221,6 +196,98 @@ public class CompanyController {
             errorType = ErrorType.UNKNOW_ERROR;
             errorType.setMessage(e.getMessage());
             LOG.error("updateCompanyBizlicense->", e);
+        }
+
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
+
+    /**
+     * 上传身份证
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("updateCompanyUserIdCard")
+    @ResponseBody
+    public ResponseEntity<String> updateCompanyUserIdCard(HttpServletRequest request) {
+        ErrorType errorType = null;
+        Long data = null;
+        try {
+            MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+            MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
+            // 获取内容类型
+            String contentType = request.getContentType();
+            // 获得上传文件列表
+            MultipartFile file = multiRequest.getFile("companyUserIdCardImageFile");
+            if (file == null || contentType == null || !contentType.startsWith("multipart")) {
+                errorType = ErrorType.UPLOAD_IMAGE_FAIL;
+                LOG.error("updateCompanyUserIdCard->contentType is " + contentType);
+            } else {
+                String companyId = multiRequest.getParameter("companyId");
+                String companyUserIdCardImageFileName = multiRequest.getParameter("companyUserIdCardImageFileName");
+                String companyUserIdCardImageFileType = multiRequest.getParameter("companyUserIdCardImageFileType");
+                String companyUserIdCardImageFileFormat = multiRequest.getParameter("companyUserIdCardImageFileFormat");
+                // 文件保存目录路径
+                String savePath = request.getSession().getServletContext().getRealPath("/");
+                data = fileService.upload(file, "company", savePath, companyId, companyUserIdCardImageFileName, companyUserIdCardImageFileType, companyUserIdCardImageFileFormat);
+
+                if (null == data) {
+                    errorType = ErrorType.UPLOAD_IMAGE_FAIL;
+                } else {
+                    companyService.updateCompanyUserIdCard(Long.valueOf(companyId), data);
+                }
+            }
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("updateCompanyUserIdCard->", e);
+        }
+
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
+
+    /**
+     * 上传门头照
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("updateCompanyFacade")
+    @ResponseBody
+    public ResponseEntity<String> updateCompanyFacade(HttpServletRequest request) {
+        ErrorType errorType = null;
+        Long data = null;
+        try {
+            MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+            MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
+            // 获取内容类型
+            String contentType = request.getContentType();
+            // 获得上传文件列表
+            MultipartFile file = multiRequest.getFile("companyFacadeImageFile");
+            if (file == null || contentType == null || !contentType.startsWith("multipart")) {
+                errorType = ErrorType.UPLOAD_IMAGE_FAIL;
+                LOG.error("updateCompanyFacade->contentType is " + contentType);
+            } else {
+                String companyId = multiRequest.getParameter("companyId");
+                String companyFacadeImageFileName = multiRequest.getParameter("companyFacadeImageFileName");
+                String companyFacadeImageFileType = multiRequest.getParameter("companyFacadeImageFileType");
+                String companyFacadeImageFileFormat = multiRequest.getParameter("companyFacadeImageFileFormat");
+                // 文件保存目录路径
+                String savePath = request.getSession().getServletContext().getRealPath("/");
+                data = fileService.upload(file, "company", savePath, companyId, companyFacadeImageFileName, companyFacadeImageFileType, companyFacadeImageFileFormat);
+
+                if (null == data) {
+                    errorType = ErrorType.UPLOAD_IMAGE_FAIL;
+                } else {
+                    companyService.updateCompanyFacade(Long.valueOf(companyId), data);
+                }
+            }
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("updateCompanyFacade->", e);
         }
 
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);

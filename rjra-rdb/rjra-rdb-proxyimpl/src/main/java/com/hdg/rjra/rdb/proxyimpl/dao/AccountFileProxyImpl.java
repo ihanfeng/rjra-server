@@ -20,6 +20,12 @@ public class AccountFileProxyImpl extends BaseProxy implements IAccountFileProxy
     }
 
     @Override
+    public AccountFile findAccountFileById(Long fileId) {
+        return daoClient.invoke(moduleName, "findAccountFileById",
+                new Object[]{fileId});
+    }
+
+    @Override
     public Long saveAccountFile(AccountFile file) {
         return daoClient.invoke(moduleName, "saveAccountFile",
                 new Object[]{file});

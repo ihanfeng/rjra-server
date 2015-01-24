@@ -47,28 +47,6 @@ public class LoginController {
     @Autowired
     FileService fileService;
 
-    @RequestMapping(value = "company")
-    @ResponseBody
-    public ResponseEntity<String> company(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
-        CompanyBo data = null;
-        try {
-            LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);
-            String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
-            String pwd = AESUtils.encrypt(loginParam.getPwd(), loginParam.getMobile(), encryptionFactor);
-            data = companyService.findCompanyByMobileAndPwd(loginParam.getMobile(),pwd);
-            if (data == null) {
-                errorType = ErrorType.COMPANY_ALREADY_NOT_EXIST;
-            }
-        } catch (Exception e) {
-            errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
-            LOG.error("login company ->", e);
-        }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
-    }
-
     @RequestMapping(value = "user")
     @ResponseBody
     public ResponseEntity<String> user(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {

@@ -13,7 +13,7 @@ public class UserProxyImpl extends BaseProxy implements IUserProxy {
     private static String moduleName = "rdb-user";
 
     @Override
-    public Long saveUser(Integer resumeId, Integer companyId, String mobile, String pwd) {
+    public Long saveUser(Long resumeId, Long companyId, String mobile, String pwd) {
         return daoClient.invoke(moduleName, "saveUser",
                 new Object[]{resumeId, companyId, mobile, pwd});
     }
