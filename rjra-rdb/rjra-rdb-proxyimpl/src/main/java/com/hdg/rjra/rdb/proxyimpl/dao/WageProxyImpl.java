@@ -9,19 +9,9 @@ import java.util.List;
 /**
  * Created by Rock on 2015/1/3 0003.
  */
-public class WageProxyImpl implements IWageProxy {
+public class WageProxyImpl extends BaseProxy implements IWageProxy {
 
     private static String moduleName = "rdb-wage";
-
-    public Client daoClient;
-
-    public Client getDaoClient() {
-        return daoClient;
-    }
-
-    public void setDaoClient(Client daoClient) {
-        this.daoClient = daoClient;
-    }
 
     @Override
     public List<Wage> findAllWage() {

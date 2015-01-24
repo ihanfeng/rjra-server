@@ -7,19 +7,10 @@ import com.hdg.rjra.rdb.proxy.domain.Province;
 /**
  * Created by Rock on 2015/1/3 0003.
  */
-public class ProvinceProxyImpl implements IProvinceProxy {
+public class ProvinceProxyImpl extends BaseProxy implements IProvinceProxy {
 
     private static String moduleName = "rdb-province";
 
-    public Client daoClient;
-
-    public Client getDaoClient() {
-        return daoClient;
-    }
-
-    public void setDaoClient(Client daoClient) {
-        this.daoClient = daoClient;
-    }
     @Override
     public Province findProvinceByProvinceId(Long provinceId) {
         return daoClient.invoke(moduleName, "findProvinceByProvinceId",

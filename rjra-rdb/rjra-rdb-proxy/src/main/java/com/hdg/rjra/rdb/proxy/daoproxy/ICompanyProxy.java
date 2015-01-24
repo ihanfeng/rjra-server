@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 public interface ICompanyProxy extends Serializable {
 
-    public Long saveCompany(String mobile, String pwd);
+    public Long createCompany();
 
     public Integer updateCompany(Company company);
 
@@ -22,7 +22,8 @@ public interface ICompanyProxy extends Serializable {
 
     public Integer updateCompanyLogo(Long companyId, Long fileId);
 
-    public Company findCompanyByMobileAndPwd(String mobile, String pwd);
+    public Integer updateCompanyUserIdCard(Long companyId, Long fileId);
 
-    public Integer findCompanyExistsByMobile(String mobile);
+    public Integer updateCompanyFacade(Long companyId, Long fileId);
+
 }

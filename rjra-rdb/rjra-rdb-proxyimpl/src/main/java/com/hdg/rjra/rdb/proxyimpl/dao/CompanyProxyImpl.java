@@ -8,24 +8,14 @@ import com.hdg.rjra.rdb.proxy.domain.Company;
 /**
  * Created by Rock on 2015/1/3 0003.
  */
-public class CompanyProxyImpl implements ICompanyProxy {
+public class CompanyProxyImpl extends BaseProxy implements ICompanyProxy {
 
     private static String moduleName = "rdb-company";
 
-    public Client daoClient;
-
-    public Client getDaoClient() {
-        return daoClient;
-    }
-
-    public void setDaoClient(Client daoClient) {
-        this.daoClient = daoClient;
-    }
-
     @Override
-    public Long saveCompany(String mobile, String pwd) {
-        return daoClient.invoke(moduleName, "saveCompany",
-                new Object[]{mobile, pwd});
+    public Long createCompany() {
+        return daoClient.invoke(moduleName, "createCompany",
+                new Object[]{});
     }
 
     @Override
@@ -55,6 +45,18 @@ public class CompanyProxyImpl implements ICompanyProxy {
     @Override
     public Integer updateCompanyLogo(Long companyId, Long fileId) {
         return daoClient.invoke(moduleName, "updateCompanyLogo",
+                new Object[]{companyId, fileId});
+    }
+
+    @Override
+    public Integer updateCompanyUserIdCard(Long companyId, Long fileId) {
+        return daoClient.invoke(moduleName, "updateCompanyUserIdCard",
+                new Object[]{companyId, fileId});
+    }
+
+    @Override
+    public Integer updateCompanyFacade(Long companyId, Long fileId) {
+        return daoClient.invoke(moduleName, "updateCompanyFacade",
                 new Object[]{companyId, fileId});
     }
 

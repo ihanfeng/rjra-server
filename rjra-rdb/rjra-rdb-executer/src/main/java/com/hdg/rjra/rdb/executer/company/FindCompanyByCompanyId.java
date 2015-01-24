@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Rock on 2015/1/10 0010.
  */
 public class FindCompanyByCompanyId extends AbstractExecuter {
-    static String sql = "select * from account_company where company_id = ?";
+    static String sql = "select * from user_company where company_id = ?";
     @Override
     public Object execute(Object[] params) {
         Long companyId = (Long) params[0];

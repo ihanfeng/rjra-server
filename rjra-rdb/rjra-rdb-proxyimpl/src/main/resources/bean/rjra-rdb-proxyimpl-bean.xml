@@ -14,52 +14,21 @@
         <constructor-arg type="java.lang.Integer" index="1" value="${rdb.serverPort}"></constructor-arg>
     </bean>
 
-    <bean id="rdbSqlProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.RdbSqlProxyImpl">
+    <bean id="baseProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.BaseProxy">
         <property name="daoClient" ref="daoClient"/>
     </bean>
-    <bean id="userProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.UserProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
-    <bean id="companyProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CompanyProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
-    <bean id="areaProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.AreaProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
-    <bean id="categoryLevel1Proxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CategoryLevel1ProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
-    <bean id="categoryLevel2Proxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CategoryLevel2ProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
-    <bean id="categoryLevel3Proxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CategoryLevel3ProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
-    <bean id="cityProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CityProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
-    <bean id="educationProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.EducationProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
-    <bean id="provinceProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.ProvinceProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
-    <bean id="recruitmentInfo" class="com.hdg.rjra.rdb.proxyimpl.dao.RecruitmentInfoProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
-    <bean id="wageProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.WageProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
-    <bean id="welfareProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.WelfareProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
-    <bean id="workExperienceProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.WorkExperienceProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
-    <bean id="accountFileProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.AccountFileProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
-    <bean id="employProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.EmployProxyImpl">
-        <property name="daoClient" ref="daoClient"/>
-    </bean>
+    <bean id="userProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.UserProxyImpl"/>
+    <bean id="companyProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CompanyProxyImpl"/>
+    <bean id="areaProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.AreaProxyImpl"/>
+    <bean id="categoryLevel1Proxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CategoryLevel1ProxyImpl"/>
+    <bean id="categoryLevel2Proxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CategoryLevel2ProxyImpl"/>
+    <bean id="categoryLevel3Proxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CategoryLevel3ProxyImpl"/>
+    <bean id="cityProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CityProxyImpl"/>
+    <bean id="educationProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.EducationProxyImpl"/>
+    <bean id="provinceProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.ProvinceProxyImpl"/>
+    <bean id="resumeProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.ResumeProxyImpl"/>
+    <bean id="wageProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.WageProxyImpl"/>
+    <bean id="welfareProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.WelfareProxyImpl"/>
+    <bean id="workExperienceProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.WorkExperienceProxyImpl"/>
+    <bean id="accountFileProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.AccountFileProxyImpl"/>
 </beans>

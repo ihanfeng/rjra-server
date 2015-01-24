@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 public interface IUserProxy extends Serializable {
 
-    public Long saveUser(String mobile, String pwd);
+    public Long saveUser(Integer resumeId, Integer companyId, String mobile, String pwd);
 
     public Integer updateUser(User user);
 
@@ -19,8 +19,6 @@ public interface IUserProxy extends Serializable {
     public Pager<User> findAllUserPager(Integer[] status, Integer firstResult, Integer sizeNo);
 
     public Integer updateUserHead(Long userId, Long fileId);
-
-    public Integer updateUserIdcard(Long userId, Long fileId);
 
     public Pager<User> findNearUserPager(Double lng, Double lat, Integer raidus, Integer[] status, Integer firstResult, Integer sizeNo);
 

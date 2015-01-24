@@ -1,4 +1,4 @@
-package com.hdg.rjra.rdb.executer.user;
+package com.hdg.rjra.rdb.executer.company;
 
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.model.thrift.ResultType;
@@ -9,25 +9,25 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Created by Rock on 2015/1/13 0013.
+ * Created by Rock on 2015/1/24 0024.
  */
-public class UpdateUserIdcard extends AbstractExecuter {
+public class UpdateCompanyFacade extends AbstractExecuter {
 
-    String sql = "UPDATE account_user SET " +
-            "user_idcard_image_file=? WHERE user_id =?";
+    String sql = "UPDATE user_company SET " +
+            "company_facade_image_file=? WHERE company_id =?";
 
     @Override
     public Object execute(Object[] params) {
         if (params != null && params.length > 0) {
-            final Long userId = (Long) params[0];
-            final Long fileId = (Long) params[1];
+            final Long companyId = (Long) params[0];
+            final Long bizlicenseFile = (Long) params[1];
             getJdbcTemplate().update(new PreparedStatementCreator()
             {
                 public PreparedStatement createPreparedStatement(Connection con) throws SQLException
                 {
                     PreparedStatement ps = con.prepareStatement(sql);
-                    ps.setObject(1, fileId);
-                    ps.setObject(2, userId);
+                    ps.setObject(1, bizlicenseFile);
+                    ps.setObject(2, companyId);
                     return ps;
                 }
             });

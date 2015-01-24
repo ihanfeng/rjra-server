@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class SaveAccountFile extends AbstractExecuter {
 
-    static String sql = "insert into account_file(file_type, file_status, file_name, file_url, file_format, file_upload_time) values (?,?,?,?,?,?)";
+    static String sql = "insert into account_file(file_type, file_status, file_name, file_url, file_thumbnail_url, file_format, file_upload_time) values (?,?,?,?,?,?,?)";
 
     @Override
     public Object execute(Object[] params) {
@@ -27,8 +27,9 @@ public class SaveAccountFile extends AbstractExecuter {
                 ps.setObject(2, FileStatus.Display.getCode());
                 ps.setObject(3, file.getFileName());
                 ps.setObject(4, file.getFileUrl());
-                ps.setObject(5, file.getFileFormat());
-                ps.setObject(6, new Date());
+                ps.setObject(5, file.getFileThumbnailUrl());
+                ps.setObject(6, file.getFileFormat());
+                ps.setObject(7, new Date());
             }
         };
         return saveResultId(sql, pst);

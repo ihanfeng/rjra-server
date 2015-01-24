@@ -18,6 +18,7 @@ public class AccountFileRowMapper implements RowMapper<AccountFile> {
         re.setFileStatus(rs.getInt("file_status"));
         re.setFileName(rs.getString("file_name"));
         re.setFileUrl(rs.getString("file_url"));
+        re.setFileThumbnailUrl(rs.getString("file_thumbnail_url"));
         re.setFileFormat(rs.getString("file_format"));
         re.setFileUploadTime(rs.getTimestamp("file_upload_time"));
         return re;

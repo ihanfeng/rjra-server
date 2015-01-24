@@ -10,31 +10,17 @@ public class User implements Serializable {
     private Long userId;
     private String userMobile;
     private String userPwd;
-    private String userName;
+    private Long resumeId;
+    private Long companyId;
+    private String userNickName;
     private Long userHeadImageFile;
-    private String userEmail;
-    private Integer userWorkStatus;
-    private Long userProvinceId;
-    private Long userCityId;
-    private Long userAreaId;
-    private String userAddress;
-    private Long userNowProvinceId;
-    private Long userNowCityId;
-    private Long userNowAreaId;
-    private String userNowAddress;
-    private Long userHopeProvinceId;
-    private Long userHopeCityId;
-    private Long userHopeAreaId;
-    private Long[] userSkillsLevel1;
-    private Long[] userSkillsLevel2;
-    private Long[] userSkillsLevel3;
-    private String userIdcard;
-    private Long userIdcardImageFile;
+    private String userGender;
     private Double userLoginLongitude;
     private Double userLoginLatitude;
     private String userStatus;
     private Date userCreateTime;
     private Date userUpdateTime;
+    private Integer userLoginType;
 
     public Long getUserId() {
         return userId;
@@ -44,20 +30,12 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUserMobile() {
+        return userMobile;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public Long getUserHeadImageFile() {
-        return userHeadImageFile;
-    }
-
-    public void setUserHeadImageFile(Long userHeadImageFile) {
-        this.userHeadImageFile = userHeadImageFile;
+    public void setUserMobile(String userMobile) {
+        this.userMobile = userMobile;
     }
 
     public String getUserPwd() {
@@ -68,28 +46,44 @@ public class User implements Serializable {
         this.userPwd = userPwd;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public Long getResumeId() {
+        return resumeId;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setResumeId(Long resumeId) {
+        this.resumeId = resumeId;
     }
 
-    public String getUserIdcard() {
-        return userIdcard;
+    public Long getCompanyId() {
+        return companyId;
     }
 
-    public void setUserIdcard(String userIdcard) {
-        this.userIdcard = userIdcard;
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 
-    public Long getUserIdcardImageFile() {
-        return userIdcardImageFile;
+    public String getUserNickName() {
+        return userNickName;
     }
 
-    public void setUserIdcardImageFile(Long userIdcardImageFile) {
-        this.userIdcardImageFile = userIdcardImageFile;
+    public void setUserNickName(String userNickName) {
+        this.userNickName = userNickName;
+    }
+
+    public Long getUserHeadImageFile() {
+        return userHeadImageFile;
+    }
+
+    public void setUserHeadImageFile(Long userHeadImageFile) {
+        this.userHeadImageFile = userHeadImageFile;
+    }
+
+    public String getUserGender() {
+        return userGender;
+    }
+
+    public void setUserGender(String userGender) {
+        this.userGender = userGender;
     }
 
     public Double getUserLoginLongitude() {
@@ -132,131 +126,11 @@ public class User implements Serializable {
         this.userUpdateTime = userUpdateTime;
     }
 
-    public String getUserMobile() {
-        return userMobile;
+    public Integer getUserLoginType() {
+        return userLoginType;
     }
 
-    public void setUserMobile(String userMobile) {
-        this.userMobile = userMobile;
-    }
-
-    public Integer getUserWorkStatus() {
-        return userWorkStatus;
-    }
-
-    public void setUserWorkStatus(Integer userWorkStatus) {
-        this.userWorkStatus = userWorkStatus;
-    }
-
-    public Long getUserProvinceId() {
-        return userProvinceId;
-    }
-
-    public void setUserProvinceId(Long userProvinceId) {
-        this.userProvinceId = userProvinceId;
-    }
-
-    public Long getUserCityId() {
-        return userCityId;
-    }
-
-    public void setUserCityId(Long userCityId) {
-        this.userCityId = userCityId;
-    }
-
-    public Long getUserAreaId() {
-        return userAreaId;
-    }
-
-    public void setUserAreaId(Long userAreaId) {
-        this.userAreaId = userAreaId;
-    }
-
-    public String getUserAddress() {
-        return userAddress;
-    }
-
-    public void setUserAddress(String userAddress) {
-        this.userAddress = userAddress;
-    }
-
-    public Long getUserNowProvinceId() {
-        return userNowProvinceId;
-    }
-
-    public void setUserNowProvinceId(Long userNowProvinceId) {
-        this.userNowProvinceId = userNowProvinceId;
-    }
-
-    public Long getUserNowCityId() {
-        return userNowCityId;
-    }
-
-    public void setUserNowCityId(Long userNowCityId) {
-        this.userNowCityId = userNowCityId;
-    }
-
-    public Long getUserNowAreaId() {
-        return userNowAreaId;
-    }
-
-    public void setUserNowAreaId(Long userNowAreaId) {
-        this.userNowAreaId = userNowAreaId;
-    }
-
-    public String getUserNowAddress() {
-        return userNowAddress;
-    }
-
-    public void setUserNowAddress(String userNowAddress) {
-        this.userNowAddress = userNowAddress;
-    }
-
-    public Long getUserHopeProvinceId() {
-        return userHopeProvinceId;
-    }
-
-    public void setUserHopeProvinceId(Long userHopeProvinceId) {
-        this.userHopeProvinceId = userHopeProvinceId;
-    }
-
-    public Long getUserHopeCityId() {
-        return userHopeCityId;
-    }
-
-    public void setUserHopeCityId(Long userHopeCityId) {
-        this.userHopeCityId = userHopeCityId;
-    }
-
-    public Long getUserHopeAreaId() {
-        return userHopeAreaId;
-    }
-
-    public void setUserHopeAreaId(Long userHopeAreaId) {
-        this.userHopeAreaId = userHopeAreaId;
-    }
-
-    public Long[] getUserSkillsLevel1() {
-        return userSkillsLevel1;
-    }
-
-    public void setUserSkillsLevel1(Long[] userSkillsLevel1) {
-        this.userSkillsLevel1 = userSkillsLevel1;
-    }
-
-    public Long[] getUserSkillsLevel2() {
-        return userSkillsLevel2;
-    }
-
-    public void setUserSkillsLevel2(Long[] userSkillsLevel2) {
-        this.userSkillsLevel2 = userSkillsLevel2;
-    }
-
-    public Long[] getUserSkillsLevel3() {
-        return userSkillsLevel3;
-    }
-
-    public void setUserSkillsLevel3(Long[] userSkillsLevel3) {
-        this.userSkillsLevel3 = userSkillsLevel3;
+    public void setUserLoginType(Integer userLoginType) {
+        this.userLoginType = userLoginType;
     }
 }

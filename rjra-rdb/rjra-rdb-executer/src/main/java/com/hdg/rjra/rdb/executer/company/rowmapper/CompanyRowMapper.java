@@ -14,26 +14,21 @@ public class CompanyRowMapper implements RowMapper<Company> {
     public Company mapRow(ResultSet rs, int rowNum) throws SQLException {
         Company re = new Company();
         re.setCompanyId(rs.getLong("company_id"));
-        re.setCompanyEmail(rs.getString("company_email"));
-        re.setCompanyMobile(rs.getString("company_mobile"));
         re.setCompanyName(rs.getString("company_name"));
-        re.setCompanyPwd(rs.getString("company_pwd"));
-        re.setCompanyLogoImageFile(rs.getLong("company_logo_image_file"));
         re.setCompanyAreaId(rs.getLong("company_area_id"));
         re.setCompanyCityId(rs.getLong("company_city_id"));
         re.setCompanyProvinceId(rs.getLong("company_province_id"));
         re.setCompanyAddress(rs.getString("company_address"));
         re.setCompanyContact(rs.getString("company_contact"));
         re.setCompanyContactMobile(rs.getString("company_contact_mobile"));
-        re.setCompanyFixedPhone(rs.getString("company_fixed_phone"));
-        re.setCompanyBizlicenseNumber(rs.getString("company_bizlicense_number"));
+        re.setCompanyLogoImageFile(rs.getLong("company_logo_image_file"));
         re.setCompanyBizlicenseImageFile(rs.getLong("company_bizlicense_image_file"));
-        re.setExamineTime(rs.getTimestamp("examine_time"));
-        re.setExamineStatus(rs.getInt("examine_status"));
-        re.setExamineResultInfo(rs.getString("examine_result_info"));
+        re.setCompanyFacadeImageFile(rs.getLong("company_facade_image_file"));
+        re.setCompanyUserIdCardImageFile(rs.getLong("company_user_idcard_image_file"));
         re.setCompanyStatus(rs.getInt("company_status"));
         re.setCompanyCreateTime(rs.getTimestamp("company_create_time"));
         re.setCompanyUpdateTime(rs.getTimestamp("company_update_time"));
+        re.setCompanyChangeTime(rs.getTimestamp("company_change_time"));
         re.setCompanyDesc(rs.getString("company_desc"));
         return re;
     }

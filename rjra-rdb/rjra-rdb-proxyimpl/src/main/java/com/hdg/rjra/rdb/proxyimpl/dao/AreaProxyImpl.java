@@ -9,19 +9,10 @@ import java.util.List;
 /**
  * Created by Rock on 2015/1/3 0003.
  */
-public class AreaProxyImpl implements IAreaProxy {
+public class AreaProxyImpl extends BaseProxy implements IAreaProxy {
 
     private static String moduleName = "rdb-area";
 
-    public Client daoClient;
-
-    public Client getDaoClient() {
-        return daoClient;
-    }
-
-    public void setDaoClient(Client daoClient) {
-        this.daoClient = daoClient;
-    }
     @Override
     public Area findAreaByAreaId(Long areaId) {
         return daoClient.invoke(moduleName, "findAreaByAreaId",

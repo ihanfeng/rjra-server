@@ -9,19 +9,9 @@ import java.util.List;
 /**
  * Created by Rock on 2015/1/3 0003.
  */
-public class WelfareProxyImpl implements IWelfareProxy {
+public class WelfareProxyImpl extends BaseProxy implements IWelfareProxy {
 
     private static String moduleName = "rdb-welface";
-
-    public Client daoClient;
-
-    public Client getDaoClient() {
-        return daoClient;
-    }
-
-    public void setDaoClient(Client daoClient) {
-        this.daoClient = daoClient;
-    }
 
     @Override
     public List<Welfare> findAllWelfare() {

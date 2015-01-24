@@ -9,19 +9,10 @@ import java.util.List;
 /**
  * Created by Rock on 2015/1/8 0008.
  */
-public class CategoryLevel2ProxyImpl implements ICategoryLevel2Proxy {
+public class CategoryLevel2ProxyImpl extends BaseProxy implements ICategoryLevel2Proxy {
 
     private static String moduleName = "rdb-category-level2";
 
-    public Client daoClient;
-
-    public Client getDaoClient() {
-        return daoClient;
-    }
-
-    public void setDaoClient(Client daoClient) {
-        this.daoClient = daoClient;
-    }
     @Override
     public CategoryLevel2 findCategoryLevel2ByCategoryLevel2Id(Long categoryLevel2Id) {
         return daoClient.invoke(moduleName, "findCategoryLevel2ByCategoryLevel2Id",

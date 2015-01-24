@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+          http://www.springframework.org/schema/util
+          http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+    <bean id="resumeRowMapper" class="com.hdg.rjra.rdb.executer.resume.rowmapper.ResumeRowMapper"/>
+
+    <bean id="createResume" class="com.hdg.rjra.rdb.executer.resume.CreateResume">
+        <property name="rowMapper" ref="resumeRowMapper"></property>
+    </bean>
+    <bean id="findResumeByResumeId" class="com.hdg.rjra.rdb.executer.resume.FindResumeByResumeId">
+        <property name="rowMapper" ref="resumeRowMapper"></property>
+    </bean>
+    <bean id="updatResumeStatus" class="com.hdg.rjra.rdb.executer.resume.UpdatResumeStatus">
+        <property name="rowMapper" ref="resumeRowMapper"></property>
+    </bean>
+    <bean id="updateResume" class="com.hdg.rjra.rdb.executer.resume.UpdateResume">
+        <property name="rowMapper" ref="resumeRowMapper"></property>
+    </bean>
+    <util:map id="rdb-resume-executer">
+        <entry key="createResume" value-ref="createResume"/>
+        <entry key="findResumeByResumeId" value-ref="findResumeByResumeId"/>
+        <entry key="updatResumeStatus" value-ref="updatResumeStatus"/>
+        <entry key="updateResume" value-ref="updateResume"/>
+    </util:map>
+</beans>

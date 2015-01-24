@@ -15,11 +15,9 @@ import java.util.Date;
  */
 public class UpdateCompany extends AbstractExecuter {
 
-    String sql = "UPDATE account_company SET " +
-            "company_email=?,company_name=?,company_area_id=?,company_city_id=?,company_province_id=?," +
-            "company_address=?,company_contact=?,company_contact_mobile=?," +
-            "company_fixed_phone=?,company_bizlicense_number=?," +
-            "company_update_time=?,company_desc=? WHERE company_id =?";
+    String sql = "UPDATE user_company SET " +
+            "company_name=?,company_province_id=?,company_city_id=?,company_area_id=?,company_address=?," +
+            "company_contact=?,company_contact_mobile=?,company_update_time=?,company_desc=? WHERE company_id =?";
 
     @Override
     public Object execute(Object[] params) {
@@ -30,39 +28,16 @@ public class UpdateCompany extends AbstractExecuter {
                 public PreparedStatement createPreparedStatement(Connection con) throws SQLException
                 {
                     PreparedStatement ps = con.prepareStatement(sql);
-                    if (o.getCompanyEmail() != null) {
-                        ps.setObject(1, o.getCompanyEmail());
-                    }
-                    else {
-                        ps.setObject(1, "");
-                    }
-                    ps.setObject(2, o.getCompanyName());
-                    ps.setObject(3, o.getCompanyAreaId());
-                    ps.setObject(4, o.getCompanyCityId());
-                    ps.setObject(5, o.getCompanyProvinceId());
-                    ps.setObject(6, o.getCompanyAddress());
-                    ps.setObject(7, o.getCompanyContact());
-                    ps.setObject(8, o.getCompanyContactMobile());
-                    if (o.getCompanyFixedPhone() != null) {
-                        ps.setObject(9, o.getCompanyFixedPhone());
-                    }
-                    else {
-                        ps.setObject(9, "");
-                    }
-                    if (o.getCompanyBizlicenseNumber() != null) {
-                        ps.setObject(10, o.getCompanyBizlicenseNumber());
-                    }
-                    else {
-                        ps.setObject(10, "");
-                    }
-                    ps.setObject(11, new Date());
-                    if (o.getCompanyDesc() != null) {
-                        ps.setObject(12, o.getCompanyDesc());
-                    }
-                    else {
-                        ps.setObject(12, -1);
-                    }
-                    ps.setObject(13, o.getCompanyId());
+                    ps.setObject(1, o.getCompanyName());
+                    ps.setObject(2, o.getCompanyProvinceId());
+                    ps.setObject(3, o.getCompanyCityId());
+                    ps.setObject(4, o.getCompanyAreaId());
+                    ps.setObject(5, o.getCompanyAddress());
+                    ps.setObject(6, o.getCompanyContact());
+                    ps.setObject(7, o.getCompanyContactMobile());
+                    ps.setObject(8, new Date());
+                    ps.setObject(9, o.getCompanyDesc());
+                    ps.setObject(10, o.getCompanyId());
                     return ps;
                 }
             });

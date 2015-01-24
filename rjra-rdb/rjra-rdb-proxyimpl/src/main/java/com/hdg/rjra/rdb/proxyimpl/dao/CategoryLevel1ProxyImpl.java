@@ -9,19 +9,9 @@ import java.util.List;
 /**
  * Created by Rock on 2015/1/8 0008.
  */
-public class CategoryLevel1ProxyImpl implements ICategoryLevel1Proxy {
+public class CategoryLevel1ProxyImpl extends BaseProxy implements ICategoryLevel1Proxy {
 
     private static String moduleName = "rdb-category-level1";
-
-    public Client daoClient;
-
-    public Client getDaoClient() {
-        return daoClient;
-    }
-
-    public void setDaoClient(Client daoClient) {
-        this.daoClient = daoClient;
-    }
 
     @Override
     public CategoryLevel1 findCategoryLevel1ByCategoryLevel1Id(Long categoryLevel1Id) {

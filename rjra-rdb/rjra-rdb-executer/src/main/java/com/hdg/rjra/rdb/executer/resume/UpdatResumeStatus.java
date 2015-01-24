@@ -1,4 +1,4 @@
-package com.hdg.rjra.rdb.executer.recruitmentinfo;
+package com.hdg.rjra.rdb.executer.resume;
 
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.model.thrift.ResultType;
@@ -9,16 +9,17 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Created by Rock on 2015/1/8 0008.
+ * Created by Rock on 2015/1/24 0024.
  */
-public class UpdateRecruitmentInfoStatus extends AbstractExecuter {
+public class UpdatResumeStatus extends AbstractExecuter {
 
-    String sql = "UPDATE rec_info SET info_status=? WHERE info_id =?";
+    String sql = "UPDATE user_resume SET " +
+            "resume_status=? WHERE resume_id =?";
 
     @Override
     public Object execute(Object[] params) {
         if (params != null && params.length > 0) {
-            final Long infoId = (Long) params[0];
+            final Long resumeId = (Long) params[0];
             final Integer status = (Integer) params[1];
             getJdbcTemplate().update(new PreparedStatementCreator()
             {
@@ -26,7 +27,7 @@ public class UpdateRecruitmentInfoStatus extends AbstractExecuter {
                 {
                     PreparedStatement ps = con.prepareStatement(sql);
                     ps.setObject(1, status);
-                    ps.setObject(2, infoId);
+                    ps.setObject(2, resumeId);
                     return ps;
                 }
             });

@@ -10,25 +10,20 @@ public class Company implements Serializable {
 
     private Long companyId;
     private String companyName;
-    private String companyEmail;
-    private String companyMobile;
-    private String companyPwd;
-    private Long companyLogoImageFile;
     private Long companyAreaId;
     private Long companyCityId;
     private Long companyProvinceId;
     private String companyAddress;
     private String companyContact;
     private String companyContactMobile;
-    private String companyFixedPhone;
-    private String companyBizlicenseNumber;
+    private Long companyLogoImageFile;
     private Long companyBizlicenseImageFile;
-    private Integer examineStatus;
-    private String examineResultInfo;
-    private Date examineTime;
+    private Long companyUserIdCardImageFile;
+    private Long companyFacadeImageFile;
     private Integer companyStatus;
     private Date companyCreateTime;
     private Date companyUpdateTime;
+    private Date companyChangeTime;
     private String companyDesc;
 
     public Long getCompanyId() {
@@ -45,38 +40,6 @@ public class Company implements Serializable {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
-    }
-
-    public String getCompanyEmail() {
-        return companyEmail;
-    }
-
-    public void setCompanyEmail(String companyEmail) {
-        this.companyEmail = companyEmail;
-    }
-
-    public String getCompanyMobile() {
-        return companyMobile;
-    }
-
-    public void setCompanyMobile(String companyMobile) {
-        this.companyMobile = companyMobile;
-    }
-
-    public String getCompanyPwd() {
-        return companyPwd;
-    }
-
-    public void setCompanyPwd(String companyPwd) {
-        this.companyPwd = companyPwd;
-    }
-
-    public Long getCompanyLogoImageFile() {
-        return companyLogoImageFile;
-    }
-
-    public void setCompanyLogoImageFile(Long companyLogoImageFile) {
-        this.companyLogoImageFile = companyLogoImageFile;
     }
 
     public Long getCompanyAreaId() {
@@ -127,20 +90,12 @@ public class Company implements Serializable {
         this.companyContactMobile = companyContactMobile;
     }
 
-    public String getCompanyFixedPhone() {
-        return companyFixedPhone;
+    public Long getCompanyLogoImageFile() {
+        return companyLogoImageFile;
     }
 
-    public void setCompanyFixedPhone(String companyFixedPhone) {
-        this.companyFixedPhone = companyFixedPhone;
-    }
-
-    public String getCompanyBizlicenseNumber() {
-        return companyBizlicenseNumber;
-    }
-
-    public void setCompanyBizlicenseNumber(String companyBizlicenseNumber) {
-        this.companyBizlicenseNumber = companyBizlicenseNumber;
+    public void setCompanyLogoImageFile(Long companyLogoImageFile) {
+        this.companyLogoImageFile = companyLogoImageFile;
     }
 
     public Long getCompanyBizlicenseImageFile() {
@@ -151,20 +106,20 @@ public class Company implements Serializable {
         this.companyBizlicenseImageFile = companyBizlicenseImageFile;
     }
 
-    public Integer getExamineStatus() {
-        return examineStatus;
+    public Long getCompanyUserIdCardImageFile() {
+        return companyUserIdCardImageFile;
     }
 
-    public void setExamineStatus(Integer examineStatus) {
-        this.examineStatus = examineStatus;
+    public void setCompanyUserIdCardImageFile(Long companyUserIdCardImageFile) {
+        this.companyUserIdCardImageFile = companyUserIdCardImageFile;
     }
 
-    public String getExamineResultInfo() {
-        return examineResultInfo;
+    public Long getCompanyFacadeImageFile() {
+        return companyFacadeImageFile;
     }
 
-    public void setExamineResultInfo(String examineResultInfo) {
-        this.examineResultInfo = examineResultInfo;
+    public void setCompanyFacadeImageFile(Long companyFacadeImageFile) {
+        this.companyFacadeImageFile = companyFacadeImageFile;
     }
 
     public Integer getCompanyStatus() {
@@ -191,12 +146,12 @@ public class Company implements Serializable {
         this.companyUpdateTime = companyUpdateTime;
     }
 
-    public Date getExamineTime() {
-        return examineTime;
+    public Date getCompanyChangeTime() {
+        return companyChangeTime;
     }
 
-    public void setExamineTime(Date examineTime) {
-        this.examineTime = examineTime;
+    public void setCompanyChangeTime(Date companyChangeTime) {
+        this.companyChangeTime = companyChangeTime;
     }
 
     public String getCompanyDesc() {

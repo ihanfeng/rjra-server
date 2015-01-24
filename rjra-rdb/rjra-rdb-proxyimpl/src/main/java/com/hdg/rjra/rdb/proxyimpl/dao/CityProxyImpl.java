@@ -9,19 +9,9 @@ import java.util.List;
 /**
  * Created by Rock on 2015/1/3 0003.
  */
-public class CityProxyImpl implements ICityProxy {
+public class CityProxyImpl extends BaseProxy implements ICityProxy {
 
     private static String moduleName = "rdb-city";
-
-    public Client daoClient;
-
-    public Client getDaoClient() {
-        return daoClient;
-    }
-
-    public void setDaoClient(Client daoClient) {
-        this.daoClient = daoClient;
-    }
 
     @Override
     public City findCityByCityId(Long cityId) {

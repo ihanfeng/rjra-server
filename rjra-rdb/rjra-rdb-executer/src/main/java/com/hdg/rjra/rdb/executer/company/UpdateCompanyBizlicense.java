@@ -13,7 +13,7 @@ import java.sql.SQLException;
  */
 public class UpdateCompanyBizlicense extends AbstractExecuter {
 
-    String sql = "UPDATE account_company SET " +
+    String sql = "UPDATE user_company SET " +
             "company_bizlicense_image_file=? WHERE company_id =?";
 
     @Override

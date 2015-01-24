@@ -9,19 +9,9 @@ import java.util.List;
 /**
  * Created by Rock on 2015/1/3 0003.
  */
-public class AccountFileProxyImpl implements IAccountFileProxy {
+public class AccountFileProxyImpl extends BaseProxy implements IAccountFileProxy {
 
     private static String moduleName = "rdb-account-file";
-
-    public Client daoClient;
-
-    public Client getDaoClient() {
-        return daoClient;
-    }
-
-    public void setDaoClient(Client daoClient) {
-        this.daoClient = daoClient;
-    }
 
     @Override
     public List<AccountFile> findAccountFileByIds(Long[] ids, Integer[] status) {

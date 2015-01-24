@@ -12,6 +12,7 @@ public class AccountFile implements Serializable {
     private Integer fileStatus;
     private String fileName;
     private String fileUrl;
+    private String fileThumbnailUrl;
     private String fileFormat;
     private Date fileUploadTime;
 
@@ -69,5 +70,13 @@ public class AccountFile implements Serializable {
 
     public void setFileUploadTime(Date fileUploadTime) {
         this.fileUploadTime = fileUploadTime;
+    }
+
+    public String getFileThumbnailUrl() {
+        return fileThumbnailUrl;
+    }
+
+    public void setFileThumbnailUrl(String fileThumbnailUrl) {
+        this.fileThumbnailUrl = fileThumbnailUrl;
     }
 }

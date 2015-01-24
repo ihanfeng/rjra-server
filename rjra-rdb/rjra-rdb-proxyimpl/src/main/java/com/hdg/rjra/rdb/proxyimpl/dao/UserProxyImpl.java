@@ -8,24 +8,14 @@ import com.hdg.rjra.rdb.proxy.domain.User;
 /**
  * Created by Rock on 2015/1/3 0003.
  */
-public class UserProxyImpl implements IUserProxy {
+public class UserProxyImpl extends BaseProxy implements IUserProxy {
 
     private static String moduleName = "rdb-user";
 
-    public Client daoClient;
-
-    public Client getDaoClient() {
-        return daoClient;
-    }
-
-    public void setDaoClient(Client daoClient) {
-        this.daoClient = daoClient;
-    }
-
     @Override
-    public Long saveUser(String mobile, String pwd) {
+    public Long saveUser(Integer resumeId, Integer companyId, String mobile, String pwd) {
         return daoClient.invoke(moduleName, "saveUser",
-                new Object[]{mobile, pwd});
+                new Object[]{resumeId, companyId, mobile, pwd});
     }
 
     @Override
@@ -49,12 +39,6 @@ public class UserProxyImpl implements IUserProxy {
     @Override
     public Integer updateUserHead(Long userId, Long fileId) {
         return daoClient.invoke(moduleName, "updateUserHead",
-                new Object[]{userId, fileId});
-    }
-
-    @Override
-    public Integer updateUserIdcard(Long userId, Long fileId) {
-        return daoClient.invoke(moduleName, "updateUserIdcard",
                 new Object[]{userId, fileId});
     }
 

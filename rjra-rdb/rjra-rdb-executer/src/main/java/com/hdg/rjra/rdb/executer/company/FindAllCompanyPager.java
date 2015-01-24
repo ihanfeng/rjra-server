@@ -14,7 +14,7 @@ public class FindAllCompanyPager extends AbstractExecuter {
         Integer firstResult = (Integer) params[1];
         Integer sizeNo = (Integer) params[2];
         StringBuffer executeSql = new StringBuffer();
-        executeSql.append("select * from account_company where company_status in (");
+        executeSql.append("select * from user_company where company_status in (");
         executeSql.append(SqlUtils.appendPlaceholder(status.length));
         executeSql.append(") order by company_create_time desc");
         return findPager(executeSql.toString(), status,firstResult,sizeNo, rowMapper);

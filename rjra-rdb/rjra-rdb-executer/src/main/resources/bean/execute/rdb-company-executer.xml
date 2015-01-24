@@ -9,7 +9,7 @@
 
     <bean id="companyRowMapper" class="com.hdg.rjra.rdb.executer.company.rowmapper.CompanyRowMapper"/>
 
-    <bean id="saveCompany" class="com.hdg.rjra.rdb.executer.company.SaveCompany">
+    <bean id="createCompany" class="com.hdg.rjra.rdb.executer.company.CreateCompany">
         <property name="rowMapper" ref="companyRowMapper"></property>
     </bean>
     <bean id="updateCompany" class="com.hdg.rjra.rdb.executer.company.UpdateCompany">
@@ -27,21 +27,20 @@
     <bean id="updateCompanyLogo" class="com.hdg.rjra.rdb.executer.company.UpdateCompanyLogo">
         <property name="rowMapper" ref="companyRowMapper"></property>
     </bean>
-    <bean id="findCompanyByMobileAndPwd" class="com.hdg.rjra.rdb.executer.company.FindCompanyByMobileAndPwd">
+    <bean id="updateCompanyUserIdCard" class="com.hdg.rjra.rdb.executer.company.UpdateCompanyUserIdCard">
         <property name="rowMapper" ref="companyRowMapper"></property>
     </bean>
-    <bean id="findCompanyExistsByMobile" class="com.hdg.rjra.rdb.executer.company.FindCompanyExistsByMobile">
+    <bean id="updateCompanyFacade" class="com.hdg.rjra.rdb.executer.company.UpdateCompanyFacade">
         <property name="rowMapper" ref="companyRowMapper"></property>
     </bean>
     <util:map id="rdb-company-executer">
-        <entry key="saveCompany" value-ref="saveCompany"/>
+        <entry key="createCompany" value-ref="createCompany"/>
         <entry key="updateCompany" value-ref="updateCompany"/>
         <entry key="findCompanyByCompanyId" value-ref="findCompanyByCompanyId"/>
         <entry key="findAllCompanyPager" value-ref="findAllCompanyPager"/>
         <entry key="updateCompanyBizlicense" value-ref="updateCompanyBizlicense"/>
         <entry key="updateCompanyLogo" value-ref="updateCompanyLogo"/>
-        <entry key="findCompanyByMobileAndPwd" value-ref="findCompanyByMobileAndPwd"/>
-        <entry key="findCompanyExistsByMobile" value-ref="findCompanyExistsByMobile"/>
-
+        <entry key="updateCompanyUserIdCard" value-ref="updateCompanyUserIdCard"/>
+        <entry key="updateCompanyFacade" value-ref="updateCompanyFacade"/>
     </util:map>
 </beans>
