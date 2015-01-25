@@ -1,4 +1,4 @@
-package com.hdg.rjra.rdb.executer.accountfile.rowmapper;
+package com.hdg.rjra.rdb.executer.accountfile;
 
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.proxy.utils.SqlUtils;
