@@ -7,9 +7,13 @@ import com.hdg.rjra.rdb.proxy.daoproxy.IResumeProxy;
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.User;
+import com.hdg.rjra.server.model.bo.company.CompanyBo;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
+import com.hdg.rjra.server.model.bo.resume.ResumeBo;
 import com.hdg.rjra.server.model.bo.user.UserBo;
+import com.hdg.rjra.server.service.CompanyService;
 import com.hdg.rjra.server.service.FileService;
+import com.hdg.rjra.server.service.ResumeService;
 import com.hdg.rjra.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,18 +31,18 @@ public class UserServiceImpl implements UserService {
     IUserProxy userProxy;
 
     @Autowired
-    IResumeProxy resumeProxy;
+    ResumeService resumeService;
 
     @Autowired
-    ICompanyProxy companyProxy;
+    CompanyService companyService;
 
     @Autowired
     FileService fileService;
 
     @Override
     public Long saveUser(String mobile, String pwd) {
-        Long resumeId = resumeProxy.createResume(mobile);
-        Long companyId = companyProxy.createCompany();
+        Long resumeId = resumeService.createResume(mobile);
+        Long companyId = companyService.createCompany();
         return userProxy.saveUser(resumeId, companyId, mobile, pwd);
     }
 
@@ -62,11 +66,22 @@ public class UserServiceImpl implements UserService {
         UserBo userBo = new UserBo();
         Long hadeImage = user.getUserHeadImageFile();
         if (null != hadeImage) {
-
             List<AccountFileBo> userImageInfo = fileService.findAccountFileByIds(new Long[]{hadeImage});
             if (userImageInfo != null && userImageInfo.size() > 0) {
                 userBo.setUserHeadImageFileDetail(userImageInfo.get(0));
             }
+        }
+        Long resumeID = user.getResumeId();
+        if(null != resumeID)
+        {
+            ResumeBo resumeBo = resumeService.findResumeByResumeId(resumeID);
+            userBo.setResumeDetail(resumeBo);
+        }
+        Long companyId = user.getCompanyId();
+        if(null != companyId)
+        {
+            CompanyBo companyBo = companyService.findCompanyByCompanyId(companyId);
+            userBo.setCompanyDetail(companyBo);
         }
         ConversionUtils.conversion(user, userBo);
         return userBo;
@@ -91,8 +106,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Pager<UserBo> findNearUserPager(Double lat, Double lng, Integer raidus, Integer firstResult, Integer sizeNo) {
-        Pager<User> userPager = userProxy.findNearUserPager(lat, lng, raidus, new Integer[]{UserStatus.Active.getCode()}, firstResult, sizeNo);
+    public Pager<UserBo> findNearUserPager(Double lng, Double lat, Integer raidus, Integer firstResult, Integer sizeNo) {
+        Pager<User> userPager = userProxy.findNearUserPager(lng, lat, raidus, new Integer[]{UserStatus.Active.getCode()}, firstResult, sizeNo);
         Pager<UserBo> userBoPager = new Pager<UserBo>();
         List<UserBo> userBoList = new ArrayList<UserBo>();
         for (User user : userPager.getResultList()) {

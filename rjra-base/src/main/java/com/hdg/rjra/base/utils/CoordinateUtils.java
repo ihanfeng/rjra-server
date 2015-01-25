@@ -8,12 +8,12 @@ public class CoordinateUtils {
     /**
      * 生成以中心点为中心的四方形经纬度
      *
-     * @param lat 纬度
      * @param lon 精度
+     * @param lat 纬度
      * @param raidus 半径（以米为单位）
      * @return
      */
-    public static double[] getAround(double lat, double lon, int raidus) {
+    public static double[] getAround(double lon, double lat, int raidus) {
 
         Double latitude = lat;
         Double longitude = lon;

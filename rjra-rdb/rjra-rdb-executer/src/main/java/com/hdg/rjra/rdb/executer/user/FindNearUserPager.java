@@ -17,7 +17,7 @@ public class FindNearUserPager extends AbstractExecuter {
         Integer[] status = (Integer[]) params[3];
         Integer firstResult = (Integer) params[4];
         Integer sizeNo = (Integer) params[5];
-        double[] doubles = CoordinateUtils.getAround(lat, lng, raidus);
+        double[] doubles = CoordinateUtils.getAround(lng, lat, raidus);
         StringBuffer executeSql = new StringBuffer();
         executeSql.append("select * from account_user where");
         executeSql.append(" user_status in (");

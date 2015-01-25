@@ -2,7 +2,9 @@ package com.hdg.rjra.server.model.bo.user;
 
 import com.hdg.rjra.base.annotation.DateTimeFormat;
 import com.hdg.rjra.base.constants.CommonConstants;
+import com.hdg.rjra.server.model.bo.company.CompanyBo;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
+import com.hdg.rjra.server.model.bo.resume.ResumeBo;
 
 /**
  * Created by Rock on 2015/1/10 0010.
@@ -13,9 +15,9 @@ public class UserBo {
     private String userMobile;
     private String userPwd;
     private Long resumeId;
-    private AccountFileBo resumeDetail;
+    private ResumeBo resumeDetail;
     private Long companyId;
-    private AccountFileBo companyDetail;
+    private CompanyBo companyDetail;
     private String userNickName;
     private Long userHeadImageFile;
     private AccountFileBo userHeadImageFileDetail;
@@ -61,14 +63,6 @@ public class UserBo {
         this.resumeId = resumeId;
     }
 
-    public AccountFileBo getResumeDetail() {
-        return resumeDetail;
-    }
-
-    public void setResumeDetail(AccountFileBo resumeDetail) {
-        this.resumeDetail = resumeDetail;
-    }
-
     public Long getCompanyId() {
         return companyId;
     }
@@ -77,11 +71,19 @@ public class UserBo {
         this.companyId = companyId;
     }
 
-    public AccountFileBo getCompanyDetail() {
+    public ResumeBo getResumeDetail() {
+        return resumeDetail;
+    }
+
+    public void setResumeDetail(ResumeBo resumeDetail) {
+        this.resumeDetail = resumeDetail;
+    }
+
+    public CompanyBo getCompanyDetail() {
         return companyDetail;
     }
 
-    public void setCompanyDetail(AccountFileBo companyDetail) {
+    public void setCompanyDetail(CompanyBo companyDetail) {
         this.companyDetail = companyDetail;
     }
 
