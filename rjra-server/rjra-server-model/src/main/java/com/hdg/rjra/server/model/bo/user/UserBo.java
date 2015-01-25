@@ -21,10 +21,10 @@ public class UserBo {
     private String userNickName;
     private Long userHeadImageFile;
     private AccountFileBo userHeadImageFileDetail;
-    private String userGender;
+    private Integer userGender;
     private Double userLoginLongitude;
     private Double userLoginLatitude;
-    private String userStatus;
+    private Integer userStatus;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String userCreateTime;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
@@ -111,14 +111,6 @@ public class UserBo {
         this.userHeadImageFileDetail = userHeadImageFileDetail;
     }
 
-    public String getUserGender() {
-        return userGender;
-    }
-
-    public void setUserGender(String userGender) {
-        this.userGender = userGender;
-    }
-
     public Double getUserLoginLongitude() {
         return userLoginLongitude;
     }
@@ -135,11 +127,19 @@ public class UserBo {
         this.userLoginLatitude = userLoginLatitude;
     }
 
-    public String getUserStatus() {
+    public Integer getUserGender() {
+        return userGender;
+    }
+
+    public void setUserGender(Integer userGender) {
+        this.userGender = userGender;
+    }
+
+    public Integer getUserStatus() {
         return userStatus;
     }
 
-    public void setUserStatus(String userStatus) {
+    public void setUserStatus(Integer userStatus) {
         this.userStatus = userStatus;
     }
 

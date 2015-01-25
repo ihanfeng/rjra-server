@@ -23,6 +23,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -41,6 +45,9 @@ public class ResumeController {
 
     @Autowired
     ResumeService resumeService;
+
+    @Autowired
+    FileService fileService;
 
     @RequestMapping(value = "findResumeByResumeId")
     @ResponseBody
@@ -96,4 +103,51 @@ public class ResumeController {
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
+
+
+    /**
+     * 上传头像
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("updateResumeHead")
+    @ResponseBody
+    public ResponseEntity<String> updateResumeHead(HttpServletRequest request) {
+        ErrorType errorType = null;
+        Long data = null;
+        try {
+            MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+            MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
+            // 获取内容类型
+            String contentType = request.getContentType();
+            // 获得上传文件列表
+            MultipartFile file = multiRequest.getFile("resumeHeadImageFile");
+            if (file == null || contentType == null || !contentType.startsWith("multipart")) {
+                errorType = ErrorType.UPLOAD_IMAGE_FAIL;
+                LOG.error("updateResumeHead->contentType is " + contentType);
+            } else {
+                String userId = multiRequest.getParameter("resumeId");
+                String resumeHeadImageFileName = multiRequest.getParameter("resumeHeadImageFileName");
+                String resumeHeadImageFileType = multiRequest.getParameter("resumeHeadImageFileType");
+                String resumeHeadImageFileFormat = multiRequest.getParameter("resumeHeadImageFileFormat");
+                // 文件保存目录路径
+                String savePath = request.getSession().getServletContext().getRealPath("/");
+                data = fileService.upload(file, "user", savePath, userId, resumeHeadImageFileName, resumeHeadImageFileType, resumeHeadImageFileFormat);
+                if (null == data) {
+                    errorType = ErrorType.UPLOAD_IMAGE_FAIL;
+                } else {
+                    resumeService.updateResumeHead(Long.valueOf(userId), data);
+                }
+            }
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("updateResumeHead->", e);
+        }
+
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
+
 }

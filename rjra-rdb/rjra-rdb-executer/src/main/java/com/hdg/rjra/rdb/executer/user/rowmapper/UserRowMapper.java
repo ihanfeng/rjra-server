@@ -22,7 +22,8 @@ public class UserRowMapper implements RowMapper<User> {
         re.setUserHeadImageFile(rs.getLong("user_head_image_file"));
         re.setUserLoginLongitude(rs.getDouble("user_login_longitude"));
         re.setUserLoginLatitude(rs.getDouble("user_login_latitude"));
-        re.setUserStatus(rs.getString("user_status"));
+        re.setUserGender(rs.getInt("user_gender"));
+        re.setUserStatus(rs.getInt("user_status"));
         re.setUserCreateTime(rs.getTimestamp("user_create_time"));
         re.setUserUpdateTime(rs.getTimestamp("user_update_time"));
         re.setUserLoginType(rs.getInt("user_login_type"));

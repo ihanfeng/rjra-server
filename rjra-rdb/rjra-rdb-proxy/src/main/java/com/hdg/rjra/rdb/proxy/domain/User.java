@@ -14,10 +14,10 @@ public class User implements Serializable {
     private Long companyId;
     private String userNickName;
     private Long userHeadImageFile;
-    private String userGender;
+    private Integer userGender;
     private Double userLoginLongitude;
     private Double userLoginLatitude;
-    private String userStatus;
+    private Integer userStatus;
     private Date userCreateTime;
     private Date userUpdateTime;
     private Integer userLoginType;
@@ -78,14 +78,6 @@ public class User implements Serializable {
         this.userHeadImageFile = userHeadImageFile;
     }
 
-    public String getUserGender() {
-        return userGender;
-    }
-
-    public void setUserGender(String userGender) {
-        this.userGender = userGender;
-    }
-
     public Double getUserLoginLongitude() {
         return userLoginLongitude;
     }
@@ -102,11 +94,19 @@ public class User implements Serializable {
         this.userLoginLatitude = userLoginLatitude;
     }
 
-    public String getUserStatus() {
+    public Integer getUserGender() {
+        return userGender;
+    }
+
+    public void setUserGender(Integer userGender) {
+        this.userGender = userGender;
+    }
+
+    public Integer getUserStatus() {
         return userStatus;
     }
 
-    public void setUserStatus(String userStatus) {
+    public void setUserStatus(Integer userStatus) {
         this.userStatus = userStatus;
     }
 

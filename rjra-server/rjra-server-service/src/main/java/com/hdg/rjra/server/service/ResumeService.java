@@ -14,4 +14,7 @@ public interface ResumeService {
     public Integer updatResumeStatus(Long resumeId, Integer status);
 
     public Integer updateResume(ResumeBo resumeBo);
+
+    public Integer updateResumeHead(Long resumeId, Long fileId);
+
 }

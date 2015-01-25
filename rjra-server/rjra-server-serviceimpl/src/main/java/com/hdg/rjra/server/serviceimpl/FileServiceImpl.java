@@ -53,7 +53,10 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public AccountFileBo findAccountFileById(Long fileId) {
-        return null;
+        AccountFile accountFile = accountFileProxy.findAccountFileById(fileId);
+        AccountFileBo bo = new AccountFileBo();
+        ConversionUtils.conversion(accountFile, bo);
+        return bo;
     }
 
     private AccountFile uploadFile(MultipartFile file, String type, String path, String key, String fileName, String fileType, String fileFormat) throws IOException {

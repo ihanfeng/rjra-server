@@ -14,8 +14,8 @@ public class UserParam extends BaseParam {
     private Long resumeId;
     private Long companyId;
     private String userNickName;
-    private String userGender;
-    private String userStatus;
+    private Integer userGender;
+    private Integer userStatus;
     private Integer userLoginType;
 
     public Long getUserId() {
@@ -50,19 +50,19 @@ public class UserParam extends BaseParam {
         this.userNickName = userNickName;
     }
 
-    public String getUserGender() {
+    public Integer getUserGender() {
         return userGender;
     }
 
-    public void setUserGender(String userGender) {
+    public void setUserGender(Integer userGender) {
         this.userGender = userGender;
     }
 
-    public String getUserStatus() {
+    public Integer getUserStatus() {
         return userStatus;
     }
 
-    public void setUserStatus(String userStatus) {
+    public void setUserStatus(Integer userStatus) {
         this.userStatus = userStatus;
     }
 

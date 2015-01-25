@@ -18,4 +18,6 @@ public interface IResumeProxy extends Serializable {
     public Integer updatResumeStatus(Long resumeId, Integer status);
 
     public Integer updateResume(Resume resume);
+
+    public Integer updateResumeHead(Long resumeId, Long fileId);
 }

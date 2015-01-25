@@ -195,7 +195,7 @@ public class UserController {
             Integer sizeNo = locationParam.getSize() == null ? CommonConstants.NUM_INT_50 : locationParam
                     .getSize();
             Integer firstResult = locationParam.getPage() == null ? 0 : (locationParam.getPage() - 1) * sizeNo;
-            data = userService.findNearUserPager(locationParam.getLatitude(), locationParam.getLongitude(), locationParam.getRaidus(), firstResult, sizeNo);
+            data = userService.findNearUserPager(locationParam.getLongitude(), locationParam.getLatitude(), locationParam.getRaidus(), firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
             errorType.setMessage(e.getMessage());

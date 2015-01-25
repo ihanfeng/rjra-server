@@ -1,8 +1,10 @@
 package com.hdg.rjra.server.serviceimpl;
 
+import com.hdg.rjra.base.constants.CommonConstants;
 import com.hdg.rjra.base.enumerate.FileStatus;
 import com.hdg.rjra.base.properties.CustomizedPropertyConfigurer;
 import com.hdg.rjra.base.utils.ConversionUtils;
+import com.hdg.rjra.base.utils.DateUtils;
 import com.hdg.rjra.rdb.proxy.daoproxy.IAccountFileProxy;
 import com.hdg.rjra.rdb.proxy.daoproxy.IResumeProxy;
 import com.hdg.rjra.rdb.proxy.domain.AccountFile;
@@ -65,6 +67,9 @@ public class ResumeServiceImpl implements ResumeService {
             AccountFileBo userImageInfo = fileService.findAccountFileById(hadeImage);
             bo.setResumeUserHeadImageFileDetail(userImageInfo);
         }
+        if (resume.getResumeBirthday() != null) {
+            bo.setBirthday(DateUtils.getTimeNow(resume.getResumeBirthday(), CommonConstants.DATE_FORMAT_YYYYMMDD));
+        }
         return bo;
     }
 
@@ -78,5 +83,10 @@ public class ResumeServiceImpl implements ResumeService {
         Resume resume = new Resume();
         ConversionUtils.conversion(resumeBo, resume);
         return resumeProxy.updateResume(resume);
+    }
+
+    @Override
+    public Integer updateResumeHead(Long resumeId, Long fileId) {
+        return resumeProxy.updateResumeHead(resumeId, fileId);
     }
 }

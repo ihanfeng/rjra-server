@@ -36,4 +36,10 @@ public class ResumeProxyImpl extends BaseProxy implements IResumeProxy {
         return daoClient.invoke(moduleName, "updateResume",
                 new Object[]{resume});
     }
+
+    @Override
+    public Integer updateResumeHead(Long resumeId, Long fileId) {
+        return daoClient.invoke(moduleName, "updateResumeHead",
+                new Object[]{resumeId, fileId});
+    }
 }

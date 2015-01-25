@@ -23,6 +23,7 @@ public class ResumeBo {
     private AccountFileBo resumeUserHeadImageFileDetail;
     private Integer resumeGender;
     private Date resumeBirthday;
+    private String birthday;
     private Long resumeExperience;
     private Integer resumeWorkStatus;
     private Integer resumeStatus;
@@ -202,5 +203,13 @@ public class ResumeBo {
 
     public void setResumeRefreshTime(String resumeRefreshTime) {
         this.resumeRefreshTime = resumeRefreshTime;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 }

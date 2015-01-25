@@ -66,23 +66,21 @@ public class UserServiceImpl implements UserService {
         UserBo userBo = new UserBo();
         Long hadeImage = user.getUserHeadImageFile();
         if (null != hadeImage) {
-            List<AccountFileBo> userImageInfo = fileService.findAccountFileByIds(new Long[]{hadeImage});
-            if (userImageInfo != null && userImageInfo.size() > 0) {
-                userBo.setUserHeadImageFileDetail(userImageInfo.get(0));
-            }
+            AccountFileBo userImageInfo = fileService.findAccountFileById(hadeImage);
+            userBo.setUserHeadImageFileDetail(userImageInfo);
         }
-        Long resumeID = user.getResumeId();
-        if(null != resumeID)
-        {
-            ResumeBo resumeBo = resumeService.findResumeByResumeId(resumeID);
-            userBo.setResumeDetail(resumeBo);
-        }
-        Long companyId = user.getCompanyId();
-        if(null != companyId)
-        {
-            CompanyBo companyBo = companyService.findCompanyByCompanyId(companyId);
-            userBo.setCompanyDetail(companyBo);
-        }
+//        Long resumeID = user.getResumeId();
+//        if(null != resumeID)
+//        {
+//            ResumeBo resumeBo = resumeService.findResumeByResumeId(resumeID);
+//            userBo.setResumeDetail(resumeBo);
+//        }
+//        Long companyId = user.getCompanyId();
+//        if(null != companyId)
+//        {
+//            CompanyBo companyBo = companyService.findCompanyByCompanyId(companyId);
+//            userBo.setCompanyDetail(companyBo);
+//        }
         ConversionUtils.conversion(user, userBo);
         return userBo;
     }
