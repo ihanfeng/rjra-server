@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * Created by Rock on 2015/1/10 0010.
  */
-public class CreateCompany extends AbstractExecuter {
+public class createCompany extends AbstractExecuter {
 
     String sql = "insert into user_company(company_status, company_create_time, company_update_time)" +
             " values (?,?,?)";
