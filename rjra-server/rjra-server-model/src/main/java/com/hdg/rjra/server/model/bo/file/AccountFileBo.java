@@ -15,6 +15,7 @@ public class AccountFileBo {
     private Integer fileStatus;
     private String fileName;
     private String fileUrl;
+    private String fileThumbnailUrl;
     private String fileFormat;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String fileUploadTime;
@@ -73,5 +74,13 @@ public class AccountFileBo {
 
     public void setFileUploadTime(String fileUploadTime) {
         this.fileUploadTime = fileUploadTime;
+    }
+
+    public String getFileThumbnailUrl() {
+        return fileThumbnailUrl;
+    }
+
+    public void setFileThumbnailUrl(String fileThumbnailUrl) {
+        this.fileThumbnailUrl = fileThumbnailUrl;
     }
 }
