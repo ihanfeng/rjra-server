@@ -1,5 +1,6 @@
 package com.hdg.rjra.rdb.executer.company;
 
+import com.hdg.rjra.base.enumerate.CompanyExamineStatus;
 import com.hdg.rjra.base.enumerate.CompanyStatus;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.handler.PstAssign;
@@ -13,8 +14,8 @@ import java.util.Date;
  */
 public class CreateCompany extends AbstractExecuter {
 
-    String sql = "insert into user_company(company_status, company_create_time, company_update_time)" +
-            " values (?,?,?)";
+    String sql = "insert into user_company(company_status, company_create_time, company_update_time, company_examine_status)" +
+            " values (?,?,?,?)";
 
     @Override
     public Object execute(Object[] params) {
@@ -24,6 +25,7 @@ public class CreateCompany extends AbstractExecuter {
                 ps.setObject(1, CompanyStatus.Active.getCode());
                 ps.setObject(2, new Date());
                 ps.setObject(3, new Date());
+                ps.setObject(4, CompanyExamineStatus.Pending.getCode());
             }
         };
         return saveResultId(sql, pst);

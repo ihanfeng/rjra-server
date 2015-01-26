@@ -3,13 +3,13 @@ package com.hdg.rjra.base.enumerate;
 /**
  * Created by Rock on 2015/1/8 0008.
  */
-public enum ExamineStatus {
-    NotPass(0),
-    Pending(1),
-    Pass(2);
+public enum WorkExamineStatus {
+    Pending(0),
+    Pass(1),
+    NotPass(2);
 
     private int code;
-    private ExamineStatus(int code) {
+    private WorkExamineStatus(int code) {
         this.code = code;
     }
 

@@ -29,7 +29,10 @@ public class CompanyRowMapper implements RowMapper<Company> {
         re.setCompanyCreateTime(rs.getTimestamp("company_create_time"));
         re.setCompanyUpdateTime(rs.getTimestamp("company_update_time"));
         re.setCompanyChangeTime(rs.getTimestamp("company_change_time"));
-        re.setCompanyDesc(rs.getString("company_desc"));
+        re.setCompanyDesc(rs.getString("company_desc"));;
+        re.setCompanyExamineStatus(rs.getInt("company_examine_status"));
+        re.setCompanyExamineTime(rs.getTimestamp("company_examine_time"));
+        re.setCompanyExamineResult(rs.getString("company_examine_result"));
         return re;
     }
 }

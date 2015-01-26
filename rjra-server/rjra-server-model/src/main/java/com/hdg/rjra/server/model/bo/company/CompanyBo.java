@@ -4,6 +4,8 @@ import com.hdg.rjra.base.annotation.DateTimeFormat;
 import com.hdg.rjra.base.constants.CommonConstants;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 
+import java.util.Date;
+
 /**
  * Created by Rock on 2015/1/10 0010.
  */
@@ -33,6 +35,10 @@ public class CompanyBo {
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String companyChangeTime;
     private String companyDesc;
+    private Integer companyExamineStatus;
+    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
+    private String companyExamineTime;
+    private String companyExamineResult;
 
     public Long getCompanyId() {
         return companyId;
@@ -200,5 +206,29 @@ public class CompanyBo {
 
     public void setCompanyDesc(String companyDesc) {
         this.companyDesc = companyDesc;
+    }
+
+    public Integer getCompanyExamineStatus() {
+        return companyExamineStatus;
+    }
+
+    public void setCompanyExamineStatus(Integer companyExamineStatus) {
+        this.companyExamineStatus = companyExamineStatus;
+    }
+
+    public String getCompanyExamineTime() {
+        return companyExamineTime;
+    }
+
+    public void setCompanyExamineTime(String companyExamineTime) {
+        this.companyExamineTime = companyExamineTime;
+    }
+
+    public String getCompanyExamineResult() {
+        return companyExamineResult;
+    }
+
+    public void setCompanyExamineResult(String companyExamineResult) {
+        this.companyExamineResult = companyExamineResult;
     }
 }

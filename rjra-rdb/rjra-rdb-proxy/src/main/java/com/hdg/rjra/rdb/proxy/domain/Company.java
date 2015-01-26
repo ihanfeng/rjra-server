@@ -25,6 +25,9 @@ public class Company implements Serializable {
     private Date companyUpdateTime;
     private Date companyChangeTime;
     private String companyDesc;
+    private Integer companyExamineStatus;
+    private Date companyExamineTime;
+    private String companyExamineResult;
 
     public Long getCompanyId() {
         return companyId;
@@ -160,5 +163,29 @@ public class Company implements Serializable {
 
     public void setCompanyDesc(String companyDesc) {
         this.companyDesc = companyDesc;
+    }
+
+    public Integer getCompanyExamineStatus() {
+        return companyExamineStatus;
+    }
+
+    public void setCompanyExamineStatus(Integer companyExamineStatus) {
+        this.companyExamineStatus = companyExamineStatus;
+    }
+
+    public Date getCompanyExamineTime() {
+        return companyExamineTime;
+    }
+
+    public void setCompanyExamineTime(Date companyExamineTime) {
+        this.companyExamineTime = companyExamineTime;
+    }
+
+    public String getCompanyExamineResult() {
+        return companyExamineResult;
+    }
+
+    public void setCompanyExamineResult(String companyExamineResult) {
+        this.companyExamineResult = companyExamineResult;
     }
 }

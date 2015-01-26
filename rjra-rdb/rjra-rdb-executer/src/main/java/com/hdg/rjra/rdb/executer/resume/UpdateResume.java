@@ -18,7 +18,7 @@ public class UpdateResume extends AbstractExecuter {
     String sql = "UPDATE user_resume SET " +
             "category_leve1_id=?,category_leve2_id=?,category_leve3_id=?,resume_user_name=?," +
             "resume_gender=?,resume_birthday=?,resume_experience=?," +
-            "resume_work_status=?,resume_want_work_area=?,resume_want_work_city=?,resume_want_work_province=?," +
+            "resume_work_status=?,resume_want_work_area_id=?,resume_want_work_city_id=?,resume_want_work_province_id=?," +
             "resume_qq=?,resume_desc=?,resume_update_time=? WHERE resume_id =?";
 
     @Override
