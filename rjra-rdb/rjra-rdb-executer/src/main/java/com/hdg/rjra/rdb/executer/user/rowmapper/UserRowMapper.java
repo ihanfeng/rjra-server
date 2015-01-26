@@ -1,6 +1,5 @@
 package com.hdg.rjra.rdb.executer.user.rowmapper;
 
-import com.hdg.rjra.base.utils.StringUtils;
 import com.hdg.rjra.rdb.proxy.domain.User;
 import org.springframework.jdbc.core.RowMapper;
 

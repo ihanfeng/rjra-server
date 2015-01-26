@@ -1,6 +1,5 @@
 package com.hdg.rjra.rdb.executer.user;
 
-import com.hdg.rjra.base.utils.StringUtils;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.model.thrift.ResultType;
 import com.hdg.rjra.rdb.proxy.domain.User;

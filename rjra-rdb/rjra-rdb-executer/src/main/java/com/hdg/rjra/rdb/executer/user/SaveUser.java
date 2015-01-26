@@ -1,7 +1,5 @@
 package com.hdg.rjra.rdb.executer.user;
 
-import com.hdg.rjra.base.enumerate.CompanyStatus;
-import com.hdg.rjra.base.enumerate.ExamineStatus;
 import com.hdg.rjra.base.enumerate.UserStatus;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.handler.PstAssign;
