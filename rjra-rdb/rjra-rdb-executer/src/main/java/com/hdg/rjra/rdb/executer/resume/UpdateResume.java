@@ -1,5 +1,6 @@
 package com.hdg.rjra.rdb.executer.resume;
 
+import com.hdg.rjra.base.utils.StringUtils;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.model.thrift.ResultType;
 import com.hdg.rjra.rdb.proxy.domain.Resume;
@@ -16,7 +17,7 @@ import java.util.Date;
 public class UpdateResume extends AbstractExecuter {
 
     String sql = "UPDATE user_resume SET " +
-            "category_leve1_id=?,category_leve2_id=?,category_leve3_id=?,resume_user_name=?," +
+            "category_leve1_ids=?,category_leve2_ids=?,category_leve3_ids=?,resume_user_name=?," +
             "resume_gender=?,resume_birthday=?,resume_experience=?," +
             "resume_work_status=?,resume_want_work_area_id=?,resume_want_work_city_id=?,resume_want_work_province_id=?," +
             "resume_qq=?,resume_desc=?,resume_update_time=? WHERE resume_id =?";
@@ -30,17 +31,9 @@ public class UpdateResume extends AbstractExecuter {
                 public PreparedStatement createPreparedStatement(Connection con) throws SQLException
                 {
                     PreparedStatement ps = con.prepareStatement(sql);
-                    ps.setObject(1, resume.getCategoryLevel1Id());
-                    if (resume.getCategoryLevel2Id() != null) {
-                        ps.setObject(2, resume.getCategoryLevel2Id());
-                    } else {
-                        ps.setObject(2, -1);
-                    }
-                    if (resume.getCategoryLevel3Id() != null) {
-                        ps.setObject(3, resume.getCategoryLevel3Id());
-                    } else {
-                        ps.setObject(3, -1);
-                    }
+                    ps.setObject(1, StringUtils.longArrayToString(resume.getCategoryLevel1Ids()));
+                    ps.setObject(2, StringUtils.longArrayToString(resume.getCategoryLevel2Ids()));
+                    ps.setObject(3, StringUtils.longArrayToString(resume.getCategoryLevel3Ids()));
                     ps.setObject(4, resume.getResumeUserName());
                     ps.setObject(5, resume.getResumeGender());
                     ps.setObject(6, resume.getResumeBirthday());

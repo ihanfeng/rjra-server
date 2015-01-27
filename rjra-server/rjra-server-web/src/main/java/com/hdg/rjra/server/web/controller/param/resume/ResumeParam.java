@@ -1,8 +1,5 @@
 package com.hdg.rjra.server.web.controller.param.resume;
 
-import com.hdg.rjra.base.annotation.DateTimeFormat;
-import com.hdg.rjra.base.constants.CommonConstants;
-import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.web.controller.param.BaseParam;
 
 import java.util.Date;
@@ -12,9 +9,9 @@ import java.util.Date;
  */
 public class ResumeParam extends BaseParam {
     private Long resumeId;
-    private Long categoryLevel1Id;
-    private Long categoryLevel2Id;
-    private Long categoryLevel3Id;
+    private Long[] categoryLevel1Ids;
+    private Long[] categoryLevel2Ids;
+    private Long[] categoryLevel3Ids;
     private String resumeUserName;
     private String resumeMobile;
     private String resumeQQ;
@@ -36,28 +33,28 @@ public class ResumeParam extends BaseParam {
         this.resumeId = resumeId;
     }
 
-    public Long getCategoryLevel1Id() {
-        return categoryLevel1Id;
+    public Long[] getCategoryLevel1Ids() {
+        return categoryLevel1Ids;
     }
 
-    public void setCategoryLevel1Id(Long categoryLevel1Id) {
-        this.categoryLevel1Id = categoryLevel1Id;
+    public void setCategoryLevel1Ids(Long[] categoryLevel1Ids) {
+        this.categoryLevel1Ids = categoryLevel1Ids;
     }
 
-    public Long getCategoryLevel2Id() {
-        return categoryLevel2Id;
+    public Long[] getCategoryLevel2Ids() {
+        return categoryLevel2Ids;
     }
 
-    public void setCategoryLevel2Id(Long categoryLevel2Id) {
-        this.categoryLevel2Id = categoryLevel2Id;
+    public void setCategoryLevel2Ids(Long[] categoryLevel2Ids) {
+        this.categoryLevel2Ids = categoryLevel2Ids;
     }
 
-    public Long getCategoryLevel3Id() {
-        return categoryLevel3Id;
+    public Long[] getCategoryLevel3Ids() {
+        return categoryLevel3Ids;
     }
 
-    public void setCategoryLevel3Id(Long categoryLevel3Id) {
-        this.categoryLevel3Id = categoryLevel3Id;
+    public void setCategoryLevel3Ids(Long[] categoryLevel3Ids) {
+        this.categoryLevel3Ids = categoryLevel3Ids;
     }
 
     public String getResumeUserName() {

@@ -15,9 +15,9 @@ public class ResumeRowMapper implements RowMapper<Resume> {
     public Resume mapRow(ResultSet rs, int rowNum) throws SQLException {
         Resume re = new Resume();
         re.setResumeId(rs.getLong("resume_id"));
-        re.setCategoryLevel1Id(rs.getLong("category_leve1_id"));
-        re.setCategoryLevel2Id(rs.getLong("category_leve2_id"));
-        re.setCategoryLevel3Id(rs.getLong("category_leve3_id"));
+        re.setCategoryLevel1Ids(StringUtils.stringToLongArray(rs.getString("category_leve1_ids")));
+        re.setCategoryLevel2Ids(StringUtils.stringToLongArray(rs.getString("category_leve2_ids")));
+        re.setCategoryLevel3Ids(StringUtils.stringToLongArray(rs.getString("category_leve3_ids")));
         re.setResumeUserName(rs.getString("resume_user_name"));
         re.setResumeUserHeadImageFile(rs.getLong("resume_user_head_image_file"));
         re.setResumeGender(rs.getInt("resume_gender"));
