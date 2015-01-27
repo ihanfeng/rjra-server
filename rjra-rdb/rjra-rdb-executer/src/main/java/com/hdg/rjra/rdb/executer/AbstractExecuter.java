@@ -7,8 +7,8 @@ import com.hdg.rjra.rdb.handler.PstAssign;
 import com.hdg.rjra.rdb.model.thrift.ResponseModel;
 import com.hdg.rjra.rdb.model.thrift.ResultType;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
-import com.mysql.jdbc.Statement;
 import com.hdg.rjra.rdb.proxy.utils.DaoUtils;
+import com.mysql.jdbc.Statement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -223,4 +223,5 @@ public abstract class AbstractExecuter implements Executer {
             getJdbcTemplate().batchUpdate(sb.toString(), sqlParams);
         }
     }
+
 }

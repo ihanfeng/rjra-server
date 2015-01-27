@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+          http://www.springframework.org/schema/util
+          http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+    <bean id="workRowMapper" class="com.hdg.rjra.rdb.executer.work.rowmapper.WorkRowMapper"/>
+
+    <bean id="findWorkByWorkId" class="com.hdg.rjra.rdb.executer.work.FindWorkByWorkId">
+        <property name="rowMapper" ref="workRowMapper"></property>
+    </bean>
+    <bean id="findAllWorkByParamPager" class="com.hdg.rjra.rdb.executer.work.FindAllWorkByParamPager">
+        <property name="rowMapper" ref="workRowMapper"></property>
+    </bean>
+    <bean id="findNearWorkByParamPager" class="com.hdg.rjra.rdb.executer.work.FindNearWorkByParamPager">
+        <property name="rowMapper" ref="workRowMapper"></property>
+    </bean>
+    <bean id="updateWork" class="com.hdg.rjra.rdb.executer.work.UpdateWork">
+        <property name="rowMapper" ref="workRowMapper"></property>
+    </bean>
+    <bean id="updateWorkStatus" class="com.hdg.rjra.rdb.executer.work.UpdateWorkStatus">
+        <property name="rowMapper" ref="workRowMapper"></property>
+    </bean>
+    <bean id="saveWork" class="com.hdg.rjra.rdb.executer.work.SaveWork">
+        <property name="rowMapper" ref="workRowMapper"></property>
+    </bean>
+    <util:map id="rdb-work-executer">
+        <entry key="findWorkByWorkId" value-ref="findWorkByWorkId"/>
+        <entry key="findAllWorkByParamPager" value-ref="findAllWorkByParamPager"/>
+        <entry key="findNearWorkByParamPager" value-ref="findNearWorkByParamPager"/>
+        <entry key="updateWork" value-ref="updateWork"/>
+        <entry key="updateWorkStatus" value-ref="updateWorkStatus"/>
+        <entry key="saveWork" value-ref="saveWork"/>
+    </util:map>
+</beans>
