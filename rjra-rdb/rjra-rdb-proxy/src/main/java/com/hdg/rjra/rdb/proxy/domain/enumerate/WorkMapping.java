@@ -14,7 +14,7 @@ public enum WorkMapping implements BaseMapping {
     WorkAreaId("work_area_id"),
     WorkCityId("work_city_id"),
     WorkProvinceId("work_province_id"),
-    WorkAddress("work_address"),
+    WorkAddress("work_address", " like "),
     WorkNeedPerson("work_need_person"),
     WorkWageId("work_wage_id"),
     WorkExperienceId("work_experience_id"),

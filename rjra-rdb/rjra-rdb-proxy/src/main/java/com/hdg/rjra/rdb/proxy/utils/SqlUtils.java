@@ -83,10 +83,9 @@ public abstract class SqlUtils {
                         }
                         sql.append(")");
                     } else if(String.valueOf(op).trim().equals("like")){
-                        sql.append("?");
-                        objectList.add("%");
-                        objectList.add(obj);
-                        objectList.add("%");
+                        sql.append("'%");
+                        sql.append(String.valueOf(obj));
+                        sql.append("%'");
                     } else {
                         sql.append("?");
                         objectList.add(obj);
