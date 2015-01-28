@@ -3,10 +3,7 @@ package com.hdg.rjra.server.serviceimpl;
 import com.hdg.rjra.base.enumerate.GeoStatus;
 import com.hdg.rjra.base.enumerate.WorkStatus;
 import com.hdg.rjra.base.utils.ConversionUtils;
-import com.hdg.rjra.rdb.proxy.daoproxy.IAreaProxy;
-import com.hdg.rjra.rdb.proxy.daoproxy.ICityProxy;
-import com.hdg.rjra.rdb.proxy.daoproxy.IProvinceProxy;
-import com.hdg.rjra.rdb.proxy.daoproxy.IWorkProxy;
+import com.hdg.rjra.rdb.proxy.daoproxy.*;
 import com.hdg.rjra.rdb.proxy.domain.*;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
 import com.hdg.rjra.server.model.bo.geo.GeocoderSearchResponse;
@@ -35,6 +32,8 @@ public class WorkServiceImpl implements WorkService {
 
     @Autowired
     IWorkProxy workProxy;
+    @Autowired
+    ICompanyProxy companyProxy;
 
     @Autowired
     IProvinceProxy provinceProxy;
@@ -103,6 +102,8 @@ public class WorkServiceImpl implements WorkService {
         Work work = new Work();
         ConversionUtils.conversion(workBo, work);
         getGeoLocation(work);
+        Company company = companyProxy.findCompanyByCompanyId(work.getCompanyId());
+        work.setCompanyName(company.getCompanyName());
         return workProxy.saveWork(work);
     }
 

@@ -15,6 +15,7 @@ public class WorkBo {
     private Double workLatitude;
     private Long userId;
     private Long companyId;
+    private Long companyName;
     private Long categoryLeve1Id;
     private Long categoryLeve2Id;
     private Long categoryLeve3Id;
@@ -95,6 +96,14 @@ public class WorkBo {
 
     public void setCategoryLeve3Id(Long categoryLeve3Id) {
         this.categoryLeve3Id = categoryLeve3Id;
+    }
+
+    public Long getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(Long companyName) {
+        this.companyName = companyName;
     }
 
     public Long getWorkAreaId() {

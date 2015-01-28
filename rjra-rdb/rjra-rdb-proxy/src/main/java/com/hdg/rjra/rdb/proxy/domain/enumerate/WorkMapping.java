@@ -8,6 +8,7 @@ public enum WorkMapping implements BaseMapping {
     WorkId("work_id"),
     UserId("user_id"),
     CompanyId("company_id"),
+    CompanyName("company_name"),
     CategoryLeve1Id("category_leve1_id"),
     CategoryLeve2Id("category_leve2_id"),
     CategoryLeve3Id("category_leve3_id"),

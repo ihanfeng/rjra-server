@@ -20,6 +20,7 @@ public class WorkRowMapper implements RowMapper<Work> {
         re.setWorkLatitude(rs.getDouble("work_latitude"));
         re.setUserId(rs.getLong("user_id"));
         re.setCompanyId(rs.getLong("company_id"));
+        re.setCompanyName(rs.getString("company_name"));
         re.setCategoryLeve1Id(rs.getLong("category_leve1_id"));
         re.setCategoryLeve2Id(rs.getLong("category_leve2_id"));
         re.setCategoryLeve3Id(rs.getLong("category_leve3_id"));

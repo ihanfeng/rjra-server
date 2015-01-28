@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public class UpdateWork extends AbstractExecuter {
 
-    String sql = "UPDATE user_work SET work_longitude=?,work_latitude=?,user_id=?,company_id=?," +
+    String sql = "UPDATE user_work SET work_longitude=?,work_latitude=?," +
             "category_leve1_id=?,category_leve2_id=?,category_leve3_id=?,work_area_id=?," +
             "work_city_id=?,work_province_id=?,work_address=?,work_need_person=?,work_wage_id=?," +
             "work_experience_id=?,work_welfare_ids=?,work_desc=?,work_update_time=? WHERE work_id=?";
@@ -32,22 +32,20 @@ public class UpdateWork extends AbstractExecuter {
                     PreparedStatement ps = con.prepareStatement(sql);
                     ps.setObject(1, work.getWorkLongitude());
                     ps.setObject(2, work.getWorkLatitude());
-                    ps.setObject(3, work.getUserId());
-                    ps.setObject(4, work.getCompanyId());
-                    ps.setObject(5, work.getCategoryLeve1Id());
-                    ps.setObject(6, work.getCategoryLeve2Id());
-                    ps.setObject(7, work.getCategoryLeve3Id());
-                    ps.setObject(8, work.getWorkAreaId());
-                    ps.setObject(9, work.getWorkCityId());
-                    ps.setObject(10, work.getWorkProvinceId());
-                    ps.setObject(11, work.getWorkAddress());
-                    ps.setObject(12, work.getWorkNeedPerson());
-                    ps.setObject(13, work.getWorkWageId());
-                    ps.setObject(14, work.getWorkExperienceId());
-                    ps.setObject(15, StringUtils.longArrayToString(work.getWorkWelfareIds()));
-                    ps.setObject(16, work.getWorkDesc());
-                    ps.setObject(17, new Date());
-                    ps.setObject(18, work.getWorkId());
+                    ps.setObject(3, work.getCategoryLeve1Id());
+                    ps.setObject(4, work.getCategoryLeve2Id());
+                    ps.setObject(5, work.getCategoryLeve3Id());
+                    ps.setObject(6, work.getWorkAreaId());
+                    ps.setObject(7, work.getWorkCityId());
+                    ps.setObject(8, work.getWorkProvinceId());
+                    ps.setObject(9, work.getWorkAddress());
+                    ps.setObject(10, work.getWorkNeedPerson());
+                    ps.setObject(11, work.getWorkWageId());
+                    ps.setObject(12, work.getWorkExperienceId());
+                    ps.setObject(13, StringUtils.longArrayToString(work.getWorkWelfareIds()));
+                    ps.setObject(14, work.getWorkDesc());
+                    ps.setObject(15, new Date());
+                    ps.setObject(16, work.getWorkId());
                     return ps;
                 }
             });

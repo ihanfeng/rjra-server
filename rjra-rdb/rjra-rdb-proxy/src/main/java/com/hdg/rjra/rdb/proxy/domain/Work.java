@@ -13,6 +13,7 @@ public class Work implements Serializable {
     private Double workLatitude;
     private Long userId;
     private Long companyId;
+    private String companyName;
     private Long categoryLeve1Id;
     private Long categoryLeve2Id;
     private Long categoryLeve3Id;
@@ -67,6 +68,14 @@ public class Work implements Serializable {
 
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public Long getCategoryLeve1Id() {
