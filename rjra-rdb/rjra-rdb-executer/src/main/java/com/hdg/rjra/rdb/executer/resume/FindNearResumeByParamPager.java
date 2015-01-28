@@ -27,7 +27,7 @@ public class FindNearResumeByParamPager extends AbstractExecuter {
         double[] doubles = CoordinateUtils.getAround(lng, lat, raidus);
         List<Object> objects = new ArrayList<Object>();
         StringBuffer executeSql = new StringBuffer();
-        executeSql.append("select a.* from user_resume a left join account_user b on a.user_id=b.user_id where 1=1");
+        executeSql.append("select a.* from user_resume a left join account_user b on a.resume_id=b.resume_id where 1=1");
         WhereAndSqlParam whereAndSqlParam = SqlUtils.buildWhereAndSqlByMapParam(param);
         if (whereAndSqlParam != null) {
             executeSql.append(whereAndSqlParam.getSql());
