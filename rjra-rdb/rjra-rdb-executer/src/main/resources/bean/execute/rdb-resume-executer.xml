@@ -24,11 +24,19 @@
     <bean id="updateResumeHead" class="com.hdg.rjra.rdb.executer.resume.UpdateResumeHead">
         <property name="rowMapper" ref="resumeRowMapper"></property>
     </bean>
+    <bean id="findAllResumeByParamPager" class="com.hdg.rjra.rdb.executer.resume.FindAllResumeByParamPager">
+        <property name="rowMapper" ref="resumeRowMapper"></property>
+    </bean>
+    <bean id="findNearResumeByParamPager" class="com.hdg.rjra.rdb.executer.resume.FindNearResumeByParamPager">
+        <property name="rowMapper" ref="resumeRowMapper"></property>
+    </bean>
     <util:map id="rdb-resume-executer">
         <entry key="createResume" value-ref="createResume"/>
         <entry key="findResumeByResumeId" value-ref="findResumeByResumeId"/>
         <entry key="updatResumeStatus" value-ref="updatResumeStatus"/>
         <entry key="updateResume" value-ref="updateResume"/>
         <entry key="updateResumeHead" value-ref="updateResumeHead"/>
+        <entry key="findAllResumeByParamPager" value-ref="findAllResumeByParamPager"/>
+        <entry key="findNearResumeByParamPager" value-ref="findNearResumeByParamPager"/>
     </util:map>
 </beans>

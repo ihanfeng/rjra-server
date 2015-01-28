@@ -4,10 +4,13 @@ package com.hdg.rjra.server.web.controller;
  * Created by Rock on 2015/1/8 0008.
  */
 
+import com.hdg.rjra.base.constants.CommonConstants;
 import com.hdg.rjra.base.error.ErrorType;
 import com.hdg.rjra.base.output.OutputResult;
 import com.hdg.rjra.base.utils.ConversionUtils;
 import com.hdg.rjra.base.utils.JsonUtils;
+import com.hdg.rjra.rdb.proxy.domain.Pager;
+import com.hdg.rjra.rdb.proxy.domain.enumerate.ResumeMapping;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.model.bo.resume.ResumeBo;
 import com.hdg.rjra.server.service.FileService;
@@ -29,7 +32,9 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Rock
@@ -150,4 +155,103 @@ public class ResumeController {
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
+    @RequestMapping(value = "findAllResumeByParamPager")
+    @ResponseBody
+    public ResponseEntity<String> findAllResumeByParamPager(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+        ErrorType errorType = null;
+        Pager<ResumeBo> data = null;
+        try {
+            ResumeParam resumeParam = JsonUtils.jsonToObject(param, ResumeParam.class);
+            // 查询列表
+            Integer sizeNo = resumeParam.getSize() == null ? CommonConstants.NUM_INT_50 : resumeParam
+                    .getSize();
+            Integer firstResult = resumeParam.getPage() == null ? 0 : (resumeParam.getPage() - 1) * sizeNo;
+            Map<ResumeMapping, Object> mapParam = getMapParam(resumeParam);
+            data = resumeService.findAllResumeByParamPager(mapParam, firstResult, sizeNo);
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("findAllResumeByParamPager ->", e);
+        }
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
+
+    @RequestMapping(value = "findNearResumeByParamPager")
+    @ResponseBody
+    public ResponseEntity<String> findNearResumeByParamPager(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+        ErrorType errorType = null;
+        Pager<ResumeBo> data = null;
+        try {
+            ResumeParam resumeParam = JsonUtils.jsonToObject(param, ResumeParam.class);
+            // 查询列表
+            Integer sizeNo = resumeParam.getSize() == null ? CommonConstants.NUM_INT_50 : resumeParam
+                    .getSize();
+            Integer firstResult = resumeParam.getPage() == null ? 0 : (resumeParam.getPage() - 1) * sizeNo;
+            Map<ResumeMapping, Object> mapParam = getMapParam(resumeParam);
+            data = resumeService.findNearResumeByParamPager(mapParam, resumeParam.getResumeLongitude(), resumeParam.getResumeLatitude(), resumeParam.getResumeRaidus(), firstResult, sizeNo);
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("findNearResumeByParamPager ->", e);
+        }
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
+
+    private Map<ResumeMapping,Object> getMapParam(ResumeParam resumeParam) {
+        if (resumeParam == null) {
+            return null;
+        }
+        else {
+            Map<ResumeMapping,Object> mapParam = new HashMap<ResumeMapping,Object>();
+
+            if (resumeParam.getResumeId() != null) {
+                mapParam.put(ResumeMapping.ResumeId, resumeParam.getResumeId());
+            }
+            if (resumeParam.getCategoryLevel1Ids() != null) {
+                mapParam.put(ResumeMapping.CategoryLevel1Ids, resumeParam.getCategoryLevel1Ids());
+            }
+            if (resumeParam.getCategoryLevel2Ids() != null) {
+                mapParam.put(ResumeMapping.CategoryLevel2Ids, resumeParam.getCategoryLevel2Ids());
+            }
+            if (resumeParam.getCategoryLevel3Ids() != null) {
+                mapParam.put(ResumeMapping.CategoryLevel3Ids, resumeParam.getCategoryLevel3Ids());
+            }
+            if (resumeParam.getResumeUserName() != null) {
+                mapParam.put(ResumeMapping.ResumeUserName, resumeParam.getResumeUserName());
+            }
+            if (resumeParam.getResumeGender() != null) {
+                mapParam.put(ResumeMapping.ResumeGender, resumeParam.getResumeGender());
+            }
+            if (resumeParam.getResumeExperience() != null) {
+                mapParam.put(ResumeMapping.ResumeExperience, resumeParam.getResumeExperience());
+            }
+            if (resumeParam.getResumeWorkStatus() != null) {
+                mapParam.put(ResumeMapping.ResumeWorkStatus, resumeParam.getResumeWorkStatus());
+            }
+            if (resumeParam.getResumeDesc() != null) {
+                mapParam.put(ResumeMapping.ResumeDesc, resumeParam.getResumeDesc());
+            }
+            if (resumeParam.getResumeWantWorkAreaId() != null) {
+                mapParam.put(ResumeMapping.ResumeWantWorkAreaId, resumeParam.getResumeWantWorkAreaId());
+            }
+            if (resumeParam.getResumeWantWorkCityId() != null) {
+                mapParam.put(ResumeMapping.ResumeWantWorkCityId, resumeParam.getResumeWantWorkCityId());
+            }
+            if (resumeParam.getResumeWantWorkProvinceId() != null) {
+                mapParam.put(ResumeMapping.ResumeWantWorkProvinceId, resumeParam.getResumeWantWorkProvinceId());
+            }
+            if (resumeParam.getResumeMobile() != null) {
+                mapParam.put(ResumeMapping.ResumeMobile, resumeParam.getResumeMobile());
+            }
+            if (resumeParam.getResumeQQ() != null) {
+                mapParam.put(ResumeMapping.ResumeQQ, resumeParam.getResumeQQ());
+            }
+            if (resumeParam.getResumeStatus() != null) {
+                mapParam.put(ResumeMapping.ResumeStatus, resumeParam.getResumeStatus());
+            }
+            return mapParam;
+        }
+    }
 }

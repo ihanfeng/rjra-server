@@ -12,9 +12,9 @@ public class WorkParam extends BaseParam {
     private Integer workRaidus;
     private Long userId;
     private Long companyId;
-    private Long categoryLeve1Id;
-    private Long categoryLeve2Id;
-    private Long categoryLeve3Id;
+    private Long categoryLevel1Id;
+    private Long categoryLevel2Id;
+    private Long categoryLevel3Id;
     private Long workAreaId;
     private Long workCityId;
     private Long workProvinceId;
@@ -66,28 +66,28 @@ public class WorkParam extends BaseParam {
         this.companyId = companyId;
     }
 
-    public Long getCategoryLeve1Id() {
-        return categoryLeve1Id;
+    public Long getCategoryLevel1Id() {
+        return categoryLevel1Id;
     }
 
-    public void setCategoryLeve1Id(Long categoryLeve1Id) {
-        this.categoryLeve1Id = categoryLeve1Id;
+    public void setCategoryLevel1Id(Long categoryLevel1Id) {
+        this.categoryLevel1Id = categoryLevel1Id;
     }
 
-    public Long getCategoryLeve2Id() {
-        return categoryLeve2Id;
+    public Long getCategoryLevel2Id() {
+        return categoryLevel2Id;
     }
 
-    public void setCategoryLeve2Id(Long categoryLeve2Id) {
-        this.categoryLeve2Id = categoryLeve2Id;
+    public void setCategoryLevel2Id(Long categoryLevel2Id) {
+        this.categoryLevel2Id = categoryLevel2Id;
     }
 
-    public Long getCategoryLeve3Id() {
-        return categoryLeve3Id;
+    public Long getCategoryLevel3Id() {
+        return categoryLevel3Id;
     }
 
-    public void setCategoryLeve3Id(Long categoryLeve3Id) {
-        this.categoryLeve3Id = categoryLeve3Id;
+    public void setCategoryLevel3Id(Long categoryLevel3Id) {
+        this.categoryLevel3Id = categoryLevel3Id;
     }
 
     public Long getWorkAreaId() {

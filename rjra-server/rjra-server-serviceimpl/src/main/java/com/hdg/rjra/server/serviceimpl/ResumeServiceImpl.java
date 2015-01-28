@@ -1,32 +1,25 @@
 package com.hdg.rjra.server.serviceimpl;
 
 import com.hdg.rjra.base.constants.CommonConstants;
-import com.hdg.rjra.base.enumerate.FileStatus;
-import com.hdg.rjra.base.properties.CustomizedPropertyConfigurer;
+import com.hdg.rjra.base.enumerate.ResumeStatus;
 import com.hdg.rjra.base.utils.ConversionUtils;
 import com.hdg.rjra.base.utils.DateUtils;
-import com.hdg.rjra.rdb.proxy.daoproxy.IAccountFileProxy;
 import com.hdg.rjra.rdb.proxy.daoproxy.IResumeProxy;
-import com.hdg.rjra.rdb.proxy.domain.AccountFile;
+import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.Resume;
+import com.hdg.rjra.rdb.proxy.domain.enumerate.ResumeMapping;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.model.bo.resume.ResumeBo;
 import com.hdg.rjra.server.service.FileService;
 import com.hdg.rjra.server.service.ResumeService;
-import net.coobird.thumbnailator.Thumbnails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+import java.util.Map;
 
 /**
  * Created by Rock on 2015/1/10 0010.
@@ -53,10 +46,10 @@ public class ResumeServiceImpl implements ResumeService {
     @Override
     public ResumeBo findResumeByResumeId(Long resumeId) {
         Resume resume = resumeProxy.findResumeByResumeId(resumeId);
-        return getUserBo(resume);
+        return getResumeBo(resume);
     }
 
-    private ResumeBo getUserBo(Resume resume) {
+    private ResumeBo getResumeBo(Resume resume) {
         if (null == resume) {
             return null;
         }
@@ -88,5 +81,31 @@ public class ResumeServiceImpl implements ResumeService {
     @Override
     public Integer updateResumeHead(Long resumeId, Long fileId) {
         return resumeProxy.updateResumeHead(resumeId, fileId);
+    }
+
+    @Override
+    public Pager<ResumeBo> findAllResumeByParamPager(Map<ResumeMapping, Object> param, Integer firstResult, Integer sizeNo) {
+        Pager<Resume> resumePager =  resumeProxy.findAllResumeByParamPager(param, new Integer[]{ResumeStatus.Active.getCode(), ResumeStatus.Pause.getCode()}, firstResult, sizeNo);
+        Pager<ResumeBo> resumeBoPager = new Pager<ResumeBo>();
+        List<ResumeBo> resumeBoList = new ArrayList<ResumeBo>();
+        for (Resume resume : resumePager.getResultList()) {
+            resumeBoList.add(getResumeBo(resume));
+        }
+        resumeBoPager.setResultList(resumeBoList);
+        resumeBoPager.setTotalSize(resumePager.getTotalSize());
+        return resumeBoPager;
+    }
+
+    @Override
+    public Pager<ResumeBo> findNearResumeByParamPager(Map<ResumeMapping, Object> param, Double lng, Double lat, Integer raidus, Integer firstResult, Integer sizeNo) {
+        Pager<Resume> resumePager =  resumeProxy.findNearResumeByParamPager(param, lng, lat, raidus, new Integer[]{ResumeStatus.Active.getCode()}, firstResult, sizeNo);
+        Pager<ResumeBo> resumeBoPager = new Pager<ResumeBo>();
+        List<ResumeBo> resumeBoList = new ArrayList<ResumeBo>();
+        for (Resume resume : resumePager.getResultList()) {
+            resumeBoList.add(getResumeBo(resume));
+        }
+        resumeBoPager.setResultList(resumeBoList);
+        resumeBoPager.setTotalSize(resumePager.getTotalSize());
+        return resumeBoPager;
     }
 }

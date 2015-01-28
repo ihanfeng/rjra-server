@@ -16,7 +16,7 @@ import java.util.Date;
 public class SaveWork  extends AbstractExecuter {
 
     String sql = "insert into user_work (work_longitude,work_latitude,user_id," +
-            "company_id,company_name,category_leve1_id,category_leve2_id,category_leve3_id,work_area_id," +
+            "company_id,company_name,category_level1_id,category_level2_id,category_level3_id,work_area_id," +
             "work_city_id,work_province_id,work_address,work_need_person,work_wage_id," +
             "work_experience_id,work_welfare_ids,work_desc,work_status,work_create_time," +
             "work_update_time) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -32,9 +32,9 @@ public class SaveWork  extends AbstractExecuter {
                 ps.setObject(3, work.getUserId());
                 ps.setObject(4, work.getCompanyId());
                 ps.setObject(5, work.getCompanyName());
-                ps.setObject(6, work.getCategoryLeve1Id());
-                ps.setObject(7, work.getCategoryLeve2Id());
-                ps.setObject(8, work.getCategoryLeve3Id());
+                ps.setObject(6, work.getCategoryLevel1Id());
+                ps.setObject(7, work.getCategoryLevel2Id());
+                ps.setObject(8, work.getCategoryLevel3Id());
                 ps.setObject(9, work.getWorkAreaId());
                 ps.setObject(10, work.getWorkCityId());
                 ps.setObject(11, work.getWorkProvinceId());

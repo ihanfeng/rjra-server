@@ -17,7 +17,7 @@ import java.util.Date;
 public class UpdateResume extends AbstractExecuter {
 
     String sql = "UPDATE user_resume SET " +
-            "category_leve1_ids=?,category_leve2_ids=?,category_leve3_ids=?,resume_user_name=?," +
+            "category_level1_ids=?,category_level2_ids=?,category_level3_ids=?,resume_user_name=?," +
             "resume_gender=?,resume_birthday=?,resume_experience=?," +
             "resume_work_status=?,resume_want_work_area_id=?,resume_want_work_city_id=?,resume_want_work_province_id=?," +
             "resume_qq=?,resume_desc=?,resume_update_time=? WHERE resume_id =?";

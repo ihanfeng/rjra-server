@@ -7,16 +7,12 @@ package com.hdg.rjra.server.web.controller;
 import com.hdg.rjra.base.constants.CommonConstants;
 import com.hdg.rjra.base.error.ErrorType;
 import com.hdg.rjra.base.output.OutputResult;
-import com.hdg.rjra.base.properties.CustomizedPropertyConfigurer;
-import com.hdg.rjra.base.utils.AESUtils;
 import com.hdg.rjra.base.utils.ConversionUtils;
 import com.hdg.rjra.base.utils.JsonUtils;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
-import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.model.bo.work.WorkBo;
 import com.hdg.rjra.server.service.WorkService;
-import com.hdg.rjra.server.web.controller.param.LoginParam;
 import com.hdg.rjra.server.web.controller.param.work.WorkParam;
 import com.hdg.rjra.server.web.utils.ResponseUtils;
 import org.slf4j.Logger;
@@ -98,7 +94,7 @@ public class WorkController {
                     .getSize();
             Integer firstResult = workParam.getPage() == null ? 0 : (workParam.getPage() - 1) * sizeNo;
             Map<WorkMapping, Object> mapParam = getMapParam(workParam);
-            data = workService.findNearWorkByParamPager(mapParam, workParam.getWorkLongitude(), workParam.getWorkLatitude(), workParam.getWorkRaidus(), firstResult,sizeNo);
+            data = workService.findNearWorkByParamPager(mapParam, workParam.getWorkLongitude(), workParam.getWorkLatitude(), workParam.getWorkRaidus(), firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
             errorType.setMessage(e.getMessage());
@@ -180,14 +176,14 @@ public class WorkController {
             if (workParam.getUserId() != null) {
                 mapParam.put(WorkMapping.UserId, workParam.getUserId());
             }
-            if (workParam.getCategoryLeve1Id() != null) {
-                mapParam.put(WorkMapping.CategoryLeve1Id, workParam.getCategoryLeve1Id());
+            if (workParam.getCategoryLevel1Id() != null) {
+                mapParam.put(WorkMapping.CategoryLevel1Id, workParam.getCategoryLevel1Id());
             }
-            if (workParam.getCategoryLeve2Id() != null) {
-                mapParam.put(WorkMapping.CategoryLeve2Id, workParam.getCategoryLeve2Id());
+            if (workParam.getCategoryLevel2Id() != null) {
+                mapParam.put(WorkMapping.CategoryLevel2Id, workParam.getCategoryLevel2Id());
             }
-            if (workParam.getCategoryLeve3Id() != null) {
-                mapParam.put(WorkMapping.CategoryLeve3Id, workParam.getCategoryLeve3Id());
+            if (workParam.getCategoryLevel3Id() != null) {
+                mapParam.put(WorkMapping.CategoryLevel3Id, workParam.getCategoryLevel3Id());
             }
             if (workParam.getWorkAreaId() != null) {
                 mapParam.put(WorkMapping.WorkAreaId, workParam.getWorkAreaId());

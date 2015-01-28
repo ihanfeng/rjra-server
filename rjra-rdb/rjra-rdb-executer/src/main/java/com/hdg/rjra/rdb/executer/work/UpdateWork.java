@@ -17,7 +17,7 @@ import java.util.Date;
 public class UpdateWork extends AbstractExecuter {
 
     String sql = "UPDATE user_work SET work_longitude=?,work_latitude=?," +
-            "category_leve1_id=?,category_leve2_id=?,category_leve3_id=?,work_area_id=?," +
+            "category_level1_id=?,category_level2_id=?,category_level3_id=?,work_area_id=?," +
             "work_city_id=?,work_province_id=?,work_address=?,work_need_person=?,work_wage_id=?," +
             "work_experience_id=?,work_welfare_ids=?,work_desc=?,work_update_time=? WHERE work_id=?";
 
@@ -32,9 +32,9 @@ public class UpdateWork extends AbstractExecuter {
                     PreparedStatement ps = con.prepareStatement(sql);
                     ps.setObject(1, work.getWorkLongitude());
                     ps.setObject(2, work.getWorkLatitude());
-                    ps.setObject(3, work.getCategoryLeve1Id());
-                    ps.setObject(4, work.getCategoryLeve2Id());
-                    ps.setObject(5, work.getCategoryLeve3Id());
+                    ps.setObject(3, work.getCategoryLevel1Id());
+                    ps.setObject(4, work.getCategoryLevel2Id());
+                    ps.setObject(5, work.getCategoryLevel3Id());
                     ps.setObject(6, work.getWorkAreaId());
                     ps.setObject(7, work.getWorkCityId());
                     ps.setObject(8, work.getWorkProvinceId());

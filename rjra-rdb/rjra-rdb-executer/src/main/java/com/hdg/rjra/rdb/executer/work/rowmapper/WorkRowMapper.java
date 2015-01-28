@@ -21,9 +21,9 @@ public class WorkRowMapper implements RowMapper<Work> {
         re.setUserId(rs.getLong("user_id"));
         re.setCompanyId(rs.getLong("company_id"));
         re.setCompanyName(rs.getString("company_name"));
-        re.setCategoryLeve1Id(rs.getLong("category_leve1_id"));
-        re.setCategoryLeve2Id(rs.getLong("category_leve2_id"));
-        re.setCategoryLeve3Id(rs.getLong("category_leve3_id"));
+        re.setCategoryLevel1Id(rs.getLong("category_level1_id"));
+        re.setCategoryLevel2Id(rs.getLong("category_level2_id"));
+        re.setCategoryLevel3Id(rs.getLong("category_level3_id"));
         re.setWorkAreaId(rs.getLong("work_area_id"));
         re.setWorkCityId(rs.getLong("work_city_id"));
         re.setWorkProvinceId(rs.getLong("work_province_id"));

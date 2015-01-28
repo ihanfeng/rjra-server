@@ -8,7 +8,10 @@ import java.util.Date;
  * Created by Rock on 2015/1/25 0025.
  */
 public class ResumeParam extends BaseParam {
-    private Long resumeId;
+    private Long resumeId;;
+    private Double resumeLongitude;
+    private Double resumeLatitude;
+    private Integer resumeRaidus;
     private Long[] categoryLevel1Ids;
     private Long[] categoryLevel2Ids;
     private Long[] categoryLevel3Ids;
@@ -31,6 +34,30 @@ public class ResumeParam extends BaseParam {
 
     public void setResumeId(Long resumeId) {
         this.resumeId = resumeId;
+    }
+
+    public Double getResumeLongitude() {
+        return resumeLongitude;
+    }
+
+    public void setResumeLongitude(Double resumeLongitude) {
+        this.resumeLongitude = resumeLongitude;
+    }
+
+    public Double getResumeLatitude() {
+        return resumeLatitude;
+    }
+
+    public void setResumeLatitude(Double resumeLatitude) {
+        this.resumeLatitude = resumeLatitude;
+    }
+
+    public Integer getResumeRaidus() {
+        return resumeRaidus;
+    }
+
+    public void setResumeRaidus(Integer resumeRaidus) {
+        this.resumeRaidus = resumeRaidus;
     }
 
     public Long[] getCategoryLevel1Ids() {
