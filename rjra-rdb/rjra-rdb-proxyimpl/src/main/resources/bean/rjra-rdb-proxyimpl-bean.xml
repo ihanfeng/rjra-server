@@ -31,4 +31,5 @@
     <bean id="welfareProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.WelfareProxyImpl"/>
     <bean id="workExperienceProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.WorkExperienceProxyImpl"/>
     <bean id="accountFileProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.AccountFileProxyImpl"/>
+    <bean id="workProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.WorkProxyImpl"/>
 </beans>

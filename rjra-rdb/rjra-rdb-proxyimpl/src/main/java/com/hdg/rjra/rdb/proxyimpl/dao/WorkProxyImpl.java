@@ -40,7 +40,7 @@ public class WorkProxyImpl extends BaseProxy implements IWorkProxy {
 
     @Override
     public Integer updateWorkStatus(Long workId, Integer status) {
-        return daoClient.invoke(moduleName, "updateWork",
+        return daoClient.invoke(moduleName, "updateWorkStatus",
                 new Object[]{workId, status});
     }
 

@@ -18,7 +18,7 @@ public class UpdateWork extends AbstractExecuter {
 
     String sql = "UPDATE user_work SET work_longitude=?,work_latitude=?,user_id=?,company_id=?," +
             "category_leve1_id=?,category_leve2_id=?,category_leve3_id=?,work_area_id=?," +
-            "work_city_id=?,work_province_id=?,work_address=?,work_need_persion=?,work_wage_id=?," +
+            "work_city_id=?,work_province_id=?,work_address=?,work_need_person=?,work_wage_id=?," +
             "work_experience_id=?,work_welfare_ids=?,work_desc=?,work_update_time=? WHERE work_id=?";
 
     @Override

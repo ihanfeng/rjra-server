@@ -19,7 +19,7 @@ public interface IWorkProxy extends Serializable {
 
     public Pager<Work> findAllWorkByParamPager(Map<WorkMapping, Object> param, Integer[] status, Integer firstResult, Integer sizeNo);
 
-    public Pager<Work> findNearWorkByParamPager(Map<WorkMapping, Object> param, Double lat, Double lng, Integer raidus, Integer[] status, Integer firstResult, Integer sizeNo);
+    public Pager<Work> findNearWorkByParamPager(Map<WorkMapping, Object> param, Double lng, Double lat, Integer raidus, Integer[] status, Integer firstResult, Integer sizeNo);
 
     public Integer updateWork(Work work);
 

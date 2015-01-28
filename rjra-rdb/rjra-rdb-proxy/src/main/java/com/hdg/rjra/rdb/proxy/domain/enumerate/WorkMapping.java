@@ -1,8 +1,5 @@
 package com.hdg.rjra.rdb.proxy.domain.enumerate;
 
-import com.hdg.rjra.base.annotation.DbField;
-import com.hdg.rjra.base.annotation.DbOperate;
-
 /**
  * Created by Rock on 2015/1/27 0027.
  */
@@ -18,7 +15,7 @@ public enum WorkMapping implements BaseMapping {
     WorkCityId("work_city_id"),
     WorkProvinceId("work_province_id"),
     WorkAddress("work_address"),
-    WorkNeedPersion("work_need_persion"),
+    WorkNeedPerson("work_need_person"),
     WorkWageId("work_wage_id"),
     WorkExperienceId("work_experience_id"),
     WorkWelfareIds("work_welfare_ids", " in "),

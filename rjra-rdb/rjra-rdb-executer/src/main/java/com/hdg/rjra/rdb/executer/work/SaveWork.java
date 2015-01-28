@@ -17,7 +17,7 @@ public class SaveWork  extends AbstractExecuter {
 
     String sql = "insert into user_work (work_longitude,work_latitude,user_id," +
             "company_id,category_leve1_id,category_leve2_id,category_leve3_id,work_area_id," +
-            "work_city_id,work_province_id,work_address,work_need_persion,work_wage_id," +
+            "work_city_id,work_province_id,work_address,work_need_person,work_wage_id," +
             "work_experience_id,work_welfare_ids,work_desc,work_status,work_create_time," +
             "work_update_time) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 

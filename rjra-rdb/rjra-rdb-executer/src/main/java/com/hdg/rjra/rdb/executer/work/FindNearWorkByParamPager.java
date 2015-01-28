@@ -34,7 +34,7 @@ public class FindNearWorkByParamPager extends AbstractExecuter {
             objects.addAll(whereAndSqlParam.getObjects());
         }
         objects.addAll(SqlUtils.arrayToList(status));
-        executeSql.append(" and user_status in (");
+        executeSql.append(" and work_status in (");
         executeSql.append(SqlUtils.appendPlaceholder(status.length));
         executeSql.append(")");
         executeSql.append(" and work_longitude > ?");
