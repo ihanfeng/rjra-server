@@ -22,6 +22,7 @@ public class ResumeParam extends BaseParam {
     private Integer resumeGender;
     private Date resumeBirthday;
     private Long resumeExperience;
+    private Long resumeWage;
     private Integer resumeWorkStatus;
     private Integer resumeStatus;
     private Long resumeWantWorkAreaId;
@@ -178,5 +179,13 @@ public class ResumeParam extends BaseParam {
 
     public void setResumeStatus(Integer resumeStatus) {
         this.resumeStatus = resumeStatus;
+    }
+
+    public Long getResumeWage() {
+        return resumeWage;
+    }
+
+    public void setResumeWage(Long resumeWage) {
+        this.resumeWage = resumeWage;
     }
 }

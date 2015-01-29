@@ -12,6 +12,7 @@ public enum ResumeMapping implements BaseMapping {
     ResumeUserName("resume_user_name"),
     ResumeGender("resume_gender"),
     ResumeExperience("resume_experience"),
+    ResumeWage("resume_wage"),
     ResumeWorkStatus("resume_work_status"),
     ResumeWantWorkAreaId("resume_want_work_area_id"),
     ResumeWantWorkCityId("resume_want_work_city_id"),

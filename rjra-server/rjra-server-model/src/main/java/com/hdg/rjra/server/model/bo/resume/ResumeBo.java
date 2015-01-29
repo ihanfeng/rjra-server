@@ -25,6 +25,7 @@ public class ResumeBo {
     private Date resumeBirthday;
     private String birthday;
     private Long resumeExperience;
+    private Long resumeWage;
     private Integer resumeWorkStatus;
     private Integer resumeStatus;
     private Long resumeWantWorkAreaId;
@@ -211,5 +212,13 @@ public class ResumeBo {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public Long getResumeWage() {
+        return resumeWage;
+    }
+
+    public void setResumeWage(Long resumeWage) {
+        this.resumeWage = resumeWage;
     }
 }

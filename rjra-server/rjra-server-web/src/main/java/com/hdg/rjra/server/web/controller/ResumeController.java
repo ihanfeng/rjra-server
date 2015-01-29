@@ -227,6 +227,9 @@ public class ResumeController {
             if (resumeParam.getResumeExperience() != null) {
                 mapParam.put(ResumeMapping.ResumeExperience, resumeParam.getResumeExperience());
             }
+            if (resumeParam.getResumeWage() != null) {
+                mapParam.put(ResumeMapping.ResumeWage, resumeParam.getResumeWage());
+            }
             if (resumeParam.getResumeWorkStatus() != null) {
                 mapParam.put(ResumeMapping.ResumeWorkStatus, resumeParam.getResumeWorkStatus());
             }

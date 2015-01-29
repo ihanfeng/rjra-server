@@ -19,6 +19,7 @@ public class Resume implements Serializable {
     private Long resumeUserHeadImageFile;
     private Integer resumeGender;
     private Date resumeBirthday;
+    private Long resumeWage;
     private Long resumeExperience;
     private Integer resumeWorkStatus;
     private Integer resumeStatus;
@@ -188,4 +189,13 @@ public class Resume implements Serializable {
     public void setResumeRefreshTime(Date resumeRefreshTime) {
         this.resumeRefreshTime = resumeRefreshTime;
     }
+
+    public Long getResumeWage() {
+        return resumeWage;
+    }
+
+    public void setResumeWage(Long resumeWage) {
+        this.resumeWage = resumeWage;
+    }
+
 }

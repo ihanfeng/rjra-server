@@ -23,6 +23,7 @@ public class ResumeRowMapper implements RowMapper<Resume> {
         re.setResumeGender(rs.getInt("resume_gender"));
         re.setResumeBirthday(rs.getTimestamp("resume_birthday"));
         re.setResumeExperience(rs.getLong("resume_experience"));
+        re.setResumeWage(rs.getLong("resume_wage"));
         re.setResumeWorkStatus(rs.getInt("resume_work_status"));
         re.setResumeWantWorkAreaId(rs.getLong("resume_want_work_area_id"));
         re.setResumeWantWorkCityId(rs.getLong("resume_want_work_city_id"));
