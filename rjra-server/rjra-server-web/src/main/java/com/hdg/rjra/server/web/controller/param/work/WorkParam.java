@@ -15,6 +15,9 @@ public class WorkParam extends BaseParam {
     private Long categoryLevel1Id;
     private Long categoryLevel2Id;
     private Long categoryLevel3Id;
+    private Long[] categoryLevel1Ids;
+    private Long[] categoryLevel2Ids;
+    private Long[] categoryLevel3Ids;
     private Long workAreaId;
     private Long workCityId;
     private Long workProvinceId;
@@ -176,5 +179,29 @@ public class WorkParam extends BaseParam {
 
     public void setWorkRaidus(Integer workRaidus) {
         this.workRaidus = workRaidus;
+    }
+
+    public Long[] getCategoryLevel1Ids() {
+        return categoryLevel1Ids;
+    }
+
+    public void setCategoryLevel1Ids(Long[] categoryLevel1Ids) {
+        this.categoryLevel1Ids = categoryLevel1Ids;
+    }
+
+    public Long[] getCategoryLevel2Ids() {
+        return categoryLevel2Ids;
+    }
+
+    public void setCategoryLevel2Ids(Long[] categoryLevel2Ids) {
+        this.categoryLevel2Ids = categoryLevel2Ids;
+    }
+
+    public Long[] getCategoryLevel3Ids() {
+        return categoryLevel3Ids;
+    }
+
+    public void setCategoryLevel3Ids(Long[] categoryLevel3Ids) {
+        this.categoryLevel3Ids = categoryLevel3Ids;
     }
 }
