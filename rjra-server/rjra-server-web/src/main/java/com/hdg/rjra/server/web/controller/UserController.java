@@ -57,7 +57,7 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<String> saveUser(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = null;
-        Long data = null;
+        UserBo data = null;
         try {
 
             LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);

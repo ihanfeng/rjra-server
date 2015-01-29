@@ -40,10 +40,12 @@ public class UserServiceImpl implements UserService {
     FileService fileService;
 
     @Override
-    public Long saveUser(String mobile, String pwd) {
+    public UserBo saveUser(String mobile, String pwd) {
         Long resumeId = resumeService.createResume(mobile);
         Long companyId = companyService.createCompany();
-        return userProxy.saveUser(resumeId, companyId, mobile, pwd);
+        Long userId = userProxy.saveUser(resumeId, companyId, mobile, pwd);
+        User user = userProxy.findUserByUserId(userId);
+        return getUserBo(user);
     }
 
     @Override

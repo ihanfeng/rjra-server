@@ -9,7 +9,7 @@ import com.hdg.rjra.server.model.bo.user.UserBo;
  */
 public interface UserService {
 
-    public Long saveUser(String mobile, String pwd);
+    public UserBo saveUser(String mobile, String pwd);
 
     public Integer updateUser(UserBo user);
 
