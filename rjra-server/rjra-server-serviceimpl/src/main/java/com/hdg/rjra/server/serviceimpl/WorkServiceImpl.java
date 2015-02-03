@@ -125,7 +125,9 @@ public class WorkServiceImpl implements WorkService {
             }
             if (work.getWorkAddress() != null) {
                 address.append(work.getWorkAddress());
-                GeocoderSearchResponse geo = geoService.getCoordinate(address.toString());
+                String sendAddress = address.toString();
+                LOG.info("fetch address >>>>> " + sendAddress);
+                GeocoderSearchResponse geo = geoService.getCoordinate(sendAddress);
                 if (geo.getStatus().equals(GeoStatus.Success.getCode())) {
                     work.setWorkLatitude(geo.getResult().getLocation().getLat());
                     work.setWorkLongitude(geo.getResult().getLocation().getLng());

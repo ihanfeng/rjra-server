@@ -31,6 +31,14 @@
             </includes>
             <outputDirectory>conf</outputDirectory>
         </fileSet>
+
+        <fileSet>
+            <directory>src/main/webapps/webapp</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
+            <outputDirectory>webapp</outputDirectory>
+        </fileSet>
     </fileSets>
 
     <dependencySets>
