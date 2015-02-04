@@ -176,14 +176,14 @@ public class WorkController {
             if (workParam.getUserId() != null) {
                 mapParam.put(WorkMapping.UserId, workParam.getUserId());
             }
-            if (workParam.getCategoryLevel1Id() != null) {
-                mapParam.put(WorkMapping.CategoryLevel1Id, workParam.getCategoryLevel1Id());
+            if (workParam.getCategoryLevel1Ids() != null) {
+                mapParam.put(WorkMapping.CategoryLevel1Id, workParam.getCategoryLevel1Ids());
             }
-            if (workParam.getCategoryLevel2Id() != null) {
-                mapParam.put(WorkMapping.CategoryLevel2Id, workParam.getCategoryLevel2Id());
+            if (workParam.getCategoryLevel2Ids() != null) {
+                mapParam.put(WorkMapping.CategoryLevel2Id, workParam.getCategoryLevel2Ids());
             }
-            if (workParam.getCategoryLevel3Id() != null) {
-                mapParam.put(WorkMapping.CategoryLevel3Id, workParam.getCategoryLevel3Id());
+            if (workParam.getCategoryLevel3Ids() != null) {
+                mapParam.put(WorkMapping.CategoryLevel3Id, workParam.getCategoryLevel3Ids());
             }
             if (workParam.getWorkAreaId() != null) {
                 mapParam.put(WorkMapping.WorkAreaId, workParam.getWorkAreaId());
