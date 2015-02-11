@@ -1,8 +1,5 @@
 package com.hdg.rjra.server.web.controller.param.user;
 
-import com.hdg.rjra.base.annotation.DateTimeFormat;
-import com.hdg.rjra.base.constants.CommonConstants;
-import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.web.controller.param.BaseParam;
 
 /**

@@ -1,8 +1,8 @@
 package com.hdg.rjra.server.serviceimpl;
 
+import com.hdg.common.utils.ConversionUtils;
 import com.hdg.rjra.base.enumerate.GeoStatus;
 import com.hdg.rjra.base.enumerate.WorkStatus;
-import com.hdg.rjra.base.utils.ConversionUtils;
 import com.hdg.rjra.rdb.proxy.daoproxy.*;
 import com.hdg.rjra.rdb.proxy.domain.*;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;

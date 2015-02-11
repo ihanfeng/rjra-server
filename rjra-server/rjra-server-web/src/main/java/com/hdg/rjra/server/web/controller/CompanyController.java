@@ -4,20 +4,17 @@ package com.hdg.rjra.server.web.controller;
  * Created by Rock on 2015/1/8 0008.
  */
 
-import com.hdg.rjra.base.constants.CommonConstants;
+import com.hdg.common.constants.CommonConstants;
+import com.hdg.common.output.OutputResult;
+import com.hdg.common.utils.ConversionUtils;
+import com.hdg.common.utils.JsonUtils;
+import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.error.ErrorType;
-import com.hdg.rjra.base.output.OutputResult;
-import com.hdg.rjra.base.properties.CustomizedPropertyConfigurer;
-import com.hdg.rjra.base.utils.AESUtils;
-import com.hdg.rjra.base.utils.ConversionUtils;
-import com.hdg.rjra.base.utils.JsonUtils;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.server.model.bo.company.CompanyBo;
 import com.hdg.rjra.server.service.CompanyService;
 import com.hdg.rjra.server.service.FileService;
-import com.hdg.rjra.server.web.controller.param.LoginParam;
 import com.hdg.rjra.server.web.controller.param.company.CompanyParam;
-import com.hdg.rjra.server.web.utils.ResponseUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +64,7 @@ public class CompanyController {
             LOG.error("updateCompany->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -85,7 +82,7 @@ public class CompanyController {
             LOG.error("findCompanyByCompanyId->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -106,7 +103,7 @@ public class CompanyController {
             errorType.setMessage(e.getMessage());
             LOG.error("findAllCompanyPager->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -152,7 +149,7 @@ public class CompanyController {
             LOG.error("updateCompanyLogo->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -198,7 +195,7 @@ public class CompanyController {
             LOG.error("updateCompanyBizlicense->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -244,7 +241,7 @@ public class CompanyController {
             LOG.error("updateCompanyUserIdCard->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -290,7 +287,7 @@ public class CompanyController {
             LOG.error("updateCompanyFacade->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 }

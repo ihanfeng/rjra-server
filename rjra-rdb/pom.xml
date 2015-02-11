@@ -16,6 +16,7 @@
         <env>dev</env>
         <spring.version>3.2.3.RELEASE</spring.version>
         <rjra-base.version>0.0.0.1</rjra-base.version>
+        <common-version>0.0.1</common-version>
     </properties>
     <modules>
         <module>rjra-rdb-model</module>
@@ -34,6 +35,11 @@
             <artifactId>junit-dep</artifactId>
             <version>4.10</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.hdg.common</groupId>
+            <artifactId>common-lang</artifactId>
+            <version>${common-version}</version>
         </dependency>
     </dependencies>
     <build>
@@ -67,8 +73,8 @@
     </build>
     <distributionManagement>
         <repository>
-            <id>releases</id>
-            <url>http://172.30.10.200:8081/nexus/content/repositories/releases/</url>
+            <id>hdg</id>
+            <url>http://121.40.19.174:8899/nexus/content/repositories/hdg</url>
         </repository>
     </distributionManagement>
 </project>

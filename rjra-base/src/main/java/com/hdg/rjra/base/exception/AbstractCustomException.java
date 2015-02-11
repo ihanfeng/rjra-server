@@ -2,6 +2,10 @@ package com.hdg.rjra.base.exception;
 
 import com.hdg.rjra.base.error.ErrorType;
 
+import java.lang.Exception;
+import java.lang.String;
+import java.lang.Throwable;
+
 /**
  * Created by Administrator on 14-7-14.
  */

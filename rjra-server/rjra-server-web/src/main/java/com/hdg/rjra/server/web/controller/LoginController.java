@@ -4,18 +4,17 @@ package com.hdg.rjra.server.web.controller;
  * Created by Rock on 2015/1/8 0008.
  */
 
+import com.hdg.common.output.OutputResult;
+import com.hdg.common.properties.CustomizedPropertyConfigurer;
+import com.hdg.common.utils.AESUtils;
+import com.hdg.common.utils.JsonUtils;
+import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.error.ErrorType;
-import com.hdg.rjra.base.output.OutputResult;
-import com.hdg.rjra.base.properties.CustomizedPropertyConfigurer;
-import com.hdg.rjra.base.utils.AESUtils;
-import com.hdg.rjra.base.utils.JsonUtils;
-import com.hdg.rjra.server.model.bo.company.CompanyBo;
 import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.service.CompanyService;
 import com.hdg.rjra.server.service.FileService;
 import com.hdg.rjra.server.service.UserService;
 import com.hdg.rjra.server.web.controller.param.LoginParam;
-import com.hdg.rjra.server.web.utils.ResponseUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +64,7 @@ public class LoginController {
             errorType.setMessage(e.getMessage());
             LOG.error("login user ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 }

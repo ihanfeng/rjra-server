@@ -1,15 +1,11 @@
 package com.hdg.rjra.server.serviceimpl;
 
+import com.hdg.common.utils.ConversionUtils;
 import com.hdg.rjra.base.enumerate.UserStatus;
-import com.hdg.rjra.base.utils.ConversionUtils;
-import com.hdg.rjra.rdb.proxy.daoproxy.ICompanyProxy;
-import com.hdg.rjra.rdb.proxy.daoproxy.IResumeProxy;
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.User;
-import com.hdg.rjra.server.model.bo.company.CompanyBo;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
-import com.hdg.rjra.server.model.bo.resume.ResumeBo;
 import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.service.CompanyService;
 import com.hdg.rjra.server.service.FileService;

@@ -1,6 +1,6 @@
 package com.hdg.rjra.rdb.executer.work;
 
-import com.hdg.rjra.base.utils.CoordinateUtils;
+import com.hdg.common.utils.CoordinateUtils;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
 import com.hdg.rjra.rdb.proxy.utils.SqlUtils;

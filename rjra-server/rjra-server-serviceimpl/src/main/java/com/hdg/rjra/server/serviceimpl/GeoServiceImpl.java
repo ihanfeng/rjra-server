@@ -1,8 +1,8 @@
 package com.hdg.rjra.server.serviceimpl;
 
-import com.hdg.rjra.base.properties.CustomizedPropertyConfigurer;
-import com.hdg.rjra.base.utils.HttpRequestUtils;
-import com.hdg.rjra.base.utils.JsonUtils;
+import com.hdg.common.properties.CustomizedPropertyConfigurer;
+import com.hdg.common.utils.HttpRequestUtils;
+import com.hdg.common.utils.JsonUtils;
 import com.hdg.rjra.server.model.bo.geo.GeocoderSearchResponse;
 import com.hdg.rjra.server.service.GeoService;
 import org.slf4j.Logger;

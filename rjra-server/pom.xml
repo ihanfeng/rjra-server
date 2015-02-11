@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.hdg.rjra.server</groupId>
 	<artifactId>rjra-server</artifactId>
@@ -15,6 +17,7 @@
         <spring-security.version>3.1.0.RELEASE</spring-security.version>
         <rjra.version>0.0.0.1</rjra.version>
         <rjra-base.version>0.0.0.1</rjra-base.version>
+        <common-version>0.0.1</common-version>
         <env>dev</env>
 	</properties>
 	<repositories>
@@ -58,6 +61,11 @@
         <module>rjra-server-serviceimpl</module>
     </modules>
 	<dependencies>
+        <dependency>
+            <groupId>com.hdg.common</groupId>
+            <artifactId>common-lang</artifactId>
+            <version>${common-version}</version>
+        </dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -104,10 +112,10 @@
             </plugin>
         </plugins>
     </build>
-	<distributionManagement>
+    <distributionManagement>
         <repository>
-            <id>releases</id>
-            <url>http://172.30.10.200:8081/nexus/content/repositories/releases</url>
+            <id>hdg</id>
+            <url>http://121.40.19.174:8899/nexus/content/repositories/hdg</url>
         </repository>
-	</distributionManagement>
+    </distributionManagement>
 </project>

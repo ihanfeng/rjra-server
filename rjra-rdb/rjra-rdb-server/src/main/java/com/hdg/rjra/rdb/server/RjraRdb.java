@@ -1,6 +1,6 @@
 package com.hdg.rjra.rdb.server;
 
-import com.hdg.rjra.base.properties.CustomizedPropertyConfigurer;
+import com.hdg.common.properties.CustomizedPropertyConfigurer;
 import com.hdg.rjra.rdb.server.rpcserver.ThriftServer;
 import com.hdg.rjra.rdb.server.webserver.RjraRdbWebServer;
 import org.slf4j.Logger;

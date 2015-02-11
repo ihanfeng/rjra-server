@@ -1,8 +1,8 @@
 package com.hdg.rjra.server.serviceimpl;
 
+import com.hdg.common.properties.CustomizedPropertyConfigurer;
+import com.hdg.common.utils.ConversionUtils;
 import com.hdg.rjra.base.enumerate.FileStatus;
-import com.hdg.rjra.base.properties.CustomizedPropertyConfigurer;
-import com.hdg.rjra.base.utils.ConversionUtils;
 import com.hdg.rjra.rdb.proxy.daoproxy.IAccountFileProxy;
 import com.hdg.rjra.rdb.proxy.domain.AccountFile;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
