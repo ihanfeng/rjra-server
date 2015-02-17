@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <bean id="propertyConfigurer" class="com.hdg.common.properties.CustomizedPropertyConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:database.properties</value>
+                <value>classpath*:rjra-rdb.properties</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="rjra-rdb-service" />
+    <!-- 自动扫描 -->
+    <dubbo:annotation package="com.hdg" />
+    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <dubbo:registry address="zookeeper://zoo1:2181?backup=zoo2:2181,zoo3:2181" />
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20880" />
+
+    <dubbo:provider timeout="1200000"></dubbo:provider>
+    <dubbo:consumer timeout="1200000"></dubbo:consumer>
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <property name="url" value="${database.url}"/>
+        <property name="username" value="${database.username}"/>
+        <property name="password" value="${database.password}"/>
+        <property name="driverClassName" value="${database.driverClassName}"/>
+
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="validationQuery" value="SELECT 1"/>
+
+
+        <property name="timeBetweenEvictionRunsMillis" value="1800000"/>
+        <property name="minEvictableIdleTimeMillis" value="1800000"/>
+
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="true" />
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+
+        <!--initialSize: 初始化连接-->
+        <property name="initialSize" value="0"/>
+        <!--maxIdle: 最大空闲连接-->
+        <property name="maxIdle" value="20"/>
+        <!--minIdle: 最小空闲连接-->
+        <property name="minIdle" value="5"/>
+        <!--maxActive: 最大连接数量-->
+        <property name="maxActive" value="50"/>
+        <!--maxWait: 超时等待时间以毫秒为单位-->
+        <property name="maxWait" value="60000"/>
+
+        <!-- 配置监控统计拦截的filters，去掉后监控界面sql无法统计 -->
+        <property name="filters" value="stat" />
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="rdbWebServer" class="com.hdg.rjra.rdb.webserver.RjraRdbWebServer" init-method="start">
+        <property name="webport" value="${sql-monitor-port}"/>
+    </bean>
+</beans>

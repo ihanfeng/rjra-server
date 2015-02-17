@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.hdg.common</groupId>
+        <artifactId>common-parent</artifactId>
+        <version>0.0.1</version>
+    </parent>
+	<groupId>com.hdg.rjra.server</groupId>
+	<artifactId>rjra-server</artifactId>
+	<version>0.0.0.2</version>
+	<packaging>pom</packaging>
+	<name>rjra-server</name>
+	<properties>
+        <rjra.version>0.0.0.2</rjra.version>
+        <rjra-base.version>0.0.0.2</rjra-base.version>
+        <slf4j.version>1.7.5</slf4j.version>
+        <junit.version>4.11</junit.version>
+        <servlet.version>2.5</servlet.version>
+        <env>dev</env>
+	</properties>
+	<modules>
+        <module>rjra-base</module>
+        <module>rjra-server-model</module>
+        <module>rjra-rdb-service</module>
+        <module>rjra-rdb-serviceimpl</module>
+        <module>rjra-server-service</module>
+        <module>rjra-server-serviceimpl</module>
+        <module>rjra-server-web</module>
+    </modules>
+</project>

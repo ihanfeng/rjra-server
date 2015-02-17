@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="rjra-server-service" />
+    <!-- 自动扫描 -->
+    <dubbo:annotation package="com.hdg" />
+    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <dubbo:registry address="zookeeper://zoo1:2181?backup=zoo2:2181,zoo3:2181" />
+    <!-- 用dubbo协议在30880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="30880" />
+
+    <dubbo:reference id="accountFileRdbService" interface="com.hdg.rjra.rdb.service.IAccountFileRdbService" timeout="1200000" />
+    <dubbo:reference id="areaRdbService" interface="com.hdg.rjra.rdb.service.IAreaRdbService" timeout="1200000" />
+    <dubbo:reference id="categoryLevel1RdbService" interface="com.hdg.rjra.rdb.service.ICategoryLevel1RdbService" timeout="1200000" />
+    <dubbo:reference id="categoryLevel2RdbSercice" interface="com.hdg.rjra.rdb.service.ICategoryLevel2RdbSercice" timeout="1200000" />
+    <dubbo:reference id="categoryLevel3RdbService" interface="com.hdg.rjra.rdb.service.ICategoryLevel3RdbService" timeout="1200000" />
+    <dubbo:reference id="cityRdbService" interface="com.hdg.rjra.rdb.service.ICityRdbService" timeout="1200000" />
+    <dubbo:reference id="companyRdbService" interface="com.hdg.rjra.rdb.service.ICompanyRdbService" timeout="1200000" />
+    <dubbo:reference id="educationRdbService" interface="com.hdg.rjra.rdb.service.IEducationRdbService" timeout="1200000" />
+    <dubbo:reference id="provinceRdbService" interface="com.hdg.rjra.rdb.service.IProvinceRdbService" timeout="1200000" />
+    <dubbo:reference id="resumeRdbService" interface="com.hdg.rjra.rdb.service.IResumeRdbService" timeout="1200000" />
+    <dubbo:reference id="userRdbService" interface="com.hdg.rjra.rdb.service.IUserRdbService" timeout="1200000" />
+    <dubbo:reference id="wageRdbService" interface="com.hdg.rjra.rdb.service.IWageRdbService" timeout="1200000" />
+    <dubbo:reference id="welfareRdbService" interface="com.hdg.rjra.rdb.service.IWelfareRdbService" timeout="1200000" />
+    <dubbo:reference id="workExperienceRdbService" interface="com.hdg.rjra.rdb.service.IWorkExperienceRdbService" timeout="1200000" />
+    <dubbo:reference id="workRdbService" interface="com.hdg.rjra.rdb.service.IWorkRdbService" timeout="1200000" />
+
+    <bean id="propertyConfigurer" class="com.hdg.common.properties.CustomizedPropertyConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:rjra-server-service.properties</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>
