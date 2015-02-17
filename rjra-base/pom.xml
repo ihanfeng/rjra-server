@@ -6,17 +6,17 @@
         <artifactId>common-parent</artifactId>
         <version>0.0.1</version>
     </parent>
-    <groupId>com.hdg.rjra.base</groupId>
+    <groupId>com.hdg.rjra.server</groupId>
     <artifactId>rjra-base</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.0.1</version>
+    <version>0.0.0.2</version>
     <name>rjra-base</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
             <groupId>com.hdg.common</groupId>
             <artifactId>common-lang</artifactId>
-            <version>${common-version}</version>
+            <version>${common.version}</version>
         </dependency>
     </dependencies>
 </project>

@@ -7,6 +7,7 @@ import com.hdg.common.error.ResponseError;
  */
 public enum  ErrorType {
 
+    DEFFAULT,
     UNKNOW_ERROR(-1L, "Unknow Error."),
     PARAM_EXCEPTION(100001L, "Request Param Error."),
     UPLOAD_IMAGE_FAIL(200001L, "upload file fail."),
@@ -38,6 +39,13 @@ public enum  ErrorType {
         this.message = message;
         responseError.setCode(code);
         responseError.setMessage(message);
+    }
+    /**
+     * Creates a new instance of ExceptionType.
+     *
+     * @author Administrator 创建时间 2014年7月2日 下午8:00:15
+     */
+    private ErrorType() {
     }
 
     /**
