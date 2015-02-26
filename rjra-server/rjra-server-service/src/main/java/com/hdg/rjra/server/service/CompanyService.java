@@ -1,6 +1,5 @@
 package com.hdg.rjra.server.service;
 
-import com.hdg.rjra.rdb.proxy.domain.Company;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.server.model.bo.company.CompanyBo;
 

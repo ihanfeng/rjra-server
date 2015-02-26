@@ -1,21 +1,19 @@
 package com.hdg.rjra.base.error;
 
+import com.hdg.common.error.ResponseError;
+
 /**
  * Created by Rock on 2015/1/2 0002.
  */
 public enum  ErrorType {
 
-    UNKNOW_ERROR("UNKNOW_ERROR", -1L, "Unknow Error."),
-    PARAM_EXCEPTION("PARAM_EXCEPTION", 100001L, "Request Param Error."),
-    UPLOAD_IMAGE_FAIL("UPLOAD_IMAGE_FAIL", 200001L, "upload file fail."),
-    MOBILE_ALREADY_EXISTS("MOBILE_ALREADY_EXISTS", 300001L, "The mobile already exists."),
-    COMPANY_ALREADY_NOT_EXIST("COMPANY_ALREADY_NOT_EXIST", 300001L, "The company already not exist."),
-    USER_ALREADY_NOT_EXIST("USER_ALREADY_NOT_EXIST", 300001L, "The user already not exist.");
-
-    /**
-     * 类型
-     */
-    private String type;
+    DEFFAULT,
+    UNKNOW_ERROR(-1L, "Unknow Error."),
+    PARAM_EXCEPTION(100001L, "Request Param Error."),
+    UPLOAD_IMAGE_FAIL(200001L, "upload file fail."),
+    MOBILE_ALREADY_EXISTS(300001L, "The mobile already exists."),
+    COMPANY_ALREADY_NOT_EXIST(300001L, "The company already not exist."),
+    USER_ALREADY_NOT_EXIST(300001L, "The user already not exist.");
 
     /**
      * 错误码
@@ -27,27 +25,27 @@ public enum  ErrorType {
      */
     private String message;
 
+    private ResponseError responseError = new ResponseError();;
+
     /**
      * Creates a new instance of ExceptionType.
      *
-     * @param type    type
      * @param code    code
      * @param message message
      * @author Administrator 创建时间 2014年7月2日 下午8:00:15
      */
-    private ErrorType(String type, Long code, String message) {
-        this.type = type;
+    private ErrorType(Long code, String message) {
         this.code = code;
         this.message = message;
+        responseError.setCode(code);
+        responseError.setMessage(message);
     }
-
     /**
-     * 获取type
+     * Creates a new instance of ExceptionType.
      *
-     * @return the type
+     * @author Administrator 创建时间 2014年7月2日 下午8:00:15
      */
-    public String getType() {
-        return type;
+    private ErrorType() {
     }
 
     /**
@@ -75,5 +73,10 @@ public enum  ErrorType {
      */
     public void setMessage(String message) {
         this.message = message;
+        responseError.setMessage(message);
+    }
+
+    public ResponseError getResponseError() {
+        return responseError;
     }
 }

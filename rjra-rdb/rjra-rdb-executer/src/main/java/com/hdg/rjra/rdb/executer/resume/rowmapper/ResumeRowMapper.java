@@ -1,6 +1,6 @@
 package com.hdg.rjra.rdb.executer.resume.rowmapper;
 
-import com.hdg.rjra.base.utils.StringUtils;
+import com.hdg.common.utils.StringUtils;
 import com.hdg.rjra.rdb.proxy.domain.Resume;
 import org.springframework.jdbc.core.RowMapper;
 

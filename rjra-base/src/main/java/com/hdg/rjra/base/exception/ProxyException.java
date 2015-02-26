@@ -1,12 +1,15 @@
 package com.hdg.rjra.base.exception;
 
 
-import com.hdg.rjra.base.error.ResponseError;
+import com.hdg.common.error.ResponseError;
+
+import java.lang.String;
+import java.lang.Throwable;
 
 /**
  * Created by Sisi on 14-9-12.
  */
-public class ProxyException extends AbstractCustomException{
+public class ProxyException extends AbstractCustomException {
 
     /**
      * responseError
@@ -21,6 +24,7 @@ public class ProxyException extends AbstractCustomException{
 
     /**
      * ProxyException
+     *
      * @param responseError responseError
      */
     public ProxyException(ResponseError responseError) {
@@ -29,6 +33,7 @@ public class ProxyException extends AbstractCustomException{
 
     /**
      * ProxyException
+     *
      * @param msg msg
      */
     public ProxyException(String msg) {
@@ -37,7 +42,8 @@ public class ProxyException extends AbstractCustomException{
 
     /**
      * ProxyException
-     * @param msg msg
+     *
+     * @param msg           msg
      * @param responseError responseError
      */
     public ProxyException(String msg, ResponseError responseError) {
@@ -47,7 +53,8 @@ public class ProxyException extends AbstractCustomException{
 
     /**
      * ProxyException
-     * @param msg msg
+     *
+     * @param msg   msg
      * @param cause cause
      */
     public ProxyException(String msg, Throwable cause) {
@@ -56,9 +63,10 @@ public class ProxyException extends AbstractCustomException{
 
     /**
      * ProxyException
-     * @param msg msg
+     *
+     * @param msg           msg
      * @param responseError responseError
-     * @param cause cause
+     * @param cause         cause
      */
     public ProxyException(String msg, ResponseError responseError, Throwable cause) {
         super(msg, cause);
@@ -67,6 +75,7 @@ public class ProxyException extends AbstractCustomException{
 
     /**
      * ProxyException
+     *
      * @param cause cause
      */
     public ProxyException(Throwable cause) {
@@ -75,8 +84,9 @@ public class ProxyException extends AbstractCustomException{
 
     /**
      * ProxyException
+     *
      * @param responseError responseError
-     * @param cause cause
+     * @param cause         cause
      */
     public ProxyException(ResponseError responseError, Throwable cause) {
         super(cause);

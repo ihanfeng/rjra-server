@@ -4,20 +4,19 @@ package com.hdg.rjra.server.web.controller;
  * Created by Rock on 2015/1/8 0008.
  */
 
-import com.hdg.rjra.base.constants.CommonConstants;
+import com.hdg.common.constants.CommonConstants;
+import com.hdg.common.output.OutputResult;
+import com.hdg.common.utils.ConversionUtils;
+import com.hdg.common.utils.JsonUtils;
+import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.error.ErrorType;
-import com.hdg.rjra.base.output.OutputResult;
-import com.hdg.rjra.base.properties.CustomizedPropertyConfigurer;
-import com.hdg.rjra.base.utils.AESUtils;
-import com.hdg.rjra.base.utils.ConversionUtils;
-import com.hdg.rjra.base.utils.JsonUtils;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.server.model.bo.company.CompanyBo;
+import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.service.CompanyService;
 import com.hdg.rjra.server.service.FileService;
-import com.hdg.rjra.server.web.controller.param.LoginParam;
 import com.hdg.rjra.server.web.controller.param.company.CompanyParam;
-import com.hdg.rjra.server.web.utils.ResponseUtils;
+import com.hdg.rjra.server.web.utils.UploadFileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +53,7 @@ public class CompanyController {
     @RequestMapping(value = "updateCompany")
     @ResponseBody
     public ResponseEntity<String> updateCompany(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Integer data = null;
         try {
             CompanyParam companyParam = JsonUtils.jsonToObject(param, CompanyParam.class);
@@ -67,14 +66,14 @@ public class CompanyController {
             LOG.error("updateCompany->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
     @RequestMapping(value = "findCompanyByCompanyId")
     @ResponseBody
     public ResponseEntity<String> findCompanyByCompanyId(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         CompanyBo data = null;
         try {
             CompanyParam findCompanyParam = JsonUtils.jsonToObject(param, CompanyParam.class);
@@ -85,14 +84,14 @@ public class CompanyController {
             LOG.error("findCompanyByCompanyId->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
     @RequestMapping(value = "findAllCompanyPager")
     @ResponseBody
     public ResponseEntity<String> findAllCompanyPager(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Pager<CompanyBo> data = null;
         try {
             CompanyParam findRecruitmentInfoParam = JsonUtils.jsonToObject(param, CompanyParam.class);
@@ -106,7 +105,7 @@ public class CompanyController {
             errorType.setMessage(e.getMessage());
             LOG.error("findAllCompanyPager->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -120,7 +119,7 @@ public class CompanyController {
     @RequestMapping("updateCompanyLogo")
     @ResponseBody
     public ResponseEntity<String> updateCompanyLogo(HttpServletRequest request) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Long data = null;
         try {
             MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
@@ -138,8 +137,8 @@ public class CompanyController {
                 String companyLogoImageFileType = multiRequest.getParameter("companyLogoImageFileType");
                 String companyLogoImageFileFormat = multiRequest.getParameter("companyLogoImageFileFormat");
                 // 文件保存目录路径
-                String savePath = request.getSession().getServletContext().getRealPath("/");
-                data = fileService.upload(file, "company", savePath, companyId, companyLogoImageFileName, companyLogoImageFileType, companyLogoImageFileFormat);
+                AccountFileBo accountFileBo = UploadFileUtils.uploadFile(file.getInputStream(), "company", companyId, companyLogoImageFileName, companyLogoImageFileType, companyLogoImageFileFormat);
+                data = fileService.saveAccountFile(accountFileBo);
                 if (null == data) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;
                 } else {
@@ -152,7 +151,7 @@ public class CompanyController {
             LOG.error("updateCompanyLogo->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -165,7 +164,7 @@ public class CompanyController {
     @RequestMapping("updateCompanyBizlicense")
     @ResponseBody
     public ResponseEntity<String> updateCompanyBizlicense(HttpServletRequest request) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Long data = null;
         try {
             MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
@@ -183,9 +182,8 @@ public class CompanyController {
                 String companyBizlicenseImageFileType = multiRequest.getParameter("companyBizlicenseImageFileType");
                 String companyBizlicenseImageFileFormat = multiRequest.getParameter("companyBizlicenseImageFileFormat");
                 // 文件保存目录路径
-                String savePath = request.getSession().getServletContext().getRealPath("/");
-                data = fileService.upload(file, "company", savePath, companyId, companyBizlicenseImageFileName, companyBizlicenseImageFileType, companyBizlicenseImageFileFormat);
-
+                AccountFileBo accountFileBo = UploadFileUtils.uploadFile(file.getInputStream(), "company", companyId, companyBizlicenseImageFileName, companyBizlicenseImageFileType, companyBizlicenseImageFileFormat);
+                data = fileService.saveAccountFile(accountFileBo);
                 if (null == data) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;
                 } else {
@@ -198,7 +196,7 @@ public class CompanyController {
             LOG.error("updateCompanyBizlicense->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -211,7 +209,7 @@ public class CompanyController {
     @RequestMapping("updateCompanyUserIdCard")
     @ResponseBody
     public ResponseEntity<String> updateCompanyUserIdCard(HttpServletRequest request) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Long data = null;
         try {
             MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
@@ -229,9 +227,8 @@ public class CompanyController {
                 String companyUserIdCardImageFileType = multiRequest.getParameter("companyUserIdCardImageFileType");
                 String companyUserIdCardImageFileFormat = multiRequest.getParameter("companyUserIdCardImageFileFormat");
                 // 文件保存目录路径
-                String savePath = request.getSession().getServletContext().getRealPath("/");
-                data = fileService.upload(file, "company", savePath, companyId, companyUserIdCardImageFileName, companyUserIdCardImageFileType, companyUserIdCardImageFileFormat);
-
+                AccountFileBo accountFileBo = UploadFileUtils.uploadFile(file.getInputStream(), "company", companyId, companyUserIdCardImageFileName, companyUserIdCardImageFileType, companyUserIdCardImageFileFormat);
+                data = fileService.saveAccountFile(accountFileBo);
                 if (null == data) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;
                 } else {
@@ -244,7 +241,7 @@ public class CompanyController {
             LOG.error("updateCompanyUserIdCard->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -257,7 +254,7 @@ public class CompanyController {
     @RequestMapping("updateCompanyFacade")
     @ResponseBody
     public ResponseEntity<String> updateCompanyFacade(HttpServletRequest request) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Long data = null;
         try {
             MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
@@ -275,9 +272,8 @@ public class CompanyController {
                 String companyFacadeImageFileType = multiRequest.getParameter("companyFacadeImageFileType");
                 String companyFacadeImageFileFormat = multiRequest.getParameter("companyFacadeImageFileFormat");
                 // 文件保存目录路径
-                String savePath = request.getSession().getServletContext().getRealPath("/");
-                data = fileService.upload(file, "company", savePath, companyId, companyFacadeImageFileName, companyFacadeImageFileType, companyFacadeImageFileFormat);
-
+                AccountFileBo accountFileBo = UploadFileUtils.uploadFile(file.getInputStream(), "company", companyId, companyFacadeImageFileName, companyFacadeImageFileType, companyFacadeImageFileFormat);
+                data = fileService.saveAccountFile(accountFileBo);
                 if (null == data) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;
                 } else {
@@ -290,7 +286,7 @@ public class CompanyController {
             LOG.error("updateCompanyFacade->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 }

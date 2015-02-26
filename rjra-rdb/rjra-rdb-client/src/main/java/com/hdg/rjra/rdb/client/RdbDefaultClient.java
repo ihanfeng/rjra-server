@@ -1,7 +1,7 @@
 package com.hdg.rjra.rdb.client;
 
 import com.alibaba.fastjson.JSON;
-import com.hdg.rjra.base.serializer.ByteSerializer;
+import com.hdg.common.serializer.ByteSerializer;
 import com.hdg.rjra.rdb.model.thrift.ResultType;
 import com.hdg.rjra.rdb.thrift.DaoProxyRpc;
 import com.hdg.rjra.rdb.thrift.Request;

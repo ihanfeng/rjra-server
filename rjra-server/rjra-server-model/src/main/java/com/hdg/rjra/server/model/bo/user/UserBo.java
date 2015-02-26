@@ -1,7 +1,7 @@
 package com.hdg.rjra.server.model.bo.user;
 
-import com.hdg.rjra.base.annotation.DateTimeFormat;
-import com.hdg.rjra.base.constants.CommonConstants;
+import com.hdg.common.annotation.DateTimeFormat;
+import com.hdg.common.constants.CommonConstants;
 import com.hdg.rjra.server.model.bo.company.CompanyBo;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.model.bo.resume.ResumeBo;

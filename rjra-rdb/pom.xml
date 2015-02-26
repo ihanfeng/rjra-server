@@ -2,6 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.hdg.common</groupId>
+        <artifactId>common-parent</artifactId>
+        <version>0.0.1</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.hdg.rjra.rdb</groupId>
     <artifactId>rjra-rdb</artifactId>
@@ -9,12 +14,9 @@
     <version>0.0.0.1</version>
     <properties>
         <rjra-rdb.version>0.0.0.1</rjra-rdb.version>
-        <java.version>7</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <slf4j.version>1.7.5</slf4j.version>
         <thrift.version>0.9.1</thrift.version>
         <env>dev</env>
-        <spring.version>3.2.3.RELEASE</spring.version>
         <rjra-base.version>0.0.0.1</rjra-base.version>
     </properties>
     <modules>
@@ -28,47 +30,4 @@
         <module>rjra-rdb-handler</module>
         <module>rjra-rdb-test</module>
     </modules>
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit-dep</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.3</version>
-                <configuration>
-                    <attach>true</attach>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <url>http://172.30.10.200:8081/nexus/content/repositories/releases/</url>
-        </repository>
-    </distributionManagement>
 </project>

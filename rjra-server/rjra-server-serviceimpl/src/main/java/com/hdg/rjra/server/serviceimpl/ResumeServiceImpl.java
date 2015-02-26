@@ -1,9 +1,9 @@
 package com.hdg.rjra.server.serviceimpl;
 
-import com.hdg.rjra.base.constants.CommonConstants;
+import com.hdg.common.constants.CommonConstants;
+import com.hdg.common.utils.ConversionUtils;
+import com.hdg.common.utils.DateUtils;
 import com.hdg.rjra.base.enumerate.ResumeStatus;
-import com.hdg.rjra.base.utils.ConversionUtils;
-import com.hdg.rjra.base.utils.DateUtils;
 import com.hdg.rjra.rdb.proxy.daoproxy.IResumeProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.Resume;

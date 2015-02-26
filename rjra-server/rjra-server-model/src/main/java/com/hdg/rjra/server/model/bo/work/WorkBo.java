@@ -1,7 +1,7 @@
 package com.hdg.rjra.server.model.bo.work;
 
-import com.hdg.rjra.base.annotation.DateTimeFormat;
-import com.hdg.rjra.base.constants.CommonConstants;
+import com.hdg.common.annotation.DateTimeFormat;
+import com.hdg.common.constants.CommonConstants;
 
 /**
  * Created by Rock on 2015/1/28 0028.

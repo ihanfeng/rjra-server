@@ -1,6 +1,6 @@
 package com.hdg.rjra.rdb.executer.resume;
 
-import com.hdg.rjra.base.utils.StringUtils;
+import com.hdg.common.utils.StringUtils;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.model.thrift.ResultType;
 import com.hdg.rjra.rdb.proxy.domain.Resume;

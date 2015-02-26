@@ -13,12 +13,12 @@
         <dependency>
             <groupId>com.hdg.rjra.rdb</groupId>
             <artifactId>rjra-rdb-proxy</artifactId>
-            <version>0.0.0.1</version>
+            <version>${rjra-rdb.version}</version>
         </dependency>
         <dependency>
             <groupId>com.hdg.rjra.rdb</groupId>
             <artifactId>rjra-rdb-client</artifactId>
-            <version>0.0.0.1</version>
+            <version>${rjra-rdb.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

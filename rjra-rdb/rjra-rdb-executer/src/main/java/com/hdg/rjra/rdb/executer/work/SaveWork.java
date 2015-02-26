@@ -1,7 +1,7 @@
 package com.hdg.rjra.rdb.executer.work;
 
+import com.hdg.common.utils.StringUtils;
 import com.hdg.rjra.base.enumerate.WorkStatus;
-import com.hdg.rjra.base.utils.StringUtils;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.handler.PstAssign;
 import com.hdg.rjra.rdb.proxy.domain.Work;

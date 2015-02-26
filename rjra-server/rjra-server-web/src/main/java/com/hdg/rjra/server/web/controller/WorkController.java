@@ -4,17 +4,17 @@ package com.hdg.rjra.server.web.controller;
  * Created by Rock on 2015/1/8 0008.
  */
 
-import com.hdg.rjra.base.constants.CommonConstants;
+import com.hdg.common.constants.CommonConstants;
+import com.hdg.common.output.OutputResult;
+import com.hdg.common.utils.ConversionUtils;
+import com.hdg.common.utils.JsonUtils;
+import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.error.ErrorType;
-import com.hdg.rjra.base.output.OutputResult;
-import com.hdg.rjra.base.utils.ConversionUtils;
-import com.hdg.rjra.base.utils.JsonUtils;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
 import com.hdg.rjra.server.model.bo.work.WorkBo;
 import com.hdg.rjra.server.service.WorkService;
 import com.hdg.rjra.server.web.controller.param.work.WorkParam;
-import com.hdg.rjra.server.web.utils.ResponseUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,7 @@ public class WorkController {
     @RequestMapping(value = "findWorkByWorkId")
     @ResponseBody
     public ResponseEntity<String> findWorkByWorkId(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         WorkBo data = null;
         try {
             WorkParam workParam = JsonUtils.jsonToObject(param, WorkParam.class);
@@ -56,14 +56,14 @@ public class WorkController {
             errorType.setMessage(e.getMessage());
             LOG.error("findWorkByWorkId ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
     @RequestMapping(value = "findAllWorkByParamPager")
     @ResponseBody
     public ResponseEntity<String> findAllWorkByParamPager(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Pager<WorkBo> data = null;
         try {
             WorkParam workParam = JsonUtils.jsonToObject(param, WorkParam.class);
@@ -78,14 +78,14 @@ public class WorkController {
             errorType.setMessage(e.getMessage());
             LOG.error("findAllWorkByParamPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
     @RequestMapping(value = "findNearWorkByParamPager")
     @ResponseBody
     public ResponseEntity<String> findNearWorkByParamPager(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Pager<WorkBo> data = null;
         try {
             WorkParam workParam = JsonUtils.jsonToObject(param, WorkParam.class);
@@ -100,14 +100,14 @@ public class WorkController {
             errorType.setMessage(e.getMessage());
             LOG.error("findNearWorkByParamPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
     @RequestMapping(value = "updateWork")
     @ResponseBody
     public ResponseEntity<String> updateWork(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Integer data = null;
         try {
             WorkParam workParam = JsonUtils.jsonToObject(param, WorkParam.class);
@@ -119,14 +119,14 @@ public class WorkController {
             errorType.setMessage(e.getMessage());
             LOG.error("updateWork ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
     @RequestMapping(value = "updateWorkStatus")
     @ResponseBody
     public ResponseEntity<String> updateWorkStatus(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Integer data = null;
         try {
             WorkParam workParam = JsonUtils.jsonToObject(param, WorkParam.class);
@@ -136,7 +136,7 @@ public class WorkController {
             errorType.setMessage(e.getMessage());
             LOG.error("updateWorkStatus ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -144,7 +144,7 @@ public class WorkController {
     @RequestMapping(value = "saveWork")
     @ResponseBody
     public ResponseEntity<String> saveWork(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Long data = null;
         try {
             WorkParam workParam = JsonUtils.jsonToObject(param, WorkParam.class);
@@ -156,7 +156,7 @@ public class WorkController {
             errorType.setMessage(e.getMessage());
             LOG.error("saveWork ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 

@@ -1,7 +1,7 @@
 package com.hdg.rjra.server.model.bo.file;
 
-import com.hdg.rjra.base.annotation.DateTimeFormat;
-import com.hdg.rjra.base.constants.CommonConstants;
+import com.hdg.common.annotation.DateTimeFormat;
+import com.hdg.common.constants.CommonConstants;
 
 import java.util.Date;
 

@@ -1,7 +1,7 @@
 package com.hdg.rjra.server.serviceimpl;
 
+import com.hdg.common.utils.ConversionUtils;
 import com.hdg.rjra.base.enumerate.CompanyStatus;
-import com.hdg.rjra.base.utils.ConversionUtils;
 import com.hdg.rjra.rdb.proxy.daoproxy.ICompanyProxy;
 import com.hdg.rjra.rdb.proxy.domain.Company;
 import com.hdg.rjra.rdb.proxy.domain.Pager;

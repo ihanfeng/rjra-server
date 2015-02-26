@@ -4,21 +4,23 @@ package com.hdg.rjra.server.web.controller;
  * Created by Rock on 2015/1/8 0008.
  */
 
-import com.hdg.rjra.base.constants.CommonConstants;
+import com.hdg.common.constants.CommonConstants;
+import com.hdg.common.output.OutputResult;
+import com.hdg.common.properties.CustomizedPropertyConfigurer;
+import com.hdg.common.utils.AESUtils;
+import com.hdg.common.utils.ConversionUtils;
+import com.hdg.common.utils.JsonUtils;
+import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.error.ErrorType;
-import com.hdg.rjra.base.output.OutputResult;
-import com.hdg.rjra.base.properties.CustomizedPropertyConfigurer;
-import com.hdg.rjra.base.utils.AESUtils;
-import com.hdg.rjra.base.utils.ConversionUtils;
-import com.hdg.rjra.base.utils.JsonUtils;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
+import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.service.FileService;
 import com.hdg.rjra.server.service.UserService;
 import com.hdg.rjra.server.web.controller.param.LoginParam;
 import com.hdg.rjra.server.web.controller.param.LocationParam;
 import com.hdg.rjra.server.web.controller.param.user.UserParam;
-import com.hdg.rjra.server.web.utils.ResponseUtils;
+import com.hdg.rjra.server.web.utils.UploadFileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +58,7 @@ public class UserController {
     @RequestMapping(value = "saveUser")
     @ResponseBody
     public ResponseEntity<String> saveUser(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         UserBo data = null;
         try {
 
@@ -75,14 +77,14 @@ public class UserController {
             LOG.error("saveUser->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
     @RequestMapping(value = "updateUser")
     @ResponseBody
     public ResponseEntity<String> updateUser(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Integer data = null;
         try {
             UserParam userParam = JsonUtils.jsonToObject(param, UserParam.class);
@@ -95,14 +97,14 @@ public class UserController {
             LOG.error("updateUser->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
     @RequestMapping(value = "findUserByUserId")
     @ResponseBody
     public ResponseEntity<String> findUserByUserId(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         UserBo data = null;
         try {
             UserParam findUserParam = JsonUtils.jsonToObject(param, UserParam.class);
@@ -114,14 +116,14 @@ public class UserController {
             LOG.error("findUserByUserId->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
     @RequestMapping(value = "findAllUserPager")
     @ResponseBody
     public ResponseEntity<String> findAllUserPager(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Pager<UserBo> data = null;
         try {
             UserParam findRecruitmentInfoParam = JsonUtils.jsonToObject(param, UserParam.class);
@@ -135,7 +137,7 @@ public class UserController {
             errorType.setMessage(e.getMessage());
             LOG.error("findAllUserPager->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -148,7 +150,7 @@ public class UserController {
     @RequestMapping("updateUserHead")
     @ResponseBody
     public ResponseEntity<String> updateUserHead(HttpServletRequest request) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Long data = null;
         try {
             MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
@@ -166,8 +168,8 @@ public class UserController {
                 String userHeadImageFileType = multiRequest.getParameter("userHeadImageFileType");
                 String userHeadImageFileFormat = multiRequest.getParameter("userHeadImageFileFormat");
                 // 文件保存目录路径
-                String savePath = request.getSession().getServletContext().getRealPath("/");
-                data = fileService.upload(file, "user", savePath, userId, userHeadImageFileName, userHeadImageFileType, userHeadImageFileFormat);
+                AccountFileBo accountFileBo = UploadFileUtils.uploadFile(file.getInputStream(), "user", userId, userHeadImageFileName, userHeadImageFileType, userHeadImageFileFormat);
+                data = fileService.saveAccountFile(accountFileBo);
                 if (null == data) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;
                 } else {
@@ -180,14 +182,14 @@ public class UserController {
             LOG.error("updateUserHead->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
     @RequestMapping(value = "findNearUserPager")
     @ResponseBody
     public ResponseEntity<String> findNearUserPager(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Pager<UserBo> data = null;
         try {
             LocationParam locationParam = JsonUtils.jsonToObject(param, LocationParam.class);
@@ -201,7 +203,7 @@ public class UserController {
             errorType.setMessage(e.getMessage());
             LOG.error("findNearUserPager->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -214,7 +216,7 @@ public class UserController {
     @RequestMapping("updateUserLocation")
     @ResponseBody
     public ResponseEntity<String> updateUserLocation(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Integer data = null;
         try {
             LocationParam locationParam = JsonUtils.jsonToObject(param, LocationParam.class);
@@ -225,7 +227,7 @@ public class UserController {
             LOG.error("updateUserLocation->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 

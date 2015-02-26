@@ -4,20 +4,20 @@ package com.hdg.rjra.server.web.controller;
  * Created by Rock on 2015/1/8 0008.
  */
 
-import com.hdg.rjra.base.constants.CommonConstants;
+import com.hdg.common.constants.CommonConstants;
+import com.hdg.common.output.OutputResult;
+import com.hdg.common.utils.ConversionUtils;
+import com.hdg.common.utils.JsonUtils;
+import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.error.ErrorType;
-import com.hdg.rjra.base.output.OutputResult;
-import com.hdg.rjra.base.utils.ConversionUtils;
-import com.hdg.rjra.base.utils.JsonUtils;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.ResumeMapping;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.model.bo.resume.ResumeBo;
 import com.hdg.rjra.server.service.FileService;
 import com.hdg.rjra.server.service.ResumeService;
-import com.hdg.rjra.server.web.controller.param.file.FileParam;
 import com.hdg.rjra.server.web.controller.param.resume.ResumeParam;
-import com.hdg.rjra.server.web.utils.ResponseUtils;
+import com.hdg.rjra.server.web.utils.UploadFileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +57,7 @@ public class ResumeController {
     @RequestMapping(value = "findResumeByResumeId")
     @ResponseBody
     public ResponseEntity<String> findResumeByResumeId(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         ResumeBo data = null;
         try {
             ResumeParam resumeParam = JsonUtils.jsonToObject(param, ResumeParam.class);
@@ -67,7 +67,7 @@ public class ResumeController {
             errorType.setMessage(e.getMessage());
             LOG.error("findResumeByResumeId->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -76,7 +76,7 @@ public class ResumeController {
     @RequestMapping(value = "updatResumeStatus")
     @ResponseBody
     public ResponseEntity<String> updatResumeStatus(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Integer data = null;
         try {
             ResumeParam resumeParam = JsonUtils.jsonToObject(param, ResumeParam.class);
@@ -86,14 +86,14 @@ public class ResumeController {
             errorType.setMessage(e.getMessage());
             LOG.error("updatResumeStatus->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
     @RequestMapping(value = "updateResume")
     @ResponseBody
     public ResponseEntity<String> updateResume(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Integer data = null;
         try {
             ResumeParam resumeParam = JsonUtils.jsonToObject(param, ResumeParam.class);
@@ -105,7 +105,7 @@ public class ResumeController {
             errorType.setMessage(e.getMessage());
             LOG.error("updateResume->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
@@ -119,7 +119,7 @@ public class ResumeController {
     @RequestMapping("updateResumeHead")
     @ResponseBody
     public ResponseEntity<String> updateResumeHead(HttpServletRequest request) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Long data = null;
         try {
             MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
@@ -137,8 +137,8 @@ public class ResumeController {
                 String resumeHeadImageFileType = multiRequest.getParameter("resumeHeadImageFileType");
                 String resumeHeadImageFileFormat = multiRequest.getParameter("resumeHeadImageFileFormat");
                 // 文件保存目录路径
-                String savePath = request.getSession().getServletContext().getRealPath("/");
-                data = fileService.upload(file, "user", savePath, userId, resumeHeadImageFileName, resumeHeadImageFileType, resumeHeadImageFileFormat);
+                AccountFileBo accountFileBo = UploadFileUtils.uploadFile(file.getInputStream(), "user", userId, resumeHeadImageFileName, resumeHeadImageFileType, resumeHeadImageFileFormat);
+                data = fileService.saveAccountFile(accountFileBo);
                 if (null == data) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;
                 } else {
@@ -151,14 +151,14 @@ public class ResumeController {
             LOG.error("updateResumeHead->", e);
         }
 
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
     @RequestMapping(value = "findAllResumeByParamPager")
     @ResponseBody
     public ResponseEntity<String> findAllResumeByParamPager(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Pager<ResumeBo> data = null;
         try {
             ResumeParam resumeParam = JsonUtils.jsonToObject(param, ResumeParam.class);
@@ -173,14 +173,14 @@ public class ResumeController {
             errorType.setMessage(e.getMessage());
             LOG.error("findAllResumeByParamPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
     @RequestMapping(value = "findNearResumeByParamPager")
     @ResponseBody
     public ResponseEntity<String> findNearResumeByParamPager(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Pager<ResumeBo> data = null;
         try {
             ResumeParam resumeParam = JsonUtils.jsonToObject(param, ResumeParam.class);
@@ -195,7 +195,7 @@ public class ResumeController {
             errorType.setMessage(e.getMessage());
             LOG.error("findNearResumeByParamPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType, data);
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 

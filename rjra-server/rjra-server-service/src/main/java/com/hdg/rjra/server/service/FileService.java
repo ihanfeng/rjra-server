@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface FileService {
 
-    public Long upload(MultipartFile file, String type, String path, String key, String fileName, String fileType, String fileFormat) throws IOException;
+    public Long saveAccountFile(AccountFileBo accountFileBo);
 
     public List<AccountFileBo> findAccountFileByIds(Long[] fileIds);
 

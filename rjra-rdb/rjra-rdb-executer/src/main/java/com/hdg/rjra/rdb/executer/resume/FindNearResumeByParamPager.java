@@ -1,6 +1,6 @@
 package com.hdg.rjra.rdb.executer.resume;
 
-import com.hdg.rjra.base.utils.CoordinateUtils;
+import com.hdg.common.utils.CoordinateUtils;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.ResumeMapping;
 import com.hdg.rjra.rdb.proxy.utils.SqlUtils;

@@ -1,7 +1,7 @@
 package com.hdg.rjra.rdb.server.rpcserver;
 
 import com.alibaba.fastjson.JSON;
-import com.hdg.rjra.base.serializer.ByteSerializer;
+import com.hdg.common.serializer.ByteSerializer;
 import com.hdg.rjra.rdb.handler.IRequestHandler;
 import com.hdg.rjra.rdb.model.thrift.ResponseModel;
 import com.hdg.rjra.rdb.model.thrift.ResultType;
