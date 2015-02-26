@@ -54,7 +54,7 @@ public class CompanyController {
     @RequestMapping(value = "updateCompany")
     @ResponseBody
     public ResponseEntity<String> updateCompany(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = null;
+        ErrorType errorType = ErrorType.DEFFAULT;
         Integer data = null;
         try {
             CompanyParam companyParam = JsonUtils.jsonToObject(param, CompanyParam.class);
