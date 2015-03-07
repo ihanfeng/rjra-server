@@ -19,6 +19,7 @@ import com.hdg.rjra.server.service.FileService;
 import com.hdg.rjra.server.service.UserService;
 import com.hdg.rjra.server.web.controller.param.LoginParam;
 import com.hdg.rjra.server.web.controller.param.LocationParam;
+import com.hdg.rjra.server.web.controller.param.user.ChangePwdParam;
 import com.hdg.rjra.server.web.controller.param.user.UserParam;
 import com.hdg.rjra.server.web.utils.UploadFileUtils;
 import org.slf4j.Logger;
@@ -35,7 +36,7 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Locale;
+
 
 /**
  * @author Rock
@@ -231,4 +232,30 @@ public class UserController {
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
+    @RequestMapping(value = "changePwd")
+    @ResponseBody
+    public ResponseEntity<String> changePwd(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        UserBo userBo = null;
+        Integer data = null;
+        try {
+            ChangePwdParam changePwdParam = JsonUtils.jsonToObject(param, ChangePwdParam.class);
+            String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+            String pwd = AESUtils.encrypt(changePwdParam.getOldPwd(), changePwdParam.getMobile(), encryptionFactor);
+            userBo = userService.findUserByMobileAndPwd(changePwdParam.getMobile(), pwd);
+            if (userBo == null) {
+                errorType = ErrorType.USER_MOBILE_OR_PWD_IS_ERROR;
+            }
+            else{
+                String newPwd = AESUtils.encrypt(changePwdParam.getNewPwd(), changePwdParam.getMobile(), encryptionFactor);
+                data = userService.updateUserPwd(userBo.getUserId(), newPwd);
+            }
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("user changePwd ->", e);
+        }
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
 }

@@ -13,7 +13,8 @@ public enum  ErrorType {
     UPLOAD_IMAGE_FAIL(200001L, "upload file fail."),
     MOBILE_ALREADY_EXISTS(300001L, "The mobile already exists."),
     COMPANY_ALREADY_NOT_EXIST(300001L, "The company already not exist."),
-    USER_ALREADY_NOT_EXIST(300001L, "The user already not exist.");
+    USER_ALREADY_NOT_EXIST(300001L, "The user already not exist."),
+    USER_MOBILE_OR_PWD_IS_ERROR(400001L, "The user mobile or pwd is error.");
 
     /**
      * 错误码

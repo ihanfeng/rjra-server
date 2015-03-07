@@ -15,6 +15,9 @@
     <bean id="updateUser" class="com.hdg.rjra.rdb.executer.user.UpdateUser">
         <property name="rowMapper" ref="userRowMapper"></property>
     </bean>
+    <bean id="updateUserPwd" class="com.hdg.rjra.rdb.executer.user.UpdateUserPwd">
+        <property name="rowMapper" ref="userRowMapper"></property>
+    </bean>
     <bean id="findUserByUserId" class="com.hdg.rjra.rdb.executer.user.FindUserByUserId">
         <property name="rowMapper" ref="userRowMapper"></property>
     </bean>
@@ -39,6 +42,7 @@
     <util:map id="rdb-user-executer">
         <entry key="saveUser" value-ref="saveUser"/>
         <entry key="updateUser" value-ref="updateUser"/>
+        <entry key="updateUserPwd" value-ref="updateUserPwd"/>
         <entry key="findUserByUserId" value-ref="findUserByUserId"/>
         <entry key="findAllUserPager" value-ref="findAllUserPager"/>
         <entry key="updateUserHead" value-ref="updateUserHead"/>

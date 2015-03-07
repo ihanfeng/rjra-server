@@ -14,6 +14,8 @@ public interface IUserProxy extends Serializable {
 
     public Integer updateUser(User user);
 
+    public Integer updateUserPwd(Long userId, String pwd);
+
     public User findUserByUserId(Long userId);
 
     public Pager<User> findAllUserPager(Integer[] status, Integer firstResult, Integer sizeNo);

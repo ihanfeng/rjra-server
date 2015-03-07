@@ -23,6 +23,8 @@ public interface UserService {
 
     public UserBo findUserByMobileAndPwd(String mobile, String pwd);
 
+    public Integer updateUserPwd(Long userId, String pwd);
+
     public Integer updateUserLocation(Long userId, Double lng, Double lat);
 
     public Integer findUserExistsByMobile(String mobile);

@@ -25,6 +25,12 @@ public class UserProxyImpl extends BaseProxy implements IUserProxy {
     }
 
     @Override
+    public Integer updateUserPwd(Long userId, String pwd) {
+        return daoClient.invoke(moduleName, "updateUserPwd",
+                new Object[]{userId, pwd});
+    }
+
+    @Override
     public User findUserByUserId(Long userId) {
         return daoClient.invoke(moduleName, "findUserByUserId",
                 new Object[]{userId});
