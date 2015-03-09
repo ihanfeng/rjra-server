@@ -32,4 +32,5 @@
     <bean id="workExperienceProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.WorkExperienceProxyImpl"/>
     <bean id="accountFileProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.AccountFileProxyImpl"/>
     <bean id="workProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.WorkProxyImpl"/>
+    <bean id="managerProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.ManagerProxyImpl"/>
 </beans>

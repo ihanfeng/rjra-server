@@ -12,9 +12,12 @@ public enum  ErrorType {
     PARAM_EXCEPTION(100001L, "Request Param Error."),
     UPLOAD_IMAGE_FAIL(200001L, "upload file fail."),
     MOBILE_ALREADY_EXISTS(300001L, "The mobile already exists."),
-    COMPANY_ALREADY_NOT_EXIST(300001L, "The company already not exist."),
-    USER_ALREADY_NOT_EXIST(300001L, "The user already not exist."),
-    USER_MOBILE_OR_PWD_IS_ERROR(400001L, "The user mobile or pwd is error.");
+    COMPANY_ALREADY_NOT_EXIST(300002L, "The company already not exist."),
+    USER_ALREADY_NOT_EXIST(300003L, "The user already not exist."),
+    MANAGER_ALREADY_NOT_EXIST(300004L, "The manager already not exist."),
+    USER_MOBILE_OR_PWD_IS_ERROR(400000L, "The user mobile or pwd is error."),
+    MANAGER_MOBILE_OR_PWD_IS_ERROR(400001L, "The manager mobile or pwd is error."),
+    INVALID_TOKEN(500000L, "This token is invalid");
 
     /**
      * 错误码

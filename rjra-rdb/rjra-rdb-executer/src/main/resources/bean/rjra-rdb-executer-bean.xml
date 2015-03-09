@@ -24,6 +24,7 @@
     <import resource="classpath:bean/execute/rdb-company-executer.xml"/>
     <import resource="classpath:bean/execute/rdb-account-file-executer.xml"/>
     <import resource="classpath:bean/execute/rdb-work-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-manager-executer.xml"/>
 
     <!-- handler相关 -->
     <bean id="requestHandler" class="com.hdg.rjra.rdb.executer.RequestHandler">
@@ -44,6 +45,7 @@
                 <entry key="rdb-company" value-ref="rdb-company-executer"/>
                 <entry key="rdb-account-file" value-ref="rdb-account-file-executer"/>
                 <entry key="rdb-work" value-ref="rdb-work-executer"/>
+                <entry key="rdb-manager" value-ref="rdb-manager-executer"/>
             </map>
         </property>
     </bean>
