@@ -55,6 +55,7 @@ public class CompanyServiceImpl implements CompanyService {
         Long bizlicenseImageFile = company.getCompanyBizlicenseImageFile();
         Long idCardImageFile = company.getCompanyUserIdCardImageFile();
         Long facadeImageFile = company.getCompanyFacadeImageFile();
+        Long[] companyImages = company.getCompanyImages();
         if (logoImage != null) {
             AccountFileBo companyImageInfo = fileService.findAccountFileById(logoImage);
             companyBo.setCompanyLogoImageFileDetail(companyImageInfo);
@@ -70,6 +71,10 @@ public class CompanyServiceImpl implements CompanyService {
         if (facadeImageFile != null) {
             AccountFileBo companyImageInfo = fileService.findAccountFileById(facadeImageFile);
             companyBo.setCompanyFacadeImageFileDetail(companyImageInfo);
+        }
+        if (companyImages != null) {
+            List<AccountFileBo> companyImagesFile = fileService.findAccountFileByIds(companyImages);
+            companyBo.setCompanyImagesDetail(companyImagesFile);
         }
         ConversionUtils.conversion(company, companyBo);
         return companyBo;

@@ -329,7 +329,7 @@ public class CompanyController {
                     for (int i = 0; i < companyImages.length; i++) {
                         newCompanyImages[i] = companyImages[i];
                     }
-                    newCompanyImages[companyImages.length] = accountFileBo.getFileId();
+                    newCompanyImages[companyImages.length] = data;
                     companyService.updateCompanyImages(Long.valueOf(companyId), newCompanyImages);
                 }
             }

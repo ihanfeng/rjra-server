@@ -5,6 +5,7 @@ import com.hdg.common.constants.CommonConstants;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Rock on 2015/1/10 0010.
@@ -29,6 +30,7 @@ public class CompanyBo {
     private AccountFileBo companyUserIdCardImageFileDetail;
     private Long companyFacadeImageFile;
     private Long[] companyImages;
+    private List<AccountFileBo> companyImagesDetail;
     private AccountFileBo companyFacadeImageFileDetail;
     private Integer companyStatus;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
@@ -257,5 +259,13 @@ public class CompanyBo {
 
     public void setCompanyImages(Long[] companyImages) {
         this.companyImages = companyImages;
+    }
+
+    public List<AccountFileBo> getCompanyImagesDetail() {
+        return companyImagesDetail;
+    }
+
+    public void setCompanyImagesDetail(List<AccountFileBo> companyImagesDetail) {
+        this.companyImagesDetail = companyImagesDetail;
     }
 }
