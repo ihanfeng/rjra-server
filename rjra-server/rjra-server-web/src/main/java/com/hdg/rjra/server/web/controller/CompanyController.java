@@ -15,6 +15,7 @@ import com.hdg.rjra.server.model.bo.company.CompanyBo;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.service.CompanyService;
 import com.hdg.rjra.server.service.FileService;
+import com.hdg.rjra.server.web.controller.param.company.CompanyImageParam;
 import com.hdg.rjra.server.web.controller.param.company.CompanyParam;
 import com.hdg.rjra.server.web.utils.UploadFileUtils;
 import org.slf4j.Logger;
@@ -286,6 +287,99 @@ public class CompanyController {
             LOG.error("updateCompanyFacade->", e);
         }
 
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
+
+    /**
+     * 上传企业图片
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("updateCompanyImages")
+    @ResponseBody
+    public ResponseEntity<String> updateCompanyImages(HttpServletRequest request) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        Long data = null;
+        try {
+            MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+            MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
+            // 获取内容类型
+            String contentType = request.getContentType();
+            // 获得上传文件列表
+            MultipartFile file = multiRequest.getFile("companyImageFile");
+            if (file == null || contentType == null || !contentType.startsWith("multipart")) {
+                errorType = ErrorType.UPLOAD_IMAGE_FAIL;
+                LOG.error("updateCompanyImages->contentType is " + contentType);
+            } else {
+                String companyId = multiRequest.getParameter("companyId");
+                String companyFacadeImageFileName = multiRequest.getParameter("companyImageFileName");
+                String companyFacadeImageFileType = multiRequest.getParameter("companyImageFileType");
+                String companyFacadeImageFileFormat = multiRequest.getParameter("companyImageFileFormat");
+                // 文件保存目录路径
+                AccountFileBo accountFileBo = UploadFileUtils.uploadFile(file.getInputStream(), "company", companyId, companyFacadeImageFileName, companyFacadeImageFileType, companyFacadeImageFileFormat);
+                data = fileService.saveAccountFile(accountFileBo);
+                if (null == data) {
+                    errorType = ErrorType.UPLOAD_IMAGE_FAIL;
+                } else {
+                    CompanyBo companyBo = companyService.findCompanyByCompanyId(Long.valueOf(companyId));
+                    Long[] companyImages = companyBo.getCompanyImages();
+                    Long[] newCompanyImages = new Long[companyImages.length + 1];
+                    for (int i = 0; i < companyImages.length; i++) {
+                        newCompanyImages[i] = companyImages[i];
+                    }
+                    newCompanyImages[companyImages.length] = accountFileBo.getFileId();
+                    companyService.updateCompanyImages(Long.valueOf(companyId), newCompanyImages);
+                }
+            }
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("updateCompanyImages->", e);
+        }
+
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
+
+    /**
+     * 上传企业图片
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("deleteCompanyImages")
+    @ResponseBody
+    public ResponseEntity<String> deleteCompanyImages(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        Integer data = null;
+        try {
+            CompanyImageParam companyImageParam = JsonUtils.jsonToObject(param, CompanyImageParam.class);
+            CompanyBo companyBo = companyService.findCompanyByCompanyId(companyImageParam.getCompanyId());
+            Long[] companyImages = companyBo.getCompanyImages();
+            int j = 0;
+            for (int i = 0; i < companyImages.length; i++) {
+                if(companyImages[i].equals(companyImageParam.getCompanyDeleteImageId())){
+                    j++;
+                    continue;
+                }
+            }
+            int k = 0;
+            Long[] newCompanyImages = new Long[companyImages.length-j];
+            for (int i = 0; i < companyImages.length; i++) {
+                if(companyImages[i].equals(companyImageParam.getCompanyDeleteImageId())){
+                    continue;
+                }
+                newCompanyImages[k] = companyImages[i];
+                k++;
+            }
+            data = companyService.updateCompanyImages(companyImageParam.getCompanyId(), newCompanyImages);
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("deleteCompanyImages->", e);
+        }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }

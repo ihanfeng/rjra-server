@@ -26,6 +26,10 @@ public class Resume implements Serializable {
     private Long resumeWantWorkAreaId;
     private Long resumeWantWorkCityId;
     private Long resumeWantWorkProvinceId;
+    private Long resumeHomeAreaId;
+    private Long resumeHomeCityId;
+    private Long resumeHomeProvinceId;
+    private String resumeHomeAddress;
     private Date resumeCreateTime;
     private Date resumeUpdateTime;
     private Date resumeRefreshTime;
@@ -198,4 +202,35 @@ public class Resume implements Serializable {
         this.resumeWage = resumeWage;
     }
 
+    public Long getResumeHomeAreaId() {
+        return resumeHomeAreaId;
+    }
+
+    public void setResumeHomeAreaId(Long resumeHomeAreaId) {
+        this.resumeHomeAreaId = resumeHomeAreaId;
+    }
+
+    public Long getResumeHomeCityId() {
+        return resumeHomeCityId;
+    }
+
+    public void setResumeHomeCityId(Long resumeHomeCityId) {
+        this.resumeHomeCityId = resumeHomeCityId;
+    }
+
+    public Long getResumeHomeProvinceId() {
+        return resumeHomeProvinceId;
+    }
+
+    public void setResumeHomeProvinceId(Long resumeHomeProvinceId) {
+        this.resumeHomeProvinceId = resumeHomeProvinceId;
+    }
+
+    public String getResumeHomeAddress() {
+        return resumeHomeAddress;
+    }
+
+    public void setResumeHomeAddress(String resumeHomeAddress) {
+        this.resumeHomeAddress = resumeHomeAddress;
+    }
 }

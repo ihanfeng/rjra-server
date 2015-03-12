@@ -9,6 +9,8 @@ public class CompanyParam extends BaseParam {
 
     private Long companyId;
     private String companyName;
+    private Long companyType;
+    private Long companyScale;
     private Long companyAreaId;
     private Long companyCityId;
     private Long companyProvinceId;
@@ -31,6 +33,22 @@ public class CompanyParam extends BaseParam {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public Long getCompanyType() {
+        return companyType;
+    }
+
+    public void setCompanyType(Long companyType) {
+        this.companyType = companyType;
+    }
+
+    public Long getCompanyScale() {
+        return companyScale;
+    }
+
+    public void setCompanyScale(Long companyScale) {
+        this.companyScale = companyScale;
     }
 
     public Long getCompanyAreaId() {

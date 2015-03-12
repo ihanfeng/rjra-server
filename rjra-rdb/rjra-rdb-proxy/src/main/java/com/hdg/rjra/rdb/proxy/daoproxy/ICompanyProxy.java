@@ -26,4 +26,6 @@ public interface ICompanyProxy extends Serializable {
 
     public Integer updateCompanyFacade(Long companyId, Long fileId);
 
+    public Integer updateCompanyImages(Long companyId, Long[] imageIds);
+
 }

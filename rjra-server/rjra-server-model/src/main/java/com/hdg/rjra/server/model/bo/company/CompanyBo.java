@@ -13,6 +13,8 @@ public class CompanyBo {
 
     private Long companyId;
     private String companyName;
+    private Long companyType;
+    private Long companyScale;
     private Long companyAreaId;
     private Long companyCityId;
     private Long companyProvinceId;
@@ -26,6 +28,7 @@ public class CompanyBo {
     private Long companyUserIdCardImageFile;
     private AccountFileBo companyUserIdCardImageFileDetail;
     private Long companyFacadeImageFile;
+    private Long[] companyImages;
     private AccountFileBo companyFacadeImageFileDetail;
     private Integer companyStatus;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
@@ -54,6 +57,22 @@ public class CompanyBo {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public Long getCompanyType() {
+        return companyType;
+    }
+
+    public void setCompanyType(Long companyType) {
+        this.companyType = companyType;
+    }
+
+    public Long getCompanyScale() {
+        return companyScale;
+    }
+
+    public void setCompanyScale(Long companyScale) {
+        this.companyScale = companyScale;
     }
 
     public Long getCompanyAreaId() {
@@ -230,5 +249,13 @@ public class CompanyBo {
 
     public void setCompanyExamineResult(String companyExamineResult) {
         this.companyExamineResult = companyExamineResult;
+    }
+
+    public Long[] getCompanyImages() {
+        return companyImages;
+    }
+
+    public void setCompanyImages(Long[] companyImages) {
+        this.companyImages = companyImages;
     }
 }

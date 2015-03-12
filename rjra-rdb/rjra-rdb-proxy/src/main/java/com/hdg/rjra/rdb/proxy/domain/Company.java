@@ -10,6 +10,8 @@ public class Company implements Serializable {
 
     private Long companyId;
     private String companyName;
+    private Long companyType;
+    private Long companyScale;
     private Long companyAreaId;
     private Long companyCityId;
     private Long companyProvinceId;
@@ -28,6 +30,8 @@ public class Company implements Serializable {
     private Integer companyExamineStatus;
     private Date companyExamineTime;
     private String companyExamineResult;
+    private Long[] companyImages;
+
 
     public Long getCompanyId() {
         return companyId;
@@ -43,6 +47,22 @@ public class Company implements Serializable {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public Long getCompanyType() {
+        return companyType;
+    }
+
+    public void setCompanyType(Long companyType) {
+        this.companyType = companyType;
+    }
+
+    public Long getCompanyScale() {
+        return companyScale;
+    }
+
+    public void setCompanyScale(Long companyScale) {
+        this.companyScale = companyScale;
     }
 
     public Long getCompanyAreaId() {
@@ -187,5 +207,13 @@ public class Company implements Serializable {
 
     public void setCompanyExamineResult(String companyExamineResult) {
         this.companyExamineResult = companyExamineResult;
+    }
+
+    public Long[] getCompanyImages() {
+        return companyImages;
+    }
+
+    public void setCompanyImages(Long[] companyImages) {
+        this.companyImages = companyImages;
     }
 }

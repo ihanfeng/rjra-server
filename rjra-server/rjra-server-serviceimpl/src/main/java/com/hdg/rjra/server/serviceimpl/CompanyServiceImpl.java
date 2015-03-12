@@ -108,4 +108,9 @@ public class CompanyServiceImpl implements CompanyService {
     public Integer updateCompanyFacade(Long companyId, Long fileId) {
         return companyProxy.updateCompanyFacade(companyId, fileId);
     }
+
+    @Override
+    public Integer updateCompanyImages(Long companyId, Long[] imageIds) {
+        return companyProxy.updateCompanyImages(companyId, imageIds);
+    }
 }

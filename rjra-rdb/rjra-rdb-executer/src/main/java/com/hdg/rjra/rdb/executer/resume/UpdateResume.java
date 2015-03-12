@@ -20,7 +20,7 @@ public class UpdateResume extends AbstractExecuter {
             "category_level1_ids=?,category_level2_ids=?,category_level3_ids=?,resume_user_name=?," +
             "resume_gender=?,resume_birthday=?,resume_experience=?,resume_wage=?," +
             "resume_work_status=?,resume_want_work_area_id=?,resume_want_work_city_id=?,resume_want_work_province_id=?," +
-            "resume_qq=?,resume_desc=?,resume_update_time=? WHERE resume_id =?";
+            "resume_home_area_id=?,resume_home_city_id=?,resume_home_province_id=?,resume_home_address=?,resume_qq=?,resume_desc=?,resume_update_time=? WHERE resume_id =?";
 
     @Override
     public Object execute(Object[] params) {
@@ -43,14 +43,18 @@ public class UpdateResume extends AbstractExecuter {
                     ps.setObject(10, resume.getResumeWantWorkAreaId());
                     ps.setObject(11, resume.getResumeWantWorkCityId());
                     ps.setObject(12, resume.getResumeWantWorkProvinceId());
+                    ps.setObject(13, resume.getResumeHomeAreaId());
+                    ps.setObject(14, resume.getResumeHomeCityId());
+                    ps.setObject(15, resume.getResumeHomeProvinceId());
+                    ps.setObject(16, resume.getResumeHomeAddress());
                     if (resume.getResumeQQ() != null) {
-                        ps.setObject(13, resume.getResumeQQ());
+                        ps.setObject(17, resume.getResumeQQ());
                     } else {
-                        ps.setObject(13, "");
+                        ps.setObject(17, "");
                     }
-                    ps.setObject(14, resume.getResumeDesc());
-                    ps.setObject(15, new Date());
-                    ps.setObject(16, resume.getResumeId());
+                    ps.setObject(18, resume.getResumeDesc());
+                    ps.setObject(19, new Date());
+                    ps.setObject(20, resume.getResumeId());
                     return ps;
                 }
             });

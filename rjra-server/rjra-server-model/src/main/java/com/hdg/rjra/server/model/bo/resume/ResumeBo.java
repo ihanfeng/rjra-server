@@ -31,6 +31,10 @@ public class ResumeBo {
     private Long resumeWantWorkAreaId;
     private Long resumeWantWorkCityId;
     private Long resumeWantWorkProvinceId;
+    private Long resumeHomeAreaId;
+    private Long resumeHomeCityId;
+    private Long resumeHomeProvinceId;
+    private String resumeHomeAddress;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String resumeCreateTime;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
@@ -220,5 +224,37 @@ public class ResumeBo {
 
     public void setResumeWage(Long resumeWage) {
         this.resumeWage = resumeWage;
+    }
+
+    public Long getResumeHomeAreaId() {
+        return resumeHomeAreaId;
+    }
+
+    public void setResumeHomeAreaId(Long resumeHomeAreaId) {
+        this.resumeHomeAreaId = resumeHomeAreaId;
+    }
+
+    public Long getResumeHomeCityId() {
+        return resumeHomeCityId;
+    }
+
+    public void setResumeHomeCityId(Long resumeHomeCityId) {
+        this.resumeHomeCityId = resumeHomeCityId;
+    }
+
+    public Long getResumeHomeProvinceId() {
+        return resumeHomeProvinceId;
+    }
+
+    public void setResumeHomeProvinceId(Long resumeHomeProvinceId) {
+        this.resumeHomeProvinceId = resumeHomeProvinceId;
+    }
+
+    public String getResumeHomeAddress() {
+        return resumeHomeAddress;
+    }
+
+    public void setResumeHomeAddress(String resumeHomeAddress) {
+        this.resumeHomeAddress = resumeHomeAddress;
     }
 }

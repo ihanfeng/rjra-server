@@ -44,7 +44,7 @@ public class SaveWork  extends AbstractExecuter {
                 ps.setObject(15, work.getWorkExperienceId());
                 ps.setObject(16, StringUtils.longArrayToString(work.getWorkWelfareIds()));
                 ps.setObject(17, work.getWorkDesc());
-                ps.setObject(18, WorkStatus.Active.getCode());
+                ps.setObject(18, work.getWorkStatus());
                 ps.setObject(19, new Date());
                 ps.setObject(20, new Date());
             }

@@ -23,4 +23,6 @@ public interface CompanyService {
     public Integer updateCompanyUserIdCard(Long companyId, Long fileId);
 
     public Integer updateCompanyFacade(Long companyId, Long fileId);
+
+    public Integer updateCompanyImages(Long companyId, Long[] imageIds);
 }

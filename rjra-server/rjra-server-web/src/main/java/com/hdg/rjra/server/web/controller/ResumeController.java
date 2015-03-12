@@ -245,6 +245,18 @@ public class ResumeController {
             if (resumeParam.getResumeWantWorkProvinceId() != null) {
                 mapParam.put(ResumeMapping.ResumeWantWorkProvinceId, resumeParam.getResumeWantWorkProvinceId());
             }
+            if (resumeParam.getResumeHomeAreaId() != null) {
+                mapParam.put(ResumeMapping.ResumeHomeAreaId, resumeParam.getResumeHomeAreaId());
+            }
+            if (resumeParam.getResumeHomeCityId() != null) {
+                mapParam.put(ResumeMapping.ResumeHomeCityId, resumeParam.getResumeHomeCityId());
+            }
+            if (resumeParam.getResumeHomeProvinceId() != null) {
+                mapParam.put(ResumeMapping.ResumeHomeProvinceId, resumeParam.getResumeHomeProvinceId());
+            }
+            if (resumeParam.getResumeHomeAddress() != null) {
+                mapParam.put(ResumeMapping.ResumeHomeAddress, resumeParam.getResumeHomeAddress());
+            }
             if (resumeParam.getResumeMobile() != null) {
                 mapParam.put(ResumeMapping.ResumeMobile, resumeParam.getResumeMobile());
             }

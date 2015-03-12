@@ -16,7 +16,7 @@ import java.util.Date;
 public class UpdateCompany extends AbstractExecuter {
 
     String sql = "UPDATE user_company SET " +
-            "company_name=?,company_province_id=?,company_city_id=?,company_area_id=?,company_address=?," +
+            "company_name=?,company_type=?,company_scale=?,company_province_id=?,company_city_id=?,company_area_id=?,company_address=?," +
             "company_contact=?,company_contact_mobile=?,company_update_time=?,company_desc=? WHERE company_id =?";
 
     @Override
@@ -29,15 +29,17 @@ public class UpdateCompany extends AbstractExecuter {
                 {
                     PreparedStatement ps = con.prepareStatement(sql);
                     ps.setObject(1, o.getCompanyName());
-                    ps.setObject(2, o.getCompanyProvinceId());
-                    ps.setObject(3, o.getCompanyCityId());
-                    ps.setObject(4, o.getCompanyAreaId());
-                    ps.setObject(5, o.getCompanyAddress());
-                    ps.setObject(6, o.getCompanyContact());
-                    ps.setObject(7, o.getCompanyContactMobile());
-                    ps.setObject(8, new Date());
-                    ps.setObject(9, o.getCompanyDesc());
-                    ps.setObject(10, o.getCompanyId());
+                    ps.setObject(2, o.getCompanyType());
+                    ps.setObject(3, o.getCompanyScale());
+                    ps.setObject(4, o.getCompanyProvinceId());
+                    ps.setObject(5, o.getCompanyCityId());
+                    ps.setObject(6, o.getCompanyAreaId());
+                    ps.setObject(7, o.getCompanyAddress());
+                    ps.setObject(8, o.getCompanyContact());
+                    ps.setObject(9, o.getCompanyContactMobile());
+                    ps.setObject(10, new Date());
+                    ps.setObject(11, o.getCompanyDesc());
+                    ps.setObject(12, o.getCompanyId());
                     return ps;
                 }
             });

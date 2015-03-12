@@ -33,6 +33,9 @@
     <bean id="updateCompanyFacade" class="com.hdg.rjra.rdb.executer.company.UpdateCompanyFacade">
         <property name="rowMapper" ref="companyRowMapper"></property>
     </bean>
+    <bean id="updateCompanyImages" class="com.hdg.rjra.rdb.executer.company.UpdateCompanyImages">
+        <property name="rowMapper" ref="companyRowMapper"></property>
+    </bean>
     <util:map id="rdb-company-executer">
         <entry key="createCompany" value-ref="createCompany"/>
         <entry key="updateCompany" value-ref="updateCompany"/>
@@ -42,5 +45,6 @@
         <entry key="updateCompanyLogo" value-ref="updateCompanyLogo"/>
         <entry key="updateCompanyUserIdCard" value-ref="updateCompanyUserIdCard"/>
         <entry key="updateCompanyFacade" value-ref="updateCompanyFacade"/>
+        <entry key="updateCompanyImages" value-ref="updateCompanyImages"/>
     </util:map>
 </beans>

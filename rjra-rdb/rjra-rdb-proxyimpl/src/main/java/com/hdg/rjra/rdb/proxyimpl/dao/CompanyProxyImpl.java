@@ -59,4 +59,10 @@ public class CompanyProxyImpl extends BaseProxy implements ICompanyProxy {
         return daoClient.invoke(moduleName, "updateCompanyFacade",
                 new Object[]{companyId, fileId});
     }
+
+    @Override
+    public Integer updateCompanyImages(Long companyId, Long[] imageIds) {
+        return daoClient.invoke(moduleName, "updateCompanyImages",
+                new Object[]{companyId, imageIds});
+    }
 }
