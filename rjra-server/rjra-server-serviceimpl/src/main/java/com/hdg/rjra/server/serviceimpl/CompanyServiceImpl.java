@@ -72,7 +72,7 @@ public class CompanyServiceImpl implements CompanyService {
             AccountFileBo companyImageInfo = fileService.findAccountFileById(facadeImageFile);
             companyBo.setCompanyFacadeImageFileDetail(companyImageInfo);
         }
-        if (companyImages != null) {
+        if (companyImages != null && companyImages.length > 0) {
             List<AccountFileBo> companyImagesFile = fileService.findAccountFileByIds(companyImages);
             companyBo.setCompanyImagesDetail(companyImagesFile);
         }
