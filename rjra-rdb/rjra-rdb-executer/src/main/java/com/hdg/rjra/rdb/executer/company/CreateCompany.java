@@ -25,7 +25,7 @@ public class CreateCompany extends AbstractExecuter {
                 ps.setObject(1, CompanyStatus.Active.getCode());
                 ps.setObject(2, new Date());
                 ps.setObject(3, new Date());
-                ps.setObject(4, CompanyExamineStatus.Pending.getCode());
+                ps.setObject(4, CompanyExamineStatus.NotReviewed.getCode());
             }
         };
         return saveResultId(sql, pst);

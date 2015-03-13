@@ -6,7 +6,8 @@ package com.hdg.rjra.base.enumerate;
 public enum CompanyExamineStatus {
     Pending(0),
     Pass(1),
-    NotPass(2);
+    NotPass(2),
+    NotReviewed(3);
 
     private int code;
     private CompanyExamineStatus(int code) {
