@@ -1,4 +1,4 @@
-package com.hdg.rjra.manager.web.filter;
+package com.hdg.rjra.customer.web.filter;
 
 import com.hdg.common.constants.CommonConstants;
 import com.hdg.common.output.OutputResult;

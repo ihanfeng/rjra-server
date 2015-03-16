@@ -24,5 +24,6 @@
         <module>rjra-server-service</module>
         <module>rjra-server-serviceimpl</module>
         <module>rjra-manager-web</module>
+        <module>rjra-customer-web</module>
     </modules>
 </project>
