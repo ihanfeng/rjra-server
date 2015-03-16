@@ -31,4 +31,9 @@ public class ManagerServiceImpl implements ManagerService {
         Manager manager = managerProxy.findManagerByNameAndPwd(name, pwd);
         return getManagerBo(manager);
     }
+
+    @Override
+    public Integer updateManagerPwd(Long managerId, String pwd) {
+        return managerProxy.updateManagerPwd(managerId, pwd);
+    }
 }

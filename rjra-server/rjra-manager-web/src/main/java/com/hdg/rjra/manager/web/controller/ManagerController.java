@@ -11,9 +11,12 @@ import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
 import com.hdg.common.utils.UUIDUtils;
 import com.hdg.rjra.base.error.ErrorType;
+import com.hdg.rjra.manager.web.controller.param.manager.ChangePwdParam;
 import com.hdg.rjra.manager.web.controller.param.manager.ManagerParam;
 import com.hdg.rjra.manager.web.filter.SessionToken;
+import com.hdg.rjra.rdb.proxy.domain.Manager;
 import com.hdg.rjra.server.model.bo.manager.ManagerBo;
+import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.service.ManagerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -103,6 +106,34 @@ public class ManagerController {
             LOG.error("manager logout ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), "logout");
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
+
+
+    @RequestMapping(value = "changePwd")
+    @ResponseBody
+    public ResponseEntity<String> changePwd(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        ManagerBo managerBo = null;
+        Integer data = null;
+        try {
+            ChangePwdParam changePwdParam = JsonUtils.jsonToObject(param, ChangePwdParam.class);
+            String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+            String pwd = AESUtils.encrypt(changePwdParam.getOldPwd(), changePwdParam.getName(), encryptionFactor);
+            managerBo = managerService.findManagerByNameAndPwd(changePwdParam.getName(), pwd);
+            if (managerBo == null) {
+                errorType = ErrorType.MANAGER_MOBILE_OR_PWD_IS_ERROR;
+            }
+            else{
+                String newPwd = AESUtils.encrypt(changePwdParam.getNewPwd(), changePwdParam.getName(), encryptionFactor);
+                data = managerService.updateManagerPwd(managerBo.getManagerId(), newPwd);
+            }
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("manager changePwd ->", e);
+        }
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 }

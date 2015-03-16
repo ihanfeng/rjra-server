@@ -12,7 +12,12 @@
     <bean id="findManagerByNameAndPwd" class="com.hdg.rjra.rdb.executer.manager.FindManagerByNameAndPwd">
         <property name="rowMapper" ref="managerRowMapper"></property>
     </bean>
+
+    <bean id="updateManagerPwd" class="com.hdg.rjra.rdb.executer.manager.UpdateManagerPwd">
+        <property name="rowMapper" ref="managerRowMapper"></property>
+    </bean>
     <util:map id="rdb-manager-executer">
         <entry key="findManagerByNameAndPwd" value-ref="findManagerByNameAndPwd"/>
+        <entry key="updateManagerPwd" value-ref="updateManagerPwd"/>
     </util:map>
 </beans>

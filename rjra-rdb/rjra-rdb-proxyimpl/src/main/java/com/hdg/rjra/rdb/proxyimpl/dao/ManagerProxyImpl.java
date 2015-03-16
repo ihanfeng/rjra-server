@@ -20,4 +20,11 @@ public class ManagerProxyImpl extends BaseProxy implements IManagerProxy {
         return daoClient.invoke(moduleName, "findManagerByNameAndPwd",
                 new Object[]{name, pwd});
     }
+
+    @Override
+    public Integer updateManagerPwd(Long managerId, String pwd) {
+
+        return daoClient.invoke(moduleName, "updateManagerPwd",
+                new Object[]{managerId, pwd});
+    }
 }

@@ -10,4 +10,5 @@ public interface ManagerService {
 
     public ManagerBo findManagerByNameAndPwd(String name, String pwd);
 
+    public Integer updateManagerPwd(Long managerId, String pwd);
 }

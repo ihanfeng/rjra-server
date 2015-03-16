@@ -12,4 +12,7 @@ import java.util.List;
 public interface IManagerProxy extends Serializable {
 
     public Manager findManagerByNameAndPwd(String name, String pwd);
+
+    public Integer updateManagerPwd(Long managerId, String pwd);
+
 }

@@ -34,7 +34,7 @@
         <filter-class>com.hdg.rjra.manager.web.filter.ValidateTokenFilter</filter-class>
         <init-param>
             <param-name>excludeUrls</param-name>
-            <param-value>/manager/login,/manager/logout</param-value>
+            <param-value>/manager/login,/manager/logout,/manager/changePwd</param-value>
         </init-param>
     </filter>
     <filter-mapping>
