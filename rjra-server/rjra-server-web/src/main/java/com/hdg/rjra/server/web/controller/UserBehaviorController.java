@@ -152,11 +152,8 @@ public class UserBehaviorController {
         ErrorType errorType = ErrorType.DEFFAULT;
         List<Long> data = null;
         try {
-
             BatchUserInviteUserParam batchUserInviteUserParam = JsonUtils.jsonToObject(param, BatchUserInviteUserParam.class);
-            List<UserInviteUserBo> userInviteUserBoList = new ArrayList<UserInviteUserBo>();
-            ConversionUtils.conversion(batchUserInviteUserParam.getBatchUserInvite(), userInviteUserBoList);
-            data = userBehaviorService.batchSaveUserInviteUser(userInviteUserBoList);
+            data = userBehaviorService.batchSaveUserInviteUser(batchUserInviteUserParam.getBatchUserInvite());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
             errorType.setMessage(e.getMessage());

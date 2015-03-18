@@ -1,5 +1,6 @@
 package com.hdg.rjra.server.service;
 
+import com.hdg.rjra.rdb.proxy.domain.UserInviteUser;
 import com.hdg.rjra.server.model.bo.userbehavior.UserApplyWorkBo;
 import com.hdg.rjra.server.model.bo.userbehavior.UserCollectUserBo;
 import com.hdg.rjra.server.model.bo.userbehavior.UserCollectWorkBo;
@@ -26,7 +27,7 @@ public interface UserBehaviorService {
 
     public Long saveUserInviteUser(UserInviteUserBo userInviteUserBo);
 
-    public List<Long> batchSaveUserInviteUser(List<UserInviteUserBo> userInviteUserBoList);
+    public List<Long> batchSaveUserInviteUser(List<UserInviteUser> userInviteUserList);
 
     public UserInviteUserBo findUserInviteUserByUserIdAndInviteUserId(Long userId, Long inviteUserId);
 }

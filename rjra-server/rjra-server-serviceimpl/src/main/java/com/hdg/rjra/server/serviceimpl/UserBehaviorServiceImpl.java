@@ -97,9 +97,7 @@ public class UserBehaviorServiceImpl implements UserBehaviorService {
     }
 
     @Override
-    public List<Long> batchSaveUserInviteUser(List<UserInviteUserBo> userInviteUserBoList) {
-        List<UserInviteUser> userInviteUserList = new ArrayList<UserInviteUser>();
-        ConversionUtils.conversion(userInviteUserBoList, userInviteUserList);
+    public List<Long> batchSaveUserInviteUser(List<UserInviteUser> userInviteUserList) {
         return userInviteUserProxy.batchSaveUserInviteUser(userInviteUserList);
     }
 
