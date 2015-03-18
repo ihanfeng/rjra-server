@@ -11,7 +11,7 @@ public class UserApplyWorkProxyImpl extends BaseProxy implements IUserApplyWorkP
     private static String moduleName = "rdb-user-apply-work";
 
     @Override
-    public Integer saveUserApplyWork(UserApplyWork userApplyWork) {
+    public Long saveUserApplyWork(UserApplyWork userApplyWork) {
         return daoClient.invoke(moduleName, "saveUserApplyWork",
                 new Object[]{userApplyWork});
     }

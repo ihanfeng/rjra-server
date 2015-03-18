@@ -33,7 +33,7 @@ public class UserBehaviorServiceImpl implements UserBehaviorService {
     IUserInviteUserProxy userInviteUserProxy;
 
     @Override
-    public Integer saveUserApplyWork(UserApplyWorkBo userApplyWorkBo) {
+    public Long saveUserApplyWork(UserApplyWorkBo userApplyWorkBo) {
         UserApplyWork userApplyWork = new UserApplyWork();
         ConversionUtils.conversion(userApplyWorkBo, userApplyWork);
         return userApplyWorkProxy.saveUserApplyWork(userApplyWork);
@@ -51,7 +51,7 @@ public class UserBehaviorServiceImpl implements UserBehaviorService {
     }
 
     @Override
-    public Integer saveUserCollectUser(UserCollectUserBo userCollectUserBo) {
+    public Long saveUserCollectUser(UserCollectUserBo userCollectUserBo) {
         UserCollectUser userCollectUser = new UserCollectUser();
         ConversionUtils.conversion(userCollectUserBo, userCollectUser);
         return userCollectUserProxy.saveUserCollectUser(userCollectUser);
@@ -69,7 +69,7 @@ public class UserBehaviorServiceImpl implements UserBehaviorService {
     }
 
     @Override
-    public Integer saveUserCollectWork(UserCollectWorkBo userCollectWorkBo) {
+    public Long saveUserCollectWork(UserCollectWorkBo userCollectWorkBo) {
         UserCollectWork userCollectWork = new UserCollectWork();
         ConversionUtils.conversion(userCollectWorkBo, userCollectWork);
         return userCollectWorkProxy.saveUserCollectWork(userCollectWork);
@@ -87,7 +87,7 @@ public class UserBehaviorServiceImpl implements UserBehaviorService {
     }
 
     @Override
-    public Integer saveUserInviteUser(UserInviteUserBo userInviteUserBo) {
+    public Long saveUserInviteUser(UserInviteUserBo userInviteUserBo) {
         UserInviteUser userInviteUser = new UserInviteUser();
         ConversionUtils.conversion(userInviteUserBo, userInviteUser);
         return userInviteUserProxy.saveUserInviteUser(userInviteUser);

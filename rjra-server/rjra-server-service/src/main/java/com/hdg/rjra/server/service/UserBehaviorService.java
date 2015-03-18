@@ -10,19 +10,19 @@ import com.hdg.rjra.server.model.bo.userbehavior.UserInviteUserBo;
  */
 public interface UserBehaviorService {
 
-    public Integer saveUserApplyWork(UserApplyWorkBo userApplyWorkBo);
+    public Long saveUserApplyWork(UserApplyWorkBo userApplyWorkBo);
 
     public UserApplyWorkBo findUserApplyWorkByUserIdAndWorkId(Long userId, Long workId);
 
-    public Integer saveUserCollectUser(UserCollectUserBo userCollectUserBo);
+    public Long saveUserCollectUser(UserCollectUserBo userCollectUserBo);
 
     public UserCollectUserBo findUserCollectUserByUserIdAndCollectUserId(Long userId, Long collectUserId);
 
-    public Integer saveUserCollectWork(UserCollectWorkBo userCollectWorkBo);
+    public Long saveUserCollectWork(UserCollectWorkBo userCollectWorkBo);
 
     public UserCollectWorkBo findUserCollectWorkByUserIdAndWorkId(Long userId, Long workId);
 
-    public Integer saveUserInviteUser(UserInviteUserBo userInviteUserBo);
+    public Long saveUserInviteUser(UserInviteUserBo userInviteUserBo);
 
     public UserInviteUserBo findUserInviteUserByUserIdAndInviteUserId(Long userId, Long inviteUserId);
 }

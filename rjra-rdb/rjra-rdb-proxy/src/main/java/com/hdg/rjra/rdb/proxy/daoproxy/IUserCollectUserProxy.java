@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public interface IUserCollectUserProxy extends Serializable {
 
-    public Integer saveUserCollectUser(UserCollectUser userCollectUser);
+    public Long saveUserCollectUser(UserCollectUser userCollectUser);
 
     public UserCollectUser findUserCollectUserByUserIdAndCollectUserId(Long userId, Long collectUserId);
 }

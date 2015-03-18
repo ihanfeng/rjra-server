@@ -11,7 +11,7 @@ public class UserInviteUserProxyImpl extends BaseProxy implements IUserInviteUse
     private static String moduleName = "rdb-user-invite-user";
 
     @Override
-    public Integer saveUserInviteUser(UserInviteUser userInviteUser) {
+    public Long saveUserInviteUser(UserInviteUser userInviteUser) {
         return daoClient.invoke(moduleName, "saveUserInviteUser",
                 new Object[]{userInviteUser});
     }

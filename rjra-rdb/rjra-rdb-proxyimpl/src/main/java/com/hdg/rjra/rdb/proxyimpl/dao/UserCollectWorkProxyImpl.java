@@ -11,7 +11,7 @@ public class UserCollectWorkProxyImpl extends BaseProxy implements IUserCollectW
     private static String moduleName = "rdb-user-collect-work";
 
     @Override
-    public Integer saveUserCollectWork(UserCollectWork userCollectWork) {
+    public Long saveUserCollectWork(UserCollectWork userCollectWork) {
         return daoClient.invoke(moduleName, "saveUserCollectWork",
                 new Object[]{userCollectWork});
     }

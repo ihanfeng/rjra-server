@@ -49,7 +49,7 @@ public class UserBehaviorController {
     @ResponseBody
     public ResponseEntity<String> applyWork(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        Integer data = null;
+        Long data = null;
         try {
 
             UserApplyWorkParam userApplyWorkParam = JsonUtils.jsonToObject(param, UserApplyWorkParam.class);
@@ -75,7 +75,7 @@ public class UserBehaviorController {
     @ResponseBody
     public ResponseEntity<String> collectUser(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        Integer data = null;
+        Long data = null;
         try {
 
             UserCollectUserParam userCollectUserParam = JsonUtils.jsonToObject(param, UserCollectUserParam.class);
@@ -100,7 +100,7 @@ public class UserBehaviorController {
     @ResponseBody
     public ResponseEntity<String> collectWork(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        Integer data = null;
+        Long data = null;
         try {
 
             UserCollectWorkParam userCollectWorkParam = JsonUtils.jsonToObject(param, UserCollectWorkParam.class);
@@ -125,7 +125,7 @@ public class UserBehaviorController {
     @ResponseBody
     public ResponseEntity<String> inviteUser(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        Integer data = null;
+        Long data = null;
         try {
 
             UserInviteUserParam userInviteUserParam = JsonUtils.jsonToObject(param, UserInviteUserParam.class);

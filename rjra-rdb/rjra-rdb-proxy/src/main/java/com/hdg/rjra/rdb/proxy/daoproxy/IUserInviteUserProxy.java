@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public interface IUserInviteUserProxy extends Serializable {
 
-    public Integer saveUserInviteUser(UserInviteUser userInviteUser);
+    public Long saveUserInviteUser(UserInviteUser userInviteUser);
 
     public UserInviteUser findUserInviteUserByUserIdAndInviteUserId(Long userId, Long inviteUserId);
 }

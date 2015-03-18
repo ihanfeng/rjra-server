@@ -11,7 +11,7 @@ public class UserCollectUserProxyImpl extends BaseProxy implements IUserCollectU
     private static String moduleName = "rdb-user-collect-user";
 
     @Override
-    public Integer saveUserCollectUser(UserCollectUser userCollectUser) {
+    public Long saveUserCollectUser(UserCollectUser userCollectUser) {
         return daoClient.invoke(moduleName, "saveUserCollectUser",
                 new Object[]{userCollectUser});
     }
