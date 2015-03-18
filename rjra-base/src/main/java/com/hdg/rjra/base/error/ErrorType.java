@@ -16,8 +16,12 @@ public enum  ErrorType {
     USER_ALREADY_NOT_EXIST(300003L, "The user already not exist."),
     MANAGER_ALREADY_NOT_EXIST(300004L, "The manager already not exist."),
     USER_MOBILE_OR_PWD_IS_ERROR(400000L, "The user mobile or pwd is error."),
-    MANAGER_MOBILE_OR_PWD_IS_ERROR(400001L, "The manager mobile or pwd is error."),
-    INVALID_TOKEN(500000L, "This token is invalid");
+    MANAGER_NAME_OR_PWD_IS_ERROR(400001L, "The manager name or pwd is error."),
+    INVALID_TOKEN(500000L, "This token is invalid"),
+    USER_BEHAVIOR_APPLY_WORK_ERROR(600000L, "This work has been applied."),
+    USER_BEHAVIOR_COLLECTION_USER_ERROR(600001L, "This user has been Collection."),
+    USER_BEHAVIOR_COLLECTION_WORK_ERROR(600002L, "This work has been Collection."),
+    USER_BEHAVIOR_INVITE_WORK_ERROR(600003L, "This user has invited.");
 
     /**
      * 错误码

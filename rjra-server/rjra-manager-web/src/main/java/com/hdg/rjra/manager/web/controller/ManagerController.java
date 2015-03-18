@@ -120,7 +120,7 @@ public class ManagerController {
             String pwd = AESUtils.encrypt(changePwdParam.getOldPwd(), changePwdParam.getName(), encryptionFactor);
             managerBo = managerService.findManagerByNameAndPwd(changePwdParam.getName(), pwd);
             if (managerBo == null) {
-                errorType = ErrorType.MANAGER_MOBILE_OR_PWD_IS_ERROR;
+                errorType = ErrorType.MANAGER_NAME_OR_PWD_IS_ERROR;
             }
             else{
                 String newPwd = AESUtils.encrypt(changePwdParam.getNewPwd(), changePwdParam.getName(), encryptionFactor);
