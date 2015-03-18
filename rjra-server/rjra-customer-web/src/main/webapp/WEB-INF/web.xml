@@ -34,7 +34,7 @@
         <filter-class>com.hdg.rjra.customer.web.filter.ValidateTokenFilter</filter-class>
         <init-param>
             <param-name>excludeUrls</param-name>
-            <param-value>/customer/login,/customer/logout,/customer/changePwd</param-value>
+            <param-value>/customer/login,/customer/logout</param-value>
         </init-param>
     </filter>
     <filter-mapping>
