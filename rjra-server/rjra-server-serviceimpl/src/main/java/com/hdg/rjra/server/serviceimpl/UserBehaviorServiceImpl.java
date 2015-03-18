@@ -42,6 +42,9 @@ public class UserBehaviorServiceImpl implements UserBehaviorService {
     @Override
     public UserApplyWorkBo findUserApplyWorkByUserIdAndWorkId(Long userId, Long workId) {
         UserApplyWork userApplyWork = userApplyWorkProxy.findUserApplyWorkByUserIdAndWorkId(userId, workId);
+        if(null == userApplyWork) {
+            return  null;
+        }
         UserApplyWorkBo userApplyWorkBo = new UserApplyWorkBo();
         ConversionUtils.conversion(userApplyWork, userApplyWorkBo);
         return userApplyWorkBo;
@@ -57,6 +60,9 @@ public class UserBehaviorServiceImpl implements UserBehaviorService {
     @Override
     public UserCollectUserBo findUserCollectUserByUserIdAndCollectUserId(Long userId, Long collectUserId) {
         UserCollectUser userCollectUser = userCollectUserProxy.findUserCollectUserByUserIdAndCollectUserId(userId, collectUserId);
+        if(null == userCollectUser) {
+            return  null;
+        }
         UserCollectUserBo userCollectUserBo = new UserCollectUserBo();
         ConversionUtils.conversion(userCollectUser, userCollectUserBo);
         return userCollectUserBo;
@@ -72,6 +78,9 @@ public class UserBehaviorServiceImpl implements UserBehaviorService {
     @Override
     public UserCollectWorkBo findUserCollectWorkByUserIdAndWorkId(Long userId, Long workId) {
         UserCollectWork userCollectWork = userCollectWorkProxy.findUserCollectWorkByUserIdAndWorkId(userId, workId);
+        if(null == userCollectWork) {
+            return  null;
+        }
         UserCollectWorkBo userCollectWorkBo = new UserCollectWorkBo();
         ConversionUtils.conversion(userCollectWork, userCollectWorkBo);
         return userCollectWorkBo;
@@ -87,6 +96,9 @@ public class UserBehaviorServiceImpl implements UserBehaviorService {
     @Override
     public UserInviteUserBo findUserInviteUserByUserIdAndInviteUserId(Long userId, Long inviteUserId) {
         UserInviteUser userInviteUser = userInviteUserProxy.findUserInviteUserByUserIdAndInviteUserId(userId, inviteUserId);
+        if(null == userInviteUser) {
+            return  null;
+        }
         UserInviteUserBo userInviteUserBo = new UserInviteUserBo();
         ConversionUtils.conversion(userInviteUser, userInviteUserBo);
         return userInviteUserBo;
