@@ -6,8 +6,10 @@ import com.hdg.rjra.base.enumerate.WorkStatus;
 import com.hdg.rjra.rdb.proxy.daoproxy.*;
 import com.hdg.rjra.rdb.proxy.domain.*;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
+import com.hdg.rjra.server.model.bo.company.CompanyBo;
 import com.hdg.rjra.server.model.bo.geo.GeocoderSearchResponse;
 import com.hdg.rjra.server.model.bo.work.WorkBo;
+import com.hdg.rjra.server.service.CompanyService;
 import com.hdg.rjra.server.service.GeoService;
 import com.hdg.rjra.server.service.WorkService;
 import org.slf4j.Logger;
@@ -33,7 +35,7 @@ public class WorkServiceImpl implements WorkService {
     @Autowired
     IWorkProxy workProxy;
     @Autowired
-    ICompanyProxy companyProxy;
+    CompanyService companyService;
 
     @Autowired
     IProvinceProxy provinceProxy;
@@ -56,11 +58,15 @@ public class WorkServiceImpl implements WorkService {
         }
         WorkBo bo = new WorkBo();
         ConversionUtils.conversion(work, bo);
+        if(work.getCompanyId() != null){
+            CompanyBo companyBo = companyService.findCompanyByCompanyId(work.getCompanyId());
+            bo.setCompanyDetail(companyBo);
+        }
         return bo;
     }
     @Override
     public Pager<WorkBo> findAllWorkByParamPager(Map<WorkMapping, Object> param, Integer firstResult, Integer sizeNo) {
-        Pager<Work> workPager =  workProxy.findAllWorkByParamPager(param, new Integer[]{WorkStatus.Active.getCode(), WorkStatus.Pause.getCode()}, firstResult, sizeNo);
+        Pager<Work> workPager =  workProxy.findAllWorkByParamPager(param, new Integer[]{WorkStatus.Active.getCode()}, firstResult, sizeNo);
         Pager<WorkBo> workBoPager = new Pager<WorkBo>();
         List<WorkBo> workBoList = new ArrayList<WorkBo>();
         for (Work work : workPager.getResultList()) {
@@ -102,8 +108,8 @@ public class WorkServiceImpl implements WorkService {
         Work work = new Work();
         ConversionUtils.conversion(workBo, work);
         getGeoLocation(work);
-        Company company = companyProxy.findCompanyByCompanyId(work.getCompanyId());
-        work.setCompanyName(company.getCompanyName());
+        CompanyBo companyBo = companyService.findCompanyByCompanyId(work.getCompanyId());
+        work.setCompanyName(companyBo.getCompanyName());
         return workProxy.saveWork(work);
     }
 

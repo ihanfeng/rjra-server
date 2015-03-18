@@ -1,13 +1,10 @@
 package com.hdg.rjra.rdb.proxy.daoproxy;
 
-import com.hdg.rjra.rdb.proxy.domain.Area;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
-import com.hdg.rjra.rdb.proxy.domain.User;
 import com.hdg.rjra.rdb.proxy.domain.Work;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
 
 /**

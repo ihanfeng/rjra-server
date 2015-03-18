@@ -5,7 +5,6 @@ import com.hdg.rjra.rdb.proxy.domain.Resume;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.ResumeMapping;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
 
 /**

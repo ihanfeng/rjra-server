@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+          http://www.springframework.org/schema/util
+          http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+    <bean id="userCollectUserRowMapper" class="com.hdg.rjra.rdb.executer.usercollectuser.rowmapper.UserCollectUserRowMapper"/>
+
+    <bean id="saveUserCollectUser" class="com.hdg.rjra.rdb.executer.usercollectuser.SaveUserCollectUser">
+        <property name="rowMapper" ref="userCollectUserRowMapper"></property>
+    </bean>
+
+    <bean id="findUserCollectUserByUserIdAndCollectUserId" class="com.hdg.rjra.rdb.executer.usercollectuser.FindUserCollectUserByUserIdAndCollectUserId">
+        <property name="rowMapper" ref="userCollectUserRowMapper"></property>
+    </bean>
+    <util:map id="rdb-user-collect-user-executer">
+        <entry key="saveUserCollectUser" value-ref="saveUserCollectUser"/>
+        <entry key="findUserCollectUserByUserIdAndCollectUserId" value-ref="findUserCollectUserByUserIdAndCollectUserId"/>
+    </util:map>
+</beans>

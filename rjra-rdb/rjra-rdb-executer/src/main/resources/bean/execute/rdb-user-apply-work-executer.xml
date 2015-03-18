@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+          http://www.springframework.org/schema/util
+          http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+    <bean id="userApplyWorkRowMapper" class="com.hdg.rjra.rdb.executer.userapplywork.rowmapper.UserApplyWorkRowMapper"/>
+
+    <bean id="saveUserApplyWork" class="com.hdg.rjra.rdb.executer.userapplywork.SaveUserApplyWork">
+        <property name="rowMapper" ref="userApplyWorkRowMapper"></property>
+    </bean>
+
+    <bean id="findUserApplyWorkByUserIdAndWorkId" class="com.hdg.rjra.rdb.executer.userapplywork.FindUserApplyWorkByUserIdAndWorkId">
+        <property name="rowMapper" ref="userApplyWorkRowMapper"></property>
+    </bean>
+    <util:map id="rdb-user-apply-work-executer">
+        <entry key="saveUserApplyWork" value-ref="saveUserApplyWork"/>
+        <entry key="findUserApplyWorkByUserIdAndWorkId" value-ref="findUserApplyWorkByUserIdAndWorkId"/>
+    </util:map>
+</beans>

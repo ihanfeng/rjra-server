@@ -2,6 +2,7 @@ package com.hdg.rjra.server.model.bo.work;
 
 import com.hdg.common.annotation.DateTimeFormat;
 import com.hdg.common.constants.CommonConstants;
+import com.hdg.rjra.server.model.bo.company.CompanyBo;
 
 /**
  * Created by Rock on 2015/1/28 0028.
@@ -13,6 +14,7 @@ public class WorkBo {
     private Double workLatitude;
     private Long userId;
     private Long companyId;
+    private CompanyBo companyDetail;
     private String companyName;
     private Long categoryLevel1Id;
     private Long categoryLevel2Id;
@@ -70,6 +72,14 @@ public class WorkBo {
 
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
+    }
+
+    public CompanyBo getCompanyDetail() {
+        return companyDetail;
+    }
+
+    public void setCompanyDetail(CompanyBo companyDetail) {
+        this.companyDetail = companyDetail;
     }
 
     public Long getCategoryLevel1Id() {

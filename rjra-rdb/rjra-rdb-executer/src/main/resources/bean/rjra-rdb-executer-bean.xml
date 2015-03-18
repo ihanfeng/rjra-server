@@ -25,6 +25,10 @@
     <import resource="classpath:bean/execute/rdb-account-file-executer.xml"/>
     <import resource="classpath:bean/execute/rdb-work-executer.xml"/>
     <import resource="classpath:bean/execute/rdb-manager-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-user-apply-work-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-user-collect-user-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-user-collect-work-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-user-invite-user-executer.xml"/>
 
     <!-- handler相关 -->
     <bean id="requestHandler" class="com.hdg.rjra.rdb.executer.RequestHandler">
@@ -46,6 +50,10 @@
                 <entry key="rdb-account-file" value-ref="rdb-account-file-executer"/>
                 <entry key="rdb-work" value-ref="rdb-work-executer"/>
                 <entry key="rdb-manager" value-ref="rdb-manager-executer"/>
+                <entry key="rdb-user-apply-work" value-ref="rdb-user-apply-work-executer"/>
+                <entry key="rdb-user-collect-user" value-ref="rdb-user-collect-user-executer"/>
+                <entry key="rdb-user-collect-work" value-ref="rdb-user-collect-work-executer"/>
+                <entry key="rdb-user-invite-user" value-ref="rdb-user-invite-user-executer"/>
             </map>
         </property>
     </bean>
