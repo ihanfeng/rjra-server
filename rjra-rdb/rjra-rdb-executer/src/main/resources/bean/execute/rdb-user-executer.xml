@@ -21,6 +21,9 @@
     <bean id="findUserByUserId" class="com.hdg.rjra.rdb.executer.user.FindUserByUserId">
         <property name="rowMapper" ref="userRowMapper"></property>
     </bean>
+    <bean id="findUserByResumeId" class="com.hdg.rjra.rdb.executer.user.FindUserByResumeId">
+        <property name="rowMapper" ref="userRowMapper"></property>
+    </bean>
     <bean id="findAllUserPager" class="com.hdg.rjra.rdb.executer.user.FindAllUserPager">
         <property name="rowMapper" ref="userRowMapper"></property>
     </bean>
@@ -44,6 +47,7 @@
         <entry key="updateUser" value-ref="updateUser"/>
         <entry key="updateUserPwd" value-ref="updateUserPwd"/>
         <entry key="findUserByUserId" value-ref="findUserByUserId"/>
+        <entry key="findUserByResumeId" value-ref="findUserByResumeId"/>
         <entry key="findAllUserPager" value-ref="findAllUserPager"/>
         <entry key="updateUserHead" value-ref="updateUserHead"/>
         <entry key="findNearUserPager" value-ref="findNearUserPager"/>

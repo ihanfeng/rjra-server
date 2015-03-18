@@ -57,6 +57,12 @@ public class UserServiceImpl implements UserService {
         return getUserBo(user);
     }
 
+    @Override
+    public UserBo findUserByResumeId(Long resumeId) {
+        User user = userProxy.findUserByResumeId(resumeId);
+        return getUserBo(user);
+    }
+
     private UserBo getUserBo(User user) {
         if (null == user) {
             return null;

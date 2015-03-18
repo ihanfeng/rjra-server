@@ -17,6 +17,9 @@ import com.hdg.rjra.server.service.UserBehaviorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Rock on 2015/3/18 0018.
  */
@@ -91,6 +94,13 @@ public class UserBehaviorServiceImpl implements UserBehaviorService {
         UserInviteUser userInviteUser = new UserInviteUser();
         ConversionUtils.conversion(userInviteUserBo, userInviteUser);
         return userInviteUserProxy.saveUserInviteUser(userInviteUser);
+    }
+
+    @Override
+    public List<Long> batchSaveUserInviteUser(List<UserInviteUserBo> userInviteUserBoList) {
+        List<UserInviteUser> userInviteUserList = new ArrayList<UserInviteUser>();
+        ConversionUtils.conversion(userInviteUserBoList, userInviteUserList);
+        return userInviteUserProxy.batchSaveUserInviteUser(userInviteUserList);
     }
 
     @Override

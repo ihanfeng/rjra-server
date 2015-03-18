@@ -14,10 +14,7 @@ import com.hdg.rjra.server.model.bo.userbehavior.UserCollectUserBo;
 import com.hdg.rjra.server.model.bo.userbehavior.UserCollectWorkBo;
 import com.hdg.rjra.server.model.bo.userbehavior.UserInviteUserBo;
 import com.hdg.rjra.server.service.UserBehaviorService;
-import com.hdg.rjra.server.web.controller.param.userbehavior.UserApplyWorkParam;
-import com.hdg.rjra.server.web.controller.param.userbehavior.UserCollectUserParam;
-import com.hdg.rjra.server.web.controller.param.userbehavior.UserCollectWorkParam;
-import com.hdg.rjra.server.web.controller.param.userbehavior.UserInviteUserParam;
+import com.hdg.rjra.server.web.controller.param.userbehavior.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -141,6 +140,27 @@ public class UserBehaviorController {
             errorType = ErrorType.UNKNOW_ERROR;
             errorType.setMessage(e.getMessage());
             LOG.error("inviteUser->", e);
+        }
+
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
+
+    @RequestMapping(value = "batchInviteUser")
+    @ResponseBody
+    public ResponseEntity<String> batchInviteUser(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        List<Long> data = null;
+        try {
+
+            BatchUserInviteUserParam batchUserInviteUserParam = JsonUtils.jsonToObject(param, BatchUserInviteUserParam.class);
+            List<UserInviteUserBo> userInviteUserBoList = new ArrayList<UserInviteUserBo>();
+            ConversionUtils.conversion(batchUserInviteUserParam.getBatchUserInvite(), userInviteUserBoList);
+            data = userBehaviorService.batchSaveUserInviteUser(userInviteUserBoList);
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("batchInviteUser->", e);
         }
 
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

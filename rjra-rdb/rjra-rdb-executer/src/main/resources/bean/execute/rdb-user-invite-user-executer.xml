@@ -12,12 +12,16 @@
     <bean id="saveUserInviteUser" class="com.hdg.rjra.rdb.executer.userinviteuser.SaveUserInviteUser">
         <property name="rowMapper" ref="userInviteUserRowMapper"></property>
     </bean>
+    <bean id="batchSaveUserInviteUser" class="com.hdg.rjra.rdb.executer.userinviteuser.BatchSaveUserInviteUser">
+        <property name="rowMapper" ref="userInviteUserRowMapper"></property>
+    </bean>
 
     <bean id="findUserInviteUserByUserIdAndInviteUserId" class="com.hdg.rjra.rdb.executer.userinviteuser.FindUserInviteUserByUserIdAndInviteUserId">
         <property name="rowMapper" ref="userInviteUserRowMapper"></property>
     </bean>
     <util:map id="rdb-user-invite-user-executer">
         <entry key="saveUserInviteUser" value-ref="saveUserInviteUser"/>
+        <entry key="batchSaveUserInviteUser" value-ref="batchSaveUserInviteUser"/>
         <entry key="findUserInviteUserByUserIdAndInviteUserId" value-ref="findUserInviteUserByUserIdAndInviteUserId"/>
     </util:map>
 </beans>

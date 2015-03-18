@@ -3,6 +3,7 @@ package com.hdg.rjra.server.model.bo.resume;
 import com.hdg.common.annotation.DateTimeFormat;
 import com.hdg.common.constants.CommonConstants;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
+import com.hdg.rjra.server.model.bo.user.UserBo;
 
 import java.util.Date;
 
@@ -12,6 +13,8 @@ import java.util.Date;
 public class ResumeBo {
 
     private Long resumeId;
+    private Long userId;
+    private UserBo userDetail;
     private Long[] categoryLevel1Ids;
     private Long[] categoryLevel2Ids;
     private Long[] categoryLevel3Ids;
@@ -41,6 +44,22 @@ public class ResumeBo {
     private String resumeUpdateTime;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String resumeRefreshTime;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public UserBo getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(UserBo userDetail) {
+        this.userDetail = userDetail;
+    }
 
     public Long getResumeId() {
         return resumeId;

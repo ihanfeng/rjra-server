@@ -37,6 +37,12 @@ public class UserProxyImpl extends BaseProxy implements IUserProxy {
     }
 
     @Override
+    public User findUserByResumeId(Long resumeId) {
+        return daoClient.invoke(moduleName, "findUserByResumeId",
+                new Object[]{resumeId});
+    }
+
+    @Override
     public Pager<User> findAllUserPager(Integer[] status, Integer firstResult, Integer sizeNo) {
         return daoClient.invoke(moduleName, "findAllUserPager",
                 new Object[]{status, firstResult, sizeNo});

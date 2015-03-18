@@ -18,6 +18,8 @@ public interface IUserProxy extends Serializable {
 
     public User findUserByUserId(Long userId);
 
+    public User findUserByResumeId(Long resumeId);
+
     public Pager<User> findAllUserPager(Integer[] status, Integer firstResult, Integer sizeNo);
 
     public Integer updateUserHead(Long userId, Long fileId);

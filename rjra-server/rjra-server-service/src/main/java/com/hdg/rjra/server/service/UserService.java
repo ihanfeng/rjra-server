@@ -15,6 +15,8 @@ public interface UserService {
 
     public UserBo findUserByUserId(Long userId);
 
+    public UserBo findUserByResumeId(Long resumeId);
+
     public Pager<UserBo> findAllUserPager(Integer firstResult, Integer sizeNo);
 
     public Integer updateUserHead(Long userId, Long fileId);

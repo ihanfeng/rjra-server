@@ -10,8 +10,10 @@ import com.hdg.rjra.rdb.proxy.domain.Resume;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.ResumeMapping;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.model.bo.resume.ResumeBo;
+import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.service.FileService;
 import com.hdg.rjra.server.service.ResumeService;
+import com.hdg.rjra.server.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,10 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Autowired
     FileService fileService;
+
+    @Autowired
+    UserService userService;
+
     /**
      * 日志对象
      */
@@ -62,6 +68,11 @@ public class ResumeServiceImpl implements ResumeService {
         }
         if (resume.getResumeBirthday() != null) {
             bo.setBirthday(DateUtils.getTimeNow(resume.getResumeBirthday(), CommonConstants.DATE_FORMAT_YYYYMMDD));
+        }
+        UserBo userBo = userService.findUserByResumeId(resume.getResumeId());
+        if(userBo != null) {
+            bo.setUserDetail(userBo);
+            bo.setUserId(userBo.getUserId());
         }
         return bo;
     }
