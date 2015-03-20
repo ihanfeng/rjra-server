@@ -120,7 +120,7 @@ public class UserInviteUserController {
      * @param param
      * @return
      */
-    @RequestMapping(value = "findAllUserInviteUserByInviteUserIdPager")
+    @RequestMapping(value = "findAllUserInviteUserByUserIdPager")
     @ResponseBody
     public ResponseEntity<String> findAllUserInviteUserByUserIdPager(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = ErrorType.DEFFAULT;
