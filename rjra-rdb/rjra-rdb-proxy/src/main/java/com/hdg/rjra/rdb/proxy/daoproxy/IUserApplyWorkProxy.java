@@ -1,5 +1,6 @@
 package com.hdg.rjra.rdb.proxy.daoproxy;
 
+import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserApplyWork;
 
 import java.io.Serializable;
@@ -14,9 +15,9 @@ public interface IUserApplyWorkProxy extends Serializable {
 
     public UserApplyWork findUserApplyWorkByUserIdAndWorkId(Long userId, Long workId);
 
-    public List<UserApplyWork> findAllUserApplyWorkByUserId(Long userId, Integer userApplyWorkStatus);
+    public Pager<UserApplyWork> findAllUserApplyWorkByUserIdPager(Long userId, Integer firstResult, Integer sizeNo);
 
-    public List<UserApplyWork> findAllUserApplyWorkByWorkIds(List<Long> workIds, Integer userApplyWorkStatus);
+    public Pager<UserApplyWork> findAllUserApplyWorkByWorkIdsPager(List<Long> workIds, Integer firstResult, Integer sizeNo);
 
     public Integer deleteUserApplyWork(Long applyId);
 }

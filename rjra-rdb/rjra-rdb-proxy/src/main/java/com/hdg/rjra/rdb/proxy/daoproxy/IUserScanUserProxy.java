@@ -1,5 +1,6 @@
 package com.hdg.rjra.rdb.proxy.daoproxy;
 
+import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserApplyWork;
 import com.hdg.rjra.rdb.proxy.domain.UserScanUser;
 
@@ -15,5 +16,5 @@ public interface IUserScanUserProxy extends Serializable {
 
     public UserScanUser findUserScanUserByUserIdAndScanUserId(Long userId, Long scanUserId);
 
-    public List<UserScanUser> findAllUserScanUserByScanUserId(Long scanUserId);
+    public Pager<UserScanUser> findAllUserScanUserByScanUserIdPager(Long scanUserId, Integer firstResult, Integer sizeNo);
 }

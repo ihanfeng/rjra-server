@@ -1,6 +1,7 @@
 package com.hdg.rjra.rdb.proxyimpl.dao;
 
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserApplyWorkProxy;
+import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserApplyWork;
 
 import java.util.List;
@@ -25,15 +26,15 @@ public class UserApplyWorkProxyImpl extends BaseProxy implements IUserApplyWorkP
     }
 
     @Override
-    public List<UserApplyWork> findAllUserApplyWorkByUserId(Long userId, Integer userApplyWorkStatus) {
+    public Pager<UserApplyWork> findAllUserApplyWorkByUserIdPager(Long userId, Integer firstResult, Integer sizeNo) {
         return daoClient.invoke(moduleName, "findAllWorkByUserId",
-                new Object[]{userId, userApplyWorkStatus});
+                new Object[]{userId, firstResult, sizeNo});
     }
 
     @Override
-    public List<UserApplyWork> findAllUserApplyWorkByWorkIds(List<Long> workIds, Integer userApplyWorkStatus) {
-        return daoClient.invoke(moduleName, "findAllUserApplyWorkByWorkIds",
-                new Object[]{workIds, userApplyWorkStatus});
+    public Pager<UserApplyWork> findAllUserApplyWorkByWorkIdsPager(List<Long> workIds, Integer firstResult, Integer sizeNo) {
+        return daoClient.invoke(moduleName, "findAllUserApplyWorkByWorkIdsPager",
+                new Object[]{workIds, firstResult, sizeNo});
     }
 
     @Override

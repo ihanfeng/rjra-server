@@ -1,5 +1,6 @@
 package com.hdg.rjra.rdb.proxy.daoproxy;
 
+import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserInviteUser;
 
 import java.io.Serializable;
@@ -16,9 +17,9 @@ public interface IUserInviteUserProxy extends Serializable {
 
     public UserInviteUser findUserInviteUserByUserIdAndInviteUserId(Long userId, Long inviteUserId);
 
-    public List<UserInviteUser> findAllUserInviteUserByInviteUserId(Long inviteUserId, Integer userInviteUserStatus);
+    public Pager<UserInviteUser> findAllUserInviteUserByInviteUserIdPager(Long inviteUserId, Integer firstResult, Integer sizeNo);
 
-    public List<UserInviteUser> findAllUserInviteUserByUserId(Long userId, Integer userInviteUserStatus);
+    public Pager<UserInviteUser> findAllUserInviteUserByUserIdPager(Long userId, Integer firstResult, Integer sizeNo);
 
-    public Integer deleteUserInviteUser(Long collectId);
+    public Integer deleteUserInviteUser(Long inviteId);
 }

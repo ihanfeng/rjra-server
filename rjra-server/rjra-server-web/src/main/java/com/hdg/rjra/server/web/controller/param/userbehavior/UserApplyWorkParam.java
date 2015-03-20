@@ -1,14 +1,13 @@
 package com.hdg.rjra.server.web.controller.param.userbehavior;
 
-import com.hdg.common.annotation.DateTimeFormat;
-import com.hdg.common.constants.CommonConstants;
+import com.hdg.rjra.server.web.controller.param.BaseParam;
 
 import java.io.Serializable;
 
 /**
  * Created by Rock on 2015/3/18 0018.
  */
-public class UserApplyWorkParam implements Serializable {
+public class UserApplyWorkParam extends BaseParam implements Serializable {
     private Long applyId;
     private Long workId;
     private Long userId;

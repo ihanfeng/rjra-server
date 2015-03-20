@@ -3,7 +3,10 @@ package com.hdg.rjra.server.serviceimpl;
 import com.hdg.common.utils.ConversionUtils;
 import com.hdg.rjra.base.enumerate.GeoStatus;
 import com.hdg.rjra.base.enumerate.WorkStatus;
-import com.hdg.rjra.rdb.proxy.daoproxy.*;
+import com.hdg.rjra.rdb.proxy.daoproxy.IAreaProxy;
+import com.hdg.rjra.rdb.proxy.daoproxy.ICityProxy;
+import com.hdg.rjra.rdb.proxy.daoproxy.IProvinceProxy;
+import com.hdg.rjra.rdb.proxy.daoproxy.IWorkProxy;
 import com.hdg.rjra.rdb.proxy.domain.*;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
 import com.hdg.rjra.server.model.bo.company.CompanyBo;
@@ -66,7 +69,7 @@ public class WorkServiceImpl implements WorkService {
     }
     @Override
     public Pager<WorkBo> findAllWorkByParamPager(Map<WorkMapping, Object> param, Integer firstResult, Integer sizeNo) {
-        Pager<Work> workPager =  workProxy.findAllWorkByParamPager(param, new Integer[]{WorkStatus.Active.getCode()}, firstResult, sizeNo);
+        Pager<Work> workPager =  workProxy.findAllWorkByParamPager(param, new Integer[]{WorkStatus.Active.getCode(), WorkStatus.Pause.getCode()}, firstResult, sizeNo);
         Pager<WorkBo> workBoPager = new Pager<WorkBo>();
         List<WorkBo> workBoList = new ArrayList<WorkBo>();
         for (Work work : workPager.getResultList()) {
@@ -79,7 +82,7 @@ public class WorkServiceImpl implements WorkService {
 
     @Override
     public Pager<WorkBo> findNearWorkByParamPager(Map<WorkMapping, Object> param, Double lng, Double lat, Integer raidus, Integer firstResult, Integer sizeNo) {
-        Pager<Work> workPager =  workProxy.findNearWorkByParamPager(param, lng, lat, raidus, new Integer[]{WorkStatus.Active.getCode()}, firstResult, sizeNo);
+        Pager<Work> workPager =  workProxy.findNearWorkByParamPager(param, lng, lat, raidus, new Integer[]{WorkStatus.Active.getCode(), WorkStatus.Pause.getCode()}, firstResult, sizeNo);
         Pager<WorkBo> workBoPager = new Pager<WorkBo>();
         List<WorkBo> workBoList = new ArrayList<WorkBo>();
         for (Work work : workPager.getResultList()) {

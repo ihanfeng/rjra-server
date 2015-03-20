@@ -17,11 +17,11 @@
         <property name="rowMapper" ref="userApplyWorkRowMapper"></property>
     </bean>
 
-    <bean id="findAllUserApplyWorkByUserId" class="com.hdg.rjra.rdb.executer.userapplywork.FindAllUserApplyWorkByUserId">
+    <bean id="findAllUserApplyWorkByUserIdPager" class="com.hdg.rjra.rdb.executer.userapplywork.FindAllUserApplyWorkByUserIdPager">
         <property name="rowMapper" ref="userApplyWorkRowMapper"></property>
     </bean>
 
-    <bean id="findAllUserApplyWorkByWorkIds" class="com.hdg.rjra.rdb.executer.userapplywork.FindAllUserApplyWorkByWorkIds">
+    <bean id="findAllUserApplyWorkByWorkIdsPager" class="com.hdg.rjra.rdb.executer.userapplywork.FindAllUserApplyWorkByWorkIdsPager">
         <property name="rowMapper" ref="userApplyWorkRowMapper"></property>
     </bean>
 
@@ -31,8 +31,8 @@
     <util:map id="rdb-user-apply-work-executer">
         <entry key="saveUserApplyWork" value-ref="saveUserApplyWork"/>
         <entry key="findUserApplyWorkByUserIdAndWorkId" value-ref="findUserApplyWorkByUserIdAndWorkId"/>
-        <entry key="findAllUserApplyWorkByUserId" value-ref="findAllUserApplyWorkByUserId"/>
-        <entry key="findAllUserApplyWorkByWorkIds" value-ref="findAllUserApplyWorkByWorkIds"/>
+        <entry key="findAllUserApplyWorkByUserIdPager" value-ref="findAllUserApplyWorkByUserIdPager"/>
+        <entry key="findAllUserApplyWorkByWorkIdsPager" value-ref="findAllUserApplyWorkByWorkIdsPager"/>
         <entry key="deleteUserApplyWork" value-ref="deleteUserApplyWork"/>
     </util:map>
 </beans>

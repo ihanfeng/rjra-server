@@ -2,6 +2,7 @@ package com.hdg.rjra.rdb.proxyimpl.dao;
 
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserApplyWorkProxy;
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserScanUserProxy;
+import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserApplyWork;
 import com.hdg.rjra.rdb.proxy.domain.UserScanUser;
 
@@ -27,8 +28,8 @@ public class UserScanUserProxyImpl extends BaseProxy implements IUserScanUserPro
     }
 
     @Override
-    public List<UserScanUser> findAllUserScanUserByScanUserId(Long scanUserId) {
-        return daoClient.invoke(moduleName, "findAllUserScanUserByScanUserId",
-                new Object[]{scanUserId});
+    public Pager<UserScanUser> findAllUserScanUserByScanUserIdPager(Long scanUserId, Integer firstResult, Integer sizeNo) {
+        return daoClient.invoke(moduleName, "findAllUserScanUserByScanUserIdPager",
+                new Object[]{scanUserId, firstResult, sizeNo});
     }
 }

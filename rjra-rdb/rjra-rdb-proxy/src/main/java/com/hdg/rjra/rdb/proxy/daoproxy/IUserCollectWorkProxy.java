@@ -1,5 +1,6 @@
 package com.hdg.rjra.rdb.proxy.daoproxy;
 
+import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserCollectWork;
 
 import java.io.Serializable;
@@ -14,7 +15,7 @@ public interface IUserCollectWorkProxy extends Serializable {
 
     public UserCollectWork findUserCollectWorkByUserIdAndWorkId(Long userId, Long workId);
 
-    public List<UserCollectWork> findAllUserCollectWorkByUserId(Long userId, Integer userCollectWorkStatus);
+    public Pager<UserCollectWork> findAllUserCollectWorkByUserIdPager(Long userId, Integer firstResult, Integer sizeNo);
 
     public Integer deleteUserCollectWork(Long collectId);
 }

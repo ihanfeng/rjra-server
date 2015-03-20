@@ -17,12 +17,12 @@
         <property name="rowMapper" ref="userScanUserRowMapper"></property>
     </bean>
 
-    <bean id="findAllUserScanUserByScanUserId" class="com.hdg.rjra.rdb.executer.userscanuser.FindAllUserScanUserByScanUserId">
+    <bean id="findAllUserScanUserByScanUserIdPager" class="com.hdg.rjra.rdb.executer.userscanuser.FindAllUserScanUserByScanUserIdPager">
         <property name="rowMapper" ref="userScanUserRowMapper"></property>
     </bean>
     <util:map id="rdb-user-scan-user-executer">
         <entry key="saveUserScanUser" value-ref="saveUserScanUser"/>
         <entry key="findUserScanUserByUserIdAndScanUserId" value-ref="findUserScanUserByUserIdAndScanUserId"/>
-        <entry key="findAllUserScanUserByScanUserId" value-ref="findAllUserScanUserByScanUserId"/>
+        <entry key="findAllUserScanUserByScanUserIdPager" value-ref="findAllUserScanUserByScanUserIdPager"/>
     </util:map>
 </beans>

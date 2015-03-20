@@ -1,7 +1,5 @@
 package com.hdg.rjra.server.web.controller.param;
 
-import com.hdg.rjra.server.web.controller.param.BaseParam;
-
 /**
  * Created by Rock on 2015/1/17 0017.
  */

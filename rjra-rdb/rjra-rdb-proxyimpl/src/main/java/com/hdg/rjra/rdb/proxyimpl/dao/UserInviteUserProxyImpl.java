@@ -1,6 +1,7 @@
 package com.hdg.rjra.rdb.proxyimpl.dao;
 
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserInviteUserProxy;
+import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserInviteUser;
 
 import java.util.List;
@@ -31,14 +32,20 @@ public class UserInviteUserProxyImpl extends BaseProxy implements IUserInviteUse
     }
 
     @Override
-    public List<UserInviteUser> findAllUserInviteUserByInviteUserId(Long inviteUserId, Integer userInviteUserStatus) {
-        return daoClient.invoke(moduleName, "findAllUserInviteUserByInviteUserId",
-                new Object[]{inviteUserId, userInviteUserStatus});
+    public Pager<UserInviteUser> findAllUserInviteUserByInviteUserIdPager(Long inviteUserId, Integer firstResult, Integer sizeNo) {
+        return daoClient.invoke(moduleName, "findAllUserInviteUserByInviteUserIdPager",
+                new Object[]{inviteUserId, firstResult, sizeNo});
     }
 
     @Override
-    public List<UserInviteUser> findAllUserInviteUserByUserId(Long userId, Integer userInviteUserStatus) {
-        return daoClient.invoke(moduleName, "findAllUserInviteUserByUserId",
-                new Object[]{userId, userInviteUserStatus});
+    public Pager<UserInviteUser> findAllUserInviteUserByUserIdPager(Long userId, Integer firstResult, Integer sizeNo) {
+        return daoClient.invoke(moduleName, "findAllUserInviteUserByUserIdPager",
+                new Object[]{userId, firstResult, sizeNo});
+    }
+
+    @Override
+    public Integer deleteUserInviteUser(Long inviteId) {
+        return daoClient.invoke(moduleName, "deleteUserInviteUser",
+                new Object[]{inviteId});
     }
 }

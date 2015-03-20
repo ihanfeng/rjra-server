@@ -19,10 +19,10 @@
     <bean id="findUserInviteUserByUserIdAndInviteUserId" class="com.hdg.rjra.rdb.executer.userinviteuser.FindUserInviteUserByUserIdAndInviteUserId">
         <property name="rowMapper" ref="userInviteUserRowMapper"></property>
     </bean>
-    <bean id="findAllUserInviteUserByInviteUserId" class="com.hdg.rjra.rdb.executer.userinviteuser.FindAllUserInviteUserByInviteUserId">
+    <bean id="findAllUserInviteUserByInviteUserIdPager" class="com.hdg.rjra.rdb.executer.userinviteuser.FindAllUserInviteUserByInviteUserIdPager">
         <property name="rowMapper" ref="userInviteUserRowMapper"></property>
     </bean>
-    <bean id="findAllUserInviteUserByUserId" class="com.hdg.rjra.rdb.executer.userinviteuser.FindAllUserInviteUserByUserId">
+    <bean id="findAllUserInviteUserByUserIdPager" class="com.hdg.rjra.rdb.executer.userinviteuser.FindAllUserInviteUserByUserIdPager">
         <property name="rowMapper" ref="userInviteUserRowMapper"></property>
     </bean>
     <bean id="deleteUserInviteUser" class="com.hdg.rjra.rdb.executer.userinviteuser.DeleteUserInviteUser">
@@ -32,8 +32,8 @@
         <entry key="saveUserInviteUser" value-ref="saveUserInviteUser"/>
         <entry key="batchSaveUserInviteUser" value-ref="batchSaveUserInviteUser"/>
         <entry key="findUserInviteUserByUserIdAndInviteUserId" value-ref="findUserInviteUserByUserIdAndInviteUserId"/>
-        <entry key="findAllUserInviteUserByInviteUserId" value-ref="findAllUserInviteUserByInviteUserId"/>
-        <entry key="findAllUserInviteUserByUserId" value-ref="findAllUserInviteUserByUserId"/>
+        <entry key="findAllUserInviteUserByInviteUserIdPager" value-ref="findAllUserInviteUserByInviteUserIdPager"/>
+        <entry key="findAllUserInviteUserByUserIdPager" value-ref="findAllUserInviteUserByUserIdPager"/>
         <entry key="deleteUserInviteUser" value-ref="deleteUserInviteUser"/>
     </util:map>
 </beans>

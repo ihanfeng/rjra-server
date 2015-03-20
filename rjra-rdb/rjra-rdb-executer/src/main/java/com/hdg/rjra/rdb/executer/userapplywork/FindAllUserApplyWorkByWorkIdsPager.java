@@ -4,16 +4,19 @@ import com.hdg.rjra.base.enumerate.UserApplyWorkStatus;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.proxy.utils.SqlUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Administrator on 2015/3/20.
  */
-public class FindAllUserApplyWorkByWorkIds extends AbstractExecuter {
+public class FindAllUserApplyWorkByWorkIdsPager extends AbstractExecuter {
 
     @Override
     public Object execute(Object[] params) {
         Long[] workIds = (Long[]) params[0];
+        Integer firstResult = (Integer) params[1];
+        Integer sizeNo = (Integer) params[2];;
         StringBuffer executeSql = new StringBuffer();
         executeSql.append("select * from user_apply_work where 1=1");
         executeSql.append(" and work_id in (");
@@ -21,6 +24,8 @@ public class FindAllUserApplyWorkByWorkIds extends AbstractExecuter {
         executeSql.append(")");
         executeSql.append(" and and user_apply_work_status = ");
         executeSql.append(UserApplyWorkStatus.Active.getCode());
-        return  getJdbcTemplate().query(executeSql.toString(), params, rowMapper);
+        List<Object> objects = new ArrayList<Object>();
+        objects.add(workIds);
+        return findPager(executeSql.toString(), objects.toArray(), firstResult, sizeNo, rowMapper);
     }
 }

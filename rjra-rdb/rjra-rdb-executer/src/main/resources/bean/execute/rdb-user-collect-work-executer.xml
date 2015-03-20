@@ -16,7 +16,7 @@
     <bean id="findUserCollectWorkByUserIdAndWorkId" class="com.hdg.rjra.rdb.executer.usercollectwork.FindUserCollectWorkByUserIdAndWorkId">
         <property name="rowMapper" ref="userCollectWorkRowMapper"></property>
     </bean>
-    <bean id="findAllUserCollectWorkByUserId" class="com.hdg.rjra.rdb.executer.usercollectwork.FindAllUserCollectWorkByUserId">
+    <bean id="findAllUserCollectWorkByUserIdPager" class="com.hdg.rjra.rdb.executer.usercollectwork.FindAllUserCollectWorkByUserIdPager">
         <property name="rowMapper" ref="userCollectWorkRowMapper"></property>
     </bean>
     <bean id="deleteUserCollectWork" class="com.hdg.rjra.rdb.executer.usercollectwork.DeleteUserCollectWork">
@@ -25,7 +25,7 @@
     <util:map id="rdb-user-collect-work-executer">
         <entry key="saveUserCollectWork" value-ref="saveUserCollectWork"/>
         <entry key="findUserCollectWorkByUserIdAndWorkId" value-ref="findUserCollectWorkByUserIdAndWorkId"/>
-        <entry key="findAllUserCollectWorkByUserId" value-ref="findAllUserCollectWorkByUserId"/>
+        <entry key="findAllUserCollectWorkByUserIdPager" value-ref="findAllUserCollectWorkByUserIdPager"/>
         <entry key="deleteUserCollectWork" value-ref="deleteUserCollectWork"/>
     </util:map>
 </beans>

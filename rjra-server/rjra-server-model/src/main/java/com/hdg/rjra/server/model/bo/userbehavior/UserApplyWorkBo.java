@@ -15,6 +15,7 @@ public class UserApplyWorkBo implements Serializable {
     private Long userId;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String applyTime;
+    private Integer userApplyWorkStatus;
 
     public Long getApplyId() {
         return applyId;
@@ -46,5 +47,13 @@ public class UserApplyWorkBo implements Serializable {
 
     public void setApplyTime(String applyTime) {
         this.applyTime = applyTime;
+    }
+
+    public Integer getUserApplyWorkStatus() {
+        return userApplyWorkStatus;
+    }
+
+    public void setUserApplyWorkStatus(Integer userApplyWorkStatus) {
+        this.userApplyWorkStatus = userApplyWorkStatus;
     }
 }

@@ -1,5 +1,6 @@
 package com.hdg.rjra.rdb.proxy.daoproxy;
 
+import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserCollectUser;
 
 import java.io.Serializable;
@@ -14,7 +15,7 @@ public interface IUserCollectUserProxy extends Serializable {
 
     public UserCollectUser findUserCollectUserByUserIdAndCollectUserId(Long userId, Long collectUserId);
 
-    public List<UserCollectUser> findAllUserCollectUserByUserId(Long userId, Integer userCollectUserStatus);
+    public Pager<UserCollectUser> findAllUserCollectUserByUserIdPager(Long userId, Integer firstResult, Integer sizeNo);
 
     public Integer deleteUserCollectUser(Long collectId);
 }

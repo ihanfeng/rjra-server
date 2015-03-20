@@ -1,7 +1,6 @@
 package com.hdg.rjra.server.service;
 
 import com.hdg.rjra.rdb.proxy.domain.Pager;
-import com.hdg.rjra.rdb.proxy.domain.User;
 import com.hdg.rjra.server.model.bo.user.UserBo;
 
 /**

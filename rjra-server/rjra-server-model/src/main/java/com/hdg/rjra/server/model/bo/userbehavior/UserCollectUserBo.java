@@ -4,7 +4,6 @@ import com.hdg.common.annotation.DateTimeFormat;
 import com.hdg.common.constants.CommonConstants;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by Rock on 2015/3/18 0018.
@@ -14,7 +13,8 @@ public class UserCollectUserBo implements Serializable {
     private Long userId;
     private Long collectUserId;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String  collectDate;
+    private String collectTime;
+    private Integer userCollectUserStatus;
 
     public Long getCollectId() {
         return collectId;
@@ -40,11 +40,19 @@ public class UserCollectUserBo implements Serializable {
         this.collectUserId = collectUserId;
     }
 
-    public String getCollectDate() {
-        return collectDate;
+    public String getCollectTime() {
+        return collectTime;
     }
 
-    public void setCollectDate(String collectDate) {
-        this.collectDate = collectDate;
+    public void setCollectTime(String collectTime) {
+        this.collectTime = collectTime;
+    }
+
+    public Integer getUserCollectUserStatus() {
+        return userCollectUserStatus;
+    }
+
+    public void setUserCollectUserStatus(Integer userCollectUserStatus) {
+        this.userCollectUserStatus = userCollectUserStatus;
     }
 }

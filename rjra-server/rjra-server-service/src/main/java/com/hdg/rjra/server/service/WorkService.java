@@ -1,10 +1,8 @@
 package com.hdg.rjra.server.service;
 
 import com.hdg.rjra.rdb.proxy.domain.Pager;
-import com.hdg.rjra.rdb.proxy.domain.Work;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
 import com.hdg.rjra.server.model.bo.work.WorkBo;
-import org.springframework.stereotype.Service;
 
 import java.util.Map;
 

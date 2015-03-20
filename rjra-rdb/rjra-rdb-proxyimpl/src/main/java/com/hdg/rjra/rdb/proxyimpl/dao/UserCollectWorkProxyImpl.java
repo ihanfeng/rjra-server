@@ -1,6 +1,7 @@
 package com.hdg.rjra.rdb.proxyimpl.dao;
 
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserCollectWorkProxy;
+import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserCollectWork;
 
 import java.util.List;
@@ -25,9 +26,9 @@ public class UserCollectWorkProxyImpl extends BaseProxy implements IUserCollectW
     }
 
     @Override
-    public List<UserCollectWork> findAllUserCollectWorkByUserId(Long userId, Integer userCollectWorkStatus) {
-        return daoClient.invoke(moduleName, "findAllUserCollectWorkByUserId",
-                new Object[]{userId, userCollectWorkStatus});
+    public Pager<UserCollectWork> findAllUserCollectWorkByUserIdPager(Long userId, Integer firstResult, Integer sizeNo) {
+        return daoClient.invoke(moduleName, "findAllUserCollectWorkByUserIdPager",
+                new Object[]{userId, firstResult, sizeNo});
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.hdg.rjra.rdb.proxyimpl.dao;
 
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserCollectUserProxy;
+import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserCollectUser;
 
 import java.util.List;
@@ -25,9 +26,9 @@ public class UserCollectUserProxyImpl extends BaseProxy implements IUserCollectU
     }
 
     @Override
-    public List<UserCollectUser> findAllUserCollectUserByUserId(Long userId, Integer userCollectUserStatus) {
-        return daoClient.invoke(moduleName, "findAllUserCollectUserByUserId",
-                new Object[]{userId, userCollectUserStatus});
+    public Pager<UserCollectUser> findAllUserCollectUserByUserIdPager(Long userId, Integer firstResult, Integer sizeNo) {
+        return daoClient.invoke(moduleName, "findAllUserCollectUserByUserIdPager",
+                new Object[]{userId, firstResult, sizeNo});
     }
 
     @Override

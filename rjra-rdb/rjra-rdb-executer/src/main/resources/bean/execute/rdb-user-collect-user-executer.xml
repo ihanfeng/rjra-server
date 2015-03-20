@@ -16,7 +16,7 @@
     <bean id="findUserCollectUserByUserIdAndCollectUserId" class="com.hdg.rjra.rdb.executer.usercollectuser.FindUserCollectUserByUserIdAndCollectUserId">
         <property name="rowMapper" ref="userCollectUserRowMapper"></property>
     </bean>
-    <bean id="findAllUserCollectUserByUserId" class="com.hdg.rjra.rdb.executer.usercollectuser.FindAllUserCollectUserByUserId">
+    <bean id="findAllUserCollectUserByUserIdPager" class="com.hdg.rjra.rdb.executer.usercollectuser.FindAllUserCollectUserByUserIdPager">
         <property name="rowMapper" ref="userCollectUserRowMapper"></property>
     </bean>
     <bean id="deleteUserCollectUser" class="com.hdg.rjra.rdb.executer.usercollectuser.DeleteUserCollectUser">
@@ -25,7 +25,7 @@
     <util:map id="rdb-user-collect-user-executer">
         <entry key="saveUserCollectUser" value-ref="saveUserCollectUser"/>
         <entry key="findUserCollectUserByUserIdAndCollectUserId" value-ref="findUserCollectUserByUserIdAndCollectUserId"/>
-        <entry key="findAllUserCollectUserByUserId" value-ref="findAllUserCollectUserByUserId"/>
+        <entry key="findAllUserCollectUserByUserIdPager" value-ref="findAllUserCollectUserByUserIdPager"/>
         <entry key="deleteUserCollectUser" value-ref="deleteUserCollectUser"/>
     </util:map>
 </beans>

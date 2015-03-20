@@ -14,7 +14,8 @@ public class UserCollectWorkBo implements Serializable {
     private Long userId;
     private Long workId;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String  collectDate;
+    private String  collectTime;
+    private Integer userCollectWorkStatus;
 
     public Long getCollectId() {
         return collectId;
@@ -40,11 +41,19 @@ public class UserCollectWorkBo implements Serializable {
         this.workId = workId;
     }
 
-    public String getCollectDate() {
-        return collectDate;
+    public String getCollectTime() {
+        return collectTime;
     }
 
-    public void setCollectDate(String collectDate) {
-        this.collectDate = collectDate;
+    public void setCollectTime(String collectTime) {
+        this.collectTime = collectTime;
+    }
+
+    public Integer getUserCollectWorkStatus() {
+        return userCollectWorkStatus;
+    }
+
+    public void setUserCollectWorkStatus(Integer userCollectWorkStatus) {
+        this.userCollectWorkStatus = userCollectWorkStatus;
     }
 }
