@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+          http://www.springframework.org/schema/util
+          http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+    <bean id="customerRowMapper" class="com.hdg.rjra.rdb.executer.customer.rowmapper.CustomerRowMapper"/>
+
+    <bean id="findCustomerByNameAndPwd" class="com.hdg.rjra.rdb.executer.customer.FindCustomerByNameAndPwd">
+        <property name="rowMapper" ref="customerRowMapper"></property>
+    </bean>
+
+    <bean id="updateCustomerPwd" class="com.hdg.rjra.rdb.executer.customer.UpdateCustomerPwd">
+        <property name="rowMapper" ref="customerRowMapper"></property>
+    </bean>
+    <util:map id="rdb-customer-executer">
+        <entry key="findCustomerByNameAndPwd" value-ref="findCustomerByNameAndPwd"/>
+        <entry key="updateCustomerPwd" value-ref="updateCustomerPwd"/>
+    </util:map>
+</beans>

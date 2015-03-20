@@ -70,7 +70,7 @@ public class ValidateTokenFilter implements Filter{
             if (null != session
                     && httpRequest.isRequestedSessionIdValid()
                     && StringUtils.isNotEmpty(token) && token.equals(getSessionToken(session))) {
-                if ("/rjra-manager".equals(servletPath)){
+                if ("/rjra-customer".equals(servletPath)){
                     //验证未通过
                     OutputResult outputResult = new OutputResult();
                     outputResult.setFlag(CommonConstants.SUCCESS);

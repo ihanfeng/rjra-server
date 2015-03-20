@@ -32,9 +32,13 @@
     <bean id="workExperienceProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.WorkExperienceProxyImpl"/>
     <bean id="accountFileProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.AccountFileProxyImpl"/>
     <bean id="workProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.WorkProxyImpl"/>
-    <bean id="managerProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.ManagerProxyImpl"/>
     <bean id="userApplyWorkProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.UserApplyWorkProxyImpl"/>
     <bean id="userCollectUserProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.UserCollectUserProxyImpl"/>
     <bean id="userCollectWorkProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.UserCollectWorkProxyImpl"/>
     <bean id="userInviteUserProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.UserInviteUserProxyImpl"/>
+
+    <bean id="managerProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.ManagerProxyImpl"/>
+
+    <bean id="customerProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CustomerProxyImpl"/>
+
 </beans>

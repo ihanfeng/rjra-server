@@ -1,14 +1,14 @@
-package com.hdg.rjra.rdb.executer.manager;
+package com.hdg.rjra.rdb.executer.customer;
 
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 
 import java.util.List;
 
 /**
- * Created by Rock on 2015/3/9 0009.
+ * Created by Administrator on 2015/3/20.
  */
-public class FindManagerByNameAndPwd extends AbstractExecuter {
-    static String sql = "select * from account_manager where manager_name = ? and manager_pwd = ?";
+public class FindCustomerByNameAndPwd extends AbstractExecuter {
+    static String sql = "select * from account_customer where customer_name = ? and customer_pwd = ?";
 
     @Override
     public Object execute(Object[] params) {

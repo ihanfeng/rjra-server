@@ -4,10 +4,29 @@ package com.hdg.rjra.customer.web.controller;
  * Created by Rock on 2015/1/8 0008.
  */
 
+import com.hdg.common.output.OutputResult;
+import com.hdg.common.properties.CustomizedPropertyConfigurer;
+import com.hdg.common.utils.AESUtils;
+import com.hdg.common.utils.JsonUtils;
+import com.hdg.common.utils.ResponseUtils;
+import com.hdg.common.utils.UUIDUtils;
+import com.hdg.rjra.base.error.ErrorType;
+import com.hdg.rjra.customer.web.controller.param.customer.ChangePwdParam;
+import com.hdg.rjra.customer.web.controller.param.customer.CustomerParam;
+import com.hdg.rjra.customer.web.filter.SessionToken;
+import com.hdg.rjra.server.model.bo.customer.CustomerBo;
+import com.hdg.rjra.server.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -21,4 +40,98 @@ public class CustomerController {
      * 日志对象
      */
     private static final Logger LOG = LoggerFactory.getLogger(CustomerController.class);
+
+    @Autowired
+    CustomerService customerService;
+
+    /**
+     *
+     * @description 登录
+     * @author Administrator 创建时间 2014年7月8日 下午7:32:39
+     * @param param
+     *            请求参数
+     * @param request
+     *            request
+     * @return 响应
+     */
+    @RequestMapping(value = "login")
+    @ResponseBody
+    public ResponseEntity<String> login(@RequestParam(value = "param", required = true) String param,
+                                        HttpServletRequest request) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        CustomerBo customerBo = null;
+        String data = null;
+        try {
+            CustomerParam customerParam = JsonUtils.jsonToObject(param, CustomerParam.class);
+            String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+            String pwd = AESUtils.encrypt(customerParam.getCustomerPwd(), customerParam.getCustomerName(), encryptionFactor);
+            customerBo = customerService.findCustomerByNameAndPwd(customerParam.getCustomerName(), pwd);
+            if (customerBo == null) {
+                errorType = ErrorType.MANAGER_ALREADY_NOT_EXIST;
+            }
+            else {
+                data = UUIDUtils.randomUUID();
+                request.getSession().setAttribute(SessionToken.TOKEN, data);
+            }
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("customer login ->", e);
+        }
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
+
+    /**
+     *
+     * @description 退出
+     * @author Sisi 创建时间 2014年7月9日 下午4:42:53
+     * @param request
+     *            request
+     * @return ResponseEntity<String>
+     */
+    @RequestMapping(value = "logout")
+    @ResponseBody
+    public ResponseEntity<String> logout(HttpServletRequest request) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        try {
+            HttpSession session = request.getSession();
+            session.removeAttribute(SessionToken.TOKEN);
+            session.invalidate();
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("customer logout ->", e);
+        }
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), "logout");
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
+
+
+    @RequestMapping(value = "changePwd")
+    @ResponseBody
+    public ResponseEntity<String> changePwd(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        CustomerBo customerBo = null;
+        Integer data = null;
+        try {
+            ChangePwdParam changePwdParam = JsonUtils.jsonToObject(param, ChangePwdParam.class);
+            String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+            String pwd = AESUtils.encrypt(changePwdParam.getOldPwd(), changePwdParam.getName(), encryptionFactor);
+            customerBo = customerService.findCustomerByNameAndPwd(changePwdParam.getName(), pwd);
+            if (customerBo == null) {
+                errorType = ErrorType.MANAGER_NAME_OR_PWD_IS_ERROR;
+            }
+            else{
+                String newPwd = AESUtils.encrypt(changePwdParam.getNewPwd(), changePwdParam.getName(), encryptionFactor);
+                data = customerService.updateCustomerPwd(customerBo.getCustomerId(), newPwd);
+            }
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("customer changePwd ->", e);
+        }
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
 }

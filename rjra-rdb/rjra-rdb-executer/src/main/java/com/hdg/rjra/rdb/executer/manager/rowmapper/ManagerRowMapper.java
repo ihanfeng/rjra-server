@@ -9,7 +9,7 @@ import java.sql.SQLException;
 /**
  * Created by Rock on 2015/3/9 0009.
  */
-public class ManagerRowMapper  implements RowMapper<Manager> {
+public class ManagerRowMapper implements RowMapper<Manager> {
 
     @Override
     public Manager mapRow(ResultSet rs, int rowNum) throws SQLException {

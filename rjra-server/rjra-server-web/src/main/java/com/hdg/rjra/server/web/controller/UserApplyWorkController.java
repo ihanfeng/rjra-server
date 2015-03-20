@@ -95,7 +95,7 @@ public class UserApplyWorkController {
     }
 
     /**
-     * 查询申请我发布职位的用户信息
+     * 查询向我申请的
      * @param request
      * @param param
      * @return
