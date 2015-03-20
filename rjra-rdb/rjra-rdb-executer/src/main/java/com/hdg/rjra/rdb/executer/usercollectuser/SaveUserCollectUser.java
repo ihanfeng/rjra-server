@@ -1,5 +1,6 @@
 package com.hdg.rjra.rdb.executer.usercollectuser;
 
+import com.hdg.rjra.base.enumerate.UserCollectUserStatus;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.handler.PstAssign;
 import com.hdg.rjra.rdb.proxy.domain.UserCollectUser;
@@ -13,7 +14,7 @@ import java.util.Date;
  */
 public class SaveUserCollectUser extends AbstractExecuter {
 
-    static String sql = "insert into user_collect_user(user_id,collect_user_id,collect_time) values (?,?,?)";
+    static String sql = "insert into user_collect_user(user_id,collect_user_id,collect_time,user_collect_user_status) values (?,?,?,?)";
 
     @Override
     public Object execute(Object[] params) {
@@ -24,6 +25,7 @@ public class SaveUserCollectUser extends AbstractExecuter {
                 ps.setObject(1, userCollectUser.getUserId());
                 ps.setObject(2, userCollectUser.getCollectUserId());
                 ps.setObject(3, new Date());
+                ps.setObject(4, UserCollectUserStatus.Active.getCode());
             }
         };
         return saveResultId(sql, pst);

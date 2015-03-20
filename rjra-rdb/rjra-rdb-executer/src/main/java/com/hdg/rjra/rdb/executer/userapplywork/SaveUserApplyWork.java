@@ -1,5 +1,6 @@
 package com.hdg.rjra.rdb.executer.userapplywork;
 
+import com.hdg.rjra.base.enumerate.UserApplyWorkStatus;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.handler.PstAssign;
 import com.hdg.rjra.rdb.proxy.domain.UserApplyWork;
@@ -13,7 +14,7 @@ import java.util.Date;
  */
 public class SaveUserApplyWork extends AbstractExecuter {
 
-    static String sql = "insert into user_apply_work(user_id,work_id,apply_time) values (?,?,?)";
+    static String sql = "insert into user_apply_work(user_id,work_id,apply_time,user_apply_work_status) values (?,?,?,?)";
 
     @Override
     public Object execute(Object[] params) {
@@ -24,6 +25,7 @@ public class SaveUserApplyWork extends AbstractExecuter {
                 ps.setObject(1, userApplyWork.getUserId());
                 ps.setObject(2, userApplyWork.getWorkId());
                 ps.setObject(3, new Date());
+                ps.setObject(4, UserApplyWorkStatus.Active.getCode());
             }
         };
         return saveResultId(sql, pst);

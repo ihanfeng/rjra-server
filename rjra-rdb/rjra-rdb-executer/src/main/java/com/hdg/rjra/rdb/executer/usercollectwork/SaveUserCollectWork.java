@@ -1,8 +1,8 @@
 package com.hdg.rjra.rdb.executer.usercollectwork;
 
+import com.hdg.rjra.base.enumerate.UserCollectWorkStatus;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.handler.PstAssign;
-import com.hdg.rjra.rdb.proxy.domain.UserCollectUser;
 import com.hdg.rjra.rdb.proxy.domain.UserCollectWork;
 
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class SaveUserCollectWork extends AbstractExecuter {
 
-    static String sql = "insert into user_collect_work(user_id,work_id,collect_time) values (?,?,?)";
+    static String sql = "insert into user_collect_work(user_id,work_id,collect_time,user_collect_work_status) values (?,?,?,?)";
 
     @Override
     public Object execute(Object[] params) {
@@ -25,6 +25,7 @@ public class SaveUserCollectWork extends AbstractExecuter {
                 ps.setObject(1, userCollectWork.getUserId());
                 ps.setObject(2, userCollectWork.getWorkId());
                 ps.setObject(3, new Date());
+                ps.setObject(4, UserCollectWorkStatus.Active.getCode());
             }
         };
         return saveResultId(sql, pst);

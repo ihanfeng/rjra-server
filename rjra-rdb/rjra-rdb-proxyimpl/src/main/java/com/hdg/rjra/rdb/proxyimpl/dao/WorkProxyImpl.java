@@ -5,6 +5,7 @@ import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.Work;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,5 +49,11 @@ public class WorkProxyImpl extends BaseProxy implements IWorkProxy {
     public Long saveWork(Work work) {
         return daoClient.invoke(moduleName, "saveWork",
                 new Object[]{work});
+    }
+
+    @Override
+    public List<Long> findWorkIdsByUserId(Long userId, Integer[] workStatus) {
+        return daoClient.invoke(moduleName, "findWorkIdsByUserId",
+                new Object[]{userId, workStatus});
     }
 }

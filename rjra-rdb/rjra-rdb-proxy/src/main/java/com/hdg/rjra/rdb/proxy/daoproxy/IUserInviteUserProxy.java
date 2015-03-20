@@ -15,4 +15,10 @@ public interface IUserInviteUserProxy extends Serializable {
     public List<Long> batchSaveUserInviteUser(List<UserInviteUser> userInviteUserList);
 
     public UserInviteUser findUserInviteUserByUserIdAndInviteUserId(Long userId, Long inviteUserId);
+
+    public List<UserInviteUser> findAllUserInviteUserByInviteUserId(Long inviteUserId, Integer userInviteUserStatus);
+
+    public List<UserInviteUser> findAllUserInviteUserByUserId(Long userId, Integer userInviteUserStatus);
+
+    public Integer deleteUserInviteUser(Long collectId);
 }

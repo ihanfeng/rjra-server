@@ -26,6 +26,7 @@
     <bean id="saveWork" class="com.hdg.rjra.rdb.executer.work.SaveWork">
         <property name="rowMapper" ref="workRowMapper"></property>
     </bean>
+    <bean id="findWorkIdsByUserId" class="com.hdg.rjra.rdb.executer.work.FindWorkIdsByUserId"/>
     <util:map id="rdb-work-executer">
         <entry key="findWorkByWorkId" value-ref="findWorkByWorkId"/>
         <entry key="findAllWorkByParamPager" value-ref="findAllWorkByParamPager"/>
@@ -33,5 +34,6 @@
         <entry key="updateWork" value-ref="updateWork"/>
         <entry key="updateWorkStatus" value-ref="updateWorkStatus"/>
         <entry key="saveWork" value-ref="saveWork"/>
+        <entry key="findWorkIdsByUserId" value-ref="findWorkIdsByUserId"/>
     </util:map>
 </beans>

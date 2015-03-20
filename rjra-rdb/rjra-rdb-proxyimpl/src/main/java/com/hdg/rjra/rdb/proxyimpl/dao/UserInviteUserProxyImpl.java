@@ -29,4 +29,16 @@ public class UserInviteUserProxyImpl extends BaseProxy implements IUserInviteUse
         return daoClient.invoke(moduleName, "findUserInviteUserByUserIdAndInviteUserId",
                 new Object[]{userId, collectUserId});
     }
+
+    @Override
+    public List<UserInviteUser> findAllUserInviteUserByInviteUserId(Long inviteUserId, Integer userInviteUserStatus) {
+        return daoClient.invoke(moduleName, "findAllUserInviteUserByInviteUserId",
+                new Object[]{inviteUserId, userInviteUserStatus});
+    }
+
+    @Override
+    public List<UserInviteUser> findAllUserInviteUserByUserId(Long userId, Integer userInviteUserStatus) {
+        return daoClient.invoke(moduleName, "findAllUserInviteUserByUserId",
+                new Object[]{userId, userInviteUserStatus});
+    }
 }

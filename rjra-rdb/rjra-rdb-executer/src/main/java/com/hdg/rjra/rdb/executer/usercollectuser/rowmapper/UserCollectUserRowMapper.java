@@ -16,7 +16,8 @@ public class UserCollectUserRowMapper implements RowMapper<UserCollectUser> {
         re.setCollectId(rs.getLong("collect_id"));
         re.setUserId(rs.getLong("user_id"));
         re.setCollectUserId(rs.getLong("collect_user_id"));
-        re.setCollectDate(rs.getTimestamp("collect_time"));
+        re.setCollectTime(rs.getTimestamp("collect_time"));
+        re.setUserCollectUserStatus(rs.getInt("user_collect_user_status"));
         return re;
     }
 }

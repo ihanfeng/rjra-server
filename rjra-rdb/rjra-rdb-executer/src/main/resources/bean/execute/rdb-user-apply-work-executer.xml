@@ -16,8 +16,23 @@
     <bean id="findUserApplyWorkByUserIdAndWorkId" class="com.hdg.rjra.rdb.executer.userapplywork.FindUserApplyWorkByUserIdAndWorkId">
         <property name="rowMapper" ref="userApplyWorkRowMapper"></property>
     </bean>
+
+    <bean id="findAllUserApplyWorkByUserId" class="com.hdg.rjra.rdb.executer.userapplywork.FindAllUserApplyWorkByUserId">
+        <property name="rowMapper" ref="userApplyWorkRowMapper"></property>
+    </bean>
+
+    <bean id="findAllUserApplyWorkByWorkIds" class="com.hdg.rjra.rdb.executer.userapplywork.FindAllUserApplyWorkByWorkIds">
+        <property name="rowMapper" ref="userApplyWorkRowMapper"></property>
+    </bean>
+
+    <bean id="deleteUserApplyWork" class="com.hdg.rjra.rdb.executer.userapplywork.DeleteUserApplyWork">
+        <property name="rowMapper" ref="userApplyWorkRowMapper"></property>
+    </bean>
     <util:map id="rdb-user-apply-work-executer">
         <entry key="saveUserApplyWork" value-ref="saveUserApplyWork"/>
         <entry key="findUserApplyWorkByUserIdAndWorkId" value-ref="findUserApplyWorkByUserIdAndWorkId"/>
+        <entry key="findAllUserApplyWorkByUserId" value-ref="findAllUserApplyWorkByUserId"/>
+        <entry key="findAllUserApplyWorkByWorkIds" value-ref="findAllUserApplyWorkByWorkIds"/>
+        <entry key="deleteUserApplyWork" value-ref="deleteUserApplyWork"/>
     </util:map>
 </beans>

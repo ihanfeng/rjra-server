@@ -10,7 +10,8 @@ public class UserCollectWork implements Serializable {
     private Long collectId;
     private Long userId;
     private Long workId;
-    private Date collectDate;
+    private Date collectTime;
+    private Integer userCollectWorkStatus;
 
     public Long getCollectId() {
         return collectId;
@@ -36,11 +37,19 @@ public class UserCollectWork implements Serializable {
         this.workId = workId;
     }
 
-    public Date getCollectDate() {
-        return collectDate;
+    public Date getCollectTime() {
+        return collectTime;
     }
 
-    public void setCollectDate(Date collectDate) {
-        this.collectDate = collectDate;
+    public void setCollectTime(Date collectTime) {
+        this.collectTime = collectTime;
+    }
+
+    public Integer getUserCollectWorkStatus() {
+        return userCollectWorkStatus;
+    }
+
+    public void setUserCollectWorkStatus(Integer userCollectWorkStatus) {
+        this.userCollectWorkStatus = userCollectWorkStatus;
     }
 }

@@ -5,6 +5,7 @@ import com.hdg.rjra.rdb.proxy.domain.Work;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,4 +24,6 @@ public interface IWorkProxy extends Serializable {
     public Integer updateWorkStatus(Long workId, Integer status);
 
     public Long saveWork(Work work);
+
+    public List<Long> findWorkIdsByUserId(Long userId, Integer[] workStatus);
 }

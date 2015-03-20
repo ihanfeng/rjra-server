@@ -17,6 +17,7 @@ public class UserApplyWorkRowMapper implements RowMapper<UserApplyWork> {
         re.setUserId(rs.getLong("user_id"));
         re.setWorkId(rs.getLong("work_id"));
         re.setApplyTime(rs.getTimestamp("apply_time"));
+        re.setUserApplyWorkStatus(rs.getInt("user_apply_work_status"));
         return re;
     }
 }

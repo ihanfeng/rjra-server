@@ -11,6 +11,7 @@ public class UserApplyWork implements Serializable {
     private Long workId;
     private Long userId;
     private Date applyTime;
+    private Integer userApplyWorkStatus;
 
     public Long getApplyId() {
         return applyId;
@@ -42,5 +43,13 @@ public class UserApplyWork implements Serializable {
 
     public void setApplyTime(Date applyTime) {
         this.applyTime = applyTime;
+    }
+
+    public Integer getUserApplyWorkStatus() {
+        return userApplyWorkStatus;
+    }
+
+    public void setUserApplyWorkStatus(Integer userApplyWorkStatus) {
+        this.userApplyWorkStatus = userApplyWorkStatus;
     }
 }

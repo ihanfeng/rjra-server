@@ -16,7 +16,8 @@ public class UserCollectWorkRowMapper implements RowMapper<UserCollectWork> {
         re.setCollectId(rs.getLong("collect_id"));
         re.setUserId(rs.getLong("user_id"));
         re.setWorkId(rs.getLong("work_id"));
-        re.setCollectDate(rs.getTimestamp("collect_time"));
+        re.setCollectTime(rs.getTimestamp("collect_time"));
+        re.setUserCollectWorkStatus(rs.getInt("user_collect_work_status"));
         return re;
     }
 }
