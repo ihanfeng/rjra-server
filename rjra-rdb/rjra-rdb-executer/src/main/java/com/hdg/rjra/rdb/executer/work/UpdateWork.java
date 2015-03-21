@@ -45,8 +45,8 @@ public class UpdateWork extends AbstractExecuter {
                     ps.setObject(13, StringUtils.longArrayToString(work.getWorkWelfareIds()));
                     ps.setObject(14, work.getWorkDesc());
                     ps.setObject(15, new Date());
-                    ps.setObject(16, work.getWorkId());
-                    ps.setObject(17, work.getWorkStatus());
+                    ps.setObject(16, work.getWorkStatus());
+                    ps.setObject(17, work.getWorkId());
                     return ps;
                 }
             });
