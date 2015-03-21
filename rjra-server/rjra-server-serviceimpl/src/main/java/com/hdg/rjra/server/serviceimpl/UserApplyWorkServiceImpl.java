@@ -45,6 +45,9 @@ public class UserApplyWorkServiceImpl implements UserApplyWorkService {
         }
         UserApplyWorkBo userApplyWorkBo = new UserApplyWorkBo();
         ConversionUtils.conversion(userApplyWork, userApplyWorkBo);
+        Long userId = userApplyWork.getUserId();
+        Long workId = userApplyWork.getWorkId();
+
         return userApplyWorkBo;
     }
 
