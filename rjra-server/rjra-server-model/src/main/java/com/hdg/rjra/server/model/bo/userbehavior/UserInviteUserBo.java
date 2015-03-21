@@ -2,9 +2,9 @@ package com.hdg.rjra.server.model.bo.userbehavior;
 
 import com.hdg.common.annotation.DateTimeFormat;
 import com.hdg.common.constants.CommonConstants;
+import com.hdg.rjra.server.model.bo.user.UserBo;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by Rock on 2015/3/18 0018.
@@ -12,7 +12,9 @@ import java.util.Date;
 public class UserInviteUserBo implements Serializable {
     private Long inviteId;
     private Long userId;
+    private UserBo userDetail;
     private Long inviteUserId;
+    private UserBo inviteUserDetail;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String inviteTime;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
@@ -110,5 +112,21 @@ public class UserInviteUserBo implements Serializable {
 
     public void setUserInviteUserStatus(Integer userInviteUserStatus) {
         this.userInviteUserStatus = userInviteUserStatus;
+    }
+
+    public UserBo getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(UserBo userDetail) {
+        this.userDetail = userDetail;
+    }
+
+    public UserBo getInviteUserDetail() {
+        return inviteUserDetail;
+    }
+
+    public void setInviteUserDetail(UserBo inviteUserDetail) {
+        this.inviteUserDetail = inviteUserDetail;
     }
 }

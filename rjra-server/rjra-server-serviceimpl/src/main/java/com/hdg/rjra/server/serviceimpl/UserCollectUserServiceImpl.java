@@ -4,8 +4,11 @@ import com.hdg.common.utils.ConversionUtils;
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserCollectUserProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserCollectUser;
+import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.model.bo.userbehavior.UserCollectUserBo;
+import com.hdg.rjra.server.model.bo.work.WorkBo;
 import com.hdg.rjra.server.service.UserCollectUserService;
+import com.hdg.rjra.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +23,9 @@ public class UserCollectUserServiceImpl implements UserCollectUserService {
 
     @Autowired
     IUserCollectUserProxy userCollectUserProxy;
+
+    @Autowired
+    UserService userService;
 
     @Override
     public Long saveUserCollectUser(UserCollectUserBo userCollectUserBo) {
@@ -40,6 +46,12 @@ public class UserCollectUserServiceImpl implements UserCollectUserService {
         }
         UserCollectUserBo userCollectUserBo = new UserCollectUserBo();
         ConversionUtils.conversion(userCollectUser, userCollectUserBo);
+        Long userId = userCollectUser.getUserId();
+        Long collectUserId = userCollectUser.getCollectUserId();
+        UserBo userBo = userService.findUserByUserId(userId);
+        UserBo collectUserBo = userService.findUserByUserId(collectUserId);
+        userCollectUserBo.setUserDetail(userBo);
+        userCollectUserBo.setCollectUserDetail(collectUserBo);
         return userCollectUserBo;
     }
 

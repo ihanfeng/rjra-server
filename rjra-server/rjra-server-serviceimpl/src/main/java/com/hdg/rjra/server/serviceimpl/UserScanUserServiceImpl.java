@@ -5,8 +5,10 @@ import com.hdg.rjra.rdb.proxy.daoproxy.IUserScanUserProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserScanUser;
 import com.hdg.rjra.rdb.proxyimpl.dao.UserScanUserProxyImpl;
+import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.model.bo.userbehavior.UserScanUserBo;
 import com.hdg.rjra.server.service.UserScanUserService;
+import com.hdg.rjra.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,9 @@ public class UserScanUserServiceImpl implements UserScanUserService {
 
     @Autowired
     IUserScanUserProxy userScanUserProxy;
+
+    @Autowired
+    UserService userService;
 
     @Override
     public Long saveUserScanUser(UserScanUserBo userScanUserBo) {
@@ -41,6 +46,12 @@ public class UserScanUserServiceImpl implements UserScanUserService {
         }
         UserScanUserBo userScanUserBo = new UserScanUserBo();
         ConversionUtils.conversion(userScanUser, userScanUserBo);
+        Long userId = userScanUser.getUserId();
+        Long scanUserId = userScanUser.getScanUserId();
+        UserBo userBo = userService.findUserByUserId(userId);
+        UserBo scanUserBo = userService.findUserByUserId(scanUserId);
+        userScanUserBo.setUserDetail(userBo);
+        userScanUserBo.setScanUserDetail(scanUserBo);
         return userScanUserBo;
     }
 

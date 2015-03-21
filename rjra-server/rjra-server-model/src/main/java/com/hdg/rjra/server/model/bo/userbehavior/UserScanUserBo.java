@@ -2,6 +2,7 @@ package com.hdg.rjra.server.model.bo.userbehavior;
 
 import com.hdg.common.annotation.DateTimeFormat;
 import com.hdg.common.constants.CommonConstants;
+import com.hdg.rjra.server.model.bo.user.UserBo;
 
 import java.io.Serializable;
 
@@ -11,7 +12,9 @@ import java.io.Serializable;
 public class UserScanUserBo implements Serializable {
     private Long scanId;
     private Long userId;
+    private UserBo userDetail;
     private Long scanUserId;
+    private UserBo scanUserDetail;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String scanTime;
 
@@ -45,5 +48,21 @@ public class UserScanUserBo implements Serializable {
 
     public void setScanTime(String scanTime) {
         this.scanTime = scanTime;
+    }
+
+    public UserBo getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(UserBo userDetail) {
+        this.userDetail = userDetail;
+    }
+
+    public UserBo getScanUserDetail() {
+        return scanUserDetail;
+    }
+
+    public void setScanUserDetail(UserBo scanUserDetail) {
+        this.scanUserDetail = scanUserDetail;
     }
 }

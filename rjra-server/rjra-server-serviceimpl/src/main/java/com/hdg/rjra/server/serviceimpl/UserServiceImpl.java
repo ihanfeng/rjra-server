@@ -6,6 +6,7 @@ import com.hdg.rjra.rdb.proxy.daoproxy.IUserProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.User;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
+import com.hdg.rjra.server.model.bo.resume.ResumeBo;
 import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.service.CompanyService;
 import com.hdg.rjra.server.service.FileService;
@@ -73,12 +74,12 @@ public class UserServiceImpl implements UserService {
             AccountFileBo userImageInfo = fileService.findAccountFileById(hadeImage);
             userBo.setUserHeadImageFileDetail(userImageInfo);
         }
-//        Long resumeID = user.getResumeId();
-//        if(null != resumeID)
-//        {
-//            ResumeBo resumeBo = resumeService.findResumeByResumeId(resumeID);
-//            userBo.setResumeDetail(resumeBo);
-//        }
+        Long resumeID = user.getResumeId();
+        if(null != resumeID)
+        {
+            ResumeBo resumeBo = resumeService.findResumeByResumeId(resumeID);
+            userBo.setResumeDetail(resumeBo);
+        }
 //        Long companyId = user.getCompanyId();
 //        if(null != companyId)
 //        {

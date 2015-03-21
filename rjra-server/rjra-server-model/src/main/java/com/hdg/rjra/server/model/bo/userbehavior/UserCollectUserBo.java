@@ -2,6 +2,7 @@ package com.hdg.rjra.server.model.bo.userbehavior;
 
 import com.hdg.common.annotation.DateTimeFormat;
 import com.hdg.common.constants.CommonConstants;
+import com.hdg.rjra.server.model.bo.user.UserBo;
 
 import java.io.Serializable;
 
@@ -11,7 +12,9 @@ import java.io.Serializable;
 public class UserCollectUserBo implements Serializable {
     private Long collectId;
     private Long userId;
+    private UserBo userDetail;
     private Long collectUserId;
+    private UserBo collectUserDetail;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String collectTime;
     private Integer userCollectUserStatus;
@@ -54,5 +57,21 @@ public class UserCollectUserBo implements Serializable {
 
     public void setUserCollectUserStatus(Integer userCollectUserStatus) {
         this.userCollectUserStatus = userCollectUserStatus;
+    }
+
+    public UserBo getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(UserBo userDetail) {
+        this.userDetail = userDetail;
+    }
+
+    public UserBo getCollectUserDetail() {
+        return collectUserDetail;
+    }
+
+    public void setCollectUserDetail(UserBo collectUserDetail) {
+        this.collectUserDetail = collectUserDetail;
     }
 }

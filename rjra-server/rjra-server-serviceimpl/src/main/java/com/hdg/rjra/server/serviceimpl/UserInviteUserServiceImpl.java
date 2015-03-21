@@ -4,8 +4,10 @@ import com.hdg.common.utils.ConversionUtils;
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserInviteUserProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserInviteUser;
+import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.model.bo.userbehavior.UserInviteUserBo;
 import com.hdg.rjra.server.service.UserInviteUserService;
+import com.hdg.rjra.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,9 @@ public class UserInviteUserServiceImpl implements UserInviteUserService {
 
     @Autowired
     IUserInviteUserProxy userInviteUserProxy;
+
+    @Autowired
+    UserService userService;
 
     @Override
     public Long saveUserInviteUser(UserInviteUserBo userInviteUserBo) {
@@ -45,6 +50,12 @@ public class UserInviteUserServiceImpl implements UserInviteUserService {
         }
         UserInviteUserBo userInviteUserBo = new UserInviteUserBo();
         ConversionUtils.conversion(userInviteUser, userInviteUserBo);
+        Long userId = userInviteUser.getUserId();
+        Long inviteUserId = userInviteUser.getInviteUserId();
+        UserBo userBo = userService.findUserByUserId(userId);
+        UserBo inviteUserUserBo = userService.findUserByUserId(inviteUserId);
+        userInviteUserBo.setUserDetail(userBo);
+        userInviteUserBo.setInviteUserDetail(inviteUserUserBo);
         return userInviteUserBo;
     }
 

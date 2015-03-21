@@ -3,11 +3,16 @@ package com.hdg.rjra.server.serviceimpl;
 import com.hdg.common.utils.ConversionUtils;
 import com.hdg.rjra.base.enumerate.WorkStatus;
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserApplyWorkProxy;
+import com.hdg.rjra.rdb.proxy.daoproxy.IUserProxy;
 import com.hdg.rjra.rdb.proxy.daoproxy.IWorkProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserApplyWork;
+import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.model.bo.userbehavior.UserApplyWorkBo;
+import com.hdg.rjra.server.model.bo.work.WorkBo;
 import com.hdg.rjra.server.service.UserApplyWorkService;
+import com.hdg.rjra.server.service.UserService;
+import com.hdg.rjra.server.service.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +30,12 @@ public class UserApplyWorkServiceImpl implements UserApplyWorkService {
 
     @Autowired
     IWorkProxy workProxy;
+
+    @Autowired
+    WorkService workService;
+
+    @Autowired
+    UserService userService;
 
     @Override
     public Long saveUserApplyWork(UserApplyWorkBo userApplyWorkBo) {
@@ -47,7 +58,10 @@ public class UserApplyWorkServiceImpl implements UserApplyWorkService {
         ConversionUtils.conversion(userApplyWork, userApplyWorkBo);
         Long userId = userApplyWork.getUserId();
         Long workId = userApplyWork.getWorkId();
-
+        UserBo userBo = userService.findUserByUserId(userId);
+        WorkBo workBo = workService.findWorkByWorkId(workId);
+        userApplyWorkBo.setUserDetail(userBo);
+        userApplyWorkBo.setWorkDetail(workBo);
         return userApplyWorkBo;
     }
 
