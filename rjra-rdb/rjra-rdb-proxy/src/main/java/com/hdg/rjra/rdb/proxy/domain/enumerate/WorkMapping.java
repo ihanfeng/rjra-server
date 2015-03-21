@@ -21,7 +21,9 @@ public enum WorkMapping implements BaseMapping {
     WorkExperienceId("work_experience_id"),
     WorkWelfareIds("work_welfare_ids", " in "),
     WorkDesc("work_desc", " like "),
-    WorkStatus("work_status");
+    WorkStatus("work_status"),
+    AgeId("age_id"),
+    WorkGender("work_gender");
 
     private String dbField;
 

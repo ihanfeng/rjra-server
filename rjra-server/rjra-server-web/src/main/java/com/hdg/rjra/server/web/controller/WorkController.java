@@ -215,6 +215,12 @@ public class WorkController {
             if (workParam.getWorkStatus() != null) {
                 mapParam.put(WorkMapping.WorkStatus, workParam.getWorkStatus());
             }
+            if (workParam.getAgeId() != null) {
+                mapParam.put(WorkMapping.AgeId, workParam.getAgeId());
+            }
+            if (workParam.getWorkGender() != null) {
+                mapParam.put(WorkMapping.WorkGender, workParam.getWorkGender());
+            }
             return mapParam;
         }
     }

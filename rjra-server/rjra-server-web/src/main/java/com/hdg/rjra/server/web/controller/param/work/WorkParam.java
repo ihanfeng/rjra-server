@@ -28,6 +28,8 @@ public class WorkParam extends BaseParam {
     private Long[] workWelfareIds;
     private String workDesc;
     private Integer workStatus;
+    private Long ageId;
+    private Integer workGender;
 
     public Long getWorkId() {
         return workId;
@@ -203,5 +205,21 @@ public class WorkParam extends BaseParam {
 
     public void setCategoryLevel3Ids(Long[] categoryLevel3Ids) {
         this.categoryLevel3Ids = categoryLevel3Ids;
+    }
+
+    public Long getAgeId() {
+        return ageId;
+    }
+
+    public void setAgeId(Long ageId) {
+        this.ageId = ageId;
+    }
+
+    public Integer getWorkGender() {
+        return workGender;
+    }
+
+    public void setWorkGender(Integer workGender) {
+        this.workGender = workGender;
     }
 }

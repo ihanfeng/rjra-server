@@ -33,6 +33,8 @@ public class WorkBo {
     private String workCreateTime;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String workUpdateTime;
+    private Long ageId;
+    private Integer workGender;
 
     public Long getWorkId() {
         return workId;
@@ -208,5 +210,21 @@ public class WorkBo {
 
     public void setWorkUpdateTime(String workUpdateTime) {
         this.workUpdateTime = workUpdateTime;
+    }
+
+    public Long getAgeId() {
+        return ageId;
+    }
+
+    public void setAgeId(Long ageId) {
+        this.ageId = ageId;
+    }
+
+    public Integer getWorkGender() {
+        return workGender;
+    }
+
+    public void setWorkGender(Integer workGender) {
+        this.workGender = workGender;
     }
 }

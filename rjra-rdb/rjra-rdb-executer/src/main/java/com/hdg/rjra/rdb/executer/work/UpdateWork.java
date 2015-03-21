@@ -19,7 +19,7 @@ public class UpdateWork extends AbstractExecuter {
     String sql = "UPDATE user_work SET work_longitude=?,work_latitude=?," +
             "category_level1_id=?,category_level2_id=?,category_level3_id=?,work_area_id=?," +
             "work_city_id=?,work_province_id=?,work_address=?,work_need_person=?,work_wage_id=?," +
-            "work_experience_id=?,work_welfare_ids=?,work_desc=?,work_update_time=?,work_status=? WHERE work_id=?";
+            "work_experience_id=?,work_welfare_ids=?,work_desc=?,work_update_time=?,work_status=?,age_id=?,work_gender=? WHERE work_id=?";
 
     @Override
     public Object execute(Object[] params) {
@@ -46,7 +46,9 @@ public class UpdateWork extends AbstractExecuter {
                     ps.setObject(14, work.getWorkDesc());
                     ps.setObject(15, new Date());
                     ps.setObject(16, work.getWorkStatus());
-                    ps.setObject(17, work.getWorkId());
+                    ps.setObject(17, work.getAgeId());
+                    ps.setObject(18, work.getWorkGender());
+                    ps.setObject(19, work.getWorkId());
                     return ps;
                 }
             });

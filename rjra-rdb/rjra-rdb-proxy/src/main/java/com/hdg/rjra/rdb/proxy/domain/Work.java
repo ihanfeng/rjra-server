@@ -29,6 +29,8 @@ public class Work implements Serializable {
     private Integer workStatus;
     private Date workCreateTime;
     private Date workUpdateTime;
+    private Long ageId;
+    private Integer workGender;
 
     public Long getWorkId() {
         return workId;
@@ -196,5 +198,21 @@ public class Work implements Serializable {
 
     public void setWorkUpdateTime(Date workUpdateTime) {
         this.workUpdateTime = workUpdateTime;
+    }
+
+    public Long getAgeId() {
+        return ageId;
+    }
+
+    public void setAgeId(Long ageId) {
+        this.ageId = ageId;
+    }
+
+    public Integer getWorkGender() {
+        return workGender;
+    }
+
+    public void setWorkGender(Integer workGender) {
+        this.workGender = workGender;
     }
 }
