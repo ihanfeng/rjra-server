@@ -5,6 +5,7 @@ import com.hdg.rjra.base.enumerate.UserStatus;
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.User;
+import com.hdg.rjra.server.model.bo.company.CompanyBo;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.model.bo.resume.ResumeBo;
 import com.hdg.rjra.server.model.bo.user.UserBo;
@@ -61,7 +62,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserBo findUserByResumeId(Long resumeId) {
         User user = userProxy.findUserByResumeId(resumeId);
-        return getUserBo(user);
+        return getSimpleUserBo(user);
+    }
+
+    private UserBo getSimpleUserBo(User user) {
+        if (null == user) {
+            return null;
+        }
+        UserBo userBo = new UserBo();
+        Long hadeImage = user.getUserHeadImageFile();
+        if (null != hadeImage) {
+            AccountFileBo userImageInfo = fileService.findAccountFileById(hadeImage);
+            userBo.setUserHeadImageFileDetail(userImageInfo);
+        }
+        ConversionUtils.conversion(user, userBo);
+        return userBo;
     }
 
     private UserBo getUserBo(User user) {
@@ -80,12 +95,12 @@ public class UserServiceImpl implements UserService {
             ResumeBo resumeBo = resumeService.findResumeByResumeId(resumeID);
             userBo.setResumeDetail(resumeBo);
         }
-//        Long companyId = user.getCompanyId();
-//        if(null != companyId)
-//        {
-//            CompanyBo companyBo = companyService.findCompanyByCompanyId(companyId);
-//            userBo.setCompanyDetail(companyBo);
-//        }
+        Long companyId = user.getCompanyId();
+        if(null != companyId)
+        {
+            CompanyBo companyBo = companyService.findCompanyByCompanyId(companyId);
+            userBo.setCompanyDetail(companyBo);
+        }
         ConversionUtils.conversion(user, userBo);
         return userBo;
     }
