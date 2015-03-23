@@ -2,6 +2,8 @@ package com.hdg.rjra.server.service;
 
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -14,4 +16,7 @@ public interface FileService {
     public List<AccountFileBo> findAccountFileByIds(Long[] fileIds);
 
     public AccountFileBo findAccountFileById(Long fileId);
+
+    public AccountFileBo uploadFile(InputStream inputStream, String type, String key, String fileName, String fileType, String fileFormat) throws
+            IOException;
 }

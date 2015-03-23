@@ -40,6 +40,4 @@
 
     <bean id="managerProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.ManagerProxyImpl"/>
 
-    <bean id="customerProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CustomerProxyImpl"/>
-
 </beans>

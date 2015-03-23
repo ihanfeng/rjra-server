@@ -9,13 +9,12 @@ import com.hdg.common.properties.CustomizedPropertyConfigurer;
 import com.hdg.common.utils.AESUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
-import com.hdg.common.utils.UUIDUtils;
 import com.hdg.rjra.base.error.ErrorType;
-import com.hdg.rjra.customer.web.controller.param.customer.ChangePwdParam;
-import com.hdg.rjra.customer.web.controller.param.customer.CustomerParam;
 import com.hdg.rjra.customer.web.filter.SessionToken;
-import com.hdg.rjra.server.model.bo.customer.CustomerBo;
-import com.hdg.rjra.server.service.CustomerService;
+import com.hdg.rjra.server.model.bo.user.UserBo;
+import com.hdg.rjra.server.model.param.LoginParam;
+import com.hdg.rjra.server.model.param.user.ChangePwdParam;
+import com.hdg.rjra.server.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +41,7 @@ public class CustomerController {
     private static final Logger LOG = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
-    CustomerService customerService;
+    UserService userService;
 
     /**
      *
@@ -59,24 +58,19 @@ public class CustomerController {
     public ResponseEntity<String> login(@RequestParam(value = "param", required = true) String param,
                                         HttpServletRequest request) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        CustomerBo customerBo = null;
-        String data = null;
+        UserBo data = null;
         try {
-            CustomerParam customerParam = JsonUtils.jsonToObject(param, CustomerParam.class);
+            LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);
             String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
-            String pwd = AESUtils.encrypt(customerParam.getCustomerPwd(), customerParam.getCustomerName(), encryptionFactor);
-            customerBo = customerService.findCustomerByNameAndPwd(customerParam.getCustomerName(), pwd);
-            if (customerBo == null) {
-                errorType = ErrorType.MANAGER_ALREADY_NOT_EXIST;
-            }
-            else {
-                data = UUIDUtils.randomUUID();
-                request.getSession().setAttribute(SessionToken.TOKEN, data);
+            String pwd = AESUtils.encrypt(loginParam.getPwd(), loginParam.getMobile(), encryptionFactor);
+            data = userService.findUserByMobileAndPwd(loginParam.getMobile(), pwd);
+            if (data == null) {
+                errorType = ErrorType.USER_ALREADY_NOT_EXIST;
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
             errorType.setMessage(e.getMessage());
-            LOG.error("customer login ->", e);
+            LOG.error("login user ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
@@ -107,29 +101,60 @@ public class CustomerController {
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
+    /**
+     * 注册
+     * @param request
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "register")
+    @ResponseBody
+    public ResponseEntity<String> saveUser(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        UserBo data = null;
+        try {
+
+            LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);
+            Integer count = userService.findUserExistsByMobile(loginParam.getMobile());
+            if(count == null || count.intValue() == 0) {
+                String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+                String pwd = AESUtils.encrypt(loginParam.getPwd(), loginParam.getMobile(), encryptionFactor);
+                data = userService.saveUser(loginParam.getMobile(), pwd);
+            } else {
+                errorType = ErrorType.MOBILE_ALREADY_EXISTS;
+            }
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("register->", e);
+        }
+
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
 
     @RequestMapping(value = "changePwd")
     @ResponseBody
     public ResponseEntity<String> changePwd(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        CustomerBo customerBo = null;
+        UserBo userBo = null;
         Integer data = null;
         try {
             ChangePwdParam changePwdParam = JsonUtils.jsonToObject(param, ChangePwdParam.class);
             String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
-            String pwd = AESUtils.encrypt(changePwdParam.getOldPwd(), changePwdParam.getName(), encryptionFactor);
-            customerBo = customerService.findCustomerByNameAndPwd(changePwdParam.getName(), pwd);
-            if (customerBo == null) {
-                errorType = ErrorType.MANAGER_NAME_OR_PWD_IS_ERROR;
+            String pwd = AESUtils.encrypt(changePwdParam.getOldPwd(), changePwdParam.getMobile(), encryptionFactor);
+            userBo = userService.findUserByMobileAndPwd(changePwdParam.getMobile(), pwd);
+            if (userBo == null) {
+                errorType = ErrorType.USER_MOBILE_OR_PWD_IS_ERROR;
             }
             else{
-                String newPwd = AESUtils.encrypt(changePwdParam.getNewPwd(), changePwdParam.getName(), encryptionFactor);
-                data = customerService.updateCustomerPwd(customerBo.getCustomerId(), newPwd);
+                String newPwd = AESUtils.encrypt(changePwdParam.getNewPwd(), changePwdParam.getMobile(), encryptionFactor);
+                data = userService.updateUserPwd(userBo.getUserId(), newPwd);
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
             errorType.setMessage(e.getMessage());
-            LOG.error("customer changePwd ->", e);
+            LOG.error("user changePwd ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));

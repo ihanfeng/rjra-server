@@ -32,8 +32,6 @@
 
     <import resource="classpath:bean/execute/rdb-manager-executer.xml"/>
 
-    <import resource="classpath:bean/execute/rdb-customer-executer.xml"/>
-
     <!-- handler相关 -->
     <bean id="requestHandler" class="com.hdg.rjra.rdb.executer.RequestHandler">
         <property name="map">
@@ -61,7 +59,6 @@
 
                 <entry key="rdb-manager" value-ref="rdb-manager-executer"/>
 
-                <entry key="rdb-customer" value-ref="rdb-customer-executer"/>
             </map>
         </property>
     </bean>

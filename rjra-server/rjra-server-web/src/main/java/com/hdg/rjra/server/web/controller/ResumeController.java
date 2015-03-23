@@ -14,10 +14,9 @@ import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.ResumeMapping;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.model.bo.resume.ResumeBo;
+import com.hdg.rjra.server.model.param.resume.ResumeParam;
 import com.hdg.rjra.server.service.FileService;
 import com.hdg.rjra.server.service.ResumeService;
-import com.hdg.rjra.server.web.controller.param.resume.ResumeParam;
-import com.hdg.rjra.server.web.utils.UploadFileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,7 +135,7 @@ public class ResumeController {
                 String resumeHeadImageFileType = multiRequest.getParameter("resumeHeadImageFileType");
                 String resumeHeadImageFileFormat = multiRequest.getParameter("resumeHeadImageFileFormat");
                 // 文件保存目录路径
-                AccountFileBo accountFileBo = UploadFileUtils.uploadFile(file.getInputStream(), "user", userId, resumeHeadImageFileName, resumeHeadImageFileType, resumeHeadImageFileFormat);
+                AccountFileBo accountFileBo = fileService.uploadFile(file.getInputStream(), "user", userId, resumeHeadImageFileName, resumeHeadImageFileType, resumeHeadImageFileFormat);
                 data = fileService.saveAccountFile(accountFileBo);
                 if (null == data) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;

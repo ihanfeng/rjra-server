@@ -15,13 +15,12 @@ import com.hdg.rjra.base.error.ErrorType;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.model.bo.user.UserBo;
+import com.hdg.rjra.server.model.param.LocationParam;
+import com.hdg.rjra.server.model.param.LoginParam;
+import com.hdg.rjra.server.model.param.user.ChangePwdParam;
+import com.hdg.rjra.server.model.param.user.UserParam;
 import com.hdg.rjra.server.service.FileService;
 import com.hdg.rjra.server.service.UserService;
-import com.hdg.rjra.server.web.controller.param.LocationParam;
-import com.hdg.rjra.server.web.controller.param.LoginParam;
-import com.hdg.rjra.server.web.controller.param.user.ChangePwdParam;
-import com.hdg.rjra.server.web.controller.param.user.UserParam;
-import com.hdg.rjra.server.web.utils.UploadFileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -169,7 +168,7 @@ public class UserController {
                 String userHeadImageFileType = multiRequest.getParameter("userHeadImageFileType");
                 String userHeadImageFileFormat = multiRequest.getParameter("userHeadImageFileFormat");
                 // 文件保存目录路径
-                AccountFileBo accountFileBo = UploadFileUtils.uploadFile(file.getInputStream(), "user", userId, userHeadImageFileName, userHeadImageFileType, userHeadImageFileFormat);
+                AccountFileBo accountFileBo = fileService.uploadFile(file.getInputStream(), "user", userId, userHeadImageFileName, userHeadImageFileType, userHeadImageFileFormat);
                 data = fileService.saveAccountFile(accountFileBo);
                 if (null == data) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;

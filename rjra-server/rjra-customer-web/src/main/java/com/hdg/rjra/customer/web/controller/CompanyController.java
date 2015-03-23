@@ -1,4 +1,4 @@
-package com.hdg.rjra.server.web.controller;
+package com.hdg.rjra.customer.web.controller;
 
 /**
  * Created by Rock on 2015/1/8 0008.
