@@ -14,13 +14,13 @@ public class FindAllUserApplyWorkByWorkIdsPager extends AbstractExecuter {
 
     @Override
     public Object execute(Object[] params) {
-        Long[] workIds = (Long[]) params[0];
+        List<Long> workIds = (List<Long>) params[0];
         Integer firstResult = (Integer) params[1];
         Integer sizeNo = (Integer) params[2];;
         StringBuffer executeSql = new StringBuffer();
         executeSql.append("select * from user_apply_work where 1=1");
         executeSql.append(" and work_id in (");
-        executeSql.append(SqlUtils.appendPlaceholder(workIds.length));
+        executeSql.append(SqlUtils.appendPlaceholder(workIds.size()));
         executeSql.append(")");
         executeSql.append(" and and user_apply_work_status = ");
         executeSql.append(UserApplyWorkStatus.Active.getCode());
