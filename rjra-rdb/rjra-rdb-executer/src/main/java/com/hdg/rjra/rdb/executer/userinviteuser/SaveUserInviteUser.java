@@ -16,7 +16,7 @@ public class SaveUserInviteUser extends AbstractExecuter {
 
     private String sql = "insert into user_invite_user(user_id,invite_user_id,invite_time," +
             "user_invite_user_status,interview_time,interview_address,interview_mobile,interview_desc," +
-            "apply_id,work_id,interviewer) values (?,?,?,?,?,?,?,?,?,?)";
+            "apply_id,work_id,interviewer) values (?,?,?,?,?,?,?,?,?,?,?)";
 
     @Override
     public Object execute(Object[] params) {

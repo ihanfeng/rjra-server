@@ -20,8 +20,8 @@ public class CityProxyImpl extends BaseProxy implements ICityProxy {
     }
 
     @Override
-    public List<City> findCityByProcinceId(Long procinceId) {
-        return daoClient.invoke(moduleName, "findCityByProcinceId",
-                new Object[]{procinceId});
+    public List<City> findCityByProvinceId(Long provinceId) {
+        return daoClient.invoke(moduleName, "findCityByProvinceId",
+                new Object[]{provinceId});
     }
 }

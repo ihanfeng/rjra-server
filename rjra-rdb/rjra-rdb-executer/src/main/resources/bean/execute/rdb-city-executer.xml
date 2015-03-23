@@ -12,11 +12,11 @@
     <bean id="findCityByCityId" class="com.hdg.rjra.rdb.executer.city.FindCityByCityId">
         <property name="rowMapper" ref="cityRowMapper"></property>
     </bean>
-    <bean id="findCityByProcinceId" class="com.hdg.rjra.rdb.executer.city.FindCityByProcinceId">
+    <bean id="findCityByProvinceId" class="com.hdg.rjra.rdb.executer.city.FindCityByProvinceId">
         <property name="rowMapper" ref="cityRowMapper"></property>
     </bean>
     <util:map id="rdb-city-executer">
         <entry key="findCityByCityId" value-ref="findCityByCityId"/>
-        <entry key="findCityByProcinceId" value-ref="findCityByProcinceId"/>
+        <entry key="findCityByProcinceId" value-ref="findCityByProvinceId"/>
     </util:map>
 </beans>

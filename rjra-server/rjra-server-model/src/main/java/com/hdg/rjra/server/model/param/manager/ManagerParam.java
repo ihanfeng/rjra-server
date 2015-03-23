@@ -1,9 +1,11 @@
 package com.hdg.rjra.server.model.param.manager;
 
+import com.hdg.rjra.server.model.param.BaseParam;
+
 /**
  * Created by Rock on 2015/1/10 0010.
  */
-public class ManagerParam {
+public class ManagerParam extends BaseParam {
 
     private Long managerId;
     private String managerName;

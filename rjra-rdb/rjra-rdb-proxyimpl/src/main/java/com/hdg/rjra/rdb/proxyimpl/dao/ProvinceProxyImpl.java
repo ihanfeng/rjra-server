@@ -4,6 +4,8 @@ import com.hdg.rjra.rdb.client.Client;
 import com.hdg.rjra.rdb.proxy.daoproxy.IProvinceProxy;
 import com.hdg.rjra.rdb.proxy.domain.Province;
 
+import java.util.List;
+
 /**
  * Created by Rock on 2015/1/3 0003.
  */
@@ -18,7 +20,7 @@ public class ProvinceProxyImpl extends BaseProxy implements IProvinceProxy {
     }
 
     @Override
-    public Province findAllProvince() {
+    public List<Province> findAllProvince() {
         return daoClient.invoke(moduleName, "findAllProvince",
                 new Object[]{});
     }
