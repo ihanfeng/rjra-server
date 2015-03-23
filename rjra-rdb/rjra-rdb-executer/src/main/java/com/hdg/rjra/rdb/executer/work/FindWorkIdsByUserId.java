@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Administrator on 2015/3/20.
  */
 public class FindWorkIdsByUserId extends AbstractExecuter {
-    static String sql = "select work_id from user_work where user_id = ? and work_status="+ WorkStatus.Active;
+    static String sql = "select work_id from user_work where user_id = ? and work_status="+ WorkStatus.Active.getCode();
     @Override
     public Object execute(Object[] params) {
         List list = getJdbcTemplate().queryForList(sql, params, new RowMapper<Long>() {
