@@ -6,7 +6,6 @@ import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserCollectUser;
 import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.model.bo.userbehavior.UserCollectUserBo;
-import com.hdg.rjra.server.model.bo.work.WorkBo;
 import com.hdg.rjra.server.service.UserCollectUserService;
 import com.hdg.rjra.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

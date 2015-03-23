@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by Rock on 2015/1/8 0008.
  */
-public class Company implements Serializable {
+public class Company implements BaseDomain {
 
     private Long companyId;
     private String companyName;
@@ -18,6 +18,7 @@ public class Company implements Serializable {
     private String companyAddress;
     private String companyContact;
     private String companyContactMobile;
+    private String companyEmail;
     private Long companyLogoImageFile;
     private Long companyBizlicenseImageFile;
     private Long companyUserIdCardImageFile;
@@ -215,5 +216,13 @@ public class Company implements Serializable {
 
     public void setCompanyImages(Long[] companyImages) {
         this.companyImages = companyImages;
+    }
+
+    public String getCompanyEmail() {
+        return companyEmail;
+    }
+
+    public void setCompanyEmail(String companyEmail) {
+        this.companyEmail = companyEmail;
     }
 }

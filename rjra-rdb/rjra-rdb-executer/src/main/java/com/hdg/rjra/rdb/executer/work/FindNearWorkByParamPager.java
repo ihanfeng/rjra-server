@@ -4,7 +4,7 @@ import com.hdg.common.utils.CoordinateUtils;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
 import com.hdg.rjra.rdb.proxy.utils.SqlUtils;
-import com.hdg.rjra.rdb.proxy.utils.WhereAndSqlParam;
+import com.hdg.rjra.rdb.proxy.utils.SqlParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +28,10 @@ public class FindNearWorkByParamPager extends AbstractExecuter {
         List<Object> objects = new ArrayList<Object>();
         StringBuffer executeSql = new StringBuffer();
         executeSql.append("select * from user_work where 1=1");
-        WhereAndSqlParam whereAndSqlParam = SqlUtils.buildWhereAndSqlByMapParam(param);
-        if (whereAndSqlParam != null) {
-            executeSql.append(whereAndSqlParam.getSql());
-            objects.addAll(whereAndSqlParam.getObjects());
+        SqlParam sqlParam = SqlUtils.buildWhereAndSqlByMapParam(param);
+        if (sqlParam != null) {
+            executeSql.append(sqlParam.getSql());
+            objects.addAll(sqlParam.getObjects());
         }
         objects.addAll(SqlUtils.arrayToList(status));
         executeSql.append(" and work_status in (");

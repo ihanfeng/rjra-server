@@ -17,7 +17,7 @@ public class UpdateCompany extends AbstractExecuter {
 
     String sql = "UPDATE user_company SET " +
             "company_name=?,company_type=?,company_scale=?,company_province_id=?,company_city_id=?,company_area_id=?,company_address=?," +
-            "company_contact=?,company_contact_mobile=?,company_update_time=?,company_desc=? WHERE company_id =?";
+            "company_contact=?,company_contact_mobile=?,company_email=?,company_update_time=?,company_desc=? WHERE company_id =?";
 
     @Override
     public Object execute(Object[] params) {
@@ -36,6 +36,7 @@ public class UpdateCompany extends AbstractExecuter {
                     ps.setObject(6, o.getCompanyAreaId());
                     ps.setObject(7, o.getCompanyAddress());
                     ps.setObject(8, o.getCompanyContact());
+                    ps.setObject(9, o.getCompanyEmail());
                     ps.setObject(9, o.getCompanyContactMobile());
                     ps.setObject(10, new Date());
                     ps.setObject(11, o.getCompanyDesc());

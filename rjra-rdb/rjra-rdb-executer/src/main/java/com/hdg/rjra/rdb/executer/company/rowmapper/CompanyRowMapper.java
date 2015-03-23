@@ -24,6 +24,7 @@ public class CompanyRowMapper implements RowMapper<Company> {
         re.setCompanyAddress(rs.getString("company_address"));
         re.setCompanyContact(rs.getString("company_contact"));
         re.setCompanyContactMobile(rs.getString("company_contact_mobile"));
+        re.setCompanyEmail(rs.getString("company_email"));
         re.setCompanyLogoImageFile(rs.getLong("company_logo_image_file"));
         re.setCompanyBizlicenseImageFile(rs.getLong("company_bizlicense_image_file"));
         re.setCompanyFacadeImageFile(rs.getLong("company_facade_image_file"));

@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by Rock on 2015/3/18 0018.
  */
-public class UserScanUser implements Serializable {
+public class UserScanUser implements BaseDomain {
     private Long scanId;
     private Long userId;
     private Long scanUserId;

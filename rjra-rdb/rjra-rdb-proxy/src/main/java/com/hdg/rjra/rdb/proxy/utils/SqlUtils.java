@@ -1,7 +1,8 @@
 package com.hdg.rjra.rdb.proxy.utils;
 
-import com.hdg.rjra.rdb.proxy.domain.enumerate.BaseMapping;
+import com.hdg.rjra.rdb.proxy.domain.BaseDomain;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -45,12 +46,30 @@ public abstract class SqlUtils {
         }
     }
 
-
-    public static WhereAndSqlParam buildWhereAndSqlByMapParam(Map<?, Object> param) {
-        if (param == null) {
+    public static SqlParam buildUpdateSqlByMapParam(BaseDomain domain) {
+        if(domain == null){
             return null;
         } else {
-            WhereAndSqlParam whereAndSqlParam = new WhereAndSqlParam();
+            SqlParam sqlParam = new SqlParam();
+            StringBuffer sql = new StringBuffer();
+            List<Object> objectList = new ArrayList<Object>();
+            Class clazz = domain.getClass();
+            Field[] fields = clazz.getDeclaredFields();
+            for (int i = 0; i < fields.length; i++) {
+                fields[i].getDeclaredAnnotations();
+            }
+
+            sqlParam.setSql(sql.toString());
+            sqlParam.setObjects(objectList);
+            return sqlParam;
+        }
+    }
+
+    public static SqlParam buildWhereAndSqlByMapParam(Map<?, Object> param) {
+        if (param == null || param.size() == 0) {
+            return null;
+        } else {
+            SqlParam sqlParam = new SqlParam();
             StringBuffer sql = new StringBuffer();
             List<Object> objectList = new ArrayList<Object>();
             for (Map.Entry<?, Object> baseMappingObjectEntry : param.entrySet()) {
@@ -98,9 +117,9 @@ public abstract class SqlUtils {
                     e.printStackTrace();
                 }
             }
-            whereAndSqlParam.setSql(sql.toString());
-            whereAndSqlParam.setObjects(objectList);
-            return whereAndSqlParam;
+            sqlParam.setSql(sql.toString());
+            sqlParam.setObjects(objectList);
+            return sqlParam;
         }
     }
 }

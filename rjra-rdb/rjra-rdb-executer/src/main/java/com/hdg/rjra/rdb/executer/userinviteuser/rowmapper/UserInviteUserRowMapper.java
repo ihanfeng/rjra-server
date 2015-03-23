@@ -23,6 +23,7 @@ public class UserInviteUserRowMapper implements RowMapper<UserInviteUser> {
         re.setInterviewMobile(rs.getString("interview_mobile"));
         re.setInterviewDesc(rs.getString("interview_desc"));
         re.setApplyId(rs.getLong("apply_id"));
+        re.setWorkId(rs.getLong("work_id"));
         re.setUserInviteUserStatus(rs.getInt("user_invite_user_status"));
         return re;
     }

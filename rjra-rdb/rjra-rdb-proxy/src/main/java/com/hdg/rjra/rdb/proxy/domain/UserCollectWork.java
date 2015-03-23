@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by Rock on 2015/3/18 0018.
  */
-public class UserCollectWork implements Serializable {
+public class UserCollectWork implements BaseDomain {
     private Long collectId;
     private Long userId;
     private Long workId;

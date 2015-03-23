@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by Rock on 2015/3/18 0018.
  */
-public class UserInviteUser implements Serializable {
+public class UserInviteUser implements BaseDomain {
     private Long inviteId;
     private Long userId;
     private Long inviteUserId;
@@ -17,6 +17,7 @@ public class UserInviteUser implements Serializable {
     private String interviewMobile;
     private String interviewDesc;
     private Long applyId;
+    private Long workId;
     private Integer userInviteUserStatus;
 
     public Long getInviteId() {
@@ -97,6 +98,14 @@ public class UserInviteUser implements Serializable {
 
     public void setApplyId(Long applyId) {
         this.applyId = applyId;
+    }
+
+    public Long getWorkId() {
+        return workId;
+    }
+
+    public void setWorkId(Long workId) {
+        this.workId = workId;
     }
 
     public Integer getUserInviteUserStatus() {

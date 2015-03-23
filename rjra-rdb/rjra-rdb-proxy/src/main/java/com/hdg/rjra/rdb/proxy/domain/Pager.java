@@ -7,7 +7,7 @@ import java.util.List;
  * 专门用户分页
  * Created by Rock on 2014/10/22.
  */
-public class Pager<T> implements Serializable {
+public class Pager<T> implements BaseDomain {
     /**  描述   (@author: Rock) */
 	    
 	private static final long serialVersionUID = 6845233056252406745L;

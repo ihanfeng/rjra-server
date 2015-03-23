@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by Rock on 2015/1/27 0027.
  */
-public class Work implements Serializable {
+public class Work implements BaseDomain {
 
     private Long workId;
     private Double workLongitude;

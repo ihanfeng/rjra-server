@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by Rock on 2015/1/27 0027.
  */
-public class WhereAndSqlParam {
+public class SqlParam {
     private String sql;
 
     private List<Object> objects;

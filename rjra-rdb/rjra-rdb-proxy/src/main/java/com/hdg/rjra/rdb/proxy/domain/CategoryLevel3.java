@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Rock on 2015/1/8 0008.
  */
-public class CategoryLevel3 implements Serializable {
+public class CategoryLevel3 implements BaseDomain {
 
     private Long categoryLevel3Id;
     private String categoryLevel3Name;

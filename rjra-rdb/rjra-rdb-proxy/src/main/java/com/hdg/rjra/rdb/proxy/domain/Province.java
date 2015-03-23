@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Rock on 2015/1/8 0008.
  */
-public class Province implements Serializable {
+public class Province implements BaseDomain {
     private Long provinceId;
     private String provinceName;
 

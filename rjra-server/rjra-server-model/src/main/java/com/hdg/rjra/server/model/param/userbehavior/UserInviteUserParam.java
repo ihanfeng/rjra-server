@@ -18,6 +18,7 @@ public class UserInviteUserParam extends BaseParam implements Serializable {
     private String interviewMobile;
     private String interviewDesc;
     private Long applyId;
+    private Long workId;
     private Integer userInviteUserStatus;
     private List<Long> batchDeleteInviteIds;
 
@@ -107,5 +108,13 @@ public class UserInviteUserParam extends BaseParam implements Serializable {
 
     public void setBatchDeleteInviteIds(List<Long> batchDeleteInviteIds) {
         this.batchDeleteInviteIds = batchDeleteInviteIds;
+    }
+
+    public Long getWorkId() {
+        return workId;
+    }
+
+    public void setWorkId(Long workId) {
+        this.workId = workId;
     }
 }

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Rock on 2015/3/9 0009.
  */
-public class Customer implements Serializable {
+public class Customer implements BaseDomain {
     private Long customerId;
     private String customerName;
     private String customerPwd;

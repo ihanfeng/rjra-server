@@ -4,7 +4,6 @@ import com.hdg.common.utils.ConversionUtils;
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserScanUserProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserScanUser;
-import com.hdg.rjra.rdb.proxyimpl.dao.UserScanUserProxyImpl;
 import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.model.bo.userbehavior.UserScanUserBo;
 import com.hdg.rjra.server.service.UserScanUserService;

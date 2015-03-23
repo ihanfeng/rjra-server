@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by Rock on 2015/1/8 0008.
  */
-public class Resume implements Serializable {
+public class Resume implements BaseDomain {
 
     private Long resumeId;
     private Long[] categoryLevel1Ids;

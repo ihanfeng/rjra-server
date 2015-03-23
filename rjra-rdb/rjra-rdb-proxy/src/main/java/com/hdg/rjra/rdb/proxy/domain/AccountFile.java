@@ -1,12 +1,11 @@
 package com.hdg.rjra.rdb.proxy.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Rock on 2015/1/11 0011.
  */
-public class AccountFile implements Serializable {
+public class AccountFile implements BaseDomain {
     private Long fileId;
     private Integer fileType;
     private Integer fileStatus;

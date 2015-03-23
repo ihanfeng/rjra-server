@@ -2,14 +2,10 @@ package com.hdg.rjra.rdb.executer.user;
 
 import com.hdg.common.utils.CoordinateUtils;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
-import com.hdg.rjra.rdb.proxy.domain.enumerate.UserMapping;
-import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
 import com.hdg.rjra.rdb.proxy.utils.SqlUtils;
-import com.hdg.rjra.rdb.proxy.utils.WhereAndSqlParam;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Rock on 2015/1/17 0017.

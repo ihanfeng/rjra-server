@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Rock on 2015/1/8 0008.
  */
-public class WorkExperience implements Serializable {
+public class WorkExperience implements BaseDomain {
 
     private Long workExperienceId;
 

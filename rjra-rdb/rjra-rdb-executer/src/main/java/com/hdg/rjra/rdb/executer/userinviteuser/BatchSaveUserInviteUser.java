@@ -17,7 +17,7 @@ public class BatchSaveUserInviteUser extends AbstractExecuter {
 
     private String sql = "insert into user_invite_user(user_id,invite_user_id,invite_time," +
             "user_invite_user_status,interview_time,interview_address,interview_mobile,interview_desc," +
-            "apply_id,interviewer) values (?,?,?,?,?,?,?,?,?)";
+            "apply_id,work_id,interviewer) values (?,?,?,?,?,?,?,?,?,?)";
 
     @Override
     public Object execute(Object[] params) {
@@ -34,7 +34,8 @@ public class BatchSaveUserInviteUser extends AbstractExecuter {
                 ps.setObject(7, userInviteUser.getInterviewMobile());
                 ps.setObject(8, userInviteUser.getInterviewDesc());
                 ps.setObject(9, userInviteUser.getApplyId());
-                ps.setObject(10, userInviteUser.getInterviewer());
+                ps.setObject(10, userInviteUser.getWorkId());
+                ps.setObject(11, userInviteUser.getInterviewer());
             }
         }, publishResultRecords);
     }

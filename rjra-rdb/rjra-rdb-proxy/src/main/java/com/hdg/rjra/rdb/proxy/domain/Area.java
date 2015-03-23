@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Rock on 2015/1/8 0008.
  */
-public class Area implements Serializable {
+public class Area implements BaseDomain {
     private Long areaId;
     private String areaName;
     private Long cityId;

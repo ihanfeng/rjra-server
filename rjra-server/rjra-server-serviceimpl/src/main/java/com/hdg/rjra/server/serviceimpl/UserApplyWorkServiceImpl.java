@@ -3,7 +3,6 @@ package com.hdg.rjra.server.serviceimpl;
 import com.hdg.common.utils.ConversionUtils;
 import com.hdg.rjra.base.enumerate.WorkStatus;
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserApplyWorkProxy;
-import com.hdg.rjra.rdb.proxy.daoproxy.IUserProxy;
 import com.hdg.rjra.rdb.proxy.daoproxy.IWorkProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserApplyWork;

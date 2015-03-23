@@ -9,7 +9,6 @@ import com.hdg.rjra.rdb.proxy.daoproxy.IAccountFileProxy;
 import com.hdg.rjra.rdb.proxy.domain.AccountFile;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.service.FileService;
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

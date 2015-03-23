@@ -3,6 +3,7 @@ package com.hdg.rjra.server.model.bo.userbehavior;
 import com.hdg.common.annotation.DateTimeFormat;
 import com.hdg.common.constants.CommonConstants;
 import com.hdg.rjra.server.model.bo.user.UserBo;
+import com.hdg.rjra.server.model.bo.work.WorkBo;
 
 import java.io.Serializable;
 
@@ -24,7 +25,7 @@ public class UserInviteUserBo implements Serializable {
     private String interviewMobile;
     private String interviewDesc;
     private Long applyId;
-    private UserApplyWorkBo applyDetail;
+    private Long workId;
     private Integer userInviteUserStatus;
 
     public Long getInviteId() {
@@ -131,11 +132,11 @@ public class UserInviteUserBo implements Serializable {
         this.inviteUserDetail = inviteUserDetail;
     }
 
-    public UserApplyWorkBo getApplyDetail() {
-        return applyDetail;
+    public Long getWorkId() {
+        return workId;
     }
 
-    public void setApplyDetail(UserApplyWorkBo applyDetail) {
-        this.applyDetail = applyDetail;
+    public void setWorkId(Long workId) {
+        this.workId = workId;
     }
 }

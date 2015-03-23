@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by Rock on 2015/1/8 0008.
  */
-public class User implements Serializable {
+public class User implements BaseDomain {
     private Long userId;
     private String userMobile;
     private String userPwd;
