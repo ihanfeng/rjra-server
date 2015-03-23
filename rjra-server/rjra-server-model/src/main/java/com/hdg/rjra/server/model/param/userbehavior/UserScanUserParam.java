@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Created by Rock on 2015/3/18 0018.
  */
-public class UserScanUserParam extends BaseParam implements Serializable {
+public class UserScanUserParam extends BaseParam {
     private Long scanId;
     private Long userId;
     private Long scanUserId;

@@ -8,12 +8,14 @@ import com.hdg.rjra.rdb.proxy.domain.City;
 import com.hdg.rjra.rdb.proxy.domain.Province;
 import com.hdg.rjra.server.service.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by Administrator on 2015/3/23.
  */
+@Service
 public class RegionServiceImpl implements RegionService {
 
     @Autowired

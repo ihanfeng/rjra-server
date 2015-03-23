@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Rock on 2015/3/18 0018.
  */
-public class UserInviteUserParam extends BaseParam implements Serializable {
+public class UserInviteUserParam extends BaseParam {
     private Long inviteId;
     private Long userId;
     private Long inviteUserId;

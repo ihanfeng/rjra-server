@@ -8,8 +8,8 @@ import com.hdg.rjra.server.model.param.BaseParam;
 public class CategoryParam extends BaseParam {
 
     private Long categoryLevel1Id;
-    private Long categoryLevel12d;
-    private Long categoryLevel13d;
+    private Long categoryLevel2Id;
+    private Long categoryLevel3Id;
 
     public Long getCategoryLevel1Id() {
         return categoryLevel1Id;
@@ -19,19 +19,19 @@ public class CategoryParam extends BaseParam {
         this.categoryLevel1Id = categoryLevel1Id;
     }
 
-    public Long getCategoryLevel12d() {
-        return categoryLevel12d;
+    public Long getCategoryLevel2Id() {
+        return categoryLevel2Id;
     }
 
-    public void setCategoryLevel12d(Long categoryLevel12d) {
-        this.categoryLevel12d = categoryLevel12d;
+    public void setCategoryLevel2Id(Long categoryLevel2Id) {
+        this.categoryLevel2Id = categoryLevel2Id;
     }
 
-    public Long getCategoryLevel13d() {
-        return categoryLevel13d;
+    public Long getCategoryLevel3Id() {
+        return categoryLevel3Id;
     }
 
-    public void setCategoryLevel13d(Long categoryLevel13d) {
-        this.categoryLevel13d = categoryLevel13d;
+    public void setCategoryLevel3Id(Long categoryLevel3Id) {
+        this.categoryLevel3Id = categoryLevel3Id;
     }
 }

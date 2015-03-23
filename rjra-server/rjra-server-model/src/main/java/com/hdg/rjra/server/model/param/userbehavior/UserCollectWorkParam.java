@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Rock on 2015/3/18 0018.
  */
-public class UserCollectWorkParam extends BaseParam implements Serializable {
+public class UserCollectWorkParam extends BaseParam {
     private Long collectId;
     private Long userId;
     private Long workId;

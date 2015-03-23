@@ -1,9 +1,11 @@
 package com.hdg.rjra.server.model.param;
 
+import java.io.Serializable;
+
 /**
  * Created by Rock on 2015/1/9 0009.
  */
-public class BaseParam {
+public class BaseParam implements Serializable {
 
     /**
      * 当前页
