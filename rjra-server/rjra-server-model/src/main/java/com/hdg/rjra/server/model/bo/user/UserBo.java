@@ -30,6 +30,7 @@ public class UserBo {
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String userUpdateTime;
     private Integer userLoginType;
+    private String token;
 
     public Long getUserId() {
         return userId;
@@ -165,5 +166,13 @@ public class UserBo {
 
     public void setUserLoginType(Integer userLoginType) {
         this.userLoginType = userLoginType;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

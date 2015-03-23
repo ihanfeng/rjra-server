@@ -9,6 +9,7 @@ import com.hdg.common.properties.CustomizedPropertyConfigurer;
 import com.hdg.common.utils.AESUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
+import com.hdg.common.utils.UUIDUtils;
 import com.hdg.rjra.base.error.ErrorType;
 import com.hdg.rjra.customer.web.filter.SessionToken;
 import com.hdg.rjra.server.model.bo.user.UserBo;
@@ -66,6 +67,11 @@ public class CustomerController {
             data = userService.findUserByMobileAndPwd(loginParam.getMobile(), pwd);
             if (data == null) {
                 errorType = ErrorType.USER_ALREADY_NOT_EXIST;
+            }
+            else {
+                String token = UUIDUtils.randomUUID();
+                data.setToken(token);
+                request.getSession().setAttribute(SessionToken.TOKEN, token);
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
