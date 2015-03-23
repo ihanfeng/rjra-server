@@ -22,7 +22,7 @@ public class FindAllUserApplyWorkByWorkIdsPager extends AbstractExecuter {
         executeSql.append(" and work_id in (");
         executeSql.append(SqlUtils.appendPlaceholder(workIds.size()));
         executeSql.append(")");
-        executeSql.append(" and and user_apply_work_status = ");
+        executeSql.append(" and user_apply_work_status = ");
         executeSql.append(UserApplyWorkStatus.Active.getCode());
         List<Object> objects = new ArrayList<Object>();
         objects.addAll(workIds);
