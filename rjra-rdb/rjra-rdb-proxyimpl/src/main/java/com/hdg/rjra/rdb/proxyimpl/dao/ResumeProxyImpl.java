@@ -35,7 +35,7 @@ public class ResumeProxyImpl extends BaseProxy implements IResumeProxy {
 
     @Override
     public Integer updateResume(Resume resume) {
-        return daoClient.invoke(moduleName, "updateResume",
+        return daoClient.invoke("rdb-common", "updateByPk",
                 new Object[]{resume});
     }
 

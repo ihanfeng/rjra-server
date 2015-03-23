@@ -35,7 +35,7 @@ public class WorkProxyImpl extends BaseProxy implements IWorkProxy {
 
     @Override
     public Integer updateWork(Work work) {
-        return daoClient.invoke(moduleName, "updateWork",
+        return daoClient.invoke("rdb-common", "updateByPk",
                 new Object[]{work});
     }
 

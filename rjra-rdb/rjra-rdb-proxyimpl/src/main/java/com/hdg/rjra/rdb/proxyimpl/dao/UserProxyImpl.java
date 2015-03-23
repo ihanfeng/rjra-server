@@ -20,7 +20,7 @@ public class UserProxyImpl extends BaseProxy implements IUserProxy {
 
     @Override
     public Integer updateUser(User user) {
-        return daoClient.invoke(moduleName, "updateUser",
+        return daoClient.invoke("rdb-common", "updateByPk",
                 new Object[]{user});
     }
 

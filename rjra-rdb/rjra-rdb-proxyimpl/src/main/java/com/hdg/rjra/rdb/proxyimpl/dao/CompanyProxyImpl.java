@@ -20,7 +20,7 @@ public class CompanyProxyImpl extends BaseProxy implements ICompanyProxy {
 
     @Override
     public Integer updateCompany(Company company) {
-        return daoClient.invoke(moduleName, "updateCompany",
+        return daoClient.invoke("rdb-common", "updateByPk",
                 new Object[]{company});
     }
 

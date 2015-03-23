@@ -1,12 +1,16 @@
 package com.hdg.rjra.rdb.proxy.utils;
 
+import com.hdg.common.utils.StringUtils;
 import com.hdg.rjra.rdb.proxy.domain.BaseDomain;
+import com.hdg.rjra.rdb.proxy.domain.Company;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -46,20 +50,70 @@ public abstract class SqlUtils {
         }
     }
 
-    public static SqlParam buildUpdateSqlByMapParam(BaseDomain domain) {
-        if(domain == null){
+    public static SqlParam buildUpdateSqlByDomain(BaseDomain domain) {
+        if (domain == null) {
             return null;
         } else {
             SqlParam sqlParam = new SqlParam();
             StringBuffer sql = new StringBuffer();
+            StringBuffer sqlWhere = new StringBuffer();
             List<Object> objectList = new ArrayList<Object>();
+            List<Object> objectWhereList = new ArrayList<Object>();
             Class clazz = domain.getClass();
-            Field[] fields = clazz.getDeclaredFields();
-            for (int i = 0; i < fields.length; i++) {
-                fields[i].getDeclaredAnnotations();
+            Annotation[] clazzDeclaredAnnotations = clazz.getDeclaredAnnotations();
+            for (int i = 0; i < clazzDeclaredAnnotations.length; i++) {
+                Annotation annotation = clazzDeclaredAnnotations[i];
+                if (annotation instanceof DBClass) {
+                    String dbTableName = ((DBClass) annotation).value();
+                    if (dbTableName != null) {
+                        sql.append("UPDATE ");
+                        sql.append(dbTableName);
+                        sql.append(" SET ");
+                        Field[] fields = clazz.getDeclaredFields();
+                        for (int j = 0; j < fields.length; j++) {
+                            Field field = fields[j];
+                            Annotation[] annotations = field.getDeclaredAnnotations();
+                            for (int k = 0; k < annotations.length; k++) {
+                                Annotation fieldAnnotation = annotations[k];
+                                if (fieldAnnotation instanceof DBField) {
+                                    DBField dbField = ((DBField) fieldAnnotation);
+                                    String fieldName = field.getName();
+                                    String methodName = "get" + fieldName.substring(0, 1).toUpperCase(Locale.getDefault()) + fieldName.substring(1);
+                                    try {
+                                        Method method = clazz.getMethod(methodName);
+                                        Object object = method.invoke(domain);
+                                        if (object != null) {
+                                            if (dbField.pk()) {
+                                                sqlWhere.append(" WHERE ");
+                                                sqlWhere.append(dbField.value());
+                                                sqlWhere.append(" =?");
+                                                objectWhereList.add(object);
+                                            } else {
+                                                sql.append(dbField.value());
+                                                sql.append(" =?");
+                                                if (object instanceof Long[]){
+                                                    objectList.add(StringUtils.longArrayToString((Long[]) object));
+                                                }
+                                                else {
+                                                    objectList.add(object);
+                                                }
+                                            }
+                                        }
+                                    } catch (NoSuchMethodException e) {
+                                        e.printStackTrace();
+                                    } catch (InvocationTargetException e) {
+                                        e.printStackTrace();
+                                    } catch (IllegalAccessException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-
-            sqlParam.setSql(sql.toString());
+            objectList.addAll(objectWhereList);
+            sqlParam.setSql(sql.toString() + sqlWhere.toString());
             sqlParam.setObjects(objectList);
             return sqlParam;
         }
@@ -101,7 +155,7 @@ public abstract class SqlUtils {
                             }
                         }
                         sql.append(")");
-                    } else if(String.valueOf(op).trim().equals("like")){
+                    } else if (String.valueOf(op).trim().equals("like")) {
                         sql.append("'%");
                         sql.append(String.valueOf(obj));
                         sql.append("%'");

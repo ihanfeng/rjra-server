@@ -1,37 +1,64 @@
 package com.hdg.rjra.rdb.proxy.domain;
 
+import com.hdg.rjra.rdb.proxy.utils.DBClass;
+import com.hdg.rjra.rdb.proxy.utils.DBField;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Rock on 2015/1/8 0008.
  */
+@DBClass("user_resume")
 public class Resume implements BaseDomain {
 
+    @DBField(value = "resume_id", pk = true)
     private Long resumeId;
+    @DBField("category_level1_ids")
     private Long[] categoryLevel1Ids;
+    @DBField("category_level2_ids")
     private Long[] categoryLevel2Ids;
+    @DBField("category_level3_ids")
     private Long[] categoryLevel3Ids;
+    @DBField("resume_user_name")
     private String resumeUserName;
+    @DBField("resume_mobile")
     private String resumeMobile;
+    @DBField("resume_qq")
     private String resumeQQ;
+    @DBField("resume_desc")
     private String resumeDesc;
     private Long resumeUserHeadImageFile;
+    @DBField("resume_gender")
     private Integer resumeGender;
+    @DBField("resume_birthday")
     private Date resumeBirthday;
+    @DBField("resume_wage")
     private Long resumeWage;
+    @DBField("resume_experience")
     private Long resumeExperience;
+    @DBField("resume_work_status")
     private Integer resumeWorkStatus;
+    @DBField("resume_status")
     private Integer resumeStatus;
+    @DBField("resume_want_work_area_id")
     private Long resumeWantWorkAreaId;
+    @DBField("resume_want_work_city_id")
     private Long resumeWantWorkCityId;
+    @DBField("resume_want_work_province_id")
     private Long resumeWantWorkProvinceId;
+    @DBField("resume_home_area_id")
     private Long resumeHomeAreaId;
+    @DBField("resume_home_city_id")
     private Long resumeHomeCityId;
+    @DBField("resume_home_province_id")
     private Long resumeHomeProvinceId;
+    @DBField("resume_home_address")
     private String resumeHomeAddress;
     private Date resumeCreateTime;
+    @DBField("resume_update_time")
     private Date resumeUpdateTime;
+    @DBField("resume_refresh_time")
     private Date resumeRefreshTime;
 
     public Long getResumeId() {

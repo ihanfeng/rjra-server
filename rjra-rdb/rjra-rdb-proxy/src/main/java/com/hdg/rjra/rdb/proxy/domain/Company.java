@@ -1,35 +1,57 @@
 package com.hdg.rjra.rdb.proxy.domain;
 
+import com.hdg.rjra.rdb.proxy.utils.DBClass;
+import com.hdg.rjra.rdb.proxy.utils.DBField;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Rock on 2015/1/8 0008.
  */
+@DBClass("user_company")
 public class Company implements BaseDomain {
 
+    @DBField(value = "company_Id", pk = true)
     private Long companyId;
+    @DBField("company_name")
     private String companyName;
+    @DBField("company_type")
     private Long companyType;
+    @DBField("company_scale")
     private Long companyScale;
+    @DBField("company_area_id")
     private Long companyAreaId;
+    @DBField("company_city_id")
     private Long companyCityId;
+    @DBField("company_province_id")
     private Long companyProvinceId;
+    @DBField("company_address")
     private String companyAddress;
+    @DBField("company_contact")
     private String companyContact;
+    @DBField("company_contact_mobile")
     private String companyContactMobile;
+    @DBField("company_email")
     private String companyEmail;
     private Long companyLogoImageFile;
     private Long companyBizlicenseImageFile;
     private Long companyUserIdCardImageFile;
     private Long companyFacadeImageFile;
+    @DBField("company_status")
     private Integer companyStatus;
     private Date companyCreateTime;
+    @DBField("company_update_time")
     private Date companyUpdateTime;
+    @DBField("company_change_time")
     private Date companyChangeTime;
+    @DBField("company_desc")
     private String companyDesc;
+    @DBField("company_examine_status")
     private Integer companyExamineStatus;
+    @DBField("company_examine_time")
     private Date companyExamineTime;
+    @DBField("company_examine_result")
     private String companyExamineResult;
     private Long[] companyImages;
 

@@ -1,24 +1,37 @@
 package com.hdg.rjra.rdb.proxy.domain;
 
+import com.hdg.rjra.rdb.proxy.utils.DBClass;
+import com.hdg.rjra.rdb.proxy.utils.DBField;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Rock on 2015/1/8 0008.
  */
+@DBClass("account_user")
 public class User implements BaseDomain {
+    @DBField(value = "user_id", pk = true)
     private Long userId;
+    @DBField("user_mobile")
     private String userMobile;
+    @DBField("user_pwd")
     private String userPwd;
     private Long resumeId;
     private Long companyId;
+    @DBField("user_nickname")
     private String userNickName;
     private Long userHeadImageFile;
+    @DBField("user_gender")
     private Integer userGender;
+    @DBField("user_login_longitude")
     private Double userLoginLongitude;
+    @DBField("user_login_latitude")
     private Double userLoginLatitude;
+    @DBField("user_status")
     private Integer userStatus;
     private Date userCreateTime;
+    @DBField("user_update_time")
     private Date userUpdateTime;
     private Integer userLoginType;
 

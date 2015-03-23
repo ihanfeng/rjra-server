@@ -1,35 +1,58 @@
 package com.hdg.rjra.rdb.proxy.domain;
 
+import com.hdg.rjra.rdb.proxy.utils.DBClass;
+import com.hdg.rjra.rdb.proxy.utils.DBField;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Rock on 2015/1/27 0027.
  */
+@DBClass("user_work")
 public class Work implements BaseDomain {
 
+    @DBField(value = "work_id", pk = true)
     private Long workId;
+    @DBField("work_longitude")
     private Double workLongitude;
+    @DBField("work_latitude")
     private Double workLatitude;
     private Long userId;
     private Long companyId;
     private String companyName;
+    @DBField("category_level1_id")
     private Long categoryLevel1Id;
+    @DBField("category_level2_id")
     private Long categoryLevel2Id;
+    @DBField("category_level3_id")
     private Long categoryLevel3Id;
+    @DBField("work_area_id")
     private Long workAreaId;
+    @DBField("work_city_id")
     private Long workCityId;
+    @DBField("work_province_id")
     private Long workProvinceId;
+    @DBField("work_address")
     private String workAddress;
+    @DBField("work_need_person")
     private Integer workNeedPerson;
+    @DBField("work_wage_id")
     private Long workWageId;
+    @DBField("work_experience_id")
     private Long workExperienceId;
+    @DBField("work_welfare_ids")
     private Long[] workWelfareIds;
+    @DBField("work_desc")
     private String workDesc;
+    @DBField("work_status")
     private Integer workStatus;
     private Date workCreateTime;
+    @DBField("work_update_time")
     private Date workUpdateTime;
+    @DBField("age_id")
     private Long ageId;
+    @DBField("work_gender")
     private Integer workGender;
 
     public Long getWorkId() {

@@ -9,6 +9,8 @@
           default-autowire="byName">
 
 
+    <import resource="classpath:bean/execute/rdb-common-executer.xml"/>
+
     <import resource="classpath:bean/execute/rdb-area-executer.xml"/>
     <import resource="classpath:bean/execute/rdb-city-executer.xml"/>
     <import resource="classpath:bean/execute/rdb-province-executer.xml"/>
@@ -36,6 +38,8 @@
     <bean id="requestHandler" class="com.hdg.rjra.rdb.executer.RequestHandler">
         <property name="map">
             <map>
+                <entry key="rdb-common" value-ref="rdb-common-executer"/>
+
                 <entry key="rdb-area" value-ref="rdb-area-executer"/>
                 <entry key="rdb-city" value-ref="rdb-city-executer"/>
                 <entry key="rdb-province" value-ref="rdb-province-executer"/>
