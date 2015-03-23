@@ -52,8 +52,8 @@ public class WorkProxyImpl extends BaseProxy implements IWorkProxy {
     }
 
     @Override
-    public List<Long> findWorkIdsByUserId(Long userId, Integer[] workStatus) {
+    public List<Long> findWorkIdsByUserId(Long userId) {
         return daoClient.invoke(moduleName, "findWorkIdsByUserId",
-                new Object[]{userId, workStatus});
+                new Object[]{userId});
     }
 }

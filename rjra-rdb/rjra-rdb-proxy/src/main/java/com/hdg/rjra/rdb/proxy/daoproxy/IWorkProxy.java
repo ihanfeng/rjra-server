@@ -25,5 +25,5 @@ public interface IWorkProxy extends Serializable {
 
     public Long saveWork(Work work);
 
-    public List<Long> findWorkIdsByUserId(Long userId, Integer[] workStatus);
+    public List<Long> findWorkIdsByUserId(Long userId);
 }

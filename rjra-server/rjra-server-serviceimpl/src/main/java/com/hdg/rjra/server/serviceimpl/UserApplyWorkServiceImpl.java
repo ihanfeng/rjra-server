@@ -104,7 +104,7 @@ public class UserApplyWorkServiceImpl implements UserApplyWorkService {
 
     @Override
     public Pager<UserApplyWorkBo> findAllUserApplyWorkByWorkUserIdPager(Long userId, Integer firstResult, Integer sizeNo) {
-        List<Long> workIds = workProxy.findWorkIdsByUserId(userId, new Integer[]{WorkStatus.Active.getCode()});
+        List<Long> workIds = workProxy.findWorkIdsByUserId(userId);
         Pager<UserApplyWorkBo> userApplyWorkBoPager = new Pager<UserApplyWorkBo>();
         if(workIds != null && workIds.size() > 0) {
             Pager<UserApplyWork> userApplyWorkPager = userApplyWorkProxy.findAllUserApplyWorkByWorkIdsPager(workIds, firstResult, sizeNo);
