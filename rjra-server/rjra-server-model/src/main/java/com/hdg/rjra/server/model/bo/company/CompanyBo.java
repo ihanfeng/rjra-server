@@ -22,6 +22,7 @@ public class CompanyBo {
     private String companyAddress;
     private String companyContact;
     private String companyContactMobile;
+    private String companyEmail;
     private Long companyLogoImageFile;
     private AccountFileBo companyLogoImageFileDetail;
     private Long companyBizlicenseImageFile;
@@ -267,5 +268,13 @@ public class CompanyBo {
 
     public void setCompanyImagesDetail(List<AccountFileBo> companyImagesDetail) {
         this.companyImagesDetail = companyImagesDetail;
+    }
+
+    public String getCompanyEmail() {
+        return companyEmail;
+    }
+
+    public void setCompanyEmail(String companyEmail) {
+        this.companyEmail = companyEmail;
     }
 }
