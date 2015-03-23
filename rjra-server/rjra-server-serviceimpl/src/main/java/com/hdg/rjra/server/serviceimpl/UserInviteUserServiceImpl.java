@@ -6,6 +6,7 @@ import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserInviteUser;
 import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.model.bo.userbehavior.UserInviteUserBo;
+import com.hdg.rjra.server.service.UserApplyWorkService;
 import com.hdg.rjra.server.service.UserInviteUserService;
 import com.hdg.rjra.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class UserInviteUserServiceImpl implements UserInviteUserService {
     @Autowired
     UserService userService;
 
+    @Autowired
+    UserApplyWorkService applyWorkService;
+
     @Override
     public Long saveUserInviteUser(UserInviteUserBo userInviteUserBo) {
         UserInviteUser userInviteUser = new UserInviteUser();
@@ -41,6 +45,12 @@ public class UserInviteUserServiceImpl implements UserInviteUserService {
     @Override
     public UserInviteUserBo findUserInviteUserByUserIdAndInviteUserId(Long userId, Long inviteUserId) {
         UserInviteUser userInviteUser = userInviteUserProxy.findUserInviteUserByUserIdAndInviteUserId(userId, inviteUserId);
+        return getUserInviteUserBo(userInviteUser);
+    }
+
+    @Override
+    public UserInviteUserBo findUserInviteUserByApplyId(Long apply) {
+        UserInviteUser userInviteUser = userInviteUserProxy.findUserInviteUserByApplyId(apply);
         return getUserInviteUserBo(userInviteUser);
     }
 

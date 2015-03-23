@@ -24,6 +24,7 @@ public class UserInviteUserBo implements Serializable {
     private String interviewMobile;
     private String interviewDesc;
     private Long applyId;
+    private UserApplyWorkBo applyDetail;
     private Integer userInviteUserStatus;
 
     public Long getInviteId() {
@@ -128,5 +129,13 @@ public class UserInviteUserBo implements Serializable {
 
     public void setInviteUserDetail(UserBo inviteUserDetail) {
         this.inviteUserDetail = inviteUserDetail;
+    }
+
+    public UserApplyWorkBo getApplyDetail() {
+        return applyDetail;
+    }
+
+    public void setApplyDetail(UserApplyWorkBo applyDetail) {
+        this.applyDetail = applyDetail;
     }
 }

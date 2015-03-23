@@ -9,8 +9,10 @@ import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.UserApplyWork;
 import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.model.bo.userbehavior.UserApplyWorkBo;
+import com.hdg.rjra.server.model.bo.userbehavior.UserInviteUserBo;
 import com.hdg.rjra.server.model.bo.work.WorkBo;
 import com.hdg.rjra.server.service.UserApplyWorkService;
+import com.hdg.rjra.server.service.UserInviteUserService;
 import com.hdg.rjra.server.service.UserService;
 import com.hdg.rjra.server.service.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,9 @@ public class UserApplyWorkServiceImpl implements UserApplyWorkService {
     @Autowired
     UserService userService;
 
+    @Autowired
+    UserInviteUserService userInviteUserService;
+
     @Override
     public Long saveUserApplyWork(UserApplyWorkBo userApplyWorkBo) {
         UserApplyWork userApplyWork = new UserApplyWork();
@@ -48,6 +53,21 @@ public class UserApplyWorkServiceImpl implements UserApplyWorkService {
     public UserApplyWorkBo findUserApplyWorkByUserIdAndWorkId(Long userId, Long workId) {
         UserApplyWork userApplyWork = userApplyWorkProxy.findUserApplyWorkByUserIdAndWorkId(userId, workId);
         return getUserApplyWorkBo(userApplyWork);
+    }
+
+    @Override
+    public UserApplyWorkBo findUserApplyWorkByApplyId(Long applyId) {
+        UserApplyWork userApplyWork = userApplyWorkProxy.findUserApplyWorkByApplyId(applyId);
+        return getSimpleUserApplyWorkBo(userApplyWork);
+    }
+
+    private UserApplyWorkBo getSimpleUserApplyWorkBo(UserApplyWork userApplyWork) {
+        if (userApplyWork == null){
+            return null;
+        }
+        UserApplyWorkBo userApplyWorkBo = new UserApplyWorkBo();
+        ConversionUtils.conversion(userApplyWork, userApplyWorkBo);
+        return userApplyWorkBo;
     }
 
     private UserApplyWorkBo getUserApplyWorkBo(UserApplyWork userApplyWork){
@@ -62,6 +82,11 @@ public class UserApplyWorkServiceImpl implements UserApplyWorkService {
         WorkBo workBo = workService.findWorkByWorkId(workId);
         userApplyWorkBo.setUserDetail(userBo);
         userApplyWorkBo.setWorkDetail(workBo);
+        UserInviteUserBo userInviteUserBo = userInviteUserService.findUserInviteUserByApplyId(userApplyWork.getApplyId());
+        if(userInviteUserBo != null){
+            userApplyWorkBo.setInviteId(userInviteUserBo.getInviteId());
+            userApplyWorkBo.setInviteDetail(userInviteUserBo);
+        }
         return userApplyWorkBo;
     }
 

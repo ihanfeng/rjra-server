@@ -16,6 +16,8 @@ public interface UserInviteUserService {
 
     public UserInviteUserBo findUserInviteUserByUserIdAndInviteUserId(Long userId, Long inviteUserId);
 
+    public UserInviteUserBo findUserInviteUserByApplyId(Long apply);
+
     public Pager<UserInviteUserBo> findAllUserInviteUserByInviteUserIdPager(Long inviteUserId, Integer firstResult, Integer sizeNo);
 
     public Pager<UserInviteUserBo> findAllUserInviteUserByUserIdPager(Long userId, Integer firstResult, Integer sizeNo);

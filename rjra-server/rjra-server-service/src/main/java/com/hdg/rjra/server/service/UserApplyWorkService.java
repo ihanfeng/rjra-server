@@ -15,6 +15,8 @@ public interface UserApplyWorkService {
 
     public UserApplyWorkBo findUserApplyWorkByUserIdAndWorkId(Long userId, Long workId);
 
+    public UserApplyWorkBo findUserApplyWorkByApplyId(Long applyId);
+
     public Pager<UserApplyWorkBo> findAllUserApplyWorkByUserIdPager(Long userId, Integer firstResult, Integer sizeNo);
 
     public Pager<UserApplyWorkBo> findAllUserApplyWorkByWorkUserIdPager(Long userId, Integer firstResult, Integer sizeNo);

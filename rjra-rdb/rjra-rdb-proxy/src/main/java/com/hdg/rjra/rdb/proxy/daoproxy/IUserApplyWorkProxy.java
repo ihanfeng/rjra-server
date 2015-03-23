@@ -15,6 +15,8 @@ public interface IUserApplyWorkProxy extends Serializable {
 
     public UserApplyWork findUserApplyWorkByUserIdAndWorkId(Long userId, Long workId);
 
+    public UserApplyWork findUserApplyWorkByApplyId(Long applyId);
+
     public Pager<UserApplyWork> findAllUserApplyWorkByUserIdPager(Long userId, Integer firstResult, Integer sizeNo);
 
     public Pager<UserApplyWork> findAllUserApplyWorkByWorkIdsPager(List<Long> workIds, Integer firstResult, Integer sizeNo);

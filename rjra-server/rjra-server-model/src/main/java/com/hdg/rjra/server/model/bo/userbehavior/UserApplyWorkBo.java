@@ -20,6 +20,8 @@ public class UserApplyWorkBo implements Serializable {
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String applyTime;
     private Integer userApplyWorkStatus;
+    private Long inviteId;
+    private UserInviteUserBo inviteDetail;
 
     public Long getApplyId() {
         return applyId;
@@ -75,5 +77,21 @@ public class UserApplyWorkBo implements Serializable {
 
     public void setUserDetail(UserBo userDetail) {
         this.userDetail = userDetail;
+    }
+
+    public UserInviteUserBo getInviteDetail() {
+        return inviteDetail;
+    }
+
+    public void setInviteDetail(UserInviteUserBo inviteDetail) {
+        this.inviteDetail = inviteDetail;
+    }
+
+    public Long getInviteId() {
+        return inviteId;
+    }
+
+    public void setInviteId(Long inviteId) {
+        this.inviteId = inviteId;
     }
 }

@@ -26,6 +26,12 @@ public class UserApplyWorkProxyImpl extends BaseProxy implements IUserApplyWorkP
     }
 
     @Override
+    public UserApplyWork findUserApplyWorkByApplyId(Long applyId) {
+        return daoClient.invoke(moduleName, "findUserApplyWorkByApplyId",
+                new Object[]{applyId});
+    }
+
+    @Override
     public Pager<UserApplyWork> findAllUserApplyWorkByUserIdPager(Long userId, Integer firstResult, Integer sizeNo) {
         return daoClient.invoke(moduleName, "findAllUserApplyWorkByUserIdPager",
                 new Object[]{userId, firstResult, sizeNo});

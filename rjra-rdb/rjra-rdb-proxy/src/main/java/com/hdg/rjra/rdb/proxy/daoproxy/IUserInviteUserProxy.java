@@ -24,4 +24,6 @@ public interface IUserInviteUserProxy extends Serializable {
     public Integer deleteUserInviteUser(Long inviteId);
 
     public Integer batchDeleteByInviteIds(List<Long> batchInviteIds);
+
+    public UserInviteUser findUserInviteUserByApplyId(Long applyId);
 }
