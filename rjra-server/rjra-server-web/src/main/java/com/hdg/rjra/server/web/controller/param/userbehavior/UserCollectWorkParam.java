@@ -3,6 +3,7 @@ package com.hdg.rjra.server.web.controller.param.userbehavior;
 import com.hdg.rjra.server.web.controller.param.BaseParam;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Rock on 2015/3/18 0018.
@@ -11,6 +12,7 @@ public class UserCollectWorkParam extends BaseParam implements Serializable {
     private Long collectId;
     private Long userId;
     private Long workId;
+    private List<Long> batchDeleteCollectIds;
 
     public Long getCollectId() {
         return collectId;
@@ -34,5 +36,13 @@ public class UserCollectWorkParam extends BaseParam implements Serializable {
 
     public void setWorkId(Long workId) {
         this.workId = workId;
+    }
+
+    public List<Long> getBatchDeleteCollectIds() {
+        return batchDeleteCollectIds;
+    }
+
+    public void setBatchDeleteCollectIds(List<Long> batchDeleteCollectIds) {
+        this.batchDeleteCollectIds = batchDeleteCollectIds;
     }
 }

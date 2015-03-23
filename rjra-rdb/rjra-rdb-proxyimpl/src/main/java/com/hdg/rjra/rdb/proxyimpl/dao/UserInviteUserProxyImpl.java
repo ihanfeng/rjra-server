@@ -48,4 +48,10 @@ public class UserInviteUserProxyImpl extends BaseProxy implements IUserInviteUse
         return daoClient.invoke(moduleName, "deleteUserInviteUser",
                 new Object[]{inviteId});
     }
+
+    @Override
+    public Integer batchDeleteByInviteIds(List<Long> batchInviteIds) {
+        return daoClient.invoke(moduleName, "batchDeleteByInviteIds",
+                new Object[]{batchInviteIds});
+    }
 }

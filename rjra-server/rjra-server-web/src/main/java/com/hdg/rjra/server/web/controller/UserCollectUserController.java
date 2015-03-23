@@ -116,4 +116,27 @@ public class UserCollectUserController {
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
+
+    /**
+     * 批量删除我收藏的用户
+     * @param request
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "batchDeleteCollectUserByCollectIds")
+    @ResponseBody
+    public ResponseEntity<String> batchDeleteCollectUserByCollectIds(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        Integer data = null;
+        try {
+            UserCollectUserParam userCollectUserParam = JsonUtils.jsonToObject(param, UserCollectUserParam.class);
+            data = userCollectUserService.batchDeleteCollectUserByCollectIds(userCollectUserParam.getBatchDeleteCollectIds());
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("batchDeleteCollectUserByCollectIds->", e);
+        }
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
 }

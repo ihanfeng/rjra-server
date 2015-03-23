@@ -28,6 +28,9 @@
     <bean id="deleteUserInviteUser" class="com.hdg.rjra.rdb.executer.userinviteuser.DeleteUserInviteUser">
         <property name="rowMapper" ref="userInviteUserRowMapper"></property>
     </bean>
+    <bean id="batchDeleteByInviteIds" class="com.hdg.rjra.rdb.executer.userinviteuser.BatchDeleteByInviteIds">
+        <property name="rowMapper" ref="userInviteUserRowMapper"></property>
+    </bean>
     <util:map id="rdb-user-invite-user-executer">
         <entry key="saveUserInviteUser" value-ref="saveUserInviteUser"/>
         <entry key="batchSaveUserInviteUser" value-ref="batchSaveUserInviteUser"/>
@@ -35,5 +38,6 @@
         <entry key="findAllUserInviteUserByInviteUserIdPager" value-ref="findAllUserInviteUserByInviteUserIdPager"/>
         <entry key="findAllUserInviteUserByUserIdPager" value-ref="findAllUserInviteUserByUserIdPager"/>
         <entry key="deleteUserInviteUser" value-ref="deleteUserInviteUser"/>
+        <entry key="batchDeleteByInviteIds" value-ref="batchDeleteByInviteIds"/>
     </util:map>
 </beans>

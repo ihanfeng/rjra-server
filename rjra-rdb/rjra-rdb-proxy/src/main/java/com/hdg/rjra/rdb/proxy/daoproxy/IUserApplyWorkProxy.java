@@ -20,4 +20,6 @@ public interface IUserApplyWorkProxy extends Serializable {
     public Pager<UserApplyWork> findAllUserApplyWorkByWorkIdsPager(List<Long> workIds, Integer firstResult, Integer sizeNo);
 
     public Integer deleteUserApplyWork(Long applyId);
+
+    public Integer batchDeleteByApplyIds(List<Long> batchApplyIds);
 }

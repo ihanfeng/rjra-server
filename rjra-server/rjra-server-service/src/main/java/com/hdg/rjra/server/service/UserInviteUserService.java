@@ -21,4 +21,6 @@ public interface UserInviteUserService {
     public Pager<UserInviteUserBo> findAllUserInviteUserByUserIdPager(Long userId, Integer firstResult, Integer sizeNo);
 
     public Integer deleteUserInviteUser(Long inviteId);
+
+    public Integer batchDeleteByInviteIds(List<Long> batchInviteIds);
 }

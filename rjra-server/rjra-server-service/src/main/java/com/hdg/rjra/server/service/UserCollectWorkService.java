@@ -18,4 +18,5 @@ public interface UserCollectWorkService {
 
     public Integer deleteUserCollectWork(Long collectId);
 
+    public Integer batchDeleteCollectWorkByCollectIds(List<Long> batchCollectIds);
 }

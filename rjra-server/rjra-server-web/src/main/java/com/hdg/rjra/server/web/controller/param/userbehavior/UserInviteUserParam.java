@@ -3,6 +3,7 @@ package com.hdg.rjra.server.web.controller.param.userbehavior;
 import com.hdg.rjra.server.web.controller.param.BaseParam;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Rock on 2015/3/18 0018.
@@ -18,6 +19,7 @@ public class UserInviteUserParam extends BaseParam implements Serializable {
     private String interviewDesc;
     private Long applyId;
     private Integer userInviteUserStatus;
+    private List<Long> batchDeleteInviteIds;
 
     public Long getInviteId() {
         return inviteId;
@@ -97,5 +99,13 @@ public class UserInviteUserParam extends BaseParam implements Serializable {
 
     public void setUserInviteUserStatus(Integer userInviteUserStatus) {
         this.userInviteUserStatus = userInviteUserStatus;
+    }
+
+    public List<Long> getBatchDeleteInviteIds() {
+        return batchDeleteInviteIds;
+    }
+
+    public void setBatchDeleteInviteIds(List<Long> batchDeleteInviteIds) {
+        this.batchDeleteInviteIds = batchDeleteInviteIds;
     }
 }

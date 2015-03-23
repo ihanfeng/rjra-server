@@ -98,4 +98,9 @@ public class UserApplyWorkServiceImpl implements UserApplyWorkService {
     public Integer deleteUserApplyWork(Long applyId) {
         return userApplyWorkProxy.deleteUserApplyWork(applyId);
     }
+
+    @Override
+    public Integer batchDeleteByApplyIds(List<Long> batchApplyIds) {
+        return userApplyWorkProxy.batchDeleteByApplyIds(batchApplyIds);
+    }
 }

@@ -14,6 +14,7 @@ import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.server.model.bo.userbehavior.UserInviteUserBo;
 import com.hdg.rjra.server.service.UserInviteUserService;
 import com.hdg.rjra.server.web.controller.param.userbehavior.BatchUserInviteUserParam;
+import com.hdg.rjra.server.web.controller.param.userbehavior.UserCollectUserParam;
 import com.hdg.rjra.server.web.controller.param.userbehavior.UserInviteUserParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -159,6 +160,29 @@ public class UserInviteUserController {
             errorType = ErrorType.UNKNOW_ERROR;
             errorType.setMessage(e.getMessage());
             LOG.error("deleteUserInviteUser->", e);
+        }
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
+
+    /**
+     * 批量删除邀请
+     * @param request
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "batchDeleteByInviteIds")
+    @ResponseBody
+    public ResponseEntity<String> batchDeleteByInviteIds(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        Integer data = null;
+        try {
+            UserInviteUserParam userInviteUserParam = JsonUtils.jsonToObject(param, UserInviteUserParam.class);
+            data = userInviteUserService.batchDeleteByInviteIds(userInviteUserParam.getBatchDeleteInviteIds());
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("batchDeleteByInviteIds->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));

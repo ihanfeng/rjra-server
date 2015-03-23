@@ -143,4 +143,27 @@ public class UserApplyWorkController {
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
+
+    /**
+     * 批量删除我的申请信息
+     * @param request
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "batchDeleteByApplyIds")
+    @ResponseBody
+    public ResponseEntity<String> batchDeleteByApplyIds(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        Integer data = null;
+        try {
+            UserApplyWorkParam userApplyWorkParam = JsonUtils.jsonToObject(param, UserApplyWorkParam.class);
+            data = applyWorkService.batchDeleteByApplyIds(userApplyWorkParam.getBatchDeleteApplyIds());
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.getMessage());
+            LOG.error("batchDeleteByApplyIds->", e);
+        }
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
 }

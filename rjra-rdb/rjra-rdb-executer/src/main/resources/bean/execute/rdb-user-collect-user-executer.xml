@@ -22,10 +22,14 @@
     <bean id="deleteUserCollectUser" class="com.hdg.rjra.rdb.executer.usercollectuser.DeleteUserCollectUser">
         <property name="rowMapper" ref="userCollectUserRowMapper"></property>
     </bean>
+    <bean id="batchDeleteCollectUserByCollectIds" class="com.hdg.rjra.rdb.executer.usercollectuser.BatchDeleteCollectUserByCollectIds">
+        <property name="rowMapper" ref="userCollectUserRowMapper"></property>
+    </bean>
     <util:map id="rdb-user-collect-user-executer">
         <entry key="saveUserCollectUser" value-ref="saveUserCollectUser"/>
         <entry key="findUserCollectUserByUserIdAndCollectUserId" value-ref="findUserCollectUserByUserIdAndCollectUserId"/>
         <entry key="findAllUserCollectUserByUserIdPager" value-ref="findAllUserCollectUserByUserIdPager"/>
         <entry key="deleteUserCollectUser" value-ref="deleteUserCollectUser"/>
+        <entry key="batchDeleteCollectUserByCollectIds" value-ref="batchDeleteCollectUserByCollectIds"/>
     </util:map>
 </beans>

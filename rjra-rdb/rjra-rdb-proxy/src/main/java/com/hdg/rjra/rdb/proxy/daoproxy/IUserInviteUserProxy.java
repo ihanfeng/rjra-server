@@ -22,4 +22,6 @@ public interface IUserInviteUserProxy extends Serializable {
     public Pager<UserInviteUser> findAllUserInviteUserByUserIdPager(Long userId, Integer firstResult, Integer sizeNo);
 
     public Integer deleteUserInviteUser(Long inviteId);
+
+    public Integer batchDeleteByInviteIds(List<Long> batchInviteIds);
 }

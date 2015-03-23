@@ -36,4 +36,10 @@ public class UserCollectWorkProxyImpl extends BaseProxy implements IUserCollectW
         return daoClient.invoke(moduleName, "deleteUserCollectWork",
                 new Object[]{collectId});
     }
+
+    @Override
+    public Integer batchDeleteCollectWorkByCollectIds(List<Long> batchCollectIds) {
+        return daoClient.invoke(moduleName, "batchDeleteCollectWorkByCollectIds",
+                new Object[]{batchCollectIds});
+    }
 }

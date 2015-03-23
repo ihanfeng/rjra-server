@@ -28,11 +28,16 @@
     <bean id="deleteUserApplyWork" class="com.hdg.rjra.rdb.executer.userapplywork.DeleteUserApplyWork">
         <property name="rowMapper" ref="userApplyWorkRowMapper"></property>
     </bean>
+
+    <bean id="batchDeleteByApplyIds" class="com.hdg.rjra.rdb.executer.userapplywork.BatchDeleteByApplyIds">
+        <property name="rowMapper" ref="userApplyWorkRowMapper"></property>
+    </bean>
     <util:map id="rdb-user-apply-work-executer">
         <entry key="saveUserApplyWork" value-ref="saveUserApplyWork"/>
         <entry key="findUserApplyWorkByUserIdAndWorkId" value-ref="findUserApplyWorkByUserIdAndWorkId"/>
         <entry key="findAllUserApplyWorkByUserIdPager" value-ref="findAllUserApplyWorkByUserIdPager"/>
         <entry key="findAllUserApplyWorkByWorkIdsPager" value-ref="findAllUserApplyWorkByWorkIdsPager"/>
         <entry key="deleteUserApplyWork" value-ref="deleteUserApplyWork"/>
+        <entry key="batchDeleteByApplyIds" value-ref="batchDeleteByApplyIds"/>
     </util:map>
 </beans>

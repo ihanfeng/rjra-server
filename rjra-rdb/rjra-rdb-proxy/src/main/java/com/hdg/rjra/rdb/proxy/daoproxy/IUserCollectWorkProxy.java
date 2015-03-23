@@ -18,4 +18,6 @@ public interface IUserCollectWorkProxy extends Serializable {
     public Pager<UserCollectWork> findAllUserCollectWorkByUserIdPager(Long userId, Integer firstResult, Integer sizeNo);
 
     public Integer deleteUserCollectWork(Long collectId);
+
+    public Integer batchDeleteCollectWorkByCollectIds(List<Long> batchCollectIds);
 }

@@ -72,4 +72,9 @@ public class UserCollectUserServiceImpl implements UserCollectUserService {
     public Integer deleteUserCollectUser(Long collectId) {
         return userCollectUserProxy.deleteUserCollectUser(collectId);
     }
+
+    @Override
+    public Integer batchDeleteCollectUserByCollectIds(List<Long> batchCollectIds) {
+        return userCollectUserProxy.batchDeleteCollectUserByCollectIds(batchCollectIds);
+    }
 }

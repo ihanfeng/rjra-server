@@ -89,4 +89,9 @@ public class UserInviteUserServiceImpl implements UserInviteUserService {
     public Integer deleteUserInviteUser(Long inviteId) {
         return userInviteUserProxy.deleteUserInviteUser(inviteId);
     }
+
+    @Override
+    public Integer batchDeleteByInviteIds(List<Long> batchInviteIds) {
+        return userInviteUserProxy.batchDeleteByInviteIds(batchInviteIds);
+    }
 }

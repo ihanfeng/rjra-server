@@ -18,4 +18,6 @@ public interface IUserCollectUserProxy extends Serializable {
     public Pager<UserCollectUser> findAllUserCollectUserByUserIdPager(Long userId, Integer firstResult, Integer sizeNo);
 
     public Integer deleteUserCollectUser(Long collectId);
+
+    public Integer batchDeleteCollectUserByCollectIds(List<Long> batchCollectIds);
 }

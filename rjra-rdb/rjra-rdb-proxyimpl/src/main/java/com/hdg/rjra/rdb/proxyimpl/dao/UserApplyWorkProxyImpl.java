@@ -42,4 +42,10 @@ public class UserApplyWorkProxyImpl extends BaseProxy implements IUserApplyWorkP
         return daoClient.invoke(moduleName, "deleteUserApplyWork",
                 new Object[]{applyId});
     }
+
+    @Override
+    public Integer batchDeleteByApplyIds(List<Long> batchApplyIds) {
+        return daoClient.invoke(moduleName, "batchDeleteByApplyIds",
+                new Object[]{batchApplyIds});
+    }
 }

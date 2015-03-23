@@ -76,4 +76,9 @@ public class UserCollectWorkServiceImpl implements UserCollectWorkService {
     public Integer deleteUserCollectWork(Long collectId) {
         return userCollectWorkProxy.deleteUserCollectWork(collectId);
     }
+
+    @Override
+    public Integer batchDeleteCollectWorkByCollectIds(List<Long> batchCollectIds) {
+        return userCollectWorkProxy.batchDeleteCollectWorkByCollectIds(batchCollectIds);
+    }
 }
