@@ -15,7 +15,7 @@ public class FindWorkIdsByUserId extends AbstractExecuter {
     static String sql = "select work_id from user_work where user_id = ? and work_status="+ WorkStatus.Active.getCode();
     @Override
     public Object execute(Object[] params) {
-        List list = getJdbcTemplate().queryForList(sql, params, new RowMapper<Long>() {
+        List list = getJdbcTemplate().query(sql, params, new RowMapper<Long>() {
             @Override
             public Long mapRow(ResultSet resultSet, int i) throws SQLException {
                 return resultSet.getLong("work_id");
