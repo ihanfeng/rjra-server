@@ -17,6 +17,6 @@
     </bean>
     <util:map id="rdb-city-executer">
         <entry key="findCityByCityId" value-ref="findCityByCityId"/>
-        <entry key="findCityByProcinceId" value-ref="findCityByProvinceId"/>
+        <entry key="findCityByProvinceId" value-ref="findCityByProvinceId"/>
     </util:map>
 </beans>
