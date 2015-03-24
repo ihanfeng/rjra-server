@@ -61,6 +61,7 @@ public abstract class SqlUtils {
             List<Object> objectWhereList = new ArrayList<Object>();
             Class clazz = domain.getClass();
             Annotation[] clazzDeclaredAnnotations = clazz.getDeclaredAnnotations();
+            boolean hasPkId = false;
             for (int i = 0; i < clazzDeclaredAnnotations.length; i++) {
                 Annotation annotation = clazzDeclaredAnnotations[i];
                 if (annotation instanceof DBClass) {
@@ -84,6 +85,7 @@ public abstract class SqlUtils {
                                         Object object = method.invoke(domain);
                                         if (object != null) {
                                             if (dbField.pk()) {
+                                                hasPkId = true;
                                                 sqlWhere.append(" WHERE ");
                                                 sqlWhere.append(dbField.value());
                                                 sqlWhere.append(" =?");
@@ -111,6 +113,9 @@ public abstract class SqlUtils {
                         }
                     }
                 }
+            }
+            if(!hasPkId){
+                return null;
             }
             String executeSql = sql.toString().substring(0,sql.length()-1) + sqlWhere.toString();
             objectList.addAll(objectWhereList);

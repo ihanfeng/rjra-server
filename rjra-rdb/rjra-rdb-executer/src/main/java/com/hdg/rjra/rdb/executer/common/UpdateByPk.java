@@ -24,18 +24,23 @@ public class UpdateByPk extends AbstractExecuter {
         if (params != null && params.length > 0) {
             BaseDomain baseDomain = (BaseDomain) params[0];
             SqlParam sqlParam = SqlUtils.buildUpdateSqlByDomain(baseDomain);
-            final String sql = sqlParam.getSql();
-            final List<Object> objects = sqlParam.getObjects();
-            getJdbcTemplate().update(new PreparedStatementCreator() {
-                public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                    PreparedStatement ps = con.prepareStatement(sql);
-                    for (int i = 0; i < objects.size(); i++) {
-                        ps.setObject(i + 1, objects.get(i));
+            if (sqlParam != null) {
+                final String sql = sqlParam.getSql();
+                final List<Object> objects = sqlParam.getObjects();
+                getJdbcTemplate().update(new PreparedStatementCreator() {
+                    public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                        PreparedStatement ps = con.prepareStatement(sql);
+                        for (int i = 0; i < objects.size(); i++) {
+                            ps.setObject(i + 1, objects.get(i));
+                        }
+                        return ps;
                     }
-                    return ps;
-                }
-            });
-            return Integer.valueOf(ResultType.SUCCESS.getCode());
+                });
+                return Integer.valueOf(ResultType.SUCCESS.getCode());
+            }
+            else {
+                return Integer.valueOf(ResultType.BUSINESS_ERROR.getCode());
+            }
         }else{
             return Integer.valueOf(ResultType.PARAM_ERROR.getCode());
         }
