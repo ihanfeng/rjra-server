@@ -10,7 +10,7 @@
         </param-value>
     </context-param>
     <listener>
-        <listener-class>com.hdg.rjra.customer.web.listener.BaseListener</listener-class>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
