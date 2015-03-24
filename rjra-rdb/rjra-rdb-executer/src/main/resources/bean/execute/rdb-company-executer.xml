@@ -48,6 +48,7 @@
         <entry key="updateCompanyLogo" value-ref="updateCompanyLogo"/>
         <entry key="updateCompanyUserIdCard" value-ref="updateCompanyUserIdCard"/>
         <entry key="updateCompanyFacade" value-ref="updateCompanyFacade"/>
+        <entry key="updateCompanyImages" value-ref="updateCompanyImages"/>
         <entry key="findAllCompanyByConditionPager" value-ref="findAllCompanyByConditionPager"/>
     </util:map>
 </beans>
