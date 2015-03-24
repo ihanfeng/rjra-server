@@ -1,13 +1,11 @@
-package com.hdg.rjra.server.web.controller;
+package com.hdg.rjra.customer.web.controller;
 
 import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.error.ErrorType;
 import com.hdg.rjra.rdb.proxy.domain.*;
-import com.hdg.rjra.server.model.param.category.CategoryParam;
 import com.hdg.rjra.server.model.param.region.RegionParam;
-import com.hdg.rjra.server.service.CategoryService;
 import com.hdg.rjra.server.service.RegionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

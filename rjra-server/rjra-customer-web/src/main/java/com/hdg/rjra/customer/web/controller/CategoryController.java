@@ -1,4 +1,4 @@
-package com.hdg.rjra.server.web.controller;
+package com.hdg.rjra.customer.web.controller;
 
 import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.JsonUtils;
