@@ -50,26 +50,6 @@ public class CompanyController {
     @Autowired
     FileService fileService;
 
-    @RequestMapping(value = "updateCompany")
-    @ResponseBody
-    public ResponseEntity<String> updateCompany(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = ErrorType.DEFFAULT;
-        Integer data = null;
-        try {
-            CompanyParam companyParam = JsonUtils.jsonToObject(param, CompanyParam.class);
-            CompanyBo bo = new CompanyBo();
-            ConversionUtils.conversion(companyParam, bo);
-            data = companyService.updateCompany(bo);
-        } catch (Exception e) {
-            errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
-            LOG.error("updateCompany->", e);
-        }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
-    }
-
     @RequestMapping(value = "findCompanyByCompanyId")
     @ResponseBody
     public ResponseEntity<String> findCompanyByCompanyId(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {

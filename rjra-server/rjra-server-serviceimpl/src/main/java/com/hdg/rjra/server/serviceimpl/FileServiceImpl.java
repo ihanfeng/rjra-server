@@ -65,7 +65,7 @@ public class FileServiceImpl implements FileService {
             IOException {
 
         String cd = CustomizedPropertyConfigurer.getContextPropertyForString("upload_file_path");
-        String dir = "upload/" + type + "/" + key + "/";
+        String dir = "rjra/upload/" + type + "/" + key + "/";
         String thumbnails = "_thumbnail";
         String random = UUIDUtils.randomUUID();
         String webPath = cd + dir + random + "." + fileFormat;
