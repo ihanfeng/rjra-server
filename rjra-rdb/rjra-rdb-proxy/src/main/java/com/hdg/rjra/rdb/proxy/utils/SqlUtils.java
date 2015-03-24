@@ -119,6 +119,80 @@ public abstract class SqlUtils {
         }
     }
 
+    public static SqlParam buildSelectSqlByDomain(BaseDomain domain) {
+            SqlParam sqlParam = new SqlParam();
+            StringBuffer sql = new StringBuffer();
+            List<Object> objectList = new ArrayList<Object>();
+            Class clazz = domain.getClass();
+            Annotation[] clazzDeclaredAnnotations = clazz.getDeclaredAnnotations();
+            for (int i = 0; i < clazzDeclaredAnnotations.length; i++) {
+                Annotation annotation = clazzDeclaredAnnotations[i];
+                if (annotation instanceof DBClass) {
+                    String dbTableName = ((DBClass) annotation).value();
+                    if (dbTableName != null) {
+                        sql.append("SELECT * FROM ");
+                        sql.append(dbTableName);
+                        sql.append(" WHERE 1 = 1 ");
+                        Field[] fields = clazz.getDeclaredFields();
+                        for (int j = 0; j < fields.length; j++) {
+                            Field field = fields[j];
+                            Annotation[] annotations = field.getDeclaredAnnotations();
+                            for (int k = 0; k < annotations.length; k++) {
+                                Annotation fieldAnnotation = annotations[k];
+                                if (fieldAnnotation instanceof DBField) {
+                                    DBField dbField = ((DBField) fieldAnnotation);
+                                    String fieldName = field.getName();
+                                    String methodName = "get" + fieldName.substring(0, 1).toUpperCase(Locale.getDefault()) + fieldName.substring(1);
+                                    try {
+                                        Method method = clazz.getMethod(methodName);
+                                        Object object = method.invoke(domain);
+                                        if (object != null) {
+                                            sql.append(" AND ");
+                                            if (object instanceof Long[]){
+                                                Long[] obj = (Long[]) object;
+                                                sql.append(dbField.value());
+                                                sql.append(" in (-1");
+                                                for (int n = 0; n < obj.length; n++) {
+                                                    sql.append(",?");
+                                                    objectList.add(obj[n]);
+                                                }
+                                                sql.append(")");
+                                            } else  if (object instanceof String){
+                                                Long[] obj = (Long[]) object;
+                                                sql.append(dbField.value());
+                                                sql.append(" like ?");
+                                                objectList.add("%" + obj + "%");
+                                            }
+                                            else {
+                                                sql.append(dbField.value());
+                                                sql.append(" =?");
+                                                objectList.add(object);
+                                            }
+                                        }
+                                    } catch (NoSuchMethodException e) {
+                                        e.printStackTrace();
+                                    } catch (InvocationTargetException e) {
+                                        e.printStackTrace();
+                                    } catch (IllegalAccessException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            sqlParam.setSql(sql.toString());
+            sqlParam.setObjects(objectList);
+            return sqlParam;
+    }
+    public static void main(String[] args) {
+        Company company = new Company();
+//        company.setCompanyId(1L);
+//        company.setCompanyName("haha");
+        buildSelectSqlByDomain(company);
+    }
+
     public static SqlParam buildWhereAndSqlByMapParam(Map<?, Object> param) {
         if (param == null || param.size() == 0) {
             return null;

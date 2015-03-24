@@ -118,4 +118,20 @@ public class CompanyServiceImpl implements CompanyService {
     public Integer updateCompanyImages(Long companyId, Long[] imageIds) {
         return companyProxy.updateCompanyImages(companyId, imageIds);
     }
+
+    @Override
+    public Pager<CompanyBo> findAllCompanyByConditionPager(CompanyBo companyBo, Integer firstResult, Integer sizeNo) {
+        Company company = new Company();
+        ConversionUtils.conversion(companyBo, company);
+        Pager<Company> companyPager = companyProxy.findAllCompanyByConditionPager(company, firstResult, sizeNo);
+        Pager<CompanyBo> companyBoPager = new Pager<CompanyBo>();
+        List<CompanyBo> companyBoList = new ArrayList<CompanyBo>();
+        for (Company outCompany : companyPager.getResultList()) {
+            CompanyBo outCompanyBo = getCompanyBo(outCompany);
+            companyBoList.add(outCompanyBo);
+        }
+        companyBoPager.setResultList(companyBoList);
+        companyBoPager.setTotalSize(companyPager.getTotalSize());
+        return companyBoPager;
+    }
 }

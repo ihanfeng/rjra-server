@@ -72,6 +72,7 @@ public class ManagerController {
             else {
                 data = UUIDUtils.randomUUID();
                 request.getSession().setAttribute(SessionToken.TOKEN, data);
+                request.getSession().setAttribute(data, managerBo);
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
@@ -96,6 +97,8 @@ public class ManagerController {
         ErrorType errorType = ErrorType.DEFFAULT;
         try {
             HttpSession session = request.getSession();
+            String token = (String) session.getAttribute(SessionToken.TOKEN);
+            session.removeAttribute(token);
             session.removeAttribute(SessionToken.TOKEN);
             session.invalidate();
         } catch (Exception e) {

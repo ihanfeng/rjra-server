@@ -25,4 +25,7 @@ public interface CompanyService {
     public Integer updateCompanyFacade(Long companyId, Long fileId);
 
     public Integer updateCompanyImages(Long companyId, Long[] imageIds);
+
+    public Pager<CompanyBo> findAllCompanyByConditionPager(CompanyBo companyBo, Integer firstResult, Integer sizeNo);
+
 }

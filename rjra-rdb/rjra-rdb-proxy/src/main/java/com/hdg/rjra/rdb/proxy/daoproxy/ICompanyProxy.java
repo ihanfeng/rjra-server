@@ -18,6 +18,8 @@ public interface ICompanyProxy extends Serializable {
 
     public Pager<Company> findAllCompanyPager(Integer[] status, Integer firstResult, Integer sizeNo);
 
+    public Pager<Company> findAllCompanyByConditionPager(Company company, Integer firstResult, Integer sizeNo);
+
     public Integer updateCompanyBizlicense(Long companyId, Long fileId);
 
     public Integer updateCompanyLogo(Long companyId, Long fileId);

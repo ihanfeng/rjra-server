@@ -36,6 +36,12 @@ public class CompanyProxyImpl extends BaseProxy implements ICompanyProxy {
     }
 
     @Override
+    public Pager<Company> findAllCompanyByConditionPager(Company company, Integer firstResult, Integer sizeNo) {
+        return daoClient.invoke(moduleName, "findAllCompanyByConditionPager",
+                new Object[]{company, firstResult, sizeNo});
+    }
+
+    @Override
     public Integer updateCompanyBizlicense(Long companyId, Long fileId) {
         return daoClient.invoke(moduleName, "updateCompanyBizlicense",
                 new Object[]{companyId, fileId});
