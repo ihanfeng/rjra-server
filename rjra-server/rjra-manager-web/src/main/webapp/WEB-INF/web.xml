@@ -10,7 +10,7 @@
         </param-value>
     </context-param>
     <listener>
-        <listener-class>com.hdg.rjra.manager.web.listener.BaseListener</listener-class>
+        <listener-class>com.hdg.rjra.common.web.listener.BaseListener</listener-class>
     </listener>
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
@@ -31,7 +31,7 @@
     <!-- Token权限检查 -->
     <filter>
         <filter-name>ValidateTokenFilter</filter-name>
-        <filter-class>com.hdg.rjra.manager.web.filter.ValidateTokenFilter</filter-class>
+        <filter-class>com.hdg.rjra.common.web.filter.ValidateTokenFilter</filter-class>
         <init-param>
             <param-name>excludeUrls</param-name>
             <param-value>/manager/login,/manager/logout</param-value>
