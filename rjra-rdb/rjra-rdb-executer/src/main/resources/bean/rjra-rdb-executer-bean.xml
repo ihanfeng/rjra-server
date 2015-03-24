@@ -31,6 +31,9 @@
     <import resource="classpath:bean/execute/rdb-user-collect-work-executer.xml"/>
     <import resource="classpath:bean/execute/rdb-user-invite-user-executer.xml"/>
     <import resource="classpath:bean/execute/rdb-user-scan-user-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-age-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-company-scale-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-company-type-executer.xml"/>
 
     <import resource="classpath:bean/execute/rdb-manager-executer.xml"/>
 
@@ -60,6 +63,9 @@
                 <entry key="rdb-user-collect-work" value-ref="rdb-user-collect-work-executer"/>
                 <entry key="rdb-user-invite-user" value-ref="rdb-user-invite-user-executer"/>
                 <entry key="rdb-user-scan-user" value-ref="rdb-user-scan-user-executer"/>
+                <entry key="rdb-age" value-ref="rdb-age-executer"/>
+                <entry key="rdb-company-scale" value-ref="rdb-company-scale-executer"/>
+                <entry key="rdb-company-type" value-ref="rdb-company-type-executer"/>
 
                 <entry key="rdb-manager" value-ref="rdb-manager-executer"/>
 

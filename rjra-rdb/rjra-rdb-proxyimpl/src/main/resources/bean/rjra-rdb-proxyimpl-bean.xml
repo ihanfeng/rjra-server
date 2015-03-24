@@ -37,6 +37,9 @@
     <bean id="userCollectWorkProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.UserCollectWorkProxyImpl"/>
     <bean id="userInviteUserProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.UserInviteUserProxyImpl"/>
     <bean id="userScanUserProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.UserScanUserProxyImpl"/>
+    <bean id="ageProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.AgeProxyImpl"/>
+    <bean id="companyScaleProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CompanyScaleProxyImpl"/>
+    <bean id="companyTypeProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CompanyTypeProxyImpl"/>
 
     <bean id="managerProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.ManagerProxyImpl"/>
 

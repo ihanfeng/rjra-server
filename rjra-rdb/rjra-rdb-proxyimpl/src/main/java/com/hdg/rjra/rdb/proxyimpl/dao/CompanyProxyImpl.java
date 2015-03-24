@@ -1,9 +1,8 @@
 package com.hdg.rjra.rdb.proxyimpl.dao;
 
-import com.hdg.rjra.rdb.client.Client;
 import com.hdg.rjra.rdb.proxy.daoproxy.ICompanyProxy;
-import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.Company;
+import com.hdg.rjra.rdb.proxy.domain.Pager;
 
 /**
  * Created by Rock on 2015/1/3 0003.

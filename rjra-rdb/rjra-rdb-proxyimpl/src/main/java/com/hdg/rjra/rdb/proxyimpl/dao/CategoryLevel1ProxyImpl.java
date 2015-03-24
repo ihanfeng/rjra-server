@@ -1,6 +1,5 @@
 package com.hdg.rjra.rdb.proxyimpl.dao;
 
-import com.hdg.rjra.rdb.client.Client;
 import com.hdg.rjra.rdb.proxy.daoproxy.ICategoryLevel1Proxy;
 import com.hdg.rjra.rdb.proxy.domain.CategoryLevel1;
 

@@ -1,12 +1,8 @@
 package com.hdg.rjra.rdb.proxyimpl.dao;
 
-import com.hdg.rjra.rdb.proxy.daoproxy.IUserApplyWorkProxy;
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserScanUserProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
-import com.hdg.rjra.rdb.proxy.domain.UserApplyWork;
 import com.hdg.rjra.rdb.proxy.domain.UserScanUser;
-
-import java.util.List;
 
 /**
  * Created by Rock on 2015/1/3 0003.
