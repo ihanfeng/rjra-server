@@ -1,7 +1,7 @@
 package com.hdg.rjra.rdb.executer.company;
 
-import com.hdg.rjra.base.enumerate.CompanyExamineStatus;
 import com.hdg.rjra.base.enumerate.CompanyStatus;
+import com.hdg.rjra.base.enumerate.ExamineStatus;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.handler.PstAssign;
 
@@ -25,7 +25,7 @@ public class CreateCompany extends AbstractExecuter {
                 ps.setObject(1, CompanyStatus.Active.getCode());
                 ps.setObject(2, new Date());
                 ps.setObject(3, new Date());
-                ps.setObject(4, CompanyExamineStatus.NotReviewed.getCode());
+                ps.setObject(4, ExamineStatus.NotReviewed.getCode());
             }
         };
         return saveResultId(sql, pst);

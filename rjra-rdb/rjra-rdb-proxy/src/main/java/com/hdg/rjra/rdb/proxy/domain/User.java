@@ -34,6 +34,9 @@ public class User implements BaseDomain {
     @DBField("user_update_time")
     private Date userUpdateTime;
     private Integer userLoginType;
+    @DBField("user_desc")
+    private String userDesc;
+
 
     public Long getUserId() {
         return userId;
@@ -145,5 +148,13 @@ public class User implements BaseDomain {
 
     public void setUserLoginType(Integer userLoginType) {
         this.userLoginType = userLoginType;
+    }
+
+    public String getUserDesc() {
+        return userDesc;
+    }
+
+    public void setUserDesc(String userDesc) {
+        this.userDesc = userDesc;
     }
 }

@@ -1,5 +1,6 @@
 package com.hdg.rjra.rdb.executer.company;
 
+import com.hdg.rjra.base.enumerate.ExamineStatus;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.model.thrift.ResultType;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -7,6 +8,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by Rock on 2015/1/10 0010.
@@ -14,7 +16,7 @@ import java.sql.SQLException;
 public class UpdateCompanyBizlicense extends AbstractExecuter {
 
     String sql = "UPDATE user_company SET " +
-            "company_bizlicense_image_file=? WHERE company_id =?";
+            "company_bizlicense_image_file=?,company_examine_status=?,company_examine_submit_time=? WHERE company_id =?";
 
     @Override
     public Object execute(Object[] params) {
@@ -27,7 +29,9 @@ public class UpdateCompanyBizlicense extends AbstractExecuter {
                 {
                     PreparedStatement ps = con.prepareStatement(sql);
                     ps.setObject(1, bizlicenseFile);
-                    ps.setObject(2, companyId);
+                    ps.setObject(2, ExamineStatus.Pending.getCode());
+                    ps.setObject(3, new Date());
+                    ps.setObject(4, companyId);
                     return ps;
                 }
             });

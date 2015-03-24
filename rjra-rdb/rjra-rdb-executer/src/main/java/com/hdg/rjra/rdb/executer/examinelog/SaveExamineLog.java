@@ -1,7 +1,5 @@
 package com.hdg.rjra.rdb.executer.examinelog;
 
-import com.hdg.rjra.base.enumerate.CompanyExamineStatus;
-import com.hdg.rjra.base.enumerate.CompanyStatus;
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 import com.hdg.rjra.rdb.handler.PstAssign;
 import com.hdg.rjra.rdb.proxy.domain.ExamineLog;

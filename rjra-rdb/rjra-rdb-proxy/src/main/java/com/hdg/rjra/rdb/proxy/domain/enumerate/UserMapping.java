@@ -12,7 +12,8 @@ public enum UserMapping implements BaseMapping {
     UserNickName("user_nickname", " like "),
     UserGender("user_gender"),
     UserStatus("user_status"),
-    UserLoginType("user_login_type");
+    UserLoginType("user_login_type"),
+    UserDesc("user_desc", " like ");
 
     private String dbField;
 

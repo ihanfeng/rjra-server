@@ -90,7 +90,7 @@ public abstract class SqlUtils {
                                                 objectWhereList.add(object);
                                             } else {
                                                 sql.append(dbField.value());
-                                                sql.append(" =?");
+                                                sql.append(" =?,");
                                                 if (object instanceof Long[]){
                                                     objectList.add(StringUtils.longArrayToString((Long[]) object));
                                                 }
@@ -112,8 +112,9 @@ public abstract class SqlUtils {
                     }
                 }
             }
+            String executeSql = sql.toString().substring(0,sql.length()-1) + sqlWhere.toString();
             objectList.addAll(objectWhereList);
-            sqlParam.setSql(sql.toString() + sqlWhere.toString());
+            sqlParam.setSql(executeSql);
             sqlParam.setObjects(objectList);
             return sqlParam;
         }
@@ -188,9 +189,9 @@ public abstract class SqlUtils {
     }
     public static void main(String[] args) {
         Company company = new Company();
-//        company.setCompanyId(1L);
-//        company.setCompanyName("haha");
-        buildSelectSqlByDomain(company);
+        company.setCompanyId(1L);
+        company.setCompanyName("haha");
+        buildUpdateSqlByDomain(company);
     }
 
     public static SqlParam buildWhereAndSqlByMapParam(Map<?, Object> param) {

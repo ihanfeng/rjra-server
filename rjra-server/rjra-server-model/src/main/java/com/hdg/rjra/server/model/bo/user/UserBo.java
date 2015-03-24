@@ -31,6 +31,7 @@ public class UserBo {
     private String userUpdateTime;
     private Integer userLoginType;
     private String token;
+    private String userDesc;
 
     public Long getUserId() {
         return userId;
@@ -174,5 +175,13 @@ public class UserBo {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getUserDesc() {
+        return userDesc;
+    }
+
+    public void setUserDesc(String userDesc) {
+        this.userDesc = userDesc;
     }
 }

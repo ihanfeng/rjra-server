@@ -2,8 +2,6 @@ package com.hdg.rjra.rdb.executer.examinelog;
 
 import com.hdg.rjra.rdb.executer.AbstractExecuter;
 
-import java.util.List;
-
 /**
  * Created by Administrator on 2015/3/24.
  */

@@ -14,6 +14,15 @@ public class UserParam extends BaseParam {
     private Integer userGender;
     private Integer userStatus;
     private Integer userLoginType;
+    private String userDesc;
+
+    public String getUserDesc() {
+        return userDesc;
+    }
+
+    public void setUserDesc(String userDesc) {
+        this.userDesc = userDesc;
+    }
 
     public Long getUserId() {
         return userId;

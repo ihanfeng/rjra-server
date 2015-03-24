@@ -53,6 +53,12 @@ public class Company implements BaseDomain {
     private Date companyExamineTime;
     @DBField("company_examine_result")
     private String companyExamineResult;
+    @DBField("company_examine_submit_time")
+    private Date companyExamineSubmitTime;
+    @DBField("company_examine_reviewer_id")
+    private Long companyExamineReviewerId;
+    @DBField("company_examine_reviewer_name")
+    private String companyExamineReviewerName;
     private Long[] companyImages;
 
 
@@ -246,5 +252,29 @@ public class Company implements BaseDomain {
 
     public void setCompanyEmail(String companyEmail) {
         this.companyEmail = companyEmail;
+    }
+
+    public Date getCompanyExamineSubmitTime() {
+        return companyExamineSubmitTime;
+    }
+
+    public void setCompanyExamineSubmitTime(Date companyExamineSubmitTime) {
+        this.companyExamineSubmitTime = companyExamineSubmitTime;
+    }
+
+    public Long getCompanyExamineReviewerId() {
+        return companyExamineReviewerId;
+    }
+
+    public void setCompanyExamineReviewerId(Long companyExamineReviewerId) {
+        this.companyExamineReviewerId = companyExamineReviewerId;
+    }
+
+    public String getCompanyExamineReviewerName() {
+        return companyExamineReviewerName;
+    }
+
+    public void setCompanyExamineReviewerName(String companyExamineReviewerName) {
+        this.companyExamineReviewerName = companyExamineReviewerName;
     }
 }

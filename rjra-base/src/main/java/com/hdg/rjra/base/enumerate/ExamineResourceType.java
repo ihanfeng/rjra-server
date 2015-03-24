@@ -3,14 +3,12 @@ package com.hdg.rjra.base.enumerate;
 /**
  * Created by Rock on 2015/1/8 0008.
  */
-public enum CompanyExamineStatus {
-    Pending(0),
-    Pass(1),
-    NotPass(2),
-    NotReviewed(3);
+public enum ExamineResourceType {
+    Company(0),
+    Work(1);
 
     private int code;
-    private CompanyExamineStatus(int code) {
+    private ExamineResourceType(int code) {
         this.code = code;
     }
 
