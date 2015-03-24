@@ -5,5 +5,5 @@ package com.hdg.rjra.customer.web.filter;
  */
 public class SessionToken {
 
-    public final static String TOKEN = "rjra-manager-token";
+    public final static String TOKEN = "rjra-customer-token";
 }

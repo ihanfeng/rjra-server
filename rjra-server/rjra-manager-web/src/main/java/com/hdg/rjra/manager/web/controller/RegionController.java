@@ -1,12 +1,10 @@
-package com.hdg.rjra.customer.web.controller;
+package com.hdg.rjra.manager.web.controller;
 
 import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.error.ErrorType;
-import com.hdg.rjra.rdb.proxy.domain.Area;
-import com.hdg.rjra.rdb.proxy.domain.City;
-import com.hdg.rjra.rdb.proxy.domain.Province;
+import com.hdg.rjra.rdb.proxy.domain.*;
 import com.hdg.rjra.server.model.param.region.RegionParam;
 import com.hdg.rjra.server.service.RegionService;
 import org.slf4j.Logger;
