@@ -8,11 +8,9 @@
           http://www.springframework.org/schema/util/spring-util-3.2.xsd">
     <bean id="ageRowMapper" class="com.hdg.rjra.rdb.executer.age.rowmapper.AgeRowMapper"/>
 
-    <bean id="saveExamineLog" class="com.hdg.rjra.rdb.executer.age.saveExamineLog">
-        <property name="rowMapper" ref="ageRowMapper"></property>
+    <bean id="saveExamineLog" class="com.hdg.rjra.rdb.executer.examinelog.SaveExamineLog">
     </bean>
-    <bean id="findExamineLogByResourceId" class="com.hdg.rjra.rdb.executer.age.findExamineLogByResourceId">
-        <property name="rowMapper" ref="ageRowMapper"></property>
+    <bean id="findExamineLogByResourceId" class="com.hdg.rjra.rdb.executer.examinelog.FindExamineLogByResourceId">
     </bean>
     <util:map id="rdb-examine-log-executer">
         <entry key="saveExamineLog" value-ref="saveExamineLog"/>
