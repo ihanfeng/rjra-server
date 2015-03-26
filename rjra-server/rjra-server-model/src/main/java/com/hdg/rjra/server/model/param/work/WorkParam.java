@@ -240,4 +240,5 @@ public class WorkParam extends BaseParam {
     public void setWorkTag(String workTag) {
         this.workTag = workTag;
     }
+
 }
