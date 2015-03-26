@@ -20,11 +20,9 @@ package com.hdg.rjra.rdb.test;
 import com.hdg.common.utils.HttpRequestUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.StringUtils;
+import com.hdg.rjra.base.enumerate.DataResourceType;
 import com.hdg.rjra.base.enumerate.WorkStatus;
-import com.hdg.rjra.rdb.proxy.domain.Area;
-import com.hdg.rjra.rdb.proxy.domain.City;
-import com.hdg.rjra.rdb.proxy.domain.Province;
-import com.hdg.rjra.rdb.proxy.domain.Work;
+import com.hdg.rjra.rdb.proxy.domain.*;
 import com.hdg.rjra.rdb.test.geo.AreaGeoInfo;
 import com.hdg.rjra.rdb.test.geo.GeocoderSearchResponse;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -71,6 +69,9 @@ public final class WorkHSSFRead extends AbstractTest {
         List<Province> provinceList = rdbDefaultClient.invoke("rdb-province", "findAllProvince",
                 new Object[]{});
 
+        Pager<Company> companyPager = rdbDefaultClient.invoke("rdb-company", "findAllCompanyByConditionPager",
+                new Object[]{new Company(),0,999999});
+        int count =1;
         try {
             HSSFWorkbook wb = WorkHSSFRead.readFile(fileName);
 
@@ -81,7 +82,7 @@ public final class WorkHSSFRead extends AbstractTest {
                 System.out.println("Sheet " + k + " \"" + wb.getSheetName(k) + "\" has " + rows
                         + " row(s).");
                 for (int r = 1; r < rows; r++) {
-                    if (r % 50 == 0) {
+                    if (count % 50 == 0) {
                         sumWorkList.add(workList);
                         workList = new ArrayList<Work>();
                     }
@@ -97,12 +98,15 @@ public final class WorkHSSFRead extends AbstractTest {
                     Pattern p = Pattern.compile(REGEXP, Pattern.CASE_INSENSITIVE);
                     Matcher m = p.matcher(desc);
                     Work work = new Work();
+                    work.setWorkDataType(DataResourceType.Crawl.getCode());
+                    work.setWorkTag("hello");
                     String ads = "";
                     if (m.find()) {
                         String companyName = m.group(1);
                         String workDesc = m.group(14);
                         Integer needPeople = StringUtils.isEmpty(m.group(6))?1000:Integer.parseInt(m.group(6));
                         ads = m.group(8);
+                        String wage = m.group(12);
                         System.out.println(m.group(0));
                         System.out.println(m.group(1));
                         System.out.println(m.group(2));
@@ -119,9 +123,10 @@ public final class WorkHSSFRead extends AbstractTest {
                         System.out.println(m.group(13));
                         System.out.println(m.group(14));
                         work.setCompanyName(companyName);
-                        work.setCompanyId(-1L);
+                        work.setCompanyId(findCompany(companyName, companyPager.getResultList()));
                         work.setWorkDesc(workDesc);
                         work.setWorkNeedPerson(needPeople);
+                        work.setWorkWageId(findWage(wage));
                     }
                     String address =  ads + row.getCell(7).getStringCellValue();
                     //http://api.map.baidu.com/geocoder/v2/?output=json&ak=X4R0e9z7r4L3onULLOwGBdAD&address=
@@ -148,7 +153,6 @@ public final class WorkHSSFRead extends AbstractTest {
                     work.setWorkCityId(findCityId(areaGeoInfo.getResult().getAddressComponent().getCity(), cityList));
                     work.setWorkProvinceId(findProvinceId(areaGeoInfo.getResult().getAddressComponent().getProvince(), provinceList));
                     work.setWorkAddress(address);
-                    work.setWorkWageId(findWage(""));
                     work.setWorkExperienceId(1L);
                     work.setWorkWelfareIds(new Long[]{});
                     work.setWorkStatus(WorkStatus.Active.getCode());
@@ -160,6 +164,7 @@ public final class WorkHSSFRead extends AbstractTest {
                     int cells = row.getPhysicalNumberOfCells();
                     System.out.println("\nROW " + row.getRowNum() + " has " + cells
                             + " cell(s).");
+                    count ++;
                 }
             }
             sumWorkList.add(workList);
@@ -177,8 +182,37 @@ public final class WorkHSSFRead extends AbstractTest {
         System.out.println("over");
     }
 
-    private static Long findWage(String s) {
-        return null;
+    private Long findCompany(String companyName, List<Company> companyList) {
+        for (Company company : companyList) {
+            if (company.getCompanyName() != null && company.getCompanyName().trim().equals(companyName)) {
+                return company.getCompanyId();
+            }
+        }
+        return -1L;
+    }
+
+    private static Long findWage(String wage) {
+
+        if ("1500元以下".equals(wage)) {
+            return 2L;
+        } else if ("1500-2000".equals(wage)) {
+            return 3L;
+        } else if ("2000-3000".equals(wage)) {
+            return 4L;
+        } else if ("3000-5000".equals(wage)) {
+            return 5L;
+        }else if ("5000-8000".equals(wage)) {
+            return 6L;
+        }else if ("8000-12000".equals(wage)) {
+            return 7L;
+        }else if ("12000-15000".equals(wage)) {
+            return 8L;
+        }else if ("15000-20000".equals(wage)) {
+            return 9L;
+        }else if ("20000元以上".equals(wage)) {
+            return 10L;
+        }
+        return 1L;
     }
 
     private static Long[] findCategory(String category) {

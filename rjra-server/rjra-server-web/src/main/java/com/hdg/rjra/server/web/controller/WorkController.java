@@ -9,6 +9,7 @@ import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.ConversionUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
+import com.hdg.rjra.base.enumerate.DataResourceType;
 import com.hdg.rjra.base.error.ErrorType;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
@@ -150,6 +151,8 @@ public class WorkController {
             WorkParam workParam = JsonUtils.jsonToObject(param, WorkParam.class);
             WorkBo bo = new WorkBo();
             ConversionUtils.conversion(workParam, bo);
+            bo.setWorkDataType(DataResourceType.MobileClient.getCode());
+            bo.setWorkTag("MOBILE_CLIENT");
             data = workService.saveWork(bo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;

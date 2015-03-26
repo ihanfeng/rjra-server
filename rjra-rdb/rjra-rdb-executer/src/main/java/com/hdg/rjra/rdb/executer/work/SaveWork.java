@@ -19,7 +19,8 @@ public class SaveWork  extends AbstractExecuter {
             "company_id,company_name,category_level1_id,category_level2_id,category_level3_id,work_area_id," +
             "work_city_id,work_province_id,work_address,work_need_person,work_wage_id," +
             "work_experience_id,work_welfare_ids,work_desc,work_status,work_create_time," +
-            "work_update_time,age_id,work_gender) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            "work_update_time,age_id,work_gender,work_data_type,work_tag,work_import_time," +
+            "work_import_operator_id,work_import_operator_name) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     @Override
     public Object execute(Object[] params) {
@@ -49,6 +50,11 @@ public class SaveWork  extends AbstractExecuter {
                 ps.setObject(20, new Date());
                 ps.setObject(21, work.getAgeId());
                 ps.setObject(22, work.getWorkGender());
+                ps.setObject(23, work.getWorkDataType());
+                ps.setObject(24, work.getWorkTag());
+                ps.setObject(25, work.getWorkImportTime());
+                ps.setObject(26, work.getWorkImportOperatorId());
+                ps.setObject(27, work.getWorkImportOperatorName());
             }
         };
         return saveResultId(sql, pst);

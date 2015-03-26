@@ -41,6 +41,7 @@
     <bean id="companyScaleProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CompanyScaleProxyImpl"/>
     <bean id="companyTypeProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.CompanyTypeProxyImpl"/>
     <bean id="examineLogProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.ExamineLogProxyImpl"/>
+    <bean id="importLogProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.ImportLogProxyImpl"/>
 
     <bean id="managerProxy" class="com.hdg.rjra.rdb.proxyimpl.dao.ManagerProxyImpl"/>
 

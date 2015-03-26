@@ -30,6 +30,8 @@ public class WorkParam extends BaseParam {
     private Integer workStatus;
     private Long ageId;
     private Integer workGender;
+    private Integer workDataType;
+    private String workTag;
 
     public Long getWorkId() {
         return workId;
@@ -221,5 +223,21 @@ public class WorkParam extends BaseParam {
 
     public void setWorkGender(Integer workGender) {
         this.workGender = workGender;
+    }
+
+    public Integer getWorkDataType() {
+        return workDataType;
+    }
+
+    public void setWorkDataType(Integer workDataType) {
+        this.workDataType = workDataType;
+    }
+
+    public String getWorkTag() {
+        return workTag;
+    }
+
+    public void setWorkTag(String workTag) {
+        this.workTag = workTag;
     }
 }

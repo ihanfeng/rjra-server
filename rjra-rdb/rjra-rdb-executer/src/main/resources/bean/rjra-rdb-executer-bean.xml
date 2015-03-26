@@ -35,6 +35,7 @@
     <import resource="classpath:bean/execute/rdb-company-scale-executer.xml"/>
     <import resource="classpath:bean/execute/rdb-company-type-executer.xml"/>
     <import resource="classpath:bean/execute/rdb-examine-log-executer.xml"/>
+    <import resource="classpath:bean/execute/rdb-import-log-executer.xml"/>
 
     <import resource="classpath:bean/execute/rdb-manager-executer.xml"/>
 
@@ -68,6 +69,7 @@
                 <entry key="rdb-company-scale" value-ref="rdb-company-scale-executer"/>
                 <entry key="rdb-company-type" value-ref="rdb-company-type-executer"/>
                 <entry key="rdb-examine-log" value-ref="rdb-examine-log-executer"/>
+                <entry key="rdb-import-log" value-ref="rdb-import-log-executer"/>
 
                 <entry key="rdb-manager" value-ref="rdb-manager-executer"/>
 

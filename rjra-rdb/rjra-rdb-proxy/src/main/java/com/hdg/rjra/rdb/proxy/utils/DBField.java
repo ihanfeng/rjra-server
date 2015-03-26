@@ -11,4 +11,6 @@ import java.lang.annotation.*;
 public @interface DBField {
         String value();
         boolean pk() default false;
+        boolean order() default false;
+        String sortBy() default "DESC";
 }

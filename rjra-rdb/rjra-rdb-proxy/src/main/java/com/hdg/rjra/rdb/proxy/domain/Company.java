@@ -64,7 +64,12 @@ public class Company implements BaseDomain {
     private String companyTag;
     @DBField("company_data_type")
     private Integer companyDataType;
-
+    @DBField("company_import_time")
+    private Date companyImportTime;
+    @DBField("company_import_operator_id")
+    private Long companyImportOperatorId;
+    @DBField("company_import_operator_name")
+    private String companyImportOperatorName;
 
     public Long getCompanyId() {
         return companyId;
@@ -296,5 +301,29 @@ public class Company implements BaseDomain {
 
     public void setCompanyDataType(Integer companyDataType) {
         this.companyDataType = companyDataType;
+    }
+
+    public Date getCompanyImportTime() {
+        return companyImportTime;
+    }
+
+    public void setCompanyImportTime(Date companyImportTime) {
+        this.companyImportTime = companyImportTime;
+    }
+
+    public Long getCompanyImportOperatorId() {
+        return companyImportOperatorId;
+    }
+
+    public void setCompanyImportOperatorId(Long companyImportOperatorId) {
+        this.companyImportOperatorId = companyImportOperatorId;
+    }
+
+    public String getCompanyImportOperatorName() {
+        return companyImportOperatorName;
+    }
+
+    public void setCompanyImportOperatorName(String companyImportOperatorName) {
+        this.companyImportOperatorName = companyImportOperatorName;
     }
 }

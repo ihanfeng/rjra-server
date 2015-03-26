@@ -54,6 +54,16 @@ public class Work implements BaseDomain {
     private Long ageId;
     @DBField("work_gender")
     private Integer workGender;
+    @DBField("work_data_type")
+    private Integer workDataType;
+    @DBField("work_tag")
+    private String workTag;
+    @DBField("work_import_time")
+    private Date workImportTime;
+    @DBField("work_import_operator_id")
+    private Long workImportOperatorId;
+    @DBField("work_import_operator_name")
+    private String workImportOperatorName;
 
     public Long getWorkId() {
         return workId;
@@ -237,5 +247,45 @@ public class Work implements BaseDomain {
 
     public void setWorkGender(Integer workGender) {
         this.workGender = workGender;
+    }
+
+    public Integer getWorkDataType() {
+        return workDataType;
+    }
+
+    public void setWorkDataType(Integer workDataType) {
+        this.workDataType = workDataType;
+    }
+
+    public String getWorkTag() {
+        return workTag;
+    }
+
+    public void setWorkTag(String workTag) {
+        this.workTag = workTag;
+    }
+
+    public Date getWorkImportTime() {
+        return workImportTime;
+    }
+
+    public void setWorkImportTime(Date workImportTime) {
+        this.workImportTime = workImportTime;
+    }
+
+    public Long getWorkImportOperatorId() {
+        return workImportOperatorId;
+    }
+
+    public void setWorkImportOperatorId(Long workImportOperatorId) {
+        this.workImportOperatorId = workImportOperatorId;
+    }
+
+    public String getWorkImportOperatorName() {
+        return workImportOperatorName;
+    }
+
+    public void setWorkImportOperatorName(String workImportOperatorName) {
+        this.workImportOperatorName = workImportOperatorName;
     }
 }
