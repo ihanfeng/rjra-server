@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class SqlParam {
     private String sql;
+    private String countSql;
 
     private List<Object> objects;
 
@@ -16,6 +17,14 @@ public class SqlParam {
 
     public void setSql(String sql) {
         this.sql = sql;
+    }
+
+    public String getCountSql() {
+        return countSql;
+    }
+
+    public void setCountSql(String countSql) {
+        this.countSql = countSql;
     }
 
     public List<Object> getObjects() {

@@ -12,4 +12,5 @@ import java.lang.annotation.Target;
 @Target( {ElementType.TYPE })
 public @interface DBClass {
     String value();
+    String sortBy() default "";
 }

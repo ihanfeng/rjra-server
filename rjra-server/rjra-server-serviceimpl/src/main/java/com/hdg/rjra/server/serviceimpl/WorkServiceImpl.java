@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -98,6 +99,7 @@ public class WorkServiceImpl implements WorkService {
         Work work = new Work();
         ConversionUtils.conversion(workBo, work);
         getGeoLocation(work);
+        work.setWorkUpdateTime(new Date());
         return workProxy.updateWork(work);
     }
 
@@ -114,6 +116,22 @@ public class WorkServiceImpl implements WorkService {
         CompanyBo companyBo = companyService.findCompanyByCompanyId(work.getCompanyId());
         work.setCompanyName(companyBo.getCompanyName());
         return workProxy.saveWork(work);
+    }
+
+    @Override
+    public Pager<WorkBo> findAllWorkByConditionPager(WorkBo workBo, Integer firstResult, Integer sizeNo) {
+        Work work = new Work();
+        ConversionUtils.conversion(workBo, work);
+        Pager<Work> workPager = workProxy.findAllWorkByConditionPager(work, firstResult, sizeNo);
+        Pager<WorkBo> workBoPager = new Pager<WorkBo>();
+        List<WorkBo> workBoList = new ArrayList<WorkBo>();
+        for (Work outWork : workPager.getResultList()) {
+            WorkBo outWorkBo = getWorkBo(outWork);
+            workBoList.add(outWorkBo);
+        }
+        workBoPager.setResultList(workBoList);
+        workBoPager.setTotalSize(workPager.getTotalSize());
+        return workBoPager;
     }
 
     private void getGeoLocation(Work work) {

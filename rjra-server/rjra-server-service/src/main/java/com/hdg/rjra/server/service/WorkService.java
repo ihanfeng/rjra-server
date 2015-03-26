@@ -22,4 +22,6 @@ public interface WorkService {
     public Integer updateWorkStatus(Long workId, Integer status);
 
     public Long saveWork(WorkBo workBo);
+
+    public Pager<WorkBo> findAllWorkByConditionPager(WorkBo workBo, Integer firstResult, Integer sizeNo);
 }

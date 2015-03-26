@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by Rock on 2015/1/8 0008.
  */
-@DBClass("user_company")
+@DBClass(value = "user_company", sortBy = "DESC")
 public class Company implements BaseDomain {
 
     @DBField(value = "company_Id", pk = true)
@@ -40,8 +40,9 @@ public class Company implements BaseDomain {
     private Long companyFacadeImageFile;
     @DBField("company_status")
     private Integer companyStatus;
+    @DBField(value = "company_create_time", order = true)
     private Date companyCreateTime;
-    @DBField("company_update_time")
+    @DBField(value = "company_update_time")
     private Date companyUpdateTime;
     @DBField("company_change_time")
     private Date companyChangeTime;

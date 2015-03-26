@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by Rock on 2015/1/27 0027.
  */
-@DBClass("user_work")
+@DBClass(value = "user_work", sortBy = "DESC")
 public class Work implements BaseDomain {
 
     @DBField(value = "work_id", pk = true)
@@ -47,6 +47,7 @@ public class Work implements BaseDomain {
     private String workDesc;
     @DBField("work_status")
     private Integer workStatus;
+    @DBField(value = "work_create_time",order = true)
     private Date workCreateTime;
     @DBField("work_update_time")
     private Date workUpdateTime;

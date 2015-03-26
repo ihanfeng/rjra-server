@@ -56,4 +56,10 @@ public class WorkProxyImpl extends BaseProxy implements IWorkProxy {
         return daoClient.invoke(moduleName, "findWorkIdsByUserId",
                 new Object[]{userId});
     }
+
+    @Override
+    public Pager<Work> findAllWorkByConditionPager(Work work, Integer firstResult, Integer sizeNo) {
+        return daoClient.invoke(moduleName, "findAllWorkByConditionPager",
+                new Object[]{work, firstResult, sizeNo});
+    }
 }

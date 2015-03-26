@@ -26,4 +26,6 @@ public interface IWorkProxy extends Serializable {
     public Long saveWork(Work work);
 
     public List<Long> findWorkIdsByUserId(Long userId);
+
+    public Pager<Work> findAllWorkByConditionPager(Work work, Integer firstResult, Integer sizeNo);
 }

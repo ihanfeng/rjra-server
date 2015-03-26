@@ -128,17 +128,26 @@ public abstract class SqlUtils {
     public static SqlParam buildSelectSqlByDomain(BaseDomain domain) {
             SqlParam sqlParam = new SqlParam();
             StringBuffer sql = new StringBuffer();
+            StringBuilder countSql = new StringBuilder("select count(1) cnt from (");
+            StringBuffer innerSql = new StringBuffer();
+            StringBuffer orderBy = new StringBuffer();
             List<Object> objectList = new ArrayList<Object>();
+            boolean isOrder = false;
             Class clazz = domain.getClass();
             Annotation[] clazzDeclaredAnnotations = clazz.getDeclaredAnnotations();
             for (int i = 0; i < clazzDeclaredAnnotations.length; i++) {
                 Annotation annotation = clazzDeclaredAnnotations[i];
                 if (annotation instanceof DBClass) {
-                    String dbTableName = ((DBClass) annotation).value();
+                    DBClass dbClass = (DBClass) annotation;
+                    String dbTableName = dbClass.value();
                     if (dbTableName != null) {
                         sql.append("SELECT * FROM ");
                         sql.append(dbTableName);
                         sql.append(" WHERE 1 = 1 ");
+                        innerSql.append("SELECT * FROM ");
+                        innerSql.append(dbTableName);
+                        innerSql.append(" WHERE 1 = 1 ");
+
                         Field[] fields = clazz.getDeclaredFields();
                         for (int j = 0; j < fields.length; j++) {
                             Field field = fields[j];
@@ -154,26 +163,40 @@ public abstract class SqlUtils {
                                         Object object = method.invoke(domain);
                                         if (object != null) {
                                             sql.append(" AND ");
+                                            innerSql.append(" AND ");
                                             if (object instanceof Long[]){
                                                 Long[] obj = (Long[]) object;
                                                 sql.append(dbField.value());
                                                 sql.append(" in (-1");
+                                                innerSql.append(dbField.value());
+                                                innerSql.append(" in (-1");
                                                 for (int n = 0; n < obj.length; n++) {
                                                     sql.append(",?");
+                                                    innerSql.append(",?");
                                                     objectList.add(obj[n]);
                                                 }
                                                 sql.append(")");
+                                                innerSql.append(")");
                                             } else  if (object instanceof String){
-                                                Long[] obj = (Long[]) object;
+                                                String obj = (String) object;
                                                 sql.append(dbField.value());
                                                 sql.append(" like ?");
+                                                innerSql.append(dbField.value());
+                                                innerSql.append(" like ?");
                                                 objectList.add("%" + obj + "%");
                                             }
                                             else {
                                                 sql.append(dbField.value());
                                                 sql.append(" =?");
+                                                innerSql.append(dbField.value());
+                                                innerSql.append(" =?");
                                                 objectList.add(object);
                                             }
+                                        }
+                                        if(dbField.order()){
+                                            isOrder = isOrder || dbField.order();
+                                            orderBy.append(dbField.value());
+                                            orderBy.append(",");
                                         }
                                     } catch (NoSuchMethodException e) {
                                         e.printStackTrace();
@@ -185,9 +208,19 @@ public abstract class SqlUtils {
                                 }
                             }
                         }
+                        if(isOrder) {
+                            String sortSql = orderBy.substring(0, orderBy.length() - 1);
+                            sql.append(" ORDER BY ");
+                            sql.append(sortSql);
+                            sql.append(" ");
+                            sql.append(dbClass.sortBy());
+                        }
                     }
                 }
             }
+            countSql.append(innerSql.toString());
+            countSql.append(") as pagertable");
+            sqlParam.setCountSql(countSql.toString());
             sqlParam.setSql(sql.toString());
             sqlParam.setObjects(objectList);
             return sqlParam;
@@ -196,7 +229,7 @@ public abstract class SqlUtils {
         Company company = new Company();
         company.setCompanyId(1L);
         company.setCompanyName("haha");
-        buildUpdateSqlByDomain(company);
+        buildSelectSqlByDomain(company);
     }
 
     public static SqlParam buildWhereAndSqlByMapParam(Map<?, Object> param) {

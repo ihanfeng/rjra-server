@@ -8,6 +8,7 @@ import com.hdg.rjra.rdb.model.thrift.ResponseModel;
 import com.hdg.rjra.rdb.model.thrift.ResultType;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.utils.DaoUtils;
+import com.hdg.rjra.rdb.proxy.utils.SqlParam;
 import com.mysql.jdbc.Statement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -153,6 +154,44 @@ public abstract class AbstractExecuter implements Executer {
             }
         }
         );
+    }
+
+    public Pager findPager(SqlParam sqlParam, Integer firstResult, Integer sizeNo, RowMapper rowMapper) {
+        String sql = sqlParam.getSql();
+        String countSql = sqlParam.getCountSql();
+        Object[] params = sqlParam.getObjects().toArray();
+        logger.debug("sql >>>> " + sql);
+        logger.debug("params >>>>> " + JSON.toJSONString(sqlParam.getObjects()));
+        logger.debug(" firstResult >>>> " + firstResult);
+        logger.debug(" sizeNo >>>> " + sizeNo);
+        Pager pager = new Pager();
+        if (params == null || params.length == 0) {
+            Object count = getJdbcTemplate().queryForMap(countSql).get("cnt");
+            logger.debug("总数 >>>> "+count.toString());
+            pager.setTotalSize(Long.parseLong(count.toString()));
+
+            sql = sql + " LIMIT ?,?";
+            Object[] selectParams = new Object[]{firstResult, sizeNo};
+            logger.debug("sql >>> " + sql);
+            logger.debug("param >>> " + JSON.toJSONString(selectParams));
+            pager.setResultList(getJdbcTemplate().query(sql, selectParams, rowMapper));
+        } else {
+            Object count = getJdbcTemplate().queryForMap(countSql, params).get("cnt");
+            logger.debug("总数 >>>> "+count.toString());
+            pager.setTotalSize(Long.parseLong(count.toString()));
+
+            sql = sql + " LIMIT ?,?";
+            Object[] selectParams = new Object[params.length + 2];
+            for (int i = 0; i < params.length; i++) {
+                selectParams[i] = params[i];
+            }
+            selectParams[params.length] = firstResult;
+            selectParams[params.length + 1] = sizeNo;
+            logger.debug("sql >>> " + sql);
+            logger.debug("param >>> " + JSON.toJSONString(selectParams));
+            pager.setResultList(getJdbcTemplate().query(sql, selectParams, rowMapper));
+        }
+        return pager;
     }
 
     public Pager findPager(String sql, Object[] params, Integer firstResult, Integer sizeNo, RowMapper rowMapper) {

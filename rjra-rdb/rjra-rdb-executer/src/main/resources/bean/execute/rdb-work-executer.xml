@@ -33,6 +33,10 @@
         <property name="rowMapper" ref="workRowMapper"></property>
     </bean>
     <bean id="findWorkIdsByUserId" class="com.hdg.rjra.rdb.executer.work.FindWorkIdsByUserId"/>
+
+    <bean id="findAllWorkByConditionPager" class="com.hdg.rjra.rdb.executer.work.FindAllWorkByConditionPager">
+        <property name="rowMapper" ref="workRowMapper"></property>
+    </bean>
     <util:map id="rdb-work-executer">
         <entry key="findWorkByWorkId" value-ref="findWorkByWorkId"/>
         <entry key="findAllWorkByParamPager" value-ref="findAllWorkByParamPager"/>
@@ -43,5 +47,6 @@
         <entry key="batchSaveWork" value-ref="batchSaveWork"/>
         <entry key="deleteWork" value-ref="deleteWork"/>
         <entry key="findWorkIdsByUserId" value-ref="findWorkIdsByUserId"/>
+        <entry key="findAllWorkByConditionPager" value-ref="findAllWorkByConditionPager"/>
     </util:map>
 </beans>
