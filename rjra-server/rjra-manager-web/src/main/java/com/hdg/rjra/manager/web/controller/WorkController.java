@@ -14,6 +14,8 @@ import com.hdg.rjra.base.error.ErrorType;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
 import com.hdg.rjra.server.model.bo.work.WorkBo;
+import com.hdg.rjra.server.model.bo.work.WorkBo;
+import com.hdg.rjra.server.model.param.work.WorkParam;
 import com.hdg.rjra.server.model.param.work.WorkParam;
 import com.hdg.rjra.server.service.WorkService;
 import org.slf4j.Logger;
@@ -62,9 +64,15 @@ public class WorkController {
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
-    @RequestMapping(value = "findAllWorkByParamPager")
+    /**
+     * 多条件查询岗位信息
+     * @param request
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "findAllWorkByConditionPager")
     @ResponseBody
-    public ResponseEntity<String> findAllWorkByParamPager(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+    public ResponseEntity<String> findAllWorkByManagerPager(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = ErrorType.DEFFAULT;
         Pager<WorkBo> data = null;
         try {
@@ -73,12 +81,13 @@ public class WorkController {
             Integer sizeNo = workParam.getSize() == null ? CommonConstants.NUM_INT_50 : workParam
                     .getSize();
             Integer firstResult = workParam.getPage() == null ? 0 : (workParam.getPage() - 1) * sizeNo;
-            Map<WorkMapping, Object> mapParam = getMapParam(workParam);
-            data = workService.findAllWorkByParamPager(mapParam, firstResult, sizeNo);
+            WorkBo bo = new WorkBo();
+            ConversionUtils.conversion(workParam, bo);
+            data = workService.findAllWorkByConditionPager(bo, firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
             errorType.setMessage(e.getMessage());
-            LOG.error("findAllWorkByParamPager ->", e);
+            LOG.error("findAllWorkPager->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));

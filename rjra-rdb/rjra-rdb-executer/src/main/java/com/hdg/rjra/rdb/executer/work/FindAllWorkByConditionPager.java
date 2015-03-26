@@ -16,6 +16,6 @@ public class FindAllWorkByConditionPager extends AbstractExecuter {
         SqlParam sqlParam = SqlUtils.buildSelectSqlByDomain(work);
         Integer firstResult = (Integer) params[1];
         Integer sizeNo = (Integer) params[2];
-        return findPager(sqlParam.getSql(), sqlParam.getObjects().toArray() , firstResult, sizeNo, rowMapper);
+        return findPager(sqlParam , firstResult, sizeNo, rowMapper);
     }
 }
