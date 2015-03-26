@@ -45,7 +45,7 @@ public class RegionController {
             data = regionService.findAreaByAreaId(regionParam.getAreaId());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAreaByAreaId->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -62,7 +62,7 @@ public class RegionController {
             data = regionService.findAreaByCityId(regionParam.getCityId());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAreaByCityId->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -79,7 +79,7 @@ public class RegionController {
             data = regionService.findCityByCityId(regionParam.getCityId());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findCityByCityId->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -96,7 +96,7 @@ public class RegionController {
             data = regionService.findCityByProvinceId(regionParam.getProvinceId());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findCityByProvinceId->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -113,7 +113,7 @@ public class RegionController {
             data = regionService.findProvinceByProvinceId(regionParam.getProvinceId());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findProvinceByProvinceId->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -129,7 +129,7 @@ public class RegionController {
             data = regionService.findAllProvince();
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllProvince->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

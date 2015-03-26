@@ -41,7 +41,7 @@ public class EducationController {
             data = educationService.findAllEducation();
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllEducation->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

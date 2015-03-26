@@ -56,7 +56,7 @@ public class ExamineController {
             data = examineService.examineResource(bo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("examineResource->", e);
         }
 

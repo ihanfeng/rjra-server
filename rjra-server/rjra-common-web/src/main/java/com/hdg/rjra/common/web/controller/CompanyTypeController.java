@@ -41,7 +41,7 @@ public class CompanyTypeController {
             data = companyTypeService.findAllCompanyType();
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllCompanyType->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

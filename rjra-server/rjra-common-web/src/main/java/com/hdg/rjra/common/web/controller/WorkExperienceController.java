@@ -41,7 +41,7 @@ public class WorkExperienceController {
             data = workExperienceService.findAllWorkExperience();
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllWorkExperience->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

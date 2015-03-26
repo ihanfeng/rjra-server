@@ -59,7 +59,7 @@ public class UserScanUserController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("saveUserScanUser->", e);
         }
 
@@ -87,7 +87,7 @@ public class UserScanUserController {
             data = userScanUserService.findAllUserScanUserByScanUserIdPager(userScanUserParam.getScanUserId(), firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllUserScanUserByScanUserIdPager ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

@@ -60,7 +60,7 @@ public class CompanyController {
             data = companyService.findCompanyByCompanyId(findCompanyParam.getCompanyId());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findCompanyByCompanyId->", e);
         }
 
@@ -90,7 +90,7 @@ public class CompanyController {
             data = companyService.findAllCompanyByConditionPager(bo, firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllCompanyPager->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

@@ -73,7 +73,7 @@ public class UserController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("saveUser->", e);
         }
 
@@ -93,7 +93,7 @@ public class UserController {
             data = userService.updateUser(bo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("updateUser->", e);
         }
 
@@ -112,7 +112,7 @@ public class UserController {
             data = userService.findUserByUserId(findUserParam.getUserId());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findUserByUserId->", e);
         }
 
@@ -134,7 +134,7 @@ public class UserController {
             data = userService.findAllUserPager(firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllUserPager->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -178,7 +178,7 @@ public class UserController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("updateUserHead->", e);
         }
 
@@ -200,7 +200,7 @@ public class UserController {
             data = userService.findNearUserPager(locationParam.getLongitude(), locationParam.getLatitude(), locationParam.getRaidus(), firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findNearUserPager->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -223,7 +223,7 @@ public class UserController {
             data = userService.updateUserLocation(locationParam.getUserId(),locationParam.getLongitude(),locationParam.getLatitude());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("updateUserLocation->", e);
         }
 
@@ -251,7 +251,7 @@ public class UserController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("user changePwd ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

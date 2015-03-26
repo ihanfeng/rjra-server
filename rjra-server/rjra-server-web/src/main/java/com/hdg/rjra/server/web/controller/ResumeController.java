@@ -62,7 +62,7 @@ public class ResumeController {
             data = resumeService.findResumeByResumeId(resumeParam.getResumeId());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findResumeByResumeId->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -81,7 +81,7 @@ public class ResumeController {
             data = resumeService.updatResumeStatus(resumeParam.getResumeId(), resumeParam.getResumeStatus());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("updatResumeStatus->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -100,7 +100,7 @@ public class ResumeController {
             data = resumeService.updateResume(bo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("updateResume->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -145,7 +145,7 @@ public class ResumeController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("updateResumeHead->", e);
         }
 
@@ -168,7 +168,7 @@ public class ResumeController {
             data = resumeService.findAllResumeByParamPager(mapParam, firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllResumeByParamPager ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -190,7 +190,7 @@ public class ResumeController {
             data = resumeService.findNearResumeByParamPager(mapParam, resumeParam.getResumeLongitude(), resumeParam.getResumeLatitude(), resumeParam.getResumeRaidus(), firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findNearResumeByParamPager ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

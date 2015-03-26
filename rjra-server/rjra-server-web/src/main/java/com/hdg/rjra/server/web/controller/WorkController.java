@@ -54,7 +54,7 @@ public class WorkController {
             data = workService.findWorkByWorkId(workParam.getWorkId());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findWorkByWorkId ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -76,7 +76,7 @@ public class WorkController {
             data = workService.findAllWorkByParamPager(mapParam, firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllWorkByParamPager ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -98,7 +98,7 @@ public class WorkController {
             data = workService.findNearWorkByParamPager(mapParam, workParam.getWorkLongitude(), workParam.getWorkLatitude(), workParam.getWorkRaidus(), firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findNearWorkByParamPager ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -117,7 +117,7 @@ public class WorkController {
             data = workService.updateWork(bo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("updateWork ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -134,7 +134,7 @@ public class WorkController {
             data = workService.updateWorkStatus(workParam.getWorkId(), workParam.getWorkStatus());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("updateWorkStatus ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -156,7 +156,7 @@ public class WorkController {
             data = workService.saveWork(bo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("saveWork ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

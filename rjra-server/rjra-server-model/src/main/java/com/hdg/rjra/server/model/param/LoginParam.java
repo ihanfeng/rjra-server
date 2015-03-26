@@ -7,6 +7,8 @@ public class LoginParam {
 
     private String mobile;
 
+    private String code;
+
     private String pwd;
 
     public String getMobile() {
@@ -23,5 +25,13 @@ public class LoginParam {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

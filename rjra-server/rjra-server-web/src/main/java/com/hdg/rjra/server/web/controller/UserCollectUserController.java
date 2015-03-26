@@ -59,7 +59,7 @@ public class UserCollectUserController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("saveUserCollectUser->", e);
         }
 
@@ -87,7 +87,7 @@ public class UserCollectUserController {
             data = userCollectUserService.findAllUserCollectUserByUserIdPager(userCollectUserParam.getUserId(), firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllUserCollectUserByUserIdPager ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -110,7 +110,7 @@ public class UserCollectUserController {
             data = userCollectUserService.deleteUserCollectUser(userCollectUserParam.getCollectId());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("deleteUserCollectUser->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -133,7 +133,7 @@ public class UserCollectUserController {
             data = userCollectUserService.batchDeleteCollectUserByCollectIds(userCollectUserParam.getBatchDeleteCollectIds());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("batchDeleteCollectUserByCollectIds->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

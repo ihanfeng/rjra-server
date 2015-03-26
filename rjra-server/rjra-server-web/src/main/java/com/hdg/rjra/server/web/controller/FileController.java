@@ -48,7 +48,7 @@ public class FileController {
             data = fileService.findAccountFileByIds(fileParam.getFileIds());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAccountFileByIds->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

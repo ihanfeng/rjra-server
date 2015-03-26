@@ -59,7 +59,7 @@ public class UserApplyWorkController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("saveUserApplyWork->", e);
         }
 
@@ -87,7 +87,7 @@ public class UserApplyWorkController {
             data = applyWorkService.findAllUserApplyWorkByUserIdPager(userApplyWorkParam.getUserId(),firstResult,sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllUserApplyWorkByUserIdPager ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -114,7 +114,7 @@ public class UserApplyWorkController {
             data = applyWorkService.findAllUserApplyWorkByWorkUserIdPager(userApplyWorkParam.getUserId(), firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllUserApplyWorkByWorkUserIdPager ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -137,7 +137,7 @@ public class UserApplyWorkController {
             data = applyWorkService.deleteUserApplyWork(userApplyWorkParam.getApplyId());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("deleteUserApplyWork->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -160,7 +160,7 @@ public class UserApplyWorkController {
             data = applyWorkService.batchDeleteByApplyIds(userApplyWorkParam.getBatchDeleteApplyIds());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("batchDeleteByApplyIds->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

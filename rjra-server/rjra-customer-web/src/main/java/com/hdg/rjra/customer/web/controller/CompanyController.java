@@ -62,7 +62,7 @@ public class CompanyController {
             data = companyService.updateCompany(bo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("updateCompany->", e);
         }
 
@@ -80,7 +80,7 @@ public class CompanyController {
             data = companyService.findCompanyByCompanyId(findCompanyParam.getCompanyId());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findCompanyByCompanyId->", e);
         }
 
@@ -125,7 +125,7 @@ public class CompanyController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("updateCompanyLogo->", e);
         }
 
@@ -171,7 +171,7 @@ public class CompanyController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("updateCompanyBizlicense->", e);
         }
 
@@ -216,7 +216,7 @@ public class CompanyController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("updateCompanyUserIdCard->", e);
         }
 
@@ -261,7 +261,7 @@ public class CompanyController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("updateCompanyFacade->", e);
         }
 
@@ -313,7 +313,7 @@ public class CompanyController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("updateCompanyImages->", e);
         }
 
@@ -355,7 +355,7 @@ public class CompanyController {
             data = companyService.updateCompanyImages(companyImageParam.getCompanyId(), newCompanyImages);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("deleteCompanyImages->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

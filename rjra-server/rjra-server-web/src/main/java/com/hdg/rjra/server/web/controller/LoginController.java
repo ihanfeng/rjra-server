@@ -9,11 +9,13 @@ import com.hdg.common.properties.CustomizedPropertyConfigurer;
 import com.hdg.common.utils.AESUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
+import com.hdg.common.utils.StringUtils;
 import com.hdg.rjra.base.error.ErrorType;
 import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.model.param.LoginParam;
 import com.hdg.rjra.server.service.CompanyService;
 import com.hdg.rjra.server.service.FileService;
+import com.hdg.rjra.server.service.MMSService;
 import com.hdg.rjra.server.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,12 +41,10 @@ public class LoginController {
     private static final Logger LOG = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
-    CompanyService companyService;
-    @Autowired
     UserService userService;
 
     @Autowired
-    FileService fileService;
+    MMSService mmsService;
 
     @RequestMapping(value = "user")
     @ResponseBody
@@ -53,7 +53,7 @@ public class LoginController {
         UserBo data = null;
         try {
             LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);
-            String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+            String encryptionFactor = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
             String pwd = AESUtils.encrypt(loginParam.getPwd(), loginParam.getMobile(), encryptionFactor);
             data = userService.findUserByMobileAndPwd(loginParam.getMobile(), pwd);
             if (data == null) {
@@ -61,9 +61,85 @@ public class LoginController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("login user ->", e);
         }
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
+
+    /**
+     * 发送短信
+     *
+     * @param request
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "sendMsg")
+    @ResponseBody
+    public ResponseEntity<String> sendMessage(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        String data = null;
+        try {
+            LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);
+            String code = StringUtils.randomCode(4);
+            StringBuffer msg = new StringBuffer();
+            msg.append("你好，你的验证码为");
+            msg.append(code);
+            msg.append("，清在五分钟内完成注册！【人荐人爱】");
+            String result = mmsService.sendMessage(new String[]{loginParam.getMobile()}, msg.toString());
+            if ("0".equals(result)) {
+                data = code;
+                request.getSession().setAttribute("code", data);
+            } else {
+                data = result;
+                errorType = ErrorType.MMS_SEND_ERROR;
+            }
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.toString());
+            LOG.error("sendMessage->", e);
+        }
+
+        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
+        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+    }
+
+    /**
+     * 注册
+     *
+     * @param request
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "register")
+    @ResponseBody
+    public ResponseEntity<String> saveUser(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        UserBo data = null;
+        try {
+
+            LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);
+            Integer count = userService.findUserExistsByMobile(loginParam.getMobile());
+            String code = (String) request.getSession().getAttribute("code");
+            if (loginParam.getCode() != null && loginParam.getCode().equals(code)) {
+                if (count == null || count.intValue() == 0) {
+                    String encryptionFactor = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+                    String pwd = AESUtils.encrypt(loginParam.getPwd(), loginParam.getMobile(), encryptionFactor);
+                    data = userService.saveUser(loginParam.getMobile(), pwd);
+                } else {
+                    errorType = ErrorType.MOBILE_ALREADY_EXISTS;
+                }
+            } else {
+                //提交的code为空或者未发送过code
+                errorType = ErrorType.USER_REGISTER_CODE_ERROR;
+            }
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.toString());
+            LOG.error("register->", e);
+        }
+
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }

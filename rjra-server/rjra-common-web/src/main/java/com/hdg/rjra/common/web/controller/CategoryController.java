@@ -45,7 +45,7 @@ public class CategoryController {
             data = categoryService.findCategoryLevel1ByCategoryLevel1Id(categoryParam.getCategoryLevel1Id());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findCategoryLevel1ByCategoryLevel1Id->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -61,7 +61,7 @@ public class CategoryController {
             data = categoryService.findAllCategoryLevel1();
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllCategoryLevel1->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -78,7 +78,7 @@ public class CategoryController {
             data = categoryService.findCategoryLevel2ByCategoryLevel2Id(categoryParam.getCategoryLevel2Id());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findCategoryLevel2ByCategoryLevel2Id->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -95,7 +95,7 @@ public class CategoryController {
             data = categoryService.findCategoryLevel2ByCategoryLevel1Id(categoryParam.getCategoryLevel1Id());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findCategoryLevel2ByCategoryLevel1Id->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -112,7 +112,7 @@ public class CategoryController {
             data = categoryService.findCategoryLevel3ByCategoryLevel3Id(categoryParam.getCategoryLevel3Id());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findCategoryLevel3ByCategoryLevel3Id->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -129,7 +129,7 @@ public class CategoryController {
             data = categoryService.findCategoryLevel3ByCategoryLevel2Id(categoryParam.getCategoryLevel2Id());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findCategoryLevel3ByCategoryLevel2Id->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

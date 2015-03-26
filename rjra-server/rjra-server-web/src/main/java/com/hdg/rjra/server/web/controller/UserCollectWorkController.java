@@ -59,7 +59,7 @@ public class UserCollectWorkController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("saveUserCollectWork->", e);
         }
 
@@ -87,7 +87,7 @@ public class UserCollectWorkController {
             data = userCollectWorkService.findAllUserCollectWorkByUserIdPager(userCollectWorkParam.getUserId(), firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllUserCollectWorkByUserIdPager ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -110,7 +110,7 @@ public class UserCollectWorkController {
             data = userCollectWorkService.deleteUserCollectWork(userCollectWorkParam.getCollectId());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("deleteUserCollectWork->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -133,7 +133,7 @@ public class UserCollectWorkController {
             data = userCollectWorkService.batchDeleteCollectWorkByCollectIds(userCollectWorkParam.getBatchDeleteCollectIds());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("batchDeleteCollectWorkByCollectIds->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);

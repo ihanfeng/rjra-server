@@ -61,7 +61,7 @@ public class UserInviteUserController {
             }
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("saveUserInviteUser->", e);
         }
 
@@ -79,7 +79,7 @@ public class UserInviteUserController {
             data = userInviteUserService.batchSaveUserInviteUser(batchUserInviteUserParam.getBatchUserInvite());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("batchInviteUser->", e);
         }
 
@@ -107,7 +107,7 @@ public class UserInviteUserController {
             data = userInviteUserService.findAllUserInviteUserByInviteUserIdPager(userInviteUserParam.getInviteUserId(), firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllUserInviteUserByInviteUserIdPager ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -134,7 +134,7 @@ public class UserInviteUserController {
             data = userInviteUserService.findAllUserInviteUserByUserIdPager(userInviteUserParam.getUserId(), firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("findAllUserInviteUserByUserIdPager ->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -157,7 +157,7 @@ public class UserInviteUserController {
             data = userInviteUserService.deleteUserInviteUser(userInviteUserParam.getInviteId());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("deleteUserInviteUser->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
@@ -180,7 +180,7 @@ public class UserInviteUserController {
             data = userInviteUserService.batchDeleteByInviteIds(userInviteUserParam.getBatchDeleteInviteIds());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
+            errorType.setMessage(e.toString());
             LOG.error("batchDeleteByInviteIds->", e);
         }
         OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
