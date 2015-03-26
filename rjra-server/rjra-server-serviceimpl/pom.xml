@@ -37,6 +37,11 @@
             <artifactId>rjra-rdb-proxyimpl</artifactId>
             <version>${rjra.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.9</version>
+        </dependency>
     </dependencies>
 
 </project>

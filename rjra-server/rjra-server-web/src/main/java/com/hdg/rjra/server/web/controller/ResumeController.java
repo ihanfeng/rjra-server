@@ -118,7 +118,8 @@ public class ResumeController {
     @ResponseBody
     public ResponseEntity<String> updateResumeHead(HttpServletRequest request) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        Long data = null;
+        Long fileId = null;
+        AccountFileBo data = null;
         try {
             MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
             MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
@@ -135,12 +136,13 @@ public class ResumeController {
                 String resumeHeadImageFileType = multiRequest.getParameter("resumeHeadImageFileType");
                 String resumeHeadImageFileFormat = multiRequest.getParameter("resumeHeadImageFileFormat");
                 // 文件保存目录路径
-                AccountFileBo accountFileBo = fileService.uploadFile(file.getInputStream(), "user", userId, resumeHeadImageFileName, resumeHeadImageFileType, resumeHeadImageFileFormat);
-                data = fileService.saveAccountFile(accountFileBo);
-                if (null == data) {
+                data = fileService.uploadFile(file.getInputStream(), "user", userId, resumeHeadImageFileName, resumeHeadImageFileType, resumeHeadImageFileFormat);
+                fileId = fileService.saveAccountFile(data);
+                data.setFileId(fileId);
+                if (null == fileId) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;
                 } else {
-                    resumeService.updateResumeHead(Long.valueOf(userId), data);
+                    resumeService.updateResumeHead(Long.valueOf(userId), fileId);
                 }
             }
         } catch (Exception e) {

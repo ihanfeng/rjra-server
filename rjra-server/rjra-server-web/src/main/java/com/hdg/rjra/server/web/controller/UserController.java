@@ -151,7 +151,8 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<String> updateUserHead(HttpServletRequest request) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        Long data = null;
+        Long fileId = null;
+        AccountFileBo data = null;
         try {
             MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
             MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
@@ -168,12 +169,13 @@ public class UserController {
                 String userHeadImageFileType = multiRequest.getParameter("userHeadImageFileType");
                 String userHeadImageFileFormat = multiRequest.getParameter("userHeadImageFileFormat");
                 // 文件保存目录路径
-                AccountFileBo accountFileBo = fileService.uploadFile(file.getInputStream(), "user", userId, userHeadImageFileName, userHeadImageFileType, userHeadImageFileFormat);
-                data = fileService.saveAccountFile(accountFileBo);
-                if (null == data) {
+                data = fileService.uploadFile(file.getInputStream(), "user", userId, userHeadImageFileName, userHeadImageFileType, userHeadImageFileFormat);
+                fileId = fileService.saveAccountFile(data);
+                data.setFileId(fileId);
+                if (null == fileId) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;
                 } else {
-                    userService.updateUserHead(Long.valueOf(userId), data);
+                    userService.updateUserHead(Long.valueOf(userId), fileId);
                 }
             }
         } catch (Exception e) {
