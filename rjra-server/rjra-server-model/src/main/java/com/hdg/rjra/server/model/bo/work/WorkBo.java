@@ -37,6 +37,10 @@ public class WorkBo {
     private Integer workGender;
     private Integer workDataType;
     private String workTag;
+    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
+    private String workImportTime;
+    private Long workImportOperatorId;
+    private String workImportOperatorName;
 
     public Long getWorkId() {
         return workId;
@@ -244,5 +248,29 @@ public class WorkBo {
 
     public void setWorkTag(String workTag) {
         this.workTag = workTag;
+    }
+
+    public String getWorkImportTime() {
+        return workImportTime;
+    }
+
+    public void setWorkImportTime(String workImportTime) {
+        this.workImportTime = workImportTime;
+    }
+
+    public Long getWorkImportOperatorId() {
+        return workImportOperatorId;
+    }
+
+    public void setWorkImportOperatorId(Long workImportOperatorId) {
+        this.workImportOperatorId = workImportOperatorId;
+    }
+
+    public String getWorkImportOperatorName() {
+        return workImportOperatorName;
+    }
+
+    public void setWorkImportOperatorName(String workImportOperatorName) {
+        this.workImportOperatorName = workImportOperatorName;
     }
 }

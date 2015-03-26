@@ -43,9 +43,17 @@ public class CompanyBo {
     private Integer companyExamineStatus;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String companyExamineTime;
+    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
+    private String companyExamineSubmitTime;
     private String companyExamineResult;
     private Integer companyDataType;
     private String companyTag;
+    private Long companyExamineReviewerId;
+    private String companyExamineReviewerName;
+    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
+    private String companyImportTime;
+    private Long companyImportOperatorId;
+    private String companyImportOperatorName;
 
     public Long getCompanyId() {
         return companyId;
@@ -293,5 +301,53 @@ public class CompanyBo {
 
     public void setCompanyTag(String companyTag) {
         this.companyTag = companyTag;
+    }
+
+    public String getCompanyExamineSubmitTime() {
+        return companyExamineSubmitTime;
+    }
+
+    public void setCompanyExamineSubmitTime(String companyExamineSubmitTime) {
+        this.companyExamineSubmitTime = companyExamineSubmitTime;
+    }
+
+    public Long getCompanyExamineReviewerId() {
+        return companyExamineReviewerId;
+    }
+
+    public void setCompanyExamineReviewerId(Long companyExamineReviewerId) {
+        this.companyExamineReviewerId = companyExamineReviewerId;
+    }
+
+    public String getCompanyExamineReviewerName() {
+        return companyExamineReviewerName;
+    }
+
+    public void setCompanyExamineReviewerName(String companyExamineReviewerName) {
+        this.companyExamineReviewerName = companyExamineReviewerName;
+    }
+
+    public String getCompanyImportTime() {
+        return companyImportTime;
+    }
+
+    public void setCompanyImportTime(String companyImportTime) {
+        this.companyImportTime = companyImportTime;
+    }
+
+    public Long getCompanyImportOperatorId() {
+        return companyImportOperatorId;
+    }
+
+    public void setCompanyImportOperatorId(Long companyImportOperatorId) {
+        this.companyImportOperatorId = companyImportOperatorId;
+    }
+
+    public String getCompanyImportOperatorName() {
+        return companyImportOperatorName;
+    }
+
+    public void setCompanyImportOperatorName(String companyImportOperatorName) {
+        this.companyImportOperatorName = companyImportOperatorName;
     }
 }
