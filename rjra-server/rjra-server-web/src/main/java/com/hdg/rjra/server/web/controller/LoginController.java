@@ -13,8 +13,6 @@ import com.hdg.common.utils.StringUtils;
 import com.hdg.rjra.base.error.ErrorType;
 import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.model.param.LoginParam;
-import com.hdg.rjra.server.service.CompanyService;
-import com.hdg.rjra.server.service.FileService;
 import com.hdg.rjra.server.service.MMSService;
 import com.hdg.rjra.server.service.UserService;
 import org.slf4j.Logger;
