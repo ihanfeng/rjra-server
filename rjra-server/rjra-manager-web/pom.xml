@@ -28,6 +28,11 @@
             <artifactId>rjra-server-serviceimpl</artifactId>
             <version>${rjra.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.hdg.rjra.server</groupId>
+            <artifactId>rjra-common-web</artifactId>
+            <version>${rjra.version}</version>
+        </dependency>
         <!-- cors-filter  -->
         <dependency>
             <groupId>com.thetransactioncompany</groupId>

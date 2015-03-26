@@ -15,5 +15,5 @@
             </list>
         </property>
     </bean>
-    <import resource="classpath*:bean/rjra-server-serviceimpl-bean.xml"></import>
+    <import resource="classpath*:bean/rjra-common-web-bean.xml"></import>
 </beans>

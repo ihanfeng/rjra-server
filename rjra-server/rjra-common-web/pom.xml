@@ -9,7 +9,7 @@
         <version>0.0.0.1</version>
 	</parent>
 	<artifactId>rjra-common-web</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>rjra-common-web</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
@@ -108,48 +108,4 @@
             <version>2.5</version>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <warName>rjra-common</warName>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
-                <executions>
-                    <execution>
-                        <id>copy-resources</id>
-                        <!-- here the phase you need -->
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/target/classes</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>src/main/resources</directory>
-                                    <!--<filtering>true</filtering>-->
-                                    <includes>
-                                        <include>log4j.properties</include>
-                                    </includes>
-                                </resource>
-                                <resource>
-                                    <directory>src/main/profile/${env}</directory>
-                                    <!--<filtering>true</filtering>-->
-                                    <includes>
-                                        <include>rjra-common-web.properties</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                            <overwrite>true</overwrite>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>

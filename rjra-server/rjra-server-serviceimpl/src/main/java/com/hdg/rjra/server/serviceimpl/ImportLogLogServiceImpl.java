@@ -8,6 +8,7 @@ import com.hdg.rjra.server.service.ImportLogService;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,6 +18,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2015/3/26.
  */
+@Service
 public class ImportLogLogServiceImpl implements ImportLogService {
 
     @Override
