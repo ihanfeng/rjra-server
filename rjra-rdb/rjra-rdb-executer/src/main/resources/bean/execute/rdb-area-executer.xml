@@ -15,8 +15,12 @@
     <bean id="findAreaByCityId" class="com.hdg.rjra.rdb.executer.area.FindAreaByCityId">
         <property name="rowMapper" ref="areaRowMapper"></property>
     </bean>
+    <bean id="findAllArea" class="com.hdg.rjra.rdb.executer.area.FindAllArea">
+        <property name="rowMapper" ref="areaRowMapper"></property>
+    </bean>
     <util:map id="rdb-area-executer">
         <entry key="findAreaByAreaId" value-ref="findAreaByAreaId"/>
+        <entry key="findAllArea" value-ref="findAllArea"/>
         <entry key="findAreaByCityId" value-ref="findAreaByCityId"/>
     </util:map>
 </beans>

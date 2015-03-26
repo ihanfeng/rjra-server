@@ -60,6 +60,10 @@ public class Company implements BaseDomain {
     @DBField("company_examine_reviewer_name")
     private String companyExamineReviewerName;
     private Long[] companyImages;
+    @DBField("company_tag")
+    private String companyTag;
+    @DBField("company_data_type")
+    private Integer companyDataType;
 
 
     public Long getCompanyId() {
@@ -276,5 +280,21 @@ public class Company implements BaseDomain {
 
     public void setCompanyExamineReviewerName(String companyExamineReviewerName) {
         this.companyExamineReviewerName = companyExamineReviewerName;
+    }
+
+    public String getCompanyTag() {
+        return companyTag;
+    }
+
+    public void setCompanyTag(String companyTag) {
+        this.companyTag = companyTag;
+    }
+
+    public Integer getCompanyDataType() {
+        return companyDataType;
+    }
+
+    public void setCompanyDataType(Integer companyDataType) {
+        this.companyDataType = companyDataType;
     }
 }

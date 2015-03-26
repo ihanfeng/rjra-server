@@ -15,8 +15,12 @@
     <bean id="findCityByProvinceId" class="com.hdg.rjra.rdb.executer.city.FindCityByProvinceId">
         <property name="rowMapper" ref="cityRowMapper"></property>
     </bean>
+    <bean id="findAllCity" class="com.hdg.rjra.rdb.executer.city.FindAllCity">
+        <property name="rowMapper" ref="cityRowMapper"></property>
+    </bean>
     <util:map id="rdb-city-executer">
         <entry key="findCityByCityId" value-ref="findCityByCityId"/>
+        <entry key="findAllCity" value-ref="findAllCity"/>
         <entry key="findCityByProvinceId" value-ref="findCityByProvinceId"/>
     </util:map>
 </beans>

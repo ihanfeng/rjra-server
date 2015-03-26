@@ -14,7 +14,7 @@ public abstract class AbstractTest {
     public static void setup() throws Exception {
 //        defaultClient = new DefaultClient("172.30.10.122", 9091);
 
-        rdbDefaultClient = new RdbDefaultClient("localhost", 9091);
+        rdbDefaultClient = new RdbDefaultClient("localhost", 9092);
 
         //rdbDefaultClient = new RdbDefaultClient("121.40.19.174", 9091);
 

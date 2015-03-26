@@ -41,6 +41,8 @@ public class CompanyRowMapper implements RowMapper<Company> {
         re.setCompanyExamineSubmitTime(rs.getTimestamp("company_examine_submit_time"));
         re.setCompanyExamineReviewerId(rs.getLong("company_examine_reviewer_id"));
         re.setCompanyExamineReviewerName(rs.getString("company_examine_reviewer_name"));
+        re.setCompanyTag(rs.getString("company_tag"));
+        re.setCompanyDataType(rs.getInt("company_data_type"));
         return re;
     }
 }

@@ -4,6 +4,7 @@ import com.hdg.rjra.rdb.proxy.domain.Company;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Rock on 2015/1/3 0003.
@@ -11,6 +12,12 @@ import java.io.Serializable;
 public interface ICompanyProxy extends Serializable {
 
     public Long createCompany();
+
+    public Long saveCompany(Company company);
+
+    public List<Long> batchSaveCompany(List<Company> companyList);
+
+    public Integer deleteCompany(List<Long> companyIds);
 
     public Integer updateCompany(Company company);
 

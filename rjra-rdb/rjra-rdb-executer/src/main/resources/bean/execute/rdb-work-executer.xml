@@ -26,6 +26,12 @@
     <bean id="saveWork" class="com.hdg.rjra.rdb.executer.work.SaveWork">
         <property name="rowMapper" ref="workRowMapper"></property>
     </bean>
+    <bean id="batchSaveWork" class="com.hdg.rjra.rdb.executer.work.BatchSaveWork">
+        <property name="rowMapper" ref="workRowMapper"></property>
+    </bean>
+    <bean id="deleteWork" class="com.hdg.rjra.rdb.executer.work.DeleteWork">
+        <property name="rowMapper" ref="workRowMapper"></property>
+    </bean>
     <bean id="findWorkIdsByUserId" class="com.hdg.rjra.rdb.executer.work.FindWorkIdsByUserId"/>
     <util:map id="rdb-work-executer">
         <entry key="findWorkByWorkId" value-ref="findWorkByWorkId"/>
@@ -34,6 +40,8 @@
         <entry key="updateWork" value-ref="updateWork"/>
         <entry key="updateWorkStatus" value-ref="updateWorkStatus"/>
         <entry key="saveWork" value-ref="saveWork"/>
+        <entry key="batchSaveWork" value-ref="batchSaveWork"/>
+        <entry key="deleteWork" value-ref="deleteWork"/>
         <entry key="findWorkIdsByUserId" value-ref="findWorkIdsByUserId"/>
     </util:map>
 </beans>

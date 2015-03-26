@@ -88,28 +88,6 @@ public class CompanyController {
         return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
     }
 
-    @RequestMapping(value = "findAllCompanyPager")
-    @ResponseBody
-    public ResponseEntity<String> findAllCompanyPager(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = ErrorType.DEFFAULT;
-        Pager<CompanyBo> data = null;
-        try {
-            CompanyParam findRecruitmentInfoParam = JsonUtils.jsonToObject(param, CompanyParam.class);
-            // 查询列表
-            Integer sizeNo = findRecruitmentInfoParam.getSize() == null ? CommonConstants.NUM_INT_50 : findRecruitmentInfoParam
-                    .getSize();
-            Integer firstResult = findRecruitmentInfoParam.getPage() == null ? 0 : (findRecruitmentInfoParam.getPage() - 1) * sizeNo;
-            data = companyService.findAllCompanyPager(firstResult, sizeNo);
-        } catch (Exception e) {
-            errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.getMessage());
-            LOG.error("findAllCompanyPager->", e);
-        }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
-    }
-
-
     /**
      * 上传头像
      *

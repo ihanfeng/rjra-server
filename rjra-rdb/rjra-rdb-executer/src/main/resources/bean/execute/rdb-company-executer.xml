@@ -12,6 +12,15 @@
     <bean id="createCompany" class="com.hdg.rjra.rdb.executer.company.CreateCompany">
         <property name="rowMapper" ref="companyRowMapper"></property>
     </bean>
+    <bean id="saveCompany" class="com.hdg.rjra.rdb.executer.company.SaveCompany">
+        <property name="rowMapper" ref="companyRowMapper"></property>
+    </bean>
+    <bean id="batchSaveCompany" class="com.hdg.rjra.rdb.executer.company.BatchSaveCompany">
+        <property name="rowMapper" ref="companyRowMapper"></property>
+    </bean>
+    <bean id="deleteCompany" class="com.hdg.rjra.rdb.executer.company.DeleteCompany">
+        <property name="rowMapper" ref="companyRowMapper"></property>
+    </bean>
     <bean id="updateCompany" class="com.hdg.rjra.rdb.executer.company.UpdateCompany">
         <property name="rowMapper" ref="companyRowMapper"></property>
     </bean>
@@ -41,6 +50,9 @@
     </bean>
     <util:map id="rdb-company-executer">
         <entry key="createCompany" value-ref="createCompany"/>
+        <entry key="saveCompany" value-ref="saveCompany"/>
+        <entry key="batchSaveCompany" value-ref="batchSaveCompany"/>
+        <entry key="deleteCompany" value-ref="deleteCompany"/>
         <entry key="updateCompany" value-ref="updateCompany"/>
         <entry key="findCompanyByCompanyId" value-ref="findCompanyByCompanyId"/>
         <entry key="findAllCompanyPager" value-ref="findAllCompanyPager"/>
