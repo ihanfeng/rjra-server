@@ -120,7 +120,8 @@ public class CompanyController {
     @ResponseBody
     public ResponseEntity<String> updateCompanyLogo(HttpServletRequest request) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        Long data = null;
+        Long fileId = null;
+        AccountFileBo data = null;
         try {
             MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
             MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
@@ -137,12 +138,13 @@ public class CompanyController {
                 String companyLogoImageFileType = multiRequest.getParameter("companyLogoImageFileType");
                 String companyLogoImageFileFormat = multiRequest.getParameter("companyLogoImageFileFormat");
                 // 文件保存目录路径
-                AccountFileBo accountFileBo = fileService.uploadFile(file.getInputStream(), "company", companyId, companyLogoImageFileName, companyLogoImageFileType, companyLogoImageFileFormat);
-                data = fileService.saveAccountFile(accountFileBo);
-                if (null == data) {
+                data = fileService.uploadFile(file.getInputStream(), "company", companyId, companyLogoImageFileName, companyLogoImageFileType, companyLogoImageFileFormat);
+                fileId = fileService.saveAccountFile(data);
+                data.setFileId(fileId);
+                if (null == fileId) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;
                 } else {
-                    companyService.updateCompanyLogo(Long.valueOf(companyId), data);
+                    companyService.updateCompanyLogo(Long.valueOf(companyId), fileId);
                 }
             }
         } catch (Exception e) {
@@ -165,7 +167,8 @@ public class CompanyController {
     @ResponseBody
     public ResponseEntity<String> updateCompanyBizlicense(HttpServletRequest request) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        Long data = null;
+        Long fileId = null;
+        AccountFileBo data = null;
         try {
             MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
             MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
@@ -183,12 +186,13 @@ public class CompanyController {
                 String companyBizlicenseImageFileFormat = multiRequest.getParameter("companyBizlicenseImageFileFormat");
                 // 文件保存目录路径
 
-                AccountFileBo accountFileBo = fileService.uploadFile(file.getInputStream(), "company", companyId, companyBizlicenseImageFileName, companyBizlicenseImageFileType, companyBizlicenseImageFileFormat);
-                data = fileService.saveAccountFile(accountFileBo);
-                if (null == data) {
+                data = fileService.uploadFile(file.getInputStream(), "company", companyId, companyBizlicenseImageFileName, companyBizlicenseImageFileType, companyBizlicenseImageFileFormat);
+                fileId = fileService.saveAccountFile(data);
+                data.setFileId(fileId);
+                if (null == fileId) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;
                 } else {
-                    companyService.updateCompanyBizlicense(Long.valueOf(companyId), data);
+                    companyService.updateCompanyBizlicense(Long.valueOf(companyId), fileId);
                 }
             }
         } catch (Exception e) {
@@ -211,7 +215,8 @@ public class CompanyController {
     @ResponseBody
     public ResponseEntity<String> updateCompanyUserIdCard(HttpServletRequest request) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        Long data = null;
+        Long fileId = null;
+        AccountFileBo data = null;
         try {
             MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
             MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
@@ -228,12 +233,13 @@ public class CompanyController {
                 String companyUserIdCardImageFileType = multiRequest.getParameter("companyUserIdCardImageFileType");
                 String companyUserIdCardImageFileFormat = multiRequest.getParameter("companyUserIdCardImageFileFormat");
                 // 文件保存目录路径
-                AccountFileBo accountFileBo = fileService.uploadFile(file.getInputStream(), "company", companyId, companyUserIdCardImageFileName, companyUserIdCardImageFileType, companyUserIdCardImageFileFormat);
-                data = fileService.saveAccountFile(accountFileBo);
-                if (null == data) {
+                data = fileService.uploadFile(file.getInputStream(), "company", companyId, companyUserIdCardImageFileName, companyUserIdCardImageFileType, companyUserIdCardImageFileFormat);
+                fileId = fileService.saveAccountFile(data);
+                data.setFileId(fileId);
+                if (null == fileId) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;
                 } else {
-                    companyService.updateCompanyUserIdCard(Long.valueOf(companyId), data);
+                    companyService.updateCompanyUserIdCard(Long.valueOf(companyId), fileId);
                 }
             }
         } catch (Exception e) {
@@ -256,7 +262,9 @@ public class CompanyController {
     @ResponseBody
     public ResponseEntity<String> updateCompanyFacade(HttpServletRequest request) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        Long data = null;
+        Long fileId = null;
+        AccountFileBo data = null;
+
         try {
             MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
             MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
@@ -273,12 +281,13 @@ public class CompanyController {
                 String companyFacadeImageFileType = multiRequest.getParameter("companyFacadeImageFileType");
                 String companyFacadeImageFileFormat = multiRequest.getParameter("companyFacadeImageFileFormat");
                 // 文件保存目录路径
-                AccountFileBo accountFileBo = fileService.uploadFile(file.getInputStream(), "company", companyId, companyFacadeImageFileName, companyFacadeImageFileType, companyFacadeImageFileFormat);
-                data = fileService.saveAccountFile(accountFileBo);
-                if (null == data) {
+                data = fileService.uploadFile(file.getInputStream(), "company", companyId, companyFacadeImageFileName, companyFacadeImageFileType, companyFacadeImageFileFormat);
+                fileId = fileService.saveAccountFile(data);
+                data.setFileId(fileId);
+                if (null == fileId) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;
                 } else {
-                    companyService.updateCompanyFacade(Long.valueOf(companyId), data);
+                    companyService.updateCompanyFacade(Long.valueOf(companyId), fileId);
                 }
             }
         } catch (Exception e) {
@@ -301,7 +310,8 @@ public class CompanyController {
     @ResponseBody
     public ResponseEntity<String> updateCompanyImages(HttpServletRequest request) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        Long data = null;
+        Long fileId = null;
+        AccountFileBo data = null;
         try {
             MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
             MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
@@ -318,9 +328,10 @@ public class CompanyController {
                 String companyFacadeImageFileType = multiRequest.getParameter("companyImageFileType");
                 String companyFacadeImageFileFormat = multiRequest.getParameter("companyImageFileFormat");
                 // 文件保存目录路径
-                AccountFileBo accountFileBo = fileService.uploadFile(file.getInputStream(), "company", companyId, companyFacadeImageFileName, companyFacadeImageFileType, companyFacadeImageFileFormat);
-                data = fileService.saveAccountFile(accountFileBo);
-                if (null == data) {
+                data = fileService.uploadFile(file.getInputStream(), "company", companyId, companyFacadeImageFileName, companyFacadeImageFileType, companyFacadeImageFileFormat);
+                fileId = fileService.saveAccountFile(data);
+                data.setFileId(fileId);
+                if (null == fileId) {
                     errorType = ErrorType.UPLOAD_IMAGE_FAIL;
                 } else {
                     CompanyBo companyBo = companyService.findCompanyByCompanyId(Long.valueOf(companyId));
@@ -329,7 +340,7 @@ public class CompanyController {
                     for (int i = 0; i < companyImages.length; i++) {
                         newCompanyImages[i] = companyImages[i];
                     }
-                    newCompanyImages[companyImages.length] = data;
+                    newCompanyImages[companyImages.length] = fileId;
                     companyService.updateCompanyImages(Long.valueOf(companyId), newCompanyImages);
                 }
             }
