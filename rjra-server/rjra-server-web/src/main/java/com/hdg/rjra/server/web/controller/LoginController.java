@@ -43,6 +43,27 @@ public class LoginController {
     @Autowired
     MMSService mmsService;
 
+    @RequestMapping(value = "user")
+    @ResponseBody
+    public ResponseEntity<String> user(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+        ErrorType errorType = ErrorType.DEFFAULT;
+        UserBo data = null;
+        try {
+            LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);
+            String encryptionFactor = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+            String pwd = AESUtils.encrypt(loginParam.getPwd(), loginParam.getMobile(), encryptionFactor);
+            data = userService.findUserByMobileAndPwd(loginParam.getMobile(), pwd);
+            if (data == null) {
+                errorType = ErrorType.USER_ALREADY_NOT_EXIST;
+            }
+        } catch (Exception e) {
+            errorType = ErrorType.UNKNOW_ERROR;
+            errorType.setMessage(e.toString());
+            LOG.error("login user ->", e);
+        }
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
+    }
+
     /**
      * 发送短信
      *
@@ -65,7 +86,6 @@ public class LoginController {
             String result = mmsService.sendMessage(new String[]{loginParam.getMobile()}, msg.toString());
             if ("0".equals(result)) {
                 data = code;
-                request.getSession().setAttribute("code", data);
             } else {
                 data = result;
                 errorType = ErrorType.MMS_SEND_ERROR;
