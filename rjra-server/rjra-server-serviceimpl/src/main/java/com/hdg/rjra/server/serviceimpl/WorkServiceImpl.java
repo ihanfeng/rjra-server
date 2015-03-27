@@ -1,6 +1,7 @@
 package com.hdg.rjra.server.serviceimpl;
 
 import com.hdg.common.utils.ConversionUtils;
+import com.hdg.common.utils.CoordinateUtils;
 import com.hdg.rjra.base.enumerate.GeoStatus;
 import com.hdg.rjra.base.enumerate.WorkStatus;
 import com.hdg.rjra.rdb.proxy.daoproxy.IAreaProxy;
@@ -89,7 +90,12 @@ public class WorkServiceImpl implements WorkService {
         Pager<WorkBo> workBoPager = new Pager<WorkBo>();
         List<WorkBo> workBoList = new ArrayList<WorkBo>();
         for (Work work : workPager.getResultList()) {
-            workBoList.add(getWorkBo(work));
+            WorkBo workBo =  getWorkBo(work);
+            Double distance = CoordinateUtils.distance(lng, lat, work.getWorkLongitude(), work.getWorkLatitude());
+            if (null != distance) {
+                workBo.setDistance(distance.intValue());
+            }
+            workBoList.add(workBo);
         }
         workBoPager.setResultList(workBoList);
         workBoPager.setTotalSize(workPager.getTotalSize());

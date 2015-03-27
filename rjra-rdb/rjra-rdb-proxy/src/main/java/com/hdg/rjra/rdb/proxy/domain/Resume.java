@@ -61,6 +61,10 @@ public class Resume implements BaseDomain {
     @DBField("resume_refresh_time")
     private Date resumeRefreshTime;
 
+    private Double userLoginLongitude;
+    private Double userLoginLatitude;
+
+
     public Long getResumeId() {
         return resumeId;
     }
@@ -259,5 +263,21 @@ public class Resume implements BaseDomain {
 
     public void setResumeHomeAddress(String resumeHomeAddress) {
         this.resumeHomeAddress = resumeHomeAddress;
+    }
+
+    public Double getUserLoginLongitude() {
+        return userLoginLongitude;
+    }
+
+    public void setUserLoginLongitude(Double userLoginLongitude) {
+        this.userLoginLongitude = userLoginLongitude;
+    }
+
+    public Double getUserLoginLatitude() {
+        return userLoginLatitude;
+    }
+
+    public void setUserLoginLatitude(Double userLoginLatitude) {
+        this.userLoginLatitude = userLoginLatitude;
     }
 }

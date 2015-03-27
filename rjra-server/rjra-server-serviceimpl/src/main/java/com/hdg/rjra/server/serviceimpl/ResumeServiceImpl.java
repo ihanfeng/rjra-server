@@ -2,6 +2,7 @@ package com.hdg.rjra.server.serviceimpl;
 
 import com.hdg.common.constants.CommonConstants;
 import com.hdg.common.utils.ConversionUtils;
+import com.hdg.common.utils.CoordinateUtils;
 import com.hdg.common.utils.DateUtils;
 import com.hdg.rjra.base.enumerate.ResumeStatus;
 import com.hdg.rjra.rdb.proxy.daoproxy.IResumeProxy;
@@ -113,7 +114,12 @@ public class ResumeServiceImpl implements ResumeService {
         Pager<ResumeBo> resumeBoPager = new Pager<ResumeBo>();
         List<ResumeBo> resumeBoList = new ArrayList<ResumeBo>();
         for (Resume resume : resumePager.getResultList()) {
-            resumeBoList.add(getResumeBo(resume));
+            ResumeBo resumeBo = getResumeBo(resume);
+            Double distance = CoordinateUtils.distance(lng,lat,resume.getUserLoginLongitude(),resume.getUserLoginLatitude());
+            if (null != distance) {
+                resumeBo.setDistance(distance.intValue());
+            }
+            resumeBoList.add(resumeBo);
         }
         resumeBoPager.setResultList(resumeBoList);
         resumeBoPager.setTotalSize(resumePager.getTotalSize());

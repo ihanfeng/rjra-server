@@ -44,6 +44,7 @@ public class ResumeBo {
     private String resumeUpdateTime;
     @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
     private String resumeRefreshTime;
+    private Integer distance;
 
     public Long getUserId() {
         return userId;
@@ -275,5 +276,13 @@ public class ResumeBo {
 
     public void setResumeHomeAddress(String resumeHomeAddress) {
         this.resumeHomeAddress = resumeHomeAddress;
+    }
+
+    public Integer getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Integer distance) {
+        this.distance = distance;
     }
 }

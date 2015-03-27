@@ -41,6 +41,7 @@ public class WorkBo {
     private String workImportTime;
     private Long workImportOperatorId;
     private String workImportOperatorName;
+    private Integer distance;
 
     public Long getWorkId() {
         return workId;
@@ -272,5 +273,13 @@ public class WorkBo {
 
     public void setWorkImportOperatorName(String workImportOperatorName) {
         this.workImportOperatorName = workImportOperatorName;
+    }
+
+    public Integer getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Integer distance) {
+        this.distance = distance;
     }
 }
