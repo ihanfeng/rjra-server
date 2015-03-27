@@ -74,6 +74,8 @@ public class ImportController {
                     data = importService.company(bo, (FileInputStream) file.getInputStream());
                 } else if(ImportResourceType.Work.getCode() == bo.getImportLogType().intValue()){
                     data = importService.work(bo, (FileInputStream) file.getInputStream());
+                } else if(ImportResourceType.Resume.getCode() == bo.getImportLogType().intValue()){
+                    data = importService.resume(bo, (FileInputStream) file.getInputStream());
                 }
             }
         } catch (Exception e) {

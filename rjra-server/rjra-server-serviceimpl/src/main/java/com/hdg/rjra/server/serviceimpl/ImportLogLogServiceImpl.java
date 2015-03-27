@@ -79,4 +79,9 @@ public class ImportLogLogServiceImpl implements ImportLogService {
     public ImportLogBo work(ImportLogBo importLogBo,  InputStream fileInputStream) {
         return null;
     }
+
+    @Override
+    public ImportLogBo resume(ImportLogBo importLogBo, InputStream fileInputStream) {
+        return null;
+    }
 }
