@@ -129,7 +129,7 @@ public class ImportLogLogServiceImpl implements ImportLogService {
                     resume.setResumeLatitude(areaGeoInfo.getResult().getLocation().getLat());
                     resume.setResumeLongitude(areaGeoInfo.getResult().getLocation().getLng());
                     resume.setResumeMobile((row.getCell(12).getStringCellValue() + "").replace("'", "").trim());
-                    resume.setResumeQQ(row.getCell(13).getStringCellValue());
+                    resume.setResumeQQ(String.valueOf(row.getCell(13).toString()));
                     resume.setResumeRefreshTime(new Date());
                     resume.setResumeStatus(ResumeStatus.Active.getCode());
                     resume.setResumeUpdateTime(new Date());
@@ -140,7 +140,7 @@ public class ImportLogLogServiceImpl implements ImportLogService {
                     resume.setResumeWantWorkCityId(-1L);
                     resume.setResumeWantWorkProvinceId(-1L);
                     resume.setResumeDataType(DataResourceType.Crawl.getCode());
-                    resume.setAgeId(row.getCell(11).getStringCellValue());
+                    resume.setAgeId(getAge(row.getCell(11).getNumericCellValue()));
                     resume.setResumeTag("hhh");
                     resumeList.add(resume);
                     int cells = row.getPhysicalNumberOfCells();
@@ -153,6 +153,24 @@ public class ImportLogLogServiceImpl implements ImportLogService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private Long getAge(Double stringCellValue) {
+        if (stringCellValue > 18 && stringCellValue <= 22) {
+            return 2L;
+        } else if (stringCellValue > 22 && stringCellValue <= 25) {
+            return 2L;
+        } else if (stringCellValue > 25 && stringCellValue <= 28) {
+            return 2L;
+        } else if (stringCellValue > 28 && stringCellValue <= 35) {
+            return 2L;
+        } else if (stringCellValue > 35 && stringCellValue <= 45) {
+            return 2L;
+        } else if (stringCellValue > 45 && stringCellValue <= 55) {
+            return 2L;
+        } else {
+            return 1L;
+        }
     }
 
     private AreaGeoInfo getAreaGeoInfo(String address) {

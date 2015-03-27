@@ -5,6 +5,7 @@ import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.Resume;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.ResumeMapping;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,5 +55,11 @@ public class ResumeProxyImpl extends BaseProxy implements IResumeProxy {
     public Pager<Resume> findNearResumeByParamPager(Map<ResumeMapping, Object> param, Double lng, Double lat, Integer raidus, Integer[] status, Integer firstResult, Integer sizeNo) {
         return daoClient.invoke(moduleName, "findNearResumeByParamPager",
                 new Object[]{param, lng, lat, raidus, status, firstResult, sizeNo});
+    }
+
+    @Override
+    public List<Long> batchSaveResume(List<Resume> resumeList) {
+        return daoClient.invoke(moduleName, "batchSaveResume",
+                new Object[]{resumeList});
     }
 }

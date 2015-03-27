@@ -68,7 +68,7 @@ public class Resume implements BaseDomain {
     @DBField("resume_tag")
     private String resumeTag;
     @DBField("age_id")
-    private String ageId;
+    private Long ageId;
 
     public Long getResumeId() {
         return resumeId;
@@ -302,11 +302,11 @@ public class Resume implements BaseDomain {
         this.resumeTag = resumeTag;
     }
 
-    public String getAgeId() {
+    public Long getAgeId() {
         return ageId;
     }
 
-    public void setAgeId(String ageId) {
+    public void setAgeId(Long ageId) {
         this.ageId = ageId;
     }
 }

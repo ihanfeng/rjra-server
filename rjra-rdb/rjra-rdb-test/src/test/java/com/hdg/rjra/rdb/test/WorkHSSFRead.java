@@ -130,10 +130,18 @@ public final class WorkHSSFRead extends AbstractTest {
                     }
                     String address =  ads + row.getCell(7).getStringCellValue();
                     //http://api.map.baidu.com/geocoder/v2/?output=json&ak=X4R0e9z7r4L3onULLOwGBdAD&address=
-                    Adfsdf adfsdf = new Adfsdf(address).invoke();
-                    Double lng = adfsdf.getLng();
-                    Double lat = adfsdf.getLat();
-                    AreaGeoInfo areaGeoInfo = adfsdf.getAreaGeoInfo();
+                    String baiduRequest = "http://api.map.baidu.com/geocoder/v2/?output=json&ak=X4R0e9z7r4L3onULLOwGBdAD&address=" + address;
+                    System.out.println(baiduRequest);
+                    String requestJson = HttpRequestUtils.sendGet(baiduRequest);
+                    System.out.println(requestJson);
+                    GeocoderSearchResponse geocoderSearchResponse = JsonUtils.jsonToObject(requestJson, GeocoderSearchResponse.class);
+                    Double lat = geocoderSearchResponse.getResult().getLocation().getLat();
+                    Double lng = geocoderSearchResponse.getResult().getLocation().getLng();
+                    String findAreaRequest = "http://api.map.baidu.com/geocoder/v2/?ak=X4R0e9z7r4L3onULLOwGBdAD&location=" + lat + "," + lng + "&output=json&pois=1";
+                    System.out.println(findAreaRequest);
+                    String requestAreaJson = HttpRequestUtils.sendGet(findAreaRequest);
+                    System.out.println(requestAreaJson);
+                    AreaGeoInfo areaGeoInfo = JsonUtils.jsonToObject(requestAreaJson, AreaGeoInfo.class);
                     work.setWorkLongitude(lng);
                     work.setWorkLatitude(lat);
                     work.setUserId(-1L);
@@ -172,20 +180,6 @@ public final class WorkHSSFRead extends AbstractTest {
         rdbDefaultClient.invoke("rdb-work", "deleteWork",
                 new Object[]{deletIds});
         System.out.println("over");
-    }
-
-    private AreaGeoInfo getAreaGeoInfo(String address) {
-        String baiduRequest = "http://api.map.baidu.com/geocoder/v2/?output=json&ak=X4R0e9z7r4L3onULLOwGBdAD&address=" + address;
-        System.out.println(baiduRequest);
-        String requestJson = HttpRequestUtils.sendGet(baiduRequest);
-        System.out.println(requestJson);
-        GeocoderSearchResponse geocoderSearchResponse = JsonUtils.jsonToObject(requestJson, GeocoderSearchResponse.class);
-        String findAreaRequest = "http://api.map.baidu.com/geocoder/v2/?ak=X4R0e9z7r4L3onULLOwGBdAD&location=" + lat + "," + lng + "&output=json&pois=1";
-        System.out.println(findAreaRequest);
-        String requestAreaJson = HttpRequestUtils.sendGet(findAreaRequest);
-        System.out.println(requestAreaJson);
-        AreaGeoInfo areaGeoInfo = JsonUtils.jsonToObject(requestAreaJson, AreaGeoInfo.class);
-        return areaGeoInfo;
     }
 
     private Long findCompany(String companyName, List<Company> companyList) {
@@ -369,45 +363,6 @@ public final class WorkHSSFRead extends AbstractTest {
             return 10L;
         } else {
             return -1L;
-        }
-    }
-
-    private class Adfsdf {
-        private String address;
-        private Double lat;
-        private Double lng;
-        private AreaGeoInfo areaGeoInfo;
-
-        public Adfsdf(String address) {
-            this.address = address;
-        }
-
-        public Double getLat() {
-            return lat;
-        }
-
-        public Double getLng() {
-            return lng;
-        }
-
-        public AreaGeoInfo getAreaGeoInfo() {
-            return areaGeoInfo;
-        }
-
-        public Adfsdf invoke() {
-            String baiduRequest = "http://api.map.baidu.com/geocoder/v2/?output=json&ak=X4R0e9z7r4L3onULLOwGBdAD&address=" + address;
-            System.out.println(baiduRequest);
-            String requestJson = HttpRequestUtils.sendGet(baiduRequest);
-            System.out.println(requestJson);
-            GeocoderSearchResponse geocoderSearchResponse = JsonUtils.jsonToObject(requestJson, GeocoderSearchResponse.class);
-            lat = geocoderSearchResponse.getResult().getLocation().getLat();
-            lng = geocoderSearchResponse.getResult().getLocation().getLng();
-            String findAreaRequest = "http://api.map.baidu.com/geocoder/v2/?ak=X4R0e9z7r4L3onULLOwGBdAD&location=" + lat + "," + lng + "&output=json&pois=1";
-            System.out.println(findAreaRequest);
-            String requestAreaJson = HttpRequestUtils.sendGet(findAreaRequest);
-            System.out.println(requestAreaJson);
-            areaGeoInfo = JsonUtils.jsonToObject(requestAreaJson, AreaGeoInfo.class);
-            return this;
         }
     }
 }

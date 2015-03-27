@@ -5,6 +5,7 @@ import com.hdg.rjra.rdb.proxy.domain.Resume;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.ResumeMapping;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,4 +26,6 @@ public interface IResumeProxy extends Serializable {
     public Pager<Resume> findAllResumeByParamPager(Map<ResumeMapping, Object> param, Integer[] status, Integer firstResult, Integer sizeNo);
 
     public Pager<Resume> findNearResumeByParamPager(Map<ResumeMapping, Object> param, Double lng, Double lat, Integer raidus, Integer[] status, Integer firstResult, Integer sizeNo);
+
+    public List<Long> batchSaveResume(List<Resume> resumeList);
 }
