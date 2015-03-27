@@ -28,7 +28,7 @@ public interface IUserProxy extends Serializable {
 
     public User findUserByMobileAndPwd(String mobile, String pwd);
 
-    public Integer updateUserLocation(Long userId, Double lng, Double lat);
+    public Integer updateUserLocation(Long userId, Long resumeId, Double lng, Double lat);
 
     public Integer findUserExistsByMobile(String mobile);
 

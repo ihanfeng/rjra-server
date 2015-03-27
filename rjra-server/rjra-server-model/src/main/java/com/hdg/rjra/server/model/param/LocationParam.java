@@ -9,6 +9,7 @@ public class LocationParam extends BaseParam {
     private Double latitude;
     private Integer raidus;
     private Long userId;
+    private Long resumeId;
 
     public Double getLongitude() {
         return longitude;
@@ -40,5 +41,13 @@ public class LocationParam extends BaseParam {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getResumeId() {
+        return resumeId;
+    }
+
+    public void setResumeId(Long resumeId) {
+        this.resumeId = resumeId;
     }
 }

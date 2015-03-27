@@ -6,6 +6,8 @@ import com.hdg.rjra.server.model.bo.company.CompanyBo;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.model.bo.resume.ResumeBo;
 
+import java.util.Date;
+
 /**
  * Created by Rock on 2015/1/10 0010.
  */
@@ -25,10 +27,8 @@ public class UserBo {
     private Double userLoginLongitude;
     private Double userLoginLatitude;
     private Integer userStatus;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String userCreateTime;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String userUpdateTime;
+    private Date userCreateTime;
+    private Date userUpdateTime;
     private Integer userLoginType;
     private String token;
     private String userDesc;
@@ -145,19 +145,19 @@ public class UserBo {
         this.userStatus = userStatus;
     }
 
-    public String getUserCreateTime() {
+    public Date getUserCreateTime() {
         return userCreateTime;
     }
 
-    public void setUserCreateTime(String userCreateTime) {
+    public void setUserCreateTime(Date userCreateTime) {
         this.userCreateTime = userCreateTime;
     }
 
-    public String getUserUpdateTime() {
+    public Date getUserUpdateTime() {
         return userUpdateTime;
     }
 
-    public void setUserUpdateTime(String userUpdateTime) {
+    public void setUserUpdateTime(Date userUpdateTime) {
         this.userUpdateTime = userUpdateTime;
     }
 

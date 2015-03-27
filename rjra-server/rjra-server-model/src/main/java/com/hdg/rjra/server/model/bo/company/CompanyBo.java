@@ -1,9 +1,8 @@
 package com.hdg.rjra.server.model.bo.company;
 
-import com.hdg.common.annotation.DateTimeFormat;
-import com.hdg.common.constants.CommonConstants;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,25 +32,19 @@ public class CompanyBo {
     private List<AccountFileBo> companyImagesDetail;
     private AccountFileBo companyFacadeImageFileDetail;
     private Integer companyStatus;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String companyCreateTime;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String companyUpdateTime;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String companyChangeTime;
+    private Date companyCreateTime;
+    private Date companyUpdateTime;
+    private Date companyChangeTime;
     private String companyDesc;
     private Integer companyExamineStatus;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String companyExamineTime;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String companyExamineSubmitTime;
+    private Date companyExamineTime;
+    private Date companyExamineSubmitTime;
     private String companyExamineResult;
     private Integer companyDataType;
     private String companyTag;
     private Long companyExamineReviewerId;
     private String companyExamineReviewerName;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String companyImportTime;
+    private Date companyImportTime;
     private Long companyImportOperatorId;
     private String companyImportOperatorName;
 
@@ -207,27 +200,51 @@ public class CompanyBo {
         this.companyStatus = companyStatus;
     }
 
-    public String getCompanyCreateTime() {
+    public String getCompanyEmail() {
+        return companyEmail;
+    }
+
+    public void setCompanyEmail(String companyEmail) {
+        this.companyEmail = companyEmail;
+    }
+
+    public Long[] getCompanyImages() {
+        return companyImages;
+    }
+
+    public void setCompanyImages(Long[] companyImages) {
+        this.companyImages = companyImages;
+    }
+
+    public List<AccountFileBo> getCompanyImagesDetail() {
+        return companyImagesDetail;
+    }
+
+    public void setCompanyImagesDetail(List<AccountFileBo> companyImagesDetail) {
+        this.companyImagesDetail = companyImagesDetail;
+    }
+
+    public Date getCompanyCreateTime() {
         return companyCreateTime;
     }
 
-    public void setCompanyCreateTime(String companyCreateTime) {
+    public void setCompanyCreateTime(Date companyCreateTime) {
         this.companyCreateTime = companyCreateTime;
     }
 
-    public String getCompanyUpdateTime() {
+    public Date getCompanyUpdateTime() {
         return companyUpdateTime;
     }
 
-    public void setCompanyUpdateTime(String companyUpdateTime) {
+    public void setCompanyUpdateTime(Date companyUpdateTime) {
         this.companyUpdateTime = companyUpdateTime;
     }
 
-    public String getCompanyChangeTime() {
+    public Date getCompanyChangeTime() {
         return companyChangeTime;
     }
 
-    public void setCompanyChangeTime(String companyChangeTime) {
+    public void setCompanyChangeTime(Date companyChangeTime) {
         this.companyChangeTime = companyChangeTime;
     }
 
@@ -247,12 +264,20 @@ public class CompanyBo {
         this.companyExamineStatus = companyExamineStatus;
     }
 
-    public String getCompanyExamineTime() {
+    public Date getCompanyExamineTime() {
         return companyExamineTime;
     }
 
-    public void setCompanyExamineTime(String companyExamineTime) {
+    public void setCompanyExamineTime(Date companyExamineTime) {
         this.companyExamineTime = companyExamineTime;
+    }
+
+    public Date getCompanyExamineSubmitTime() {
+        return companyExamineSubmitTime;
+    }
+
+    public void setCompanyExamineSubmitTime(Date companyExamineSubmitTime) {
+        this.companyExamineSubmitTime = companyExamineSubmitTime;
     }
 
     public String getCompanyExamineResult() {
@@ -261,30 +286,6 @@ public class CompanyBo {
 
     public void setCompanyExamineResult(String companyExamineResult) {
         this.companyExamineResult = companyExamineResult;
-    }
-
-    public Long[] getCompanyImages() {
-        return companyImages;
-    }
-
-    public void setCompanyImages(Long[] companyImages) {
-        this.companyImages = companyImages;
-    }
-
-    public List<AccountFileBo> getCompanyImagesDetail() {
-        return companyImagesDetail;
-    }
-
-    public void setCompanyImagesDetail(List<AccountFileBo> companyImagesDetail) {
-        this.companyImagesDetail = companyImagesDetail;
-    }
-
-    public String getCompanyEmail() {
-        return companyEmail;
-    }
-
-    public void setCompanyEmail(String companyEmail) {
-        this.companyEmail = companyEmail;
     }
 
     public Integer getCompanyDataType() {
@@ -303,14 +304,6 @@ public class CompanyBo {
         this.companyTag = companyTag;
     }
 
-    public String getCompanyExamineSubmitTime() {
-        return companyExamineSubmitTime;
-    }
-
-    public void setCompanyExamineSubmitTime(String companyExamineSubmitTime) {
-        this.companyExamineSubmitTime = companyExamineSubmitTime;
-    }
-
     public Long getCompanyExamineReviewerId() {
         return companyExamineReviewerId;
     }
@@ -327,11 +320,11 @@ public class CompanyBo {
         this.companyExamineReviewerName = companyExamineReviewerName;
     }
 
-    public String getCompanyImportTime() {
+    public Date getCompanyImportTime() {
         return companyImportTime;
     }
 
-    public void setCompanyImportTime(String companyImportTime) {
+    public void setCompanyImportTime(Date companyImportTime) {
         this.companyImportTime = companyImportTime;
     }
 

@@ -26,7 +26,7 @@ public interface UserService {
 
     public Integer updateUserPwd(Long userId, String pwd);
 
-    public Integer updateUserLocation(Long userId, Double lng, Double lat);
+    public Integer updateUserLocation(Long userId, Long resumeId, Double lng, Double lat);
 
     public Integer findUserExistsByMobile(String mobile);
 

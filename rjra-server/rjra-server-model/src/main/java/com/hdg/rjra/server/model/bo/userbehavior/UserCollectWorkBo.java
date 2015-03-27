@@ -6,6 +6,7 @@ import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.model.bo.work.WorkBo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Rock on 2015/3/18 0018.
@@ -16,8 +17,7 @@ public class UserCollectWorkBo implements Serializable {
     private UserBo userDetail;
     private Long workId;
     private WorkBo workDetail;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String collectTime;
+    private Date collectTime;
     private Integer userCollectWorkStatus;
 
     public Long getCollectId() {
@@ -44,11 +44,11 @@ public class UserCollectWorkBo implements Serializable {
         this.workId = workId;
     }
 
-    public String getCollectTime() {
+    public Date getCollectTime() {
         return collectTime;
     }
 
-    public void setCollectTime(String collectTime) {
+    public void setCollectTime(Date collectTime) {
         this.collectTime = collectTime;
     }
 

@@ -27,7 +27,7 @@ public class FindNearResumeByParamPager extends AbstractExecuter {
         double[] doubles = CoordinateUtils.getAround(lng, lat, raidus);
         List<Object> objects = new ArrayList<Object>();
         StringBuffer executeSql = new StringBuffer();
-        executeSql.append("select a.*,b.user_login_longitude,b.user_login_latitude from user_resume a left join account_user b on a.resume_id=b.resume_id where 1=1");
+        executeSql.append("select * from user_resume where 1=1");
         SqlParam sqlParam = SqlUtils.buildWhereAndSqlByMapParam(param);
         if (sqlParam != null) {
             executeSql.append(sqlParam.getSql());
@@ -37,11 +37,11 @@ public class FindNearResumeByParamPager extends AbstractExecuter {
         executeSql.append(" and resume_status in (");
         executeSql.append(SqlUtils.appendPlaceholder(status.length));
         executeSql.append(")");
-        executeSql.append(" and user_login_longitude > ?");
-        executeSql.append(" and user_login_longitude < ?");
-        executeSql.append(" and user_login_latitude > ?");
-        executeSql.append(" and user_login_latitude < ?");
-        executeSql.append(" ORDER BY ACOS( SIN((? * 3.1415) / 180) * SIN((user_login_longitude * 3.1415) / 180) + COS((? * 3.1415) / 180) * COS((user_login_latitude * 3.1415) / 180) * COS((? * 3.1415) / 180 - (user_login_longitude * 3.1415) / 180)) * 6380 ");
+        executeSql.append(" and resume_longitude > ?");
+        executeSql.append(" and resume_longitude < ?");
+        executeSql.append(" and resume_latitude > ?");
+        executeSql.append(" and resume_latitude < ?");
+        executeSql.append(" ORDER BY ACOS( SIN((? * 3.1415) / 180) * SIN((resume_longitude * 3.1415) / 180) + COS((? * 3.1415) / 180) * COS((resume_latitude * 3.1415) / 180) * COS((? * 3.1415) / 180 - (resume_longitude * 3.1415) / 180)) * 6380 ");
         objects.add(doubles[0]);
         objects.add(doubles[1]);
         objects.add(doubles[2]);

@@ -146,8 +146,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer updateUserLocation(Long userId, Double lng, Double lat) {
-        return userProxy.updateUserLocation(userId, lng, lat);
+    public Integer updateUserLocation(Long userId, Long resumeId, Double lng, Double lat) {
+        return userProxy.updateUserLocation(userId, resumeId, lng, lat);
     }
 
     @Override

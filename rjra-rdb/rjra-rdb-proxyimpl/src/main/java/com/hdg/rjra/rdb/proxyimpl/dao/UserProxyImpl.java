@@ -66,9 +66,9 @@ public class UserProxyImpl extends BaseProxy implements IUserProxy {
     }
 
     @Override
-    public Integer updateUserLocation(Long userId, Double lng, Double lat) {
+    public Integer updateUserLocation(Long userId, Long resumeId, Double lng, Double lat) {
         return daoClient.invoke(moduleName, "updateUserLocation",
-                new Object[]{userId, lng, lat});
+                new Object[]{userId, resumeId, lng, lat});
     }
 
     @Override

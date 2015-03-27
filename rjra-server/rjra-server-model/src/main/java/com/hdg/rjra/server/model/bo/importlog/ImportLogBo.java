@@ -3,6 +3,8 @@ package com.hdg.rjra.server.model.bo.importlog;
 import com.hdg.common.annotation.DateTimeFormat;
 import com.hdg.common.constants.CommonConstants;
 
+import java.util.Date;
+
 /**
  * Created by Administrator on 2015/3/26.
  */
@@ -11,8 +13,7 @@ public class ImportLogBo {
     private Integer importLogType;
     private Long importLogOperatorId;
     private String importLogOperatorName;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String importLogTime;
+    private Date importLogTime;
     private Integer importLogStatus;
     private String importLogDesc;
     private Integer importLogCount;
@@ -51,11 +52,11 @@ public class ImportLogBo {
         this.importLogOperatorName = importLogOperatorName;
     }
 
-    public String getImportLogTime() {
+    public Date getImportLogTime() {
         return importLogTime;
     }
 
-    public void setImportLogTime(String importLogTime) {
+    public void setImportLogTime(Date importLogTime) {
         this.importLogTime = importLogTime;
     }
 

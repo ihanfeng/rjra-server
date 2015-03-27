@@ -3,6 +3,8 @@ package com.hdg.rjra.server.model.bo.file;
 import com.hdg.common.annotation.DateTimeFormat;
 import com.hdg.common.constants.CommonConstants;
 
+import java.util.Date;
+
 /**
  * Created by Rock on 2015/1/10 0010.
  */
@@ -15,8 +17,7 @@ public class AccountFileBo {
     private String fileUrl;
     private String fileThumbnailUrl;
     private String fileFormat;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String fileUploadTime;
+    private Date fileUploadTime;
 
     public Long getFileId() {
         return fileId;
@@ -66,11 +67,11 @@ public class AccountFileBo {
         this.fileFormat = fileFormat;
     }
 
-    public String getFileUploadTime() {
+    public Date getFileUploadTime() {
         return fileUploadTime;
     }
 
-    public void setFileUploadTime(String fileUploadTime) {
+    public void setFileUploadTime(Date fileUploadTime) {
         this.fileUploadTime = fileUploadTime;
     }
 

@@ -211,7 +211,7 @@ public class UserController {
         Integer data = null;
         try {
             LocationParam locationParam = JsonUtils.jsonToObject(param, LocationParam.class);
-            data = userService.updateUserLocation(locationParam.getUserId(), locationParam.getLongitude(), locationParam.getLatitude());
+            data = userService.updateUserLocation(locationParam.getUserId(), locationParam.getResumeId(), locationParam.getLongitude(), locationParam.getLatitude());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
             errorType.setMessage(e.toString());

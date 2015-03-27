@@ -14,20 +14,35 @@ import java.util.Date;
  */
 public class UpdateUserLocation extends AbstractExecuter {
 
-    String sql = "UPDATE account_user SET user_login_longitude=?,user_login_latitude=?," +
-            "user_update_time=? WHERE user_id =?";
 
     @Override
     public Object execute(Object[] params) {
         if (params != null && params.length > 0) {
             final Long userId = (Long) params[0];
-            final Double lng = (Double) params[1];
-            final Double lat = (Double) params[2];
+            final Long resumeId = (Long) params[1];
+            final Double lng = (Double) params[2];
+            final Double lat = (Double) params[3];
+            final String sql = "UPDATE account_user SET user_login_longitude=?,user_login_latitude=?," +
+                    "user_update_time=? WHERE user_id =?";
             getJdbcTemplate().update(new PreparedStatementCreator()
             {
                 public PreparedStatement createPreparedStatement(Connection con) throws SQLException
                 {
                     PreparedStatement ps = con.prepareStatement(sql);
+                    ps.setObject(1, lng);
+                    ps.setObject(2, lat);
+                    ps.setObject(3, new Date());
+                    ps.setObject(4, userId);
+                    return ps;
+                }
+            });
+            final String resumeSql = "UPDATE user_resume SET resume_longitude=?,resume_latitude=?," +
+                    "resume_update_time=? WHERE resume_id =?";
+            getJdbcTemplate().update(new PreparedStatementCreator()
+            {
+                public PreparedStatement createPreparedStatement(Connection con) throws SQLException
+                {
+                    PreparedStatement ps = con.prepareStatement(resumeSql);
                     ps.setObject(1, lng);
                     ps.setObject(2, lat);
                     ps.setObject(3, new Date());

@@ -3,6 +3,8 @@ package com.hdg.rjra.server.model.bo.examine;
 import com.hdg.common.annotation.DateTimeFormat;
 import com.hdg.common.constants.CommonConstants;
 
+import java.util.Date;
+
 /**
  * Created by Administrator on 2015/3/24.
  */
@@ -11,8 +13,7 @@ public class ExamineLogBo {
     private Integer examineLogType;
     private Long examineLogResource;
     private Integer examineLogStatus;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String examineLogTime;
+    private Date examineLogTime;
     private String examineLogResult;
     private Long examineLogReviewerId;
     private String examineLogReviewerName;
@@ -49,11 +50,11 @@ public class ExamineLogBo {
         this.examineLogStatus = examineLogStatus;
     }
 
-    public String getExamineLogTime() {
+    public Date getExamineLogTime() {
         return examineLogTime;
     }
 
-    public void setExamineLogTime(String examineLogTime) {
+    public void setExamineLogTime(Date examineLogTime) {
         this.examineLogTime = examineLogTime;
     }
 

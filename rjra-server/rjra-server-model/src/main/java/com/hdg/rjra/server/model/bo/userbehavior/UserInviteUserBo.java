@@ -5,6 +5,7 @@ import com.hdg.common.constants.CommonConstants;
 import com.hdg.rjra.server.model.bo.user.UserBo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Rock on 2015/3/18 0018.
@@ -15,10 +16,8 @@ public class UserInviteUserBo implements Serializable {
     private UserBo userDetail;
     private Long inviteUserId;
     private UserBo inviteUserDetail;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String inviteTime;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String interviewTime;
+    private Date inviteTime;
+    private Date interviewTime;
     private String interviewAddress;
     private String interviewer;
     private String interviewMobile;
@@ -51,19 +50,19 @@ public class UserInviteUserBo implements Serializable {
         this.inviteUserId = inviteUserId;
     }
 
-    public String getInviteTime() {
+    public Date getInviteTime() {
         return inviteTime;
     }
 
-    public void setInviteTime(String inviteTime) {
+    public void setInviteTime(Date inviteTime) {
         this.inviteTime = inviteTime;
     }
 
-    public String getInterviewTime() {
+    public Date getInterviewTime() {
         return interviewTime;
     }
 
-    public void setInterviewTime(String interviewTime) {
+    public void setInterviewTime(Date interviewTime) {
         this.interviewTime = interviewTime;
     }
 

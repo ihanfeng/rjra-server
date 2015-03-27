@@ -38,12 +38,9 @@ public class ResumeBo {
     private Long resumeHomeCityId;
     private Long resumeHomeProvinceId;
     private String resumeHomeAddress;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String resumeCreateTime;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String resumeUpdateTime;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String resumeRefreshTime;
+    private Date resumeCreateTime;
+    private Date resumeUpdateTime;
+    private Date resumeRefreshTime;
     private Integer distance;
 
     public Long getUserId() {
@@ -206,28 +203,29 @@ public class ResumeBo {
         this.resumeWantWorkProvinceId = resumeWantWorkProvinceId;
     }
 
-    public String getResumeCreateTime() {
-        return resumeCreateTime;
-    }
-
-    public void setResumeCreateTime(String resumeCreateTime) {
-        this.resumeCreateTime = resumeCreateTime;
-    }
-
-    public String getResumeUpdateTime() {
+    public Date getResumeUpdateTime() {
         return resumeUpdateTime;
     }
 
-    public void setResumeUpdateTime(String resumeUpdateTime) {
+    public void setResumeUpdateTime(Date resumeUpdateTime) {
         this.resumeUpdateTime = resumeUpdateTime;
     }
 
-    public String getResumeRefreshTime() {
+    public Date getResumeRefreshTime() {
         return resumeRefreshTime;
     }
 
-    public void setResumeRefreshTime(String resumeRefreshTime) {
+    public void setResumeRefreshTime(Date resumeRefreshTime) {
         this.resumeRefreshTime = resumeRefreshTime;
+    }
+
+    public Date getResumeCreateTime() {
+
+        return resumeCreateTime;
+    }
+
+    public void setResumeCreateTime(Date resumeCreateTime) {
+        this.resumeCreateTime = resumeCreateTime;
     }
 
     public String getBirthday() {

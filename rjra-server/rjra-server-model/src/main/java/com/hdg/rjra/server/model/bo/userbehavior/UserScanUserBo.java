@@ -5,6 +5,7 @@ import com.hdg.common.constants.CommonConstants;
 import com.hdg.rjra.server.model.bo.user.UserBo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Rock on 2015/3/18 0018.
@@ -15,8 +16,7 @@ public class UserScanUserBo implements Serializable {
     private UserBo userDetail;
     private Long scanUserId;
     private UserBo scanUserDetail;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String scanTime;
+    private Date scanTime;
 
     public Long getScanId() {
         return scanId;
@@ -42,11 +42,11 @@ public class UserScanUserBo implements Serializable {
         this.scanUserId = scanUserId;
     }
 
-    public String getScanTime() {
+    public Date getScanTime() {
         return scanTime;
     }
 
-    public void setScanTime(String scanTime) {
+    public void setScanTime(Date scanTime) {
         this.scanTime = scanTime;
     }
 

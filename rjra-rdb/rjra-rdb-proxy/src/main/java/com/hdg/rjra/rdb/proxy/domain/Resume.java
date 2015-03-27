@@ -3,7 +3,6 @@ package com.hdg.rjra.rdb.proxy.domain;
 import com.hdg.rjra.rdb.proxy.utils.DBClass;
 import com.hdg.rjra.rdb.proxy.utils.DBField;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -61,8 +60,8 @@ public class Resume implements BaseDomain {
     @DBField("resume_refresh_time")
     private Date resumeRefreshTime;
 
-    private Double userLoginLongitude;
-    private Double userLoginLatitude;
+    private Double resumeLongitude;
+    private Double resumeLatitude;
 
 
     public Long getResumeId() {
@@ -265,19 +264,19 @@ public class Resume implements BaseDomain {
         this.resumeHomeAddress = resumeHomeAddress;
     }
 
-    public Double getUserLoginLongitude() {
-        return userLoginLongitude;
+    public Double getResumeLongitude() {
+        return resumeLongitude;
     }
 
-    public void setUserLoginLongitude(Double userLoginLongitude) {
-        this.userLoginLongitude = userLoginLongitude;
+    public void setResumeLongitude(Double resumeLongitude) {
+        this.resumeLongitude = resumeLongitude;
     }
 
-    public Double getUserLoginLatitude() {
-        return userLoginLatitude;
+    public Double getResumeLatitude() {
+        return resumeLatitude;
     }
 
-    public void setUserLoginLatitude(Double userLoginLatitude) {
-        this.userLoginLatitude = userLoginLatitude;
+    public void setResumeLatitude(Double resumeLatitude) {
+        this.resumeLatitude = resumeLatitude;
     }
 }

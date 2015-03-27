@@ -4,6 +4,8 @@ import com.hdg.common.annotation.DateTimeFormat;
 import com.hdg.common.constants.CommonConstants;
 import com.hdg.rjra.server.model.bo.company.CompanyBo;
 
+import java.util.Date;
+
 /**
  * Created by Rock on 2015/1/28 0028.
  */
@@ -29,16 +31,13 @@ public class WorkBo {
     private Long[] workWelfareIds;
     private String workDesc;
     private Integer workStatus;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String workCreateTime;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String workUpdateTime;
+    private Date workCreateTime;
+    private Date workUpdateTime;
     private Long ageId;
     private Integer workGender;
     private Integer workDataType;
     private String workTag;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String workImportTime;
+    private Date workImportTime;
     private Long workImportOperatorId;
     private String workImportOperatorName;
     private Integer distance;
@@ -203,20 +202,24 @@ public class WorkBo {
         this.workStatus = workStatus;
     }
 
-    public String getWorkCreateTime() {
+    public Date getWorkCreateTime() {
         return workCreateTime;
     }
 
-    public void setWorkCreateTime(String workCreateTime) {
+    public void setWorkCreateTime(Date workCreateTime) {
         this.workCreateTime = workCreateTime;
     }
 
-    public String getWorkUpdateTime() {
+    public Date getWorkUpdateTime() {
         return workUpdateTime;
     }
 
-    public void setWorkUpdateTime(String workUpdateTime) {
+    public void setWorkUpdateTime(Date workUpdateTime) {
         this.workUpdateTime = workUpdateTime;
+    }
+
+    public void setWorkImportTime(Date workImportTime) {
+        this.workImportTime = workImportTime;
     }
 
     public Long getAgeId() {
@@ -251,12 +254,8 @@ public class WorkBo {
         this.workTag = workTag;
     }
 
-    public String getWorkImportTime() {
+    public Date getWorkImportTime() {
         return workImportTime;
-    }
-
-    public void setWorkImportTime(String workImportTime) {
-        this.workImportTime = workImportTime;
     }
 
     public Long getWorkImportOperatorId() {

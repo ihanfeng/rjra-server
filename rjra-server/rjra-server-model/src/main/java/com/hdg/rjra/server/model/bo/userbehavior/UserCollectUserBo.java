@@ -5,6 +5,7 @@ import com.hdg.common.constants.CommonConstants;
 import com.hdg.rjra.server.model.bo.user.UserBo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Rock on 2015/3/18 0018.
@@ -15,8 +16,7 @@ public class UserCollectUserBo implements Serializable {
     private UserBo userDetail;
     private Long collectUserId;
     private UserBo collectUserDetail;
-    @DateTimeFormat(pattern = CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS)
-    private String collectTime;
+    private Date collectTime;
     private Integer userCollectUserStatus;
 
     public Long getCollectId() {
@@ -43,11 +43,11 @@ public class UserCollectUserBo implements Serializable {
         this.collectUserId = collectUserId;
     }
 
-    public String getCollectTime() {
+    public Date getCollectTime() {
         return collectTime;
     }
 
-    public void setCollectTime(String collectTime) {
+    public void setCollectTime(Date collectTime) {
         this.collectTime = collectTime;
     }
 

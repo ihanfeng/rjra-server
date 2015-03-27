@@ -2,6 +2,7 @@ package com.hdg.rjra.server.model.param.userbehavior;
 
 import com.hdg.rjra.server.model.param.BaseParam;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ public class UserInviteUserParam extends BaseParam {
     private Long inviteId;
     private Long userId;
     private Long inviteUserId;
-    private String interviewTime;
+    private Date interviewTime;
     private String interviewAddress;
     private String interviewer;
     private String interviewMobile;
@@ -45,11 +46,11 @@ public class UserInviteUserParam extends BaseParam {
         this.inviteUserId = inviteUserId;
     }
 
-    public String getInterviewTime() {
+    public Date getInterviewTime() {
         return interviewTime;
     }
 
-    public void setInterviewTime(String interviewTime) {
+    public void setInterviewTime(Date interviewTime) {
         this.interviewTime = interviewTime;
     }
 
