@@ -63,7 +63,12 @@ public class Resume implements BaseDomain {
     private Double resumeLongitude;
     @DBField("resume_latitude")
     private Double resumeLatitude;
-
+    @DBField("resume_data_type")
+    private Integer resumeDataType;
+    @DBField("resume_tag")
+    private String resumeTag;
+    @DBField("age_id")
+    private String ageId;
 
     public Long getResumeId() {
         return resumeId;
@@ -279,5 +284,29 @@ public class Resume implements BaseDomain {
 
     public void setResumeLatitude(Double resumeLatitude) {
         this.resumeLatitude = resumeLatitude;
+    }
+
+    public Integer getResumeDataType() {
+        return resumeDataType;
+    }
+
+    public void setResumeDataType(Integer resumeDataType) {
+        this.resumeDataType = resumeDataType;
+    }
+
+    public String getResumeTag() {
+        return resumeTag;
+    }
+
+    public void setResumeTag(String resumeTag) {
+        this.resumeTag = resumeTag;
+    }
+
+    public String getAgeId() {
+        return ageId;
+    }
+
+    public void setAgeId(String ageId) {
+        this.ageId = ageId;
     }
 }

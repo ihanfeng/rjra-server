@@ -42,6 +42,9 @@ public class ResumeBo {
     private Date resumeUpdateTime;
     private Date resumeRefreshTime;
     private Integer distance;
+    private Integer resumeDataType;
+    private String resumeTag;
+    private String ageId;
 
     public Long getUserId() {
         return userId;
@@ -282,5 +285,29 @@ public class ResumeBo {
 
     public void setDistance(Integer distance) {
         this.distance = distance;
+    }
+
+    public Integer getResumeDataType() {
+        return resumeDataType;
+    }
+
+    public void setResumeDataType(Integer resumeDataType) {
+        this.resumeDataType = resumeDataType;
+    }
+
+    public String getResumeTag() {
+        return resumeTag;
+    }
+
+    public void setResumeTag(String resumeTag) {
+        this.resumeTag = resumeTag;
+    }
+
+    public String getAgeId() {
+        return ageId;
+    }
+
+    public void setAgeId(String ageId) {
+        this.ageId = ageId;
     }
 }

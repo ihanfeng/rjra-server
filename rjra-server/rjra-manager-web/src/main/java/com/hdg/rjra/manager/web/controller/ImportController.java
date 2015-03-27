@@ -65,8 +65,10 @@ public class ImportController {
                 String importType = multiRequest.getParameter("importType");
                 ImportLogBo bo = new ImportLogBo();
                 bo.setImportLogFileName(file.getName());
-                bo.setImportLogOperatorId(managerBo.getManagerId());
-                bo.setImportLogOperatorName(managerBo.getManagerName());
+//                bo.setImportLogOperatorId(managerBo.getManagerId());
+//                bo.setImportLogOperatorName(managerBo.getManagerName());
+                bo.setImportLogOperatorId(1L);
+                bo.setImportLogOperatorName("");
                 bo.setImportLogType(Integer.parseInt(importType));
                 if (ImportResourceType.Company.getCode() == bo.getImportLogType().intValue()) {
                     data = importService.company(bo, (FileInputStream) file.getInputStream());

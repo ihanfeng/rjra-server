@@ -33,6 +33,7 @@ public class ResumeParam extends BaseParam {
     private Long resumeHomeCityId;
     private Long resumeHomeProvinceId;
     private String resumeHomeAddress;
+    private Long ageId;
 
     public Long getResumeId() {
         return resumeId;
@@ -224,5 +225,13 @@ public class ResumeParam extends BaseParam {
 
     public void setResumeHomeAddress(String resumeHomeAddress) {
         this.resumeHomeAddress = resumeHomeAddress;
+    }
+
+    public Long getAgeId() {
+        return ageId;
+    }
+
+    public void setAgeId(Long ageId) {
+        this.ageId = ageId;
     }
 }
