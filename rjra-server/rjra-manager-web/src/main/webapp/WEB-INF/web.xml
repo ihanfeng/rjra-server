@@ -29,18 +29,18 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <!-- Token权限检查 -->
-    <!--<filter>-->
-        <!--<filter-name>ValidateTokenFilter</filter-name>-->
-        <!--<filter-class>com.hdg.rjra.manager.web.filter.ValidateTokenFilter</filter-class>-->
-        <!--<init-param>-->
-            <!--<param-name>excludeUrls</param-name>-->
-            <!--<param-value>/manager/login,/manager/logout</param-value>-->
-        <!--</init-param>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-        <!--<filter-name>ValidateTokenFilter</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
+    <filter>
+        <filter-name>ValidateTokenFilter</filter-name>
+        <filter-class>com.hdg.rjra.manager.web.filter.ValidateTokenFilter</filter-class>
+        <init-param>
+            <param-name>excludeUrls</param-name>
+            <param-value>/manager/login,/manager/logout</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>ValidateTokenFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <filter>
         <filter-name>HttpMethodFilter</filter-name>
