@@ -16,53 +16,51 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * 
- * Title: ValidateTokenFilter.java    
+ * Title: ValidateTokenFilter.java
  * Description: 验证Token
- * @author Sisi       
- * 创建时间 2014年7月8日 下午5:05:56
+ *
+ * @author Sisi
+ *         创建时间 2014年7月8日 下午5:05:56
  */
-public class ValidateTokenFilter implements Filter{    
+public class ValidateTokenFilter implements Filter {
     /**
      * 存储不需要验证Token的Urls
      */
     private List<String> excludeUrls;
-    
+
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {     
+    public void init(FilterConfig filterConfig) throws ServletException {
         String pExcludeUrls = filterConfig.getInitParameter("excludeUrls");
-        
-        if (StringUtils.isNotEmpty(pExcludeUrls)){
+
+        if (StringUtils.isNotEmpty(pExcludeUrls)) {
             excludeUrls = Arrays.asList(pExcludeUrls.split(CommonConstants.SYMBOL_COMMA));
-        }    
+        }
     }
 
-   /**
-    * 
-    * @description 验证Token
-    * @author Administrator       
-    * 创建时间 2014年7月8日 下午5:05:42      
-    * @param request request
-    * @param response response
-    * @param chain chain
-    * @throws java.io.IOException IOException
-    * @throws javax.servlet.ServletException ServletException
-    * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, 
-    * javax.servlet.ServletResponse, javax.servlet.FilterChain)
-    */
+    /**
+     * @param request  request
+     * @param response response
+     * @param chain    chain
+     * @throws java.io.IOException            IOException
+     * @throws javax.servlet.ServletException ServletException
+     * @description 验证Token
+     * @author Administrator
+     * 创建时间 2014年7月8日 下午5:05:42
+     * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
+     * javax.servlet.ServletResponse, javax.servlet.FilterChain)
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
             ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-                
+
         //判断当前请求是否需要跳过Token验证
         String servletPath = httpRequest.getServletPath();
-        if (isSkipValidate(servletPath)){
+        if (isSkipValidate(servletPath)) {
             //跳过验证
             chain.doFilter(httpRequest, httpResponse);
-        }
-        else {
+        } else {
             //验证Token
             String token = httpRequest.getParameter("token");
             HttpSession session = httpRequest.getSession(false);
@@ -70,7 +68,7 @@ public class ValidateTokenFilter implements Filter{
             if (null != session
                     && httpRequest.isRequestedSessionIdValid()
                     && StringUtils.isNotEmpty(token) && token.equals(getSessionToken(session))) {
-                if ("/rjra-manager".equals(servletPath)){
+                if ("/rjra-manager".equals(servletPath)) {
                     //验证未通过
                     OutputResult outputResult = new OutputResult();
                     outputResult.setFlag(CommonConstants.SUCCESS);
@@ -80,8 +78,7 @@ public class ValidateTokenFilter implements Filter{
                     chain.doFilter(httpRequest, httpResponse);
                 }
 
-            }
-            else {
+            } else {
                 //验证未通过
                 OutputResult outputResult = new OutputResult();
                 outputResult.setFlag(CommonConstants.FAIL);
@@ -89,17 +86,18 @@ public class ValidateTokenFilter implements Filter{
                 outputResult.setErrorCode(ErrorType.INVALID_TOKEN.getCode());
                 postJson(httpResponse, JsonUtils.objectToJson(outputResult));
             }
-        }       
+        }
     }
 
     /**
      * 获取sessionToken
+     *
      * @param session session
      * @return String
      */
     private String getSessionToken(HttpSession session) {
         //获取Session中的Token
-        String sessionToken = (String)session.getAttribute(SessionToken.TOKEN);
+        String sessionToken = (String) session.getAttribute(SessionToken.TOKEN);
         return sessionToken;
     }
 
@@ -125,13 +123,13 @@ public class ValidateTokenFilter implements Filter{
             e.printStackTrace();
         }
     }
+
     /**
-     * 
-     * @description 根据被请求路径，判读是否跳过验证
-     * @author Administrator       
-     * 创建时间 2014年7月8日 下午6:11:31     
      * @param servletPath 请求路径
      * @return isSkip
+     * @description 根据被请求路径，判读是否跳过验证
+     * @author Administrator
+     * 创建时间 2014年7月8日 下午6:11:31
      */
     private boolean isSkipValidate(String servletPath) {
         boolean isSkip = false;
@@ -141,13 +139,13 @@ public class ValidateTokenFilter implements Filter{
                 break;
             }
         }
-        
+
         return isSkip;
     }
 
     @Override
     public void destroy() {
-        
+
     }
 
 }

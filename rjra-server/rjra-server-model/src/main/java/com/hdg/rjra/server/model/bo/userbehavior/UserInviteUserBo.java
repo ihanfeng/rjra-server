@@ -3,7 +3,6 @@ package com.hdg.rjra.server.model.bo.userbehavior;
 import com.hdg.common.annotation.DateTimeFormat;
 import com.hdg.common.constants.CommonConstants;
 import com.hdg.rjra.server.model.bo.user.UserBo;
-import com.hdg.rjra.server.model.bo.work.WorkBo;
 
 import java.io.Serializable;
 

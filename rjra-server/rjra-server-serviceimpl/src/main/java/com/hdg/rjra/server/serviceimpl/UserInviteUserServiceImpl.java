@@ -54,9 +54,9 @@ public class UserInviteUserServiceImpl implements UserInviteUserService {
         return getUserInviteUserBo(userInviteUser);
     }
 
-    private UserInviteUserBo getUserInviteUserBo(UserInviteUser userInviteUser){
-        if(null == userInviteUser) {
-            return  null;
+    private UserInviteUserBo getUserInviteUserBo(UserInviteUser userInviteUser) {
+        if (null == userInviteUser) {
+            return null;
         }
         UserInviteUserBo userInviteUserBo = new UserInviteUserBo();
         ConversionUtils.conversion(userInviteUser, userInviteUserBo);

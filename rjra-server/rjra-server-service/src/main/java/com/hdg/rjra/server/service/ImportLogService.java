@@ -10,6 +10,8 @@ import java.io.InputStream;
  */
 public interface ImportLogService {
     public ImportLogBo company(ImportLogBo importLogBo, InputStream fileInputStream) throws IOException;
+
     public ImportLogBo work(ImportLogBo importLogBo, InputStream fileInputStream);
+
     public ImportLogBo resume(ImportLogBo importLogBo, InputStream fileInputStream);
 }

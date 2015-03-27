@@ -1,7 +1,6 @@
 package com.hdg.rjra.server.serviceimpl;
 
 import com.hdg.common.utils.ConversionUtils;
-import com.hdg.rjra.base.enumerate.WorkStatus;
 import com.hdg.rjra.rdb.proxy.daoproxy.IUserApplyWorkProxy;
 import com.hdg.rjra.rdb.proxy.daoproxy.IWorkProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
@@ -61,7 +60,7 @@ public class UserApplyWorkServiceImpl implements UserApplyWorkService {
     }
 
     private UserApplyWorkBo getSimpleUserApplyWorkBo(UserApplyWork userApplyWork) {
-        if (userApplyWork == null){
+        if (userApplyWork == null) {
             return null;
         }
         UserApplyWorkBo userApplyWorkBo = new UserApplyWorkBo();
@@ -69,8 +68,8 @@ public class UserApplyWorkServiceImpl implements UserApplyWorkService {
         return userApplyWorkBo;
     }
 
-    private UserApplyWorkBo getUserApplyWorkBo(UserApplyWork userApplyWork){
-        if (userApplyWork == null){
+    private UserApplyWorkBo getUserApplyWorkBo(UserApplyWork userApplyWork) {
+        if (userApplyWork == null) {
             return null;
         }
         UserApplyWorkBo userApplyWorkBo = new UserApplyWorkBo();
@@ -82,7 +81,7 @@ public class UserApplyWorkServiceImpl implements UserApplyWorkService {
         userApplyWorkBo.setUserDetail(userBo);
         userApplyWorkBo.setWorkDetail(workBo);
         UserInviteUserBo userInviteUserBo = userInviteUserService.findUserInviteUserByApplyId(userApplyWork.getApplyId());
-        if(userInviteUserBo != null){
+        if (userInviteUserBo != null) {
             userApplyWorkBo.setInviteId(userInviteUserBo.getInviteId());
             userApplyWorkBo.setInviteDetail(userInviteUserBo);
         }
@@ -106,7 +105,7 @@ public class UserApplyWorkServiceImpl implements UserApplyWorkService {
     public Pager<UserApplyWorkBo> findAllUserApplyWorkByWorkUserIdPager(Long userId, Integer firstResult, Integer sizeNo) {
         List<Long> workIds = workProxy.findWorkIdsByUserId(userId);
         Pager<UserApplyWorkBo> userApplyWorkBoPager = new Pager<UserApplyWorkBo>();
-        if(workIds != null && workIds.size() > 0) {
+        if (workIds != null && workIds.size() > 0) {
             Pager<UserApplyWork> userApplyWorkPager = userApplyWorkProxy.findAllUserApplyWorkByWorkIdsPager(workIds, firstResult, sizeNo);
             List<UserApplyWorkBo> userApplyWorkBoList = new ArrayList<UserApplyWorkBo>();
             for (UserApplyWork userApplyWork : userApplyWorkPager.getResultList()) {

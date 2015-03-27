@@ -4,7 +4,6 @@ package com.hdg.rjra.server.web.controller;
  * Created by Rock on 2015/1/8 0008.
  */
 
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.error.ErrorType;
@@ -51,7 +50,6 @@ public class FileController {
             errorType.setMessage(e.toString());
             LOG.error("findAccountFileByIds->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

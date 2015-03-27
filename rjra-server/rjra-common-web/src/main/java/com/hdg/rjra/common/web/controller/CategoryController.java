@@ -1,6 +1,5 @@
 package com.hdg.rjra.common.web.controller;
 
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.error.ErrorType;
@@ -48,8 +47,7 @@ public class CategoryController {
             errorType.setMessage(e.toString());
             LOG.error("findCategoryLevel1ByCategoryLevel1Id->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findAllCategoryLevel1")
@@ -64,8 +62,7 @@ public class CategoryController {
             errorType.setMessage(e.toString());
             LOG.error("findAllCategoryLevel1->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findCategoryLevel2ByCategoryLevel2Id")
@@ -81,8 +78,7 @@ public class CategoryController {
             errorType.setMessage(e.toString());
             LOG.error("findCategoryLevel2ByCategoryLevel2Id->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findCategoryLevel2ByCategoryLevel1Id")
@@ -98,8 +94,7 @@ public class CategoryController {
             errorType.setMessage(e.toString());
             LOG.error("findCategoryLevel2ByCategoryLevel1Id->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findCategoryLevel3ByCategoryLevel3Id")
@@ -115,8 +110,7 @@ public class CategoryController {
             errorType.setMessage(e.toString());
             LOG.error("findCategoryLevel3ByCategoryLevel3Id->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findCategoryLevel3ByCategoryLevel2Id")
@@ -132,7 +126,6 @@ public class CategoryController {
             errorType.setMessage(e.toString());
             LOG.error("findCategoryLevel3ByCategoryLevel2Id->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

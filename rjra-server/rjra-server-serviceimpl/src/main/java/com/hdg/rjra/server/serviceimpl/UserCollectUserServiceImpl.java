@@ -39,9 +39,9 @@ public class UserCollectUserServiceImpl implements UserCollectUserService {
         return getUserCollectUserBo(userCollectUser);
     }
 
-    private UserCollectUserBo getUserCollectUserBo(UserCollectUser userCollectUser){
-        if(null == userCollectUser) {
-            return  null;
+    private UserCollectUserBo getUserCollectUserBo(UserCollectUser userCollectUser) {
+        if (null == userCollectUser) {
+            return null;
         }
         UserCollectUserBo userCollectUserBo = new UserCollectUserBo();
         ConversionUtils.conversion(userCollectUser, userCollectUserBo);

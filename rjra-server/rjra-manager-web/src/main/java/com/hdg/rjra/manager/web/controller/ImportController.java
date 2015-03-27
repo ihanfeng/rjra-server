@@ -1,7 +1,5 @@
 package com.hdg.rjra.manager.web.controller;
 
-import com.hdg.common.output.OutputResult;
-import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.enumerate.ImportResourceType;
 import com.hdg.rjra.base.error.ErrorType;
@@ -70,11 +68,11 @@ public class ImportController {
                 bo.setImportLogOperatorId(managerBo.getManagerId());
                 bo.setImportLogOperatorName(managerBo.getManagerName());
                 bo.setImportLogType(Integer.parseInt(importType));
-                if(ImportResourceType.Company.getCode() == bo.getImportLogType().intValue()){
+                if (ImportResourceType.Company.getCode() == bo.getImportLogType().intValue()) {
                     data = importService.company(bo, (FileInputStream) file.getInputStream());
-                } else if(ImportResourceType.Work.getCode() == bo.getImportLogType().intValue()){
+                } else if (ImportResourceType.Work.getCode() == bo.getImportLogType().intValue()) {
                     data = importService.work(bo, (FileInputStream) file.getInputStream());
-                } else if(ImportResourceType.Resume.getCode() == bo.getImportLogType().intValue()){
+                } else if (ImportResourceType.Resume.getCode() == bo.getImportLogType().intValue()) {
                     data = importService.resume(bo, (FileInputStream) file.getInputStream());
                 }
             }
@@ -83,7 +81,6 @@ public class ImportController {
             errorType.setMessage(e.toString());
             LOG.error("file->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

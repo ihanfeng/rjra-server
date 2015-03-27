@@ -6,7 +6,6 @@ import com.hdg.rjra.server.model.bo.user.UserBo;
 import com.hdg.rjra.server.model.bo.work.WorkBo;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by Rock on 2015/3/18 0018.

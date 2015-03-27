@@ -5,7 +5,6 @@ package com.hdg.rjra.server.web.controller;
  */
 
 import com.hdg.common.constants.CommonConstants;
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.ConversionUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
@@ -50,7 +49,7 @@ public class UserCollectWorkController {
 
             UserCollectWorkParam userCollectWorkParam = JsonUtils.jsonToObject(param, UserCollectWorkParam.class);
             UserCollectWorkBo userCollectWorkBo = userCollectWorkService.findUserCollectWorkByUserIdAndWorkId(userCollectWorkParam.getUserId(), userCollectWorkParam.getWorkId());
-            if(userCollectWorkBo == null) {
+            if (userCollectWorkBo == null) {
                 userCollectWorkBo = new UserCollectWorkBo();
                 ConversionUtils.conversion(userCollectWorkParam, userCollectWorkBo);
                 data = userCollectWorkService.saveUserCollectWork(userCollectWorkBo);
@@ -62,13 +61,12 @@ public class UserCollectWorkController {
             errorType.setMessage(e.toString());
             LOG.error("saveUserCollectWork->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
      * 查询我收藏的工作信息
+     *
      * @param request
      * @param param
      * @return
@@ -90,12 +88,12 @@ public class UserCollectWorkController {
             errorType.setMessage(e.toString());
             LOG.error("findAllUserCollectWorkByUserIdPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
      * 删除我收藏的工作信息
+     *
      * @param request
      * @param param
      * @return
@@ -113,12 +111,12 @@ public class UserCollectWorkController {
             errorType.setMessage(e.toString());
             LOG.error("deleteUserCollectWork->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
      * 批量删除我收藏的工作信息
+     *
      * @param request
      * @param param
      * @return
@@ -136,7 +134,6 @@ public class UserCollectWorkController {
             errorType.setMessage(e.toString());
             LOG.error("batchDeleteCollectWorkByCollectIds->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

@@ -56,21 +56,23 @@ public class WorkServiceImpl implements WorkService {
         Work work = workProxy.findWorkByWorkId(workId);
         return getWorkBo(work);
     }
+
     private WorkBo getWorkBo(Work work) {
         if (work == null) {
             return null;
         }
         WorkBo bo = new WorkBo();
         ConversionUtils.conversion(work, bo);
-        if(work.getCompanyId() != null){
+        if (work.getCompanyId() != null) {
             CompanyBo companyBo = companyService.findCompanyByCompanyId(work.getCompanyId());
             bo.setCompanyDetail(companyBo);
         }
         return bo;
     }
+
     @Override
     public Pager<WorkBo> findAllWorkByParamPager(Map<WorkMapping, Object> param, Integer firstResult, Integer sizeNo) {
-        Pager<Work> workPager =  workProxy.findAllWorkByParamPager(param, new Integer[]{WorkStatus.Active.getCode(), WorkStatus.Pause.getCode()}, firstResult, sizeNo);
+        Pager<Work> workPager = workProxy.findAllWorkByParamPager(param, new Integer[]{WorkStatus.Active.getCode(), WorkStatus.Pause.getCode()}, firstResult, sizeNo);
         Pager<WorkBo> workBoPager = new Pager<WorkBo>();
         List<WorkBo> workBoList = new ArrayList<WorkBo>();
         for (Work work : workPager.getResultList()) {
@@ -83,7 +85,7 @@ public class WorkServiceImpl implements WorkService {
 
     @Override
     public Pager<WorkBo> findNearWorkByParamPager(Map<WorkMapping, Object> param, Double lng, Double lat, Integer raidus, Integer firstResult, Integer sizeNo) {
-        Pager<Work> workPager =  workProxy.findNearWorkByParamPager(param, lng, lat, raidus, new Integer[]{WorkStatus.Active.getCode(), WorkStatus.Pause.getCode()}, firstResult, sizeNo);
+        Pager<Work> workPager = workProxy.findNearWorkByParamPager(param, lng, lat, raidus, new Integer[]{WorkStatus.Active.getCode(), WorkStatus.Pause.getCode()}, firstResult, sizeNo);
         Pager<WorkBo> workBoPager = new Pager<WorkBo>();
         List<WorkBo> workBoList = new ArrayList<WorkBo>();
         for (Work work : workPager.getResultList()) {

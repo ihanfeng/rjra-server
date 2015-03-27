@@ -5,15 +5,12 @@ package com.hdg.rjra.manager.web.controller;
  */
 
 import com.hdg.common.constants.CommonConstants;
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.ConversionUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.error.ErrorType;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.server.model.bo.company.CompanyBo;
-import com.hdg.rjra.server.model.bo.file.AccountFileBo;
-import com.hdg.rjra.server.model.param.company.CompanyImageParam;
 import com.hdg.rjra.server.model.param.company.CompanyParam;
 import com.hdg.rjra.server.service.CompanyService;
 import com.hdg.rjra.server.service.FileService;
@@ -25,10 +22,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -63,13 +56,12 @@ public class CompanyController {
             errorType.setMessage(e.toString());
             LOG.error("findCompanyByCompanyId->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
      * 多条件查询企业信息
+     *
      * @param request
      * @param param
      * @return
@@ -93,7 +85,6 @@ public class CompanyController {
             errorType.setMessage(e.toString());
             LOG.error("findAllCompanyPager->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

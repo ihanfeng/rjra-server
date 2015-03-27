@@ -5,7 +5,6 @@ package com.hdg.rjra.server.web.controller;
  */
 
 import com.hdg.common.constants.CommonConstants;
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.ConversionUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
@@ -50,7 +49,7 @@ public class UserScanUserController {
 
             UserScanUserParam userScanUserParam = JsonUtils.jsonToObject(param, UserScanUserParam.class);
             UserScanUserBo userScanUserBo = userScanUserService.findUserScanUserByUserIdAndScanUserId(userScanUserParam.getUserId(), userScanUserParam.getScanUserId());
-            if(userScanUserBo == null) {
+            if (userScanUserBo == null) {
                 userScanUserBo = new UserScanUserBo();
                 ConversionUtils.conversion(userScanUserParam, userScanUserBo);
                 data = userScanUserService.saveUserScanUser(userScanUserBo);
@@ -62,13 +61,12 @@ public class UserScanUserController {
             errorType.setMessage(e.toString());
             LOG.error("saveUserScanUser->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
      * 查询浏览我的用户信息
+     *
      * @param request
      * @param param
      * @return
@@ -90,7 +88,6 @@ public class UserScanUserController {
             errorType.setMessage(e.toString());
             LOG.error("findAllUserScanUserByScanUserIdPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

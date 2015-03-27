@@ -5,7 +5,6 @@ package com.hdg.rjra.server.web.controller;
  */
 
 import com.hdg.common.constants.CommonConstants;
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.ConversionUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
@@ -65,10 +64,8 @@ public class ResumeController {
             errorType.setMessage(e.toString());
             LOG.error("findResumeByResumeId->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
-
 
 
     @RequestMapping(value = "updatResumeStatus")
@@ -84,8 +81,7 @@ public class ResumeController {
             errorType.setMessage(e.toString());
             LOG.error("updatResumeStatus->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "updateResume")
@@ -103,8 +99,7 @@ public class ResumeController {
             errorType.setMessage(e.toString());
             LOG.error("updateResume->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
 
@@ -150,9 +145,7 @@ public class ResumeController {
             errorType.setMessage(e.toString());
             LOG.error("updateResumeHead->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findAllResumeByParamPager")
@@ -173,8 +166,7 @@ public class ResumeController {
             errorType.setMessage(e.toString());
             LOG.error("findAllResumeByParamPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findNearResumeByParamPager")
@@ -195,16 +187,14 @@ public class ResumeController {
             errorType.setMessage(e.toString());
             LOG.error("findNearResumeByParamPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
-    private Map<ResumeMapping,Object> getMapParam(ResumeParam resumeParam) {
+    private Map<ResumeMapping, Object> getMapParam(ResumeParam resumeParam) {
         if (resumeParam == null) {
             return null;
-        }
-        else {
-            Map<ResumeMapping,Object> mapParam = new HashMap<ResumeMapping,Object>();
+        } else {
+            Map<ResumeMapping, Object> mapParam = new HashMap<ResumeMapping, Object>();
 
             if (resumeParam.getResumeId() != null) {
                 mapParam.put(ResumeMapping.ResumeId, resumeParam.getResumeId());

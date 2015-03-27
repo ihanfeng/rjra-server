@@ -5,7 +5,6 @@ package com.hdg.rjra.server.web.controller;
  */
 
 import com.hdg.common.constants.CommonConstants;
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.ConversionUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
@@ -57,8 +56,7 @@ public class WorkController {
             errorType.setMessage(e.toString());
             LOG.error("findWorkByWorkId ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findAllWorkByParamPager")
@@ -79,8 +77,7 @@ public class WorkController {
             errorType.setMessage(e.toString());
             LOG.error("findAllWorkByParamPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findNearWorkByParamPager")
@@ -101,8 +98,7 @@ public class WorkController {
             errorType.setMessage(e.toString());
             LOG.error("findNearWorkByParamPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "updateWork")
@@ -120,8 +116,7 @@ public class WorkController {
             errorType.setMessage(e.toString());
             LOG.error("updateWork ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "updateWorkStatus")
@@ -137,8 +132,7 @@ public class WorkController {
             errorType.setMessage(e.toString());
             LOG.error("updateWorkStatus ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
 
@@ -159,16 +153,14 @@ public class WorkController {
             errorType.setMessage(e.toString());
             LOG.error("saveWork ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
-    private Map<WorkMapping,Object> getMapParam(WorkParam workParam) {
+    private Map<WorkMapping, Object> getMapParam(WorkParam workParam) {
         if (workParam == null) {
             return null;
-        }
-        else {
-            Map<WorkMapping,Object> mapParam = new HashMap<WorkMapping,Object>();
+        } else {
+            Map<WorkMapping, Object> mapParam = new HashMap<WorkMapping, Object>();
 
             if (workParam.getWorkId() != null) {
                 mapParam.put(WorkMapping.WorkId, workParam.getWorkId());

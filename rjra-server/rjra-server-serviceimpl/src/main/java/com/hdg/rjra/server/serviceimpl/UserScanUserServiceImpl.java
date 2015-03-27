@@ -39,9 +39,9 @@ public class UserScanUserServiceImpl implements UserScanUserService {
         return getUserScanUserBo(userScanUser);
     }
 
-    private UserScanUserBo getUserScanUserBo(UserScanUser userScanUser){
-        if(null == userScanUser) {
-            return  null;
+    private UserScanUserBo getUserScanUserBo(UserScanUser userScanUser) {
+        if (null == userScanUser) {
+            return null;
         }
         UserScanUserBo userScanUserBo = new UserScanUserBo();
         ConversionUtils.conversion(userScanUser, userScanUserBo);

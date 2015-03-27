@@ -1,6 +1,5 @@
 package com.hdg.rjra.common.web.controller;
 
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.error.ErrorType;
@@ -48,8 +47,7 @@ public class RegionController {
             errorType.setMessage(e.toString());
             LOG.error("findAreaByAreaId->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findAreaByCityId")
@@ -65,8 +63,7 @@ public class RegionController {
             errorType.setMessage(e.toString());
             LOG.error("findAreaByCityId->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findCityByCityId")
@@ -82,8 +79,7 @@ public class RegionController {
             errorType.setMessage(e.toString());
             LOG.error("findCityByCityId->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findCityByProvinceId")
@@ -99,8 +95,7 @@ public class RegionController {
             errorType.setMessage(e.toString());
             LOG.error("findCityByProvinceId->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findProvinceByProvinceId")
@@ -116,8 +111,7 @@ public class RegionController {
             errorType.setMessage(e.toString());
             LOG.error("findProvinceByProvinceId->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findAllProvince")
@@ -132,7 +126,6 @@ public class RegionController {
             errorType.setMessage(e.toString());
             LOG.error("findAllProvince->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

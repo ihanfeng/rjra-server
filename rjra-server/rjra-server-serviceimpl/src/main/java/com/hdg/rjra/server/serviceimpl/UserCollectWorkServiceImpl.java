@@ -44,9 +44,9 @@ public class UserCollectWorkServiceImpl implements UserCollectWorkService {
         return getUserCollectWorkBo(userCollectWork);
     }
 
-    private UserCollectWorkBo getUserCollectWorkBo(UserCollectWork userCollectWork){
-        if(null == userCollectWork) {
-            return  null;
+    private UserCollectWorkBo getUserCollectWorkBo(UserCollectWork userCollectWork) {
+        if (null == userCollectWork) {
+            return null;
         }
         UserCollectWorkBo userCollectWorkBo = new UserCollectWorkBo();
         ConversionUtils.conversion(userCollectWork, userCollectWorkBo);

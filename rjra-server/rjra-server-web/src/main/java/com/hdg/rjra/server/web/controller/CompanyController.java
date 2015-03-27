@@ -5,7 +5,6 @@ package com.hdg.rjra.server.web.controller;
  */
 
 import com.hdg.common.constants.CommonConstants;
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.ConversionUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
@@ -65,9 +64,7 @@ public class CompanyController {
             errorType.setMessage(e.toString());
             LOG.error("updateCompany->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findCompanyByCompanyId")
@@ -83,9 +80,7 @@ public class CompanyController {
             errorType.setMessage(e.toString());
             LOG.error("findCompanyByCompanyId->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findAllCompanyPager")
@@ -105,8 +100,7 @@ public class CompanyController {
             errorType.setMessage(e.toString());
             LOG.error("findAllCompanyPager->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
 
@@ -152,9 +146,7 @@ public class CompanyController {
             errorType.setMessage(e.toString());
             LOG.error("updateCompanyLogo->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
@@ -200,9 +192,7 @@ public class CompanyController {
             errorType.setMessage(e.toString());
             LOG.error("updateCompanyBizlicense->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
@@ -247,9 +237,7 @@ public class CompanyController {
             errorType.setMessage(e.toString());
             LOG.error("updateCompanyUserIdCard->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
@@ -295,9 +283,7 @@ public class CompanyController {
             errorType.setMessage(e.toString());
             LOG.error("updateCompanyFacade->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
@@ -349,9 +335,7 @@ public class CompanyController {
             errorType.setMessage(e.toString());
             LOG.error("updateCompanyImages->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
@@ -371,15 +355,15 @@ public class CompanyController {
             Long[] companyImages = companyBo.getCompanyImages();
             int j = 0;
             for (int i = 0; i < companyImages.length; i++) {
-                if(companyImages[i].equals(companyImageParam.getCompanyDeleteImageId())){
+                if (companyImages[i].equals(companyImageParam.getCompanyDeleteImageId())) {
                     j++;
                     continue;
                 }
             }
             int k = 0;
-            Long[] newCompanyImages = new Long[companyImages.length-j];
+            Long[] newCompanyImages = new Long[companyImages.length - j];
             for (int i = 0; i < companyImages.length; i++) {
-                if(companyImages[i].equals(companyImageParam.getCompanyDeleteImageId())){
+                if (companyImages[i].equals(companyImageParam.getCompanyDeleteImageId())) {
                     continue;
                 }
                 newCompanyImages[k] = companyImages[i];
@@ -391,7 +375,6 @@ public class CompanyController {
             errorType.setMessage(e.toString());
             LOG.error("deleteCompanyImages->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

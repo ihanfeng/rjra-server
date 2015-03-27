@@ -45,14 +45,11 @@ public class ManagerController {
     ManagerService managerService;
 
     /**
-     *
+     * @param param   请求参数
+     * @param request request
+     * @return 响应
      * @description 登录
      * @author Administrator 创建时间 2014年7月8日 下午7:32:39
-     * @param param
-     *            请求参数
-     * @param request
-     *            request
-     * @return 响应
      */
     @RequestMapping(value = "login")
     @ResponseBody
@@ -63,13 +60,12 @@ public class ManagerController {
         String data = null;
         try {
             ManagerParam managerParam = JsonUtils.jsonToObject(param, ManagerParam.class);
-            String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+            String encryptionFactor = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
             String pwd = AESUtils.encrypt(managerParam.getManagerPwd(), managerParam.getManagerName(), encryptionFactor);
             managerBo = managerService.findManagerByNameAndPwd(managerParam.getManagerName(), pwd);
             if (managerBo == null) {
                 errorType = ErrorType.MANAGER_ALREADY_NOT_EXIST;
-            }
-            else {
+            } else {
                 data = UUIDUtils.randomUUID();
                 request.getSession().setAttribute(SessionToken.TOKEN, data);
                 request.getSession().setAttribute(data, managerBo);
@@ -79,17 +75,14 @@ public class ManagerController {
             errorType.setMessage(e.toString());
             LOG.error("manager login ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
-     *
+     * @param request request
+     * @return ResponseEntity<String>
      * @description 退出
      * @author Sisi 创建时间 2014年7月9日 下午4:42:53
-     * @param request
-     *            request
-     * @return ResponseEntity<String>
      */
     @RequestMapping(value = "logout")
     @ResponseBody
@@ -119,13 +112,12 @@ public class ManagerController {
         Integer data = null;
         try {
             ChangePwdParam changePwdParam = JsonUtils.jsonToObject(param, ChangePwdParam.class);
-            String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+            String encryptionFactor = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
             String pwd = AESUtils.encrypt(changePwdParam.getOldPwd(), changePwdParam.getName(), encryptionFactor);
             managerBo = managerService.findManagerByNameAndPwd(changePwdParam.getName(), pwd);
             if (managerBo == null) {
                 errorType = ErrorType.MANAGER_NAME_OR_PWD_IS_ERROR;
-            }
-            else{
+            } else {
                 String newPwd = AESUtils.encrypt(changePwdParam.getNewPwd(), changePwdParam.getName(), encryptionFactor);
                 data = managerService.updateManagerPwd(managerBo.getManagerId(), newPwd);
             }
@@ -134,7 +126,6 @@ public class ManagerController {
             errorType.setMessage(e.toString());
             LOG.error("manager changePwd ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

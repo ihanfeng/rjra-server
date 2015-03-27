@@ -4,7 +4,6 @@ package com.hdg.rjra.server.web.controller;
  * Created by Rock on 2015/1/8 0008.
  */
 
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.properties.CustomizedPropertyConfigurer;
 import com.hdg.common.utils.AESUtils;
 import com.hdg.common.utils.JsonUtils;
@@ -62,8 +61,7 @@ public class LoginController {
             errorType.setMessage(e.toString());
             LOG.error("login user ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
@@ -98,9 +96,7 @@ public class LoginController {
             errorType.setMessage(e.toString());
             LOG.error("sendMessage->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
@@ -137,8 +133,6 @@ public class LoginController {
             errorType.setMessage(e.toString());
             LOG.error("register->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

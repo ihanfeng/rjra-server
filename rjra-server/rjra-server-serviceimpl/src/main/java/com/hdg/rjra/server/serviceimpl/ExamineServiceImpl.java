@@ -4,7 +4,6 @@ import com.hdg.common.utils.ConversionUtils;
 import com.hdg.rjra.base.enumerate.ExamineResourceType;
 import com.hdg.rjra.rdb.proxy.daoproxy.ICompanyProxy;
 import com.hdg.rjra.rdb.proxy.daoproxy.IExamineLogProxy;
-import com.hdg.rjra.rdb.proxy.domain.BaseDomain;
 import com.hdg.rjra.rdb.proxy.domain.Company;
 import com.hdg.rjra.rdb.proxy.domain.ExamineLog;
 import com.hdg.rjra.server.model.bo.examine.ExamineLogBo;
@@ -13,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-
-import static com.hdg.rjra.base.enumerate.ExamineResourceType.Company;
 
 /**
  * Created by Administrator on 2015/3/24.
@@ -33,7 +30,7 @@ public class ExamineServiceImpl implements ExamineService {
         Date nowDate = new Date();
 
         Integer examineLogType = examineLogBo.getExamineLogType();
-        if(ExamineResourceType.Company.getCode() == examineLogType.intValue()){
+        if (ExamineResourceType.Company.getCode() == examineLogType.intValue()) {
             Company company = new Company();
             company.setCompanyId(examineLogBo.getExamineLogResource());
             company.setCompanyExamineReviewerId(examineLogBo.getExamineLogReviewerId());

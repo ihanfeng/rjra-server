@@ -5,7 +5,6 @@ package com.hdg.rjra.server.web.controller;
  */
 
 import com.hdg.common.constants.CommonConstants;
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.ConversionUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
@@ -50,7 +49,7 @@ public class UserApplyWorkController {
 
             UserApplyWorkParam userApplyWorkParam = JsonUtils.jsonToObject(param, UserApplyWorkParam.class);
             UserApplyWorkBo userApplyWorkBo = applyWorkService.findUserApplyWorkByUserIdAndWorkId(userApplyWorkParam.getUserId(), userApplyWorkParam.getWorkId());
-            if(userApplyWorkBo == null) {
+            if (userApplyWorkBo == null) {
                 userApplyWorkBo = new UserApplyWorkBo();
                 ConversionUtils.conversion(userApplyWorkParam, userApplyWorkBo);
                 data = applyWorkService.saveUserApplyWork(userApplyWorkBo);
@@ -62,13 +61,12 @@ public class UserApplyWorkController {
             errorType.setMessage(e.toString());
             LOG.error("saveUserApplyWork->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
      * 查询我申请的工作信息
+     *
      * @param request
      * @param param
      * @return
@@ -84,18 +82,18 @@ public class UserApplyWorkController {
             Integer sizeNo = userApplyWorkParam.getSize() == null ? CommonConstants.NUM_INT_50 : userApplyWorkParam
                     .getSize();
             Integer firstResult = userApplyWorkParam.getPage() == null ? 0 : (userApplyWorkParam.getPage() - 1) * sizeNo;
-            data = applyWorkService.findAllUserApplyWorkByUserIdPager(userApplyWorkParam.getUserId(),firstResult,sizeNo);
+            data = applyWorkService.findAllUserApplyWorkByUserIdPager(userApplyWorkParam.getUserId(), firstResult, sizeNo);
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
             errorType.setMessage(e.toString());
             LOG.error("findAllUserApplyWorkByUserIdPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
      * 查询向我申请的
+     *
      * @param request
      * @param param
      * @return
@@ -117,12 +115,12 @@ public class UserApplyWorkController {
             errorType.setMessage(e.toString());
             LOG.error("findAllUserApplyWorkByWorkUserIdPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
      * 删除我的申请信息
+     *
      * @param request
      * @param param
      * @return
@@ -140,12 +138,12 @@ public class UserApplyWorkController {
             errorType.setMessage(e.toString());
             LOG.error("deleteUserApplyWork->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
      * 批量删除我的申请信息
+     *
      * @param request
      * @param param
      * @return
@@ -163,7 +161,6 @@ public class UserApplyWorkController {
             errorType.setMessage(e.toString());
             LOG.error("batchDeleteByApplyIds->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

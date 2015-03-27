@@ -5,7 +5,6 @@ package com.hdg.rjra.server.web.controller;
  */
 
 import com.hdg.common.constants.CommonConstants;
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.ConversionUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
@@ -50,7 +49,7 @@ public class UserCollectUserController {
 
             UserCollectUserParam userCollectUserParam = JsonUtils.jsonToObject(param, UserCollectUserParam.class);
             UserCollectUserBo userCollectUserBo = userCollectUserService.findUserCollectUserByUserIdAndCollectUserId(userCollectUserParam.getUserId(), userCollectUserParam.getCollectUserId());
-            if(userCollectUserBo == null) {
+            if (userCollectUserBo == null) {
                 userCollectUserBo = new UserCollectUserBo();
                 ConversionUtils.conversion(userCollectUserParam, userCollectUserBo);
                 data = userCollectUserService.saveUserCollectUser(userCollectUserBo);
@@ -62,13 +61,12 @@ public class UserCollectUserController {
             errorType.setMessage(e.toString());
             LOG.error("saveUserCollectUser->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
      * 查询我收藏的人才信息
+     *
      * @param request
      * @param param
      * @return
@@ -90,12 +88,12 @@ public class UserCollectUserController {
             errorType.setMessage(e.toString());
             LOG.error("findAllUserCollectUserByUserIdPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
      * 删除我收藏的人才信息
+     *
      * @param request
      * @param param
      * @return
@@ -113,12 +111,12 @@ public class UserCollectUserController {
             errorType.setMessage(e.toString());
             LOG.error("deleteUserCollectUser->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
      * 批量删除我收藏的用户
+     *
      * @param request
      * @param param
      * @return
@@ -136,7 +134,6 @@ public class UserCollectUserController {
             errorType.setMessage(e.toString());
             LOG.error("batchDeleteCollectUserByCollectIds->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

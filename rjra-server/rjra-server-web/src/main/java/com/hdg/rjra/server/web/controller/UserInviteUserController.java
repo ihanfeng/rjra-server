@@ -5,7 +5,6 @@ package com.hdg.rjra.server.web.controller;
  */
 
 import com.hdg.common.constants.CommonConstants;
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.ConversionUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
@@ -52,7 +51,7 @@ public class UserInviteUserController {
 
             UserInviteUserParam userInviteUserParam = JsonUtils.jsonToObject(param, UserInviteUserParam.class);
             UserInviteUserBo userInviteUserBo = userInviteUserService.findUserInviteUserByUserIdAndInviteUserId(userInviteUserParam.getUserId(), userInviteUserParam.getInviteUserId());
-            if(userInviteUserBo == null) {
+            if (userInviteUserBo == null) {
                 userInviteUserBo = new UserInviteUserBo();
                 ConversionUtils.conversion(userInviteUserParam, userInviteUserBo);
                 data = userInviteUserService.saveUserInviteUser(userInviteUserBo);
@@ -64,9 +63,7 @@ public class UserInviteUserController {
             errorType.setMessage(e.toString());
             LOG.error("saveUserInviteUser->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "batchInviteUser")
@@ -82,13 +79,12 @@ public class UserInviteUserController {
             errorType.setMessage(e.toString());
             LOG.error("batchInviteUser->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
-    
+
     /**
      * 查询邀请我的
+     *
      * @param request
      * @param param
      * @return
@@ -110,12 +106,12 @@ public class UserInviteUserController {
             errorType.setMessage(e.toString());
             LOG.error("findAllUserInviteUserByInviteUserIdPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
-    
+
     /**
      * 查询我邀请的
+     *
      * @param request
      * @param param
      * @return
@@ -137,12 +133,12 @@ public class UserInviteUserController {
             errorType.setMessage(e.toString());
             LOG.error("findAllUserInviteUserByUserIdPager ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
-    
+
     /**
      * 删除我邀请的数据
+     *
      * @param request
      * @param param
      * @return
@@ -160,12 +156,12 @@ public class UserInviteUserController {
             errorType.setMessage(e.toString());
             LOG.error("deleteUserInviteUser->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
      * 批量删除邀请
+     *
      * @param request
      * @param param
      * @return
@@ -183,7 +179,6 @@ public class UserInviteUserController {
             errorType.setMessage(e.toString());
             LOG.error("batchDeleteByInviteIds->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

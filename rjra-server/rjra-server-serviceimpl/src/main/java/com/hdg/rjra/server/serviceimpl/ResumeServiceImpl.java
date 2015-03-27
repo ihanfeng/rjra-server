@@ -70,7 +70,7 @@ public class ResumeServiceImpl implements ResumeService {
             bo.setBirthday(DateUtils.getTimeNow(resume.getResumeBirthday(), CommonConstants.DATE_FORMAT_YYYYMMDD));
         }
         UserBo userBo = userService.findUserByResumeId(resume.getResumeId());
-        if(userBo != null) {
+        if (userBo != null) {
             bo.setUserDetail(userBo);
             bo.setUserId(userBo.getUserId());
         }
@@ -96,7 +96,7 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Override
     public Pager<ResumeBo> findAllResumeByParamPager(Map<ResumeMapping, Object> param, Integer firstResult, Integer sizeNo) {
-        Pager<Resume> resumePager =  resumeProxy.findAllResumeByParamPager(param, new Integer[]{ResumeStatus.Active.getCode(), ResumeStatus.Pause.getCode()}, firstResult, sizeNo);
+        Pager<Resume> resumePager = resumeProxy.findAllResumeByParamPager(param, new Integer[]{ResumeStatus.Active.getCode(), ResumeStatus.Pause.getCode()}, firstResult, sizeNo);
         Pager<ResumeBo> resumeBoPager = new Pager<ResumeBo>();
         List<ResumeBo> resumeBoList = new ArrayList<ResumeBo>();
         for (Resume resume : resumePager.getResultList()) {
@@ -109,7 +109,7 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Override
     public Pager<ResumeBo> findNearResumeByParamPager(Map<ResumeMapping, Object> param, Double lng, Double lat, Integer raidus, Integer firstResult, Integer sizeNo) {
-        Pager<Resume> resumePager =  resumeProxy.findNearResumeByParamPager(param, lng, lat, raidus, new Integer[]{ResumeStatus.Active.getCode()}, firstResult, sizeNo);
+        Pager<Resume> resumePager = resumeProxy.findNearResumeByParamPager(param, lng, lat, raidus, new Integer[]{ResumeStatus.Active.getCode()}, firstResult, sizeNo);
         Pager<ResumeBo> resumeBoPager = new Pager<ResumeBo>();
         List<ResumeBo> resumeBoList = new ArrayList<ResumeBo>();
         for (Resume resume : resumePager.getResultList()) {

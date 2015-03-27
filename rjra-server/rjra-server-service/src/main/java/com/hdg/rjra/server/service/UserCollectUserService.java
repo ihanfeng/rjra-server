@@ -1,7 +1,6 @@
 package com.hdg.rjra.server.service;
 
 import com.hdg.rjra.rdb.proxy.domain.Pager;
-import com.hdg.rjra.rdb.proxy.domain.UserCollectUser;
 import com.hdg.rjra.server.model.bo.userbehavior.UserCollectUserBo;
 
 import java.util.List;

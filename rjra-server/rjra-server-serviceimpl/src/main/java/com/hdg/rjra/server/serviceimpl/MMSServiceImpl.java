@@ -2,7 +2,6 @@ package com.hdg.rjra.server.serviceimpl;
 
 import com.hdg.common.properties.CustomizedPropertyConfigurer;
 import com.hdg.common.utils.HttpRequestUtils;
-import com.hdg.common.utils.StringUtils;
 import com.hdg.rjra.server.service.MMSService;
 import org.springframework.stereotype.Service;
 

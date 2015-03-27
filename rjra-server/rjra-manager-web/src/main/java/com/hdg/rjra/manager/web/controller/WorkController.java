@@ -5,17 +5,12 @@ package com.hdg.rjra.manager.web.controller;
  */
 
 import com.hdg.common.constants.CommonConstants;
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.utils.ConversionUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
-import com.hdg.rjra.base.enumerate.DataResourceType;
 import com.hdg.rjra.base.error.ErrorType;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
-import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
 import com.hdg.rjra.server.model.bo.work.WorkBo;
-import com.hdg.rjra.server.model.bo.work.WorkBo;
-import com.hdg.rjra.server.model.param.work.WorkParam;
 import com.hdg.rjra.server.model.param.work.WorkParam;
 import com.hdg.rjra.server.service.WorkService;
 import org.slf4j.Logger;
@@ -28,9 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Rock
@@ -60,12 +52,12 @@ public class WorkController {
             errorType.setMessage(e.toString());
             LOG.error("findWorkByWorkId ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
      * 多条件查询岗位信息
+     *
      * @param request
      * @param param
      * @return
@@ -89,8 +81,7 @@ public class WorkController {
             errorType.setMessage(e.toString());
             LOG.error("findAllWorkPager->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "updateWork")
@@ -108,7 +99,6 @@ public class WorkController {
             errorType.setMessage(e.toString());
             LOG.error("updateWork ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

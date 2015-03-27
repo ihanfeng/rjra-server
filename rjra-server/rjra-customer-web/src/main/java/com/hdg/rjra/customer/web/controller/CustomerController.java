@@ -45,14 +45,11 @@ public class CustomerController {
     UserService userService;
 
     /**
-     *
+     * @param param   请求参数
+     * @param request request
+     * @return 响应
      * @description 登录
      * @author Administrator 创建时间 2014年7月8日 下午7:32:39
-     * @param param
-     *            请求参数
-     * @param request
-     *            request
-     * @return 响应
      */
     @RequestMapping(value = "login")
     @ResponseBody
@@ -62,13 +59,12 @@ public class CustomerController {
         UserBo data = null;
         try {
             LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);
-            String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+            String encryptionFactor = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
             String pwd = AESUtils.encrypt(loginParam.getPwd(), loginParam.getMobile(), encryptionFactor);
             data = userService.findUserByMobileAndPwd(loginParam.getMobile(), pwd);
             if (data == null) {
                 errorType = ErrorType.USER_ALREADY_NOT_EXIST;
-            }
-            else {
+            } else {
                 String token = UUIDUtils.randomUUID();
                 data.setToken(token);
                 request.getSession().setAttribute(SessionToken.TOKEN, token);
@@ -78,17 +74,14 @@ public class CustomerController {
             errorType.setMessage(e.toString());
             LOG.error("login user ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
-     *
+     * @param request request
+     * @return ResponseEntity<String>
      * @description 退出
      * @author Sisi 创建时间 2014年7月9日 下午4:42:53
-     * @param request
-     *            request
-     * @return ResponseEntity<String>
      */
     @RequestMapping(value = "logout")
     @ResponseBody
@@ -109,6 +102,7 @@ public class CustomerController {
 
     /**
      * 注册
+     *
      * @param request
      * @param param
      * @return
@@ -122,8 +116,8 @@ public class CustomerController {
 
             LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);
             Integer count = userService.findUserExistsByMobile(loginParam.getMobile());
-            if(count == null || count.intValue() == 0) {
-                String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+            if (count == null || count.intValue() == 0) {
+                String encryptionFactor = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
                 String pwd = AESUtils.encrypt(loginParam.getPwd(), loginParam.getMobile(), encryptionFactor);
                 data = userService.saveUser(loginParam.getMobile(), pwd);
             } else {
@@ -134,9 +128,7 @@ public class CustomerController {
             errorType.setMessage(e.toString());
             LOG.error("register->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "changePwd")
@@ -147,13 +139,12 @@ public class CustomerController {
         Integer data = null;
         try {
             ChangePwdParam changePwdParam = JsonUtils.jsonToObject(param, ChangePwdParam.class);
-            String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+            String encryptionFactor = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
             String pwd = AESUtils.encrypt(changePwdParam.getOldPwd(), changePwdParam.getMobile(), encryptionFactor);
             userBo = userService.findUserByMobileAndPwd(changePwdParam.getMobile(), pwd);
             if (userBo == null) {
                 errorType = ErrorType.USER_MOBILE_OR_PWD_IS_ERROR;
-            }
-            else{
+            } else {
                 String newPwd = AESUtils.encrypt(changePwdParam.getNewPwd(), changePwdParam.getMobile(), encryptionFactor);
                 data = userService.updateUserPwd(userBo.getUserId(), newPwd);
             }
@@ -162,7 +153,6 @@ public class CustomerController {
             errorType.setMessage(e.toString());
             LOG.error("user changePwd ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

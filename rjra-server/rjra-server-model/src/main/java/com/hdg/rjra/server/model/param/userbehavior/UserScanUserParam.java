@@ -2,8 +2,6 @@ package com.hdg.rjra.server.model.param.userbehavior;
 
 import com.hdg.rjra.server.model.param.BaseParam;
 
-import java.io.Serializable;
-
 /**
  * Created by Rock on 2015/3/18 0018.
  */

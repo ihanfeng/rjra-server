@@ -1,7 +1,5 @@
 package com.hdg.rjra.common.web.controller;
 
-import com.hdg.common.output.OutputResult;
-import com.hdg.common.utils.JsonUtils;
 import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.error.ErrorType;
 import com.hdg.rjra.rdb.proxy.domain.Welfare;
@@ -44,7 +42,6 @@ public class WelfareController {
             errorType.setMessage(e.toString());
             LOG.error("findAllWelfare->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

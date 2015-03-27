@@ -3,8 +3,6 @@ package com.hdg.rjra.server.model.bo.file;
 import com.hdg.common.annotation.DateTimeFormat;
 import com.hdg.common.constants.CommonConstants;
 
-import java.util.Date;
-
 /**
  * Created by Rock on 2015/1/10 0010.
  */

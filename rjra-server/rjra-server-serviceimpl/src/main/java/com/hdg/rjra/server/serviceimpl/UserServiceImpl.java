@@ -90,14 +90,12 @@ public class UserServiceImpl implements UserService {
             userBo.setUserHeadImageFileDetail(userImageInfo);
         }
         Long resumeID = user.getResumeId();
-        if(null != resumeID)
-        {
+        if (null != resumeID) {
             ResumeBo resumeBo = resumeService.findResumeByResumeId(resumeID);
             userBo.setResumeDetail(resumeBo);
         }
         Long companyId = user.getCompanyId();
-        if(null != companyId)
-        {
+        if (null != companyId) {
             CompanyBo companyBo = companyService.findCompanyByCompanyId(companyId);
             userBo.setCompanyDetail(companyBo);
         }

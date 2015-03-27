@@ -5,7 +5,6 @@ package com.hdg.rjra.server.web.controller;
  */
 
 import com.hdg.common.constants.CommonConstants;
-import com.hdg.common.output.OutputResult;
 import com.hdg.common.properties.CustomizedPropertyConfigurer;
 import com.hdg.common.utils.AESUtils;
 import com.hdg.common.utils.ConversionUtils;
@@ -64,8 +63,8 @@ public class UserController {
 
             LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);
             Integer count = userService.findUserExistsByMobile(loginParam.getMobile());
-            if(count == null || count.intValue() == 0) {
-                String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+            if (count == null || count.intValue() == 0) {
+                String encryptionFactor = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
                 String pwd = AESUtils.encrypt(loginParam.getPwd(), loginParam.getMobile(), encryptionFactor);
                 data = userService.saveUser(loginParam.getMobile(), pwd);
             } else {
@@ -76,9 +75,7 @@ public class UserController {
             errorType.setMessage(e.toString());
             LOG.error("saveUser->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "updateUser")
@@ -96,9 +93,7 @@ public class UserController {
             errorType.setMessage(e.toString());
             LOG.error("updateUser->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findUserByUserId")
@@ -115,9 +110,7 @@ public class UserController {
             errorType.setMessage(e.toString());
             LOG.error("findUserByUserId->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findAllUserPager")
@@ -137,8 +130,7 @@ public class UserController {
             errorType.setMessage(e.toString());
             LOG.error("findAllUserPager->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
@@ -183,9 +175,7 @@ public class UserController {
             errorType.setMessage(e.toString());
             LOG.error("updateUserHead->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "findNearUserPager")
@@ -205,8 +195,7 @@ public class UserController {
             errorType.setMessage(e.toString());
             LOG.error("findNearUserPager->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     /**
@@ -222,15 +211,13 @@ public class UserController {
         Integer data = null;
         try {
             LocationParam locationParam = JsonUtils.jsonToObject(param, LocationParam.class);
-            data = userService.updateUserLocation(locationParam.getUserId(),locationParam.getLongitude(),locationParam.getLatitude());
+            data = userService.updateUserLocation(locationParam.getUserId(), locationParam.getLongitude(), locationParam.getLatitude());
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
             errorType.setMessage(e.toString());
             LOG.error("updateUserLocation->", e);
         }
-
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 
     @RequestMapping(value = "changePwd")
@@ -241,13 +228,12 @@ public class UserController {
         Integer data = null;
         try {
             ChangePwdParam changePwdParam = JsonUtils.jsonToObject(param, ChangePwdParam.class);
-            String encryptionFactor  = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
+            String encryptionFactor = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
             String pwd = AESUtils.encrypt(changePwdParam.getOldPwd(), changePwdParam.getMobile(), encryptionFactor);
             userBo = userService.findUserByMobileAndPwd(changePwdParam.getMobile(), pwd);
             if (userBo == null) {
                 errorType = ErrorType.USER_MOBILE_OR_PWD_IS_ERROR;
-            }
-            else{
+            } else {
                 String newPwd = AESUtils.encrypt(changePwdParam.getNewPwd(), changePwdParam.getMobile(), encryptionFactor);
                 data = userService.updateUserPwd(userBo.getUserId(), newPwd);
             }
@@ -256,7 +242,6 @@ public class UserController {
             errorType.setMessage(e.toString());
             LOG.error("user changePwd ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), data);
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }
 }

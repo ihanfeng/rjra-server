@@ -1,19 +1,11 @@
 package com.hdg.rjra.server.serviceimpl;
 
-import com.hdg.common.utils.StringUtils;
-import com.hdg.rjra.base.enumerate.DataResourceType;
-import com.hdg.rjra.rdb.proxy.domain.Company;
 import com.hdg.rjra.server.model.bo.importlog.ImportLogBo;
 import com.hdg.rjra.server.service.ImportLogService;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Administrator on 2015/3/26.
@@ -76,7 +68,7 @@ public class ImportLogLogServiceImpl implements ImportLogService {
     }
 
     @Override
-    public ImportLogBo work(ImportLogBo importLogBo,  InputStream fileInputStream) {
+    public ImportLogBo work(ImportLogBo importLogBo, InputStream fileInputStream) {
         return null;
     }
 

@@ -2,7 +2,6 @@ package com.hdg.rjra.server.model.param.userbehavior;
 
 import com.hdg.rjra.server.model.param.BaseParam;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**

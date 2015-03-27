@@ -8,7 +8,8 @@ import java.util.Date;
  * Created by Rock on 2015/1/25 0025.
  */
 public class ResumeParam extends BaseParam {
-    private Long resumeId;;
+    private Long resumeId;
+    ;
     private Double resumeLongitude;
     private Double resumeLatitude;
     private Integer resumeRaidus;
