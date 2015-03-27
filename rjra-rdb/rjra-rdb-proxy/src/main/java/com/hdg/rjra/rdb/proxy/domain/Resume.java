@@ -59,8 +59,9 @@ public class Resume implements BaseDomain {
     private Date resumeUpdateTime;
     @DBField("resume_refresh_time")
     private Date resumeRefreshTime;
-
+    @DBField("resume_longitude")
     private Double resumeLongitude;
+    @DBField("resume_latitude")
     private Double resumeLatitude;
 
 

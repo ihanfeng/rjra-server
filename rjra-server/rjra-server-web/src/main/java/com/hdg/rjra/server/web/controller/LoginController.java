@@ -82,7 +82,7 @@ public class LoginController {
             StringBuffer msg = new StringBuffer();
             msg.append("你好，你的验证码为");
             msg.append(code);
-            msg.append("，清在五分钟内完成注册！【人荐人爱】");
+            msg.append("，请在五分钟内完成注册！【人荐人爱】");
             String result = mmsService.sendMessage(new String[]{loginParam.getMobile()}, msg.toString());
             if ("0".equals(result)) {
                 data = code;
