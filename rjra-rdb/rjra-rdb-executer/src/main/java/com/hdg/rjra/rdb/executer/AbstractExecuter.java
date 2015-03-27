@@ -1,15 +1,14 @@
 package com.hdg.rjra.rdb.executer;
 
-import com.alibaba.fastjson.JSON;
-import com.hdg.rjra.rdb.handler.BatchPstAssign;
-import com.hdg.rjra.rdb.handler.Executer;
-import com.hdg.rjra.rdb.handler.PstAssign;
-import com.hdg.rjra.rdb.model.thrift.ResponseModel;
-import com.hdg.rjra.rdb.model.thrift.ResultType;
-import com.hdg.rjra.rdb.proxy.domain.Pager;
-import com.hdg.rjra.rdb.proxy.utils.DaoUtils;
-import com.hdg.rjra.rdb.proxy.utils.SqlParam;
-import com.mysql.jdbc.Statement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -21,14 +20,16 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.jdbc.support.KeyHolder;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.alibaba.fastjson.JSON;
+import com.hdg.rjra.rdb.handler.BatchPstAssign;
+import com.hdg.rjra.rdb.handler.Executer;
+import com.hdg.rjra.rdb.handler.PstAssign;
+import com.hdg.rjra.rdb.model.thrift.ResponseModel;
+import com.hdg.rjra.rdb.model.thrift.ResultType;
+import com.hdg.rjra.rdb.proxy.domain.Pager;
+import com.hdg.rjra.rdb.proxy.utils.DaoUtils;
+import com.hdg.rjra.rdb.proxy.utils.SqlParam;
+import com.mysql.jdbc.Statement;
 
 /**
  * Created by Rock on 2014/10/22.
@@ -37,7 +38,7 @@ public abstract class AbstractExecuter implements Executer {
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
     private JdbcTemplate jdbcTemplate = DaoUtils.getInstance();
 
-    protected Map<String, String> fieldColumn = new HashMap<>();
+    protected Map<String, String> fieldColumn = new HashMap<String, String>();
 
     protected RowMapper rowMapper;
 
@@ -144,7 +145,7 @@ public abstract class AbstractExecuter implements Executer {
                     conn.commit();
                     resultSet.close();
                     return ids;
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     conn.rollback();
                     throw e;
                 } finally {
@@ -241,10 +242,10 @@ public abstract class AbstractExecuter implements Executer {
         StringBuilder sb = null;
         for (int i = 0; i < fields.size(); i++) {
             sb = new StringBuilder();
-            List<Object[]> sqlParams = new ArrayList<>();
+            List<Object[]> sqlParams = new ArrayList<Object[]>();
             sb.append("update " + tableName + " set ");
             Map<String, Object> fieldMap = fields.get(i);
-            List<Object> value = new ArrayList<>();
+            List<Object> value = new ArrayList<Object>();
             int k = 0;
             Object idValue = fieldMap.remove("id");
             for (Map.Entry<String, Object> stringObjectEntry : fieldMap.entrySet()) {
