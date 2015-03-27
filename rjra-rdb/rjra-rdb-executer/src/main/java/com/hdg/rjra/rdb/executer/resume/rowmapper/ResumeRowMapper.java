@@ -39,6 +39,8 @@ public class ResumeRowMapper implements RowMapper<Resume> {
         re.setResumeCreateTime(rs.getTimestamp("resume_create_time"));
         re.setResumeUpdateTime(rs.getTimestamp("resume_update_time"));
         re.setResumeRefreshTime(rs.getTimestamp("resume_refresh_time"));
+        re.setUserLoginLatitude(rs.getDouble("user_login_latitude"));
+        re.setUserLoginLongitude(rs.getDouble("user_login_longitude"));
         return re;
     }
 }
