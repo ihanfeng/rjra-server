@@ -99,8 +99,7 @@ public class ManagerController {
             errorType.setMessage(e.toString());
             LOG.error("manager logout ->", e);
         }
-        OutputResult outputResult = ResponseUtils.bulidOutputResult(errorType.getResponseError(), "logout");
-        return ResponseUtils.returnJsonWithUTF8(JsonUtils.objectToJson(outputResult));
+        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), "logout");
     }
 
 
