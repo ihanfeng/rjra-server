@@ -80,9 +80,9 @@ public class LoginController {
             LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);
             String code = StringUtils.randomCode(4);
             StringBuffer msg = new StringBuffer();
-            msg.append("你好，你的验证码为");
+            msg.append("【工多多】亲爱的用户，您的手机验证码是");
             msg.append(code);
-            msg.append("，请在五分钟内完成注册！【人荐人爱】");
+            msg.append(",此验证码半小时内有效，请尽快完成验证。");
             String result = mmsService.sendMessage(new String[]{loginParam.getMobile()}, msg.toString());
             if ("0".equals(result)) {
                 data = code;
