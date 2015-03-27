@@ -19,13 +19,13 @@ import java.util.List;
  */
 public class BatchSaveResume extends AbstractExecuter {
 
-    String sql = "insert  into `user_resume`(category_level1_ids`,`category_level2_ids`," +
-            "`category_level3_ids`,`resume_user_name`,`resume_gender`," +
-            "`resume_birthday`,`resume_wage`,`resume_experience`,`resume_work_status`,`resume_want_work_area_id`," +
-            "`resume_want_work_city_id`,`resume_want_work_province_id`,`resume_home_area_id`,`resume_home_city_id`," +
-            "`resume_home_province_id`,`resume_home_address`,`resume_mobile`,`resume_qq`,`resume_desc`,`resume_status`," +
-            "`resume_create_time`,`resume_update_time`,`resume_refresh_time`,`resume_longitude`,`resume_latitude`,age_id) values " +
-            "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+    String sql = "insert into user_resume(category_level1_ids,category_level2_ids," +
+            "category_level3_ids,resume_user_name,resume_gender," +
+            "resume_birthday,resume_wage,resume_experience,resume_work_status,resume_want_work_area_id," +
+            "resume_want_work_city_id,resume_want_work_province_id,resume_home_area_id,resume_home_city_id," +
+            "resume_home_province_id,resume_home_address,resume_mobile,resume_qq,resume_desc,resume_status," +
+            "resume_create_time,resume_update_time,resume_refresh_time,resume_longitude,resume_latitude,age_id,resume_tag,resume_data_type) values " +
+            "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
     @Override
     public Object execute(Object[] params) {
@@ -61,6 +61,8 @@ public class BatchSaveResume extends AbstractExecuter {
                 ps.setObject(24, resume.getResumeLongitude());
                 ps.setObject(25, resume.getResumeLatitude());
                 ps.setObject(26, resume.getAgeId());
+                ps.setObject(27, resume.getResumeTag());
+                ps.setObject(28, resume.getResumeDataType());
             }
         }, resumeList);
     }

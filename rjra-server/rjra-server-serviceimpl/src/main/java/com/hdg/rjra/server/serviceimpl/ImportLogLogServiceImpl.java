@@ -5,6 +5,7 @@ import com.hdg.common.utils.JsonUtils;
 import com.hdg.rjra.base.enumerate.DataResourceType;
 import com.hdg.rjra.base.enumerate.ResumeStatus;
 import com.hdg.rjra.base.enumerate.ResumeWorkStatus;
+import com.hdg.rjra.rdb.proxy.daoproxy.IResumeProxy;
 import com.hdg.rjra.rdb.proxy.domain.Area;
 import com.hdg.rjra.rdb.proxy.domain.City;
 import com.hdg.rjra.rdb.proxy.domain.Province;
@@ -16,6 +17,7 @@ import com.hdg.rjra.server.service.ImportLogService;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -24,12 +26,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 /**
  * Created by Administrator on 2015/3/26.
  */
 @Service
 public class ImportLogLogServiceImpl implements ImportLogService {
 
+    @Autowired
+    IResumeProxy resumeProxy;
     @Override
     public ImportLogBo company(ImportLogBo importLogBo, InputStream fileInputStream) throws IOException {
 //        List<Company> companyList = new ArrayList<Company>();
@@ -151,6 +156,11 @@ public class ImportLogLogServiceImpl implements ImportLogService {
             sumResumeList.add(resumeList);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        List<Long> deletIds = new ArrayList<Long>();
+        for (int i = 0; i < sumResumeList.size(); i++) {
+            deletIds.addAll((List<Long>)resumeProxy.batchSaveResume(sumResumeList.get(i)));
+            System.out.println(i);
         }
         return null;
     }

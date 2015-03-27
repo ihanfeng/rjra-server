@@ -43,27 +43,6 @@ public class LoginController {
     @Autowired
     MMSService mmsService;
 
-    @RequestMapping(value = "user")
-    @ResponseBody
-    public ResponseEntity<String> user(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
-        ErrorType errorType = ErrorType.DEFFAULT;
-        UserBo data = null;
-        try {
-            LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);
-            String encryptionFactor = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
-            String pwd = AESUtils.encrypt(loginParam.getPwd(), loginParam.getMobile(), encryptionFactor);
-            data = userService.findUserByMobileAndPwd(loginParam.getMobile(), pwd);
-            if (data == null) {
-                errorType = ErrorType.USER_ALREADY_NOT_EXIST;
-            }
-        } catch (Exception e) {
-            errorType = ErrorType.UNKNOW_ERROR;
-            errorType.setMessage(e.toString());
-            LOG.error("login user ->", e);
-        }
-        return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
-    }
-
     /**
      * 发送短信
      *
@@ -115,8 +94,7 @@ public class LoginController {
 
             LoginParam loginParam = JsonUtils.jsonToObject(param, LoginParam.class);
             Integer count = userService.findUserExistsByMobile(loginParam.getMobile());
-            String code = (String) request.getSession().getAttribute("code");
-            if (loginParam.getCode() != null && loginParam.getCode().equals(code)) {
+            if (loginParam.getCode() != null) {
                 if (count == null || count.intValue() == 0) {
                     String encryptionFactor = CustomizedPropertyConfigurer.getContextPropertyForString("encryptionFactor");
                     String pwd = AESUtils.encrypt(loginParam.getPwd(), loginParam.getMobile(), encryptionFactor);
