@@ -33,6 +33,9 @@
     <bean id="batchSaveResume" class="com.hdg.rjra.rdb.executer.resume.BatchSaveResume">
         <property name="rowMapper" ref="resumeRowMapper"></property>
     </bean>
+    <bean id="deleteResume" class="com.hdg.rjra.rdb.executer.resume.DeleteResume">
+        <property name="rowMapper" ref="resumeRowMapper"></property>
+    </bean>
     <util:map id="rdb-resume-executer">
         <entry key="createResume" value-ref="createResume"/>
         <entry key="findResumeByResumeId" value-ref="findResumeByResumeId"/>
@@ -42,5 +45,6 @@
         <entry key="findAllResumeByParamPager" value-ref="findAllResumeByParamPager"/>
         <entry key="findNearResumeByParamPager" value-ref="findNearResumeByParamPager"/>
         <entry key="batchSaveResume" value-ref="batchSaveResume"/>
+        <entry key="deleteResume" value-ref="deleteResume"/>
     </util:map>
 </beans>

@@ -28,4 +28,6 @@ public interface IResumeProxy extends Serializable {
     public Pager<Resume> findNearResumeByParamPager(Map<ResumeMapping, Object> param, Double lng, Double lat, Integer raidus, Integer[] status, Integer firstResult, Integer sizeNo);
 
     public List<Long> batchSaveResume(List<Resume> resumeList);
+
+    public Integer deleteResume(List<Long> resumeIds);
 }

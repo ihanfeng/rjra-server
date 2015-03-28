@@ -62,4 +62,16 @@ public class WorkProxyImpl extends BaseProxy implements IWorkProxy {
         return daoClient.invoke(moduleName, "findAllWorkByConditionPager",
                 new Object[]{work, firstResult, sizeNo});
     }
+
+    @Override
+    public List<Long> batchSaveWork(List<Work> workList) {
+        return daoClient.invoke(moduleName, "batchSaveWork",
+                new Object[]{workList});
+    }
+
+    @Override
+    public Integer deleteWork(List<Long> workIds) {
+        return daoClient.invoke(moduleName, "batchSaveWork",
+                new Object[]{workIds});
+    }
 }

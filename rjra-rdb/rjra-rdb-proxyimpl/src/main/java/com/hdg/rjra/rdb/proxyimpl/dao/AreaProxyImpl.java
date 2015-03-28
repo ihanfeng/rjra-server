@@ -23,4 +23,10 @@ public class AreaProxyImpl extends BaseProxy implements IAreaProxy {
         return daoClient.invoke(moduleName, "findAreaByCityId",
                 new Object[]{cityId});
     }
+
+    @Override
+    public List<Area> findAllArea() {
+        return daoClient.invoke(moduleName, "findAllArea",
+                new Object[]{});
+    }
 }

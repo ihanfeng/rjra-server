@@ -13,4 +13,6 @@ public interface ICityProxy extends Serializable {
     public City findCityByCityId(Long cityId);
 
     public List<City> findCityByProvinceId(Long provinceId);
+
+    public List<City> findAllCity();
 }

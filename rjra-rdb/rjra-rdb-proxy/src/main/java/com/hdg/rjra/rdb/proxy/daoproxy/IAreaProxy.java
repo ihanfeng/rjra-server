@@ -13,4 +13,6 @@ public interface IAreaProxy extends Serializable {
     public Area findAreaByAreaId(Long areaId);
 
     public List<Area> findAreaByCityId(Long cityId);
+
+    public List<Area> findAllArea();
 }

@@ -62,4 +62,10 @@ public class ResumeProxyImpl extends BaseProxy implements IResumeProxy {
         return daoClient.invoke(moduleName, "batchSaveResume",
                 new Object[]{resumeList});
     }
+
+    @Override
+    public Integer deleteResume(List<Long> resumeIds) {
+        return daoClient.invoke(moduleName, "deleteResume",
+                new Object[]{resumeIds});
+    }
 }

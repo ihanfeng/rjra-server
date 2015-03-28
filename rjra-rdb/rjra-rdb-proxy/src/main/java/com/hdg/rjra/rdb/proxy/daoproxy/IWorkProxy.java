@@ -28,4 +28,8 @@ public interface IWorkProxy extends Serializable {
     public List<Long> findWorkIdsByUserId(Long userId);
 
     public Pager<Work> findAllWorkByConditionPager(Work work, Integer firstResult, Integer sizeNo);
+
+    public List<Long> batchSaveWork(List<Work> workList);
+
+    public Integer deleteWork(List<Long> workIds);
 }
