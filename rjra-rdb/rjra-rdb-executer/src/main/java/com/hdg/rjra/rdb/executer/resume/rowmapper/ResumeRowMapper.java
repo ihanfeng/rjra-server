@@ -42,7 +42,6 @@ public class ResumeRowMapper implements RowMapper<Resume> {
         re.setResumeLatitude(rs.getDouble("resume_latitude"));
         re.setResumeLongitude(rs.getDouble("resume_longitude"));
         re.setAgeId(rs.getLong("age_id"));
-        re.setDistance(rs.getInt("distance"));
         return re;
     }
 }
