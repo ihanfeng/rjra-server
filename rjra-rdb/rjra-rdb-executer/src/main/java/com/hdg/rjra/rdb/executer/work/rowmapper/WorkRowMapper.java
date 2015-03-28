@@ -38,7 +38,9 @@ public class WorkRowMapper implements RowMapper<Work> {
         re.setWorkUpdateTime(rs.getTimestamp("work_update_time"));
         re.setAgeId(rs.getLong("age_id"));
         re.setWorkGender(rs.getInt("work_gender"));
-        re.setDistance(rs.getInt("distance"));
+        if(null != rs.getObject("distance")) {
+            re.setDistance(rs.getInt("distance"));
+        }
         return re;
     }
 }

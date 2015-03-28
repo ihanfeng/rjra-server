@@ -30,7 +30,7 @@ public class FindNearWorkByParamPager extends AbstractExecuter {
         objects.add(lng);
         StringBuffer executeSql = new StringBuffer();
         executeSql.append("select user_work.*, ");
-        executeSql.append("ROUND(6378.138 * 2 * ASIN(SQRT(POW(SIN((? * PI() / 180 - work_longitude * PI() / 180) / 2),2) + COS(? * PI() / 180) * COS(work_longitude * PI() / 180) * POW(SIN((? * PI() / 180 - work_longitude * PI() / 180) / 2),2))) * 1000) AS distance ");
+        executeSql.append("ROUND(6378.138 * 2 * ASIN(SQRT(POW(SIN((? * PI() / 180 - work_longitude * PI() / 180) / 2),2) + COS(? * PI() / 180) * COS(work_longitude * PI() / 180) * POW(SIN((? * PI() / 180 - work_longitude * PI() / 180) / 2),2)))) AS distance ");
         executeSql.append(" from user_work where 1=1");
         SqlParam sqlParam = SqlUtils.buildWhereAndSqlByMapParam(param);
         if (sqlParam != null) {
