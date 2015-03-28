@@ -24,10 +24,14 @@ public class FindNearResumeByParamPager extends AbstractExecuter {
         Integer[] status = (Integer[]) params[4];
         Integer firstResult = (Integer) params[5];
         Integer sizeNo = (Integer) params[6];
-        double[] doubles = CoordinateUtils.getAround(lng, lat, raidus);
         List<Object> objects = new ArrayList<Object>();
+        objects.add(lat);
+        objects.add(lat);
+        objects.add(lng);
         StringBuffer executeSql = new StringBuffer();
-        executeSql.append("select * from user_resume where 1=1");
+        executeSql.append("select user_resume.*, ");
+        executeSql.append("ROUND(6378.138 * 2 * ASIN(SQRT(POW(SIN((? * PI() / 180 - resume_latitude * PI() / 180) / 2),2) + COS(? * PI() / 180) * COS(resume_latitude * PI() / 180) * POW(SIN((? * PI() / 180 - resume_longitude * PI() / 180) / 2),2))) * 1000) AS distance ");
+        executeSql.append("from user_resume where 1=1");
         SqlParam sqlParam = SqlUtils.buildWhereAndSqlByMapParam(param);
         if (sqlParam != null) {
             executeSql.append(sqlParam.getSql());
@@ -41,14 +45,12 @@ public class FindNearResumeByParamPager extends AbstractExecuter {
         executeSql.append(" and resume_longitude < ?");
         executeSql.append(" and resume_latitude > ?");
         executeSql.append(" and resume_latitude < ?");
-        executeSql.append(" ORDER BY ACOS( SIN((? * 3.1415) / 180) * SIN((resume_longitude * 3.1415) / 180) + COS((? * 3.1415) / 180) * COS((resume_latitude * 3.1415) / 180) * COS((? * 3.1415) / 180 - (resume_longitude * 3.1415) / 180)) * 6380 ");
+        executeSql.append(" ORDER BY distance");
+        double[] doubles = CoordinateUtils.getAround(lng, lat, raidus);
         objects.add(doubles[0]);
         objects.add(doubles[1]);
         objects.add(doubles[2]);
         objects.add(doubles[3]);
-        objects.add(lat);
-        objects.add(lat);
-        objects.add(lng);
 
         return findPager(executeSql.toString(), objects.toArray(), firstResult, sizeNo, rowMapper);
     }

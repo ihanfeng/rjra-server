@@ -115,10 +115,6 @@ public class ResumeServiceImpl implements ResumeService {
         List<ResumeBo> resumeBoList = new ArrayList<ResumeBo>();
         for (Resume resume : resumePager.getResultList()) {
             ResumeBo resumeBo = getResumeBo(resume);
-            Double distance = CoordinateUtils.distance(lng,lat,resume.getResumeLongitude(),resume.getResumeLatitude());
-            if (null != distance) {
-                resumeBo.setDistance(distance.intValue());
-            }
             resumeBoList.add(resumeBo);
         }
         resumeBoPager.setResultList(resumeBoList);

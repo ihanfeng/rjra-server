@@ -69,6 +69,9 @@ public class Resume implements BaseDomain {
     private String resumeTag;
     @DBField("age_id")
     private Long ageId;
+    @DBField("distance")
+    private Integer distance;
+
 
     public Long getResumeId() {
         return resumeId;
@@ -308,5 +311,13 @@ public class Resume implements BaseDomain {
 
     public void setAgeId(Long ageId) {
         this.ageId = ageId;
+    }
+
+    public Integer getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Integer distance) {
+        this.distance = distance;
     }
 }

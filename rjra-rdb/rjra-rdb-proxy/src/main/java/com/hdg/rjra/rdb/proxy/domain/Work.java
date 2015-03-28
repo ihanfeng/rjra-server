@@ -65,6 +65,8 @@ public class Work implements BaseDomain {
     private Long workImportOperatorId;
     @DBField("work_import_operator_name")
     private String workImportOperatorName;
+    @DBField("distance")
+    private Integer distance;
 
     public Long getWorkId() {
         return workId;
@@ -288,5 +290,13 @@ public class Work implements BaseDomain {
 
     public void setWorkImportOperatorName(String workImportOperatorName) {
         this.workImportOperatorName = workImportOperatorName;
+    }
+
+    public Integer getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Integer distance) {
+        this.distance = distance;
     }
 }

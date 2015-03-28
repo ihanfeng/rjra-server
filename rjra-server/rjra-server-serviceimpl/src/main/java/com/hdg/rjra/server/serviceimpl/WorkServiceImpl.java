@@ -91,10 +91,6 @@ public class WorkServiceImpl implements WorkService {
         List<WorkBo> workBoList = new ArrayList<WorkBo>();
         for (Work work : workPager.getResultList()) {
             WorkBo workBo =  getWorkBo(work);
-            Double distance = CoordinateUtils.distance(lng, lat, work.getWorkLongitude(), work.getWorkLatitude());
-            if (null != distance) {
-                workBo.setDistance(distance.intValue());
-            }
             workBoList.add(workBo);
         }
         workBoPager.setResultList(workBoList);
