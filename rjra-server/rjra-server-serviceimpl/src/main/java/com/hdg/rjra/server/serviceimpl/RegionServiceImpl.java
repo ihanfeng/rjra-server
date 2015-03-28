@@ -48,6 +48,17 @@ public class RegionServiceImpl implements RegionService {
         return areaBoList;
     }
 
+    @Override
+    public List<AreaBo> findAllArea() {
+        List<Area> areaList = areaProxy.findAllArea();
+        List<AreaBo> areaBoList = new ArrayList<AreaBo>();
+        for (Area area : areaList) {
+            AreaBo bo = getAreaBo(area);
+            areaBoList.add(bo);
+        }
+        return areaBoList;
+    }
+
     private AreaBo getAreaBo(Area area) {
         AreaBo bo = new AreaBo();
         ConversionUtils.conversion(area, bo);
@@ -68,28 +79,48 @@ public class RegionServiceImpl implements RegionService {
 
     @Override
     public CityBo findCityByCityId(Long cityId) {
-//        City city = areaProxy.findCityByCityId(cityId);
-//        CityBo bo = getCityBo(city);
-//        return bo;
-//        return cityProxy.findCityByCityId(cityId);
-        return null;
+        City city = cityProxy.findCityByCityId(cityId);
+        CityBo bo = getCityBo(city);
+        return bo;
     }
 
     @Override
     public List<CityBo> findCityByProvinceId(Long provinceId) {
-//        return cityProxy.findCityByProvinceId(provinceId);
-        return null;
+        List<City> list = cityProxy.findCityByProvinceId(provinceId);
+        List<CityBo> boList = new ArrayList<CityBo>();
+        for (City city : list) {
+            CityBo bo = getCityBo(city);
+            boList.add(bo);
+        }
+        return boList;
+    }
+
+    @Override
+    public List<CityBo> findAllCity() {
+        List<City> list = cityProxy.findAllCity();
+        List<CityBo> boList = new ArrayList<CityBo>();
+        for (City city : list) {
+            CityBo bo = getCityBo(city);
+            boList.add(bo);
+        }
+        return boList;
     }
 
     @Override
     public ProvinceBo findProvinceByProvinceId(Long provinceId) {
-//        return provinceProxy.findProvinceByProvinceId(provinceId);
-        return null;
+        Province province = provinceProxy.findProvinceByProvinceId(provinceId);
+        ProvinceBo bo = getProvinceBo(province);
+        return bo;
     }
 
     @Override
     public List<ProvinceBo> findAllProvince() {
-//        return provinceProxy.findAllProvince();
-        return null;
+        List<Province> list = provinceProxy.findAllProvince();
+        List<ProvinceBo> boList = new ArrayList<ProvinceBo>();
+        for (Province province : list) {
+            ProvinceBo bo = getProvinceBo(province);
+            boList.add(bo);
+        }
+        return boList;
     }
 }

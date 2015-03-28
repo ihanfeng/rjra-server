@@ -18,9 +18,13 @@ public interface RegionService {
 
     public List<AreaBo> findAreaByCityId(Long cityId);
 
+    public List<AreaBo> findAllArea();
+
     public CityBo findCityByCityId(Long cityId);
 
     public List<CityBo> findCityByProvinceId(Long provinceId);
+
+    public List<CityBo> findAllCity();
 
     public ProvinceBo findProvinceByProvinceId(Long provinceId);
 

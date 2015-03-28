@@ -45,7 +45,14 @@ public class CompanyServiceImpl implements CompanyService {
         CompanyBo companyBo = getCompanyBo(company);
         return companyBo;
     }
-
+    private CompanyBo getCompanyBoSimple(Company company) {
+        if (company == null) {
+            return null;
+        }
+        CompanyBo companyBo = new CompanyBo();
+        ConversionUtils.conversion(company, companyBo);
+        return companyBo;
+    }
     private CompanyBo getCompanyBo(Company company) {
         if (company == null) {
             return null;
@@ -133,5 +140,26 @@ public class CompanyServiceImpl implements CompanyService {
         companyBoPager.setResultList(companyBoList);
         companyBoPager.setTotalSize(companyPager.getTotalSize());
         return companyBoPager;
+    }
+
+    @Override
+    public Pager<CompanyBo> findAllCompanyByConditionPagerSimple(CompanyBo companyBo, Integer firstResult, Integer sizeNo) {
+        Company company = new Company();
+        ConversionUtils.conversion(companyBo, company);
+        Pager<Company> companyPager = companyProxy.findAllCompanyByConditionPager(company, firstResult, sizeNo);
+        Pager<CompanyBo> companyBoPager = new Pager<CompanyBo>();
+        List<CompanyBo> companyBoList = new ArrayList<CompanyBo>();
+        for (Company outCompany : companyPager.getResultList()) {
+            CompanyBo outCompanyBo = getCompanyBoSimple(outCompany);
+            companyBoList.add(outCompanyBo);
+        }
+        companyBoPager.setResultList(companyBoList);
+        companyBoPager.setTotalSize(companyPager.getTotalSize());
+        return companyBoPager;
+    }
+
+    @Override
+    public List<Long> batchSaveCompany(List<Company> companyList) {
+        return companyProxy.batchSaveCompany(companyList);
     }
 }

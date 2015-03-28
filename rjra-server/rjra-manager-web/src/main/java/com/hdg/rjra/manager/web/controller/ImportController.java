@@ -9,6 +9,7 @@ import com.hdg.rjra.server.model.bo.importlog.ImportLogBo;
 import com.hdg.rjra.server.model.bo.manager.ManagerBo;
 import com.hdg.rjra.server.service.HSSFReadService;
 import com.hdg.rjra.server.service.ImportLogService;
+import com.hdg.rjra.server.serviceimpl.importlog.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,17 @@ public class ImportController {
      */
     private static final Logger LOG = LoggerFactory.getLogger(CompanyController.class);
 
+    ImportLogService importLogService;
     @Autowired
-    ImportLogService importService;
+    GanjiImportLogServiceImpl ganjiImportLogService;
+    @Autowired
+    TongChengImportLogServiceImpl tongChengImportLogService;
+    @Autowired
+    SanHeImportLogServiceImpl sanHeImportLogService;
+    @Autowired
+    ZhuoXunImportLogServiceImpl zhuoXunImportLogService;
+    @Autowired
+    ZhiLianImportLogServiceImpl zhiLianImportLogService;
     @Autowired
     HSSFReadService hssfReadService;
 
@@ -68,6 +78,7 @@ public class ImportController {
                 String token = (String) session.getAttribute(SessionToken.TOKEN);
                 ManagerBo managerBo = (ManagerBo) session.getAttribute(token);
                 String importType = multiRequest.getParameter("importType");
+                Integer resourceType = Integer.valueOf(multiRequest.getParameter("resourceType"));
                 ImportLogBo bo = new ImportLogBo();
                 bo.setImportLogFileName(file.getName());
 //                bo.setImportLogOperatorId(managerBo.getManagerId());
@@ -75,14 +86,15 @@ public class ImportController {
                 bo.setImportLogOperatorId(1L);
                 bo.setImportLogOperatorName("");
                 bo.setImportLogType(Integer.parseInt(importType));
+                adepterService(resourceType);
                 if (ImportResourceType.Company.getCode() == bo.getImportLogType().intValue()) {
                     List<ImportData> importDataList = hssfReadService.readExcel(file.getInputStream());
-                    data = importService.company(importDataList);
+                    data = importLogService.company(importDataList);
                 } else if (ImportResourceType.Work.getCode() == bo.getImportLogType().intValue()) {
                     List<ImportData> importDataList = hssfReadService.readExcel(file.getInputStream());
-                    data = importService.work(importDataList);
+                    data = importLogService.work(importDataList);
                 } else if (ImportResourceType.Resume.getCode() == bo.getImportLogType().intValue()) {
-                    data = importService.resume(bo, (FileInputStream) file.getInputStream());
+                    data = importLogService.resume(bo, (FileInputStream) file.getInputStream());
                 }
             }
         } catch (Exception e) {
@@ -91,5 +103,17 @@ public class ImportController {
             LOG.error("file->", e);
         }
         return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
+    }
+
+    private void adepterService(Integer resourceType){
+        switch (resourceType)
+        {
+            case 1: importLogService = tongChengImportLogService;
+            case 2:  importLogService = ganjiImportLogService;
+            case 3:  importLogService = zhiLianImportLogService;
+            case 4:  importLogService = zhuoXunImportLogService;
+            case 5:  importLogService = sanHeImportLogService;
+            default:  importLogService = zhuoXunImportLogService;
+        }
     }
 }

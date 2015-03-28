@@ -1,5 +1,7 @@
 package com.hdg.rjra.server.serviceimpl.importlog;
 
+import com.hdg.common.constants.CommonConstants;
+import com.hdg.common.utils.DateUtils;
 import com.hdg.common.utils.HttpRequestUtils;
 import com.hdg.common.utils.JsonUtils;
 import com.hdg.rjra.base.enumerate.DataResourceType;
@@ -8,11 +10,18 @@ import com.hdg.rjra.base.enumerate.ResumeWorkStatus;
 import com.hdg.rjra.base.enumerate.WorkStatus;
 import com.hdg.rjra.rdb.proxy.daoproxy.*;
 import com.hdg.rjra.rdb.proxy.domain.*;
+import com.hdg.rjra.rdb.proxy.utils.CommonUtils;
+import com.hdg.rjra.server.model.bo.company.CompanyBo;
 import com.hdg.rjra.server.model.bo.geo.AreaGeoInfo;
 import com.hdg.rjra.server.model.bo.geo.GeocoderSearchResponse;
 import com.hdg.rjra.server.model.bo.importlog.ImportData;
 import com.hdg.rjra.server.model.bo.importlog.ImportLogBo;
+import com.hdg.rjra.server.model.bo.region.AreaBo;
+import com.hdg.rjra.server.model.bo.region.CityBo;
+import com.hdg.rjra.server.model.bo.region.ProvinceBo;
+import com.hdg.rjra.server.service.CompanyService;
 import com.hdg.rjra.server.service.ImportLogService;
+import com.hdg.rjra.server.service.RegionService;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -31,30 +40,30 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
     @Autowired
     IResumeProxy resumeProxy;
     @Autowired
-    IAreaProxy areaProxy;
+    RegionService regionService;
     @Autowired
-    ICityProxy cityProxy;
-    @Autowired
-    IProvinceProxy provinceProxy;
-    @Autowired
-    ICompanyProxy companyProxy;
+    CompanyService companyService;
     @Autowired
     IWorkProxy workProxy;
 
     @Override
     public ImportLogBo company(List<ImportData> importDataList) throws IOException {
-        List<Area> areaList = areaProxy.findAllArea();
-        List<City> cityList = cityProxy.findAllCity();
-        List<Province> provinceList = provinceProxy.findAllProvince();
+        List<AreaBo> areaList = regionService.findAllArea();
+        List<CityBo> cityList = regionService.findAllCity();
+        List<ProvinceBo> provinceList = regionService.findAllProvince();
         List<Company> list = new ArrayList<Company>();
         List<List<Company>> sumList = new ArrayList<List<Company>>();
         int count = 1;
         for (int i = 0; i < importDataList.size(); i++) {
             ImportData importData = importDataList.get(i);
+            importData.setAreaList(areaList);
+            importData.setCityList(cityList);
+            importData.setProvinceList(provinceList);
             if (count % 50 == 0) {
                 sumList.add(list);
                 list = new ArrayList<Company>();
             }
+            parseImportData(importData);
             Company company = buildCompany(importData);
             list.add(company);
             count++;
@@ -63,7 +72,7 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
         sumList.add(list);
         List<Long> deletIds = new ArrayList<Long>();
         for (int i = 0; i < sumList.size(); i++) {
-            deletIds.addAll((List<Long>) companyProxy.batchSaveCompany(sumList.get(i)));
+            deletIds.addAll((List<Long>) companyService.batchSaveCompany(sumList.get(i)));
             System.out.println(i);
         }
 //            companyProxy.deleteCompany(deletIds);
@@ -73,91 +82,79 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
 
     private Company buildCompany(ImportData importData) {
         Company company = new Company();
-        company.setCompanyName(parseCompanyName(importData));
-        company.setCompanyContact(parseCompanyContact(importData));
-        company.setCompanyContactMobile(parseCompanyContactMobile(importData));
-        company.setCompanyEmail(parseCompanyContactEmail(importData));
-        company.setCompanyAddress(parseCompanyAddress(importData));
-        company.setCompanyDesc(parseCompanyDesc(importData));
-        company.setCompanyType(parseCompanyType(importData));
-        company.setCompanyScale(parseCompanyScale(importData));
-        company.setCompanyAreaId(parseCompanyAreaId(importData));
-        company.setCompanyCityId(parseCompanyCityId(importData));
-        company.setCompanyProvinceId(parseCompanyProvinceId(importData));
+        company.setCompanyName(importData.getCompanyName());
+        company.setCompanyContact(importData.getContactName());
+        company.setCompanyContactMobile(importData.getMobile());
+        company.setCompanyEmail(importData.getEmail());
+        company.setCompanyAddress(importData.getAddress());
+        company.setCompanyDesc(importData.getCompanyDesc());
+        company.setCompanyType(importData.getCompanyScaleId());
+        company.setCompanyScale(importData.getCompanyScaleId());
+        company.setCompanyAreaId(importData.getCompanyAreaId());
+        company.setCompanyCityId(importData.getCompanyCityId());
+        company.setCompanyProvinceId(importData.getCompanyProvinceId());
         company.setCompanyDataType(DataResourceType.Crawl.getCode());
-        company.setCompanyTag("hhh");
+        company.setCompanyTag(DateUtils.getTimeNow(new Date(), CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS));
+        company.setCompanyImportOperatorId(-1L);
+        company.setCompanyImportTime(new Date());
+        company.setCompanyImportOperatorName("admin");
         return company;
     }
 
-    protected abstract Long parseCompanyProvinceId(ImportData importData);
+    protected void parseImportData(ImportData importData) {
+        adapterImportData(importData);
+        Long[] category = findCategory(importData.getCategory());
+        importData.setCategoryLevel1Id(category[0]);
+        importData.setCategoryLevel2Id(category[1]);
+        importData.setCategoryLevel3Id(category[2]);
+    }
 
-    protected abstract Long parseCompanyCityId(ImportData importData);
-
-    protected abstract Long parseCompanyAreaId(ImportData importData);
-
-    protected abstract Long parseCompanyScale(ImportData importData);
-
-    protected abstract Long parseCompanyType(ImportData importData);
-
-    protected abstract String parseCompanyDesc(ImportData importData);
-
-    protected abstract String parseCompanyAddress(ImportData importData);
-
-    protected abstract String parseCompanyContactEmail(ImportData importData);
-
-    protected abstract String parseCompanyContactMobile(ImportData importData);
-
-    protected abstract String parseCompanyContact(ImportData importData);
-
-    protected abstract String parseCompanyName(ImportData importData);
-
+    protected abstract void adapterImportData(ImportData importData);
     @Override
     public ImportLogBo work(List<ImportData> importDataList) {
+        List<AreaBo> areaList = regionService.findAllArea();
+        List<CityBo> cityList = regionService.findAllCity();
+        List<ProvinceBo> provinceList = regionService.findAllProvince();
+        Pager<CompanyBo> companyPager = companyService.findAllCompanyByConditionPagerSimple(new CompanyBo(), 0, 999999);
         List<Work> list = new ArrayList<Work>();
         List<List<Work>> sumList = new ArrayList<List<Work>>();
-        List<Area> areaList = areaProxy.findAllArea();
-        List<City> cityList = cityProxy.findAllCity();
-        List<Province> provinceList = provinceProxy.findAllProvince();
-        Pager<Company> companyPager = companyProxy.findAllCompanyByConditionPager(new Company(), 0, 999999);
+        List<Company> companyList = new ArrayList<Company>();
+        List<List<Company>> sumCompanyList = new ArrayList<List<Company>>();
         int count = 1;
         for (int i = 0; i < importDataList.size(); i++) {
             ImportData importData = importDataList.get(i);
+            importData.setAreaList(areaList);
+            importData.setCityList(cityList);
+            importData.setProvinceList(provinceList);
+            importData.setCompanyList(companyPager.getResultList());
             if (count % 50 == 0) {
                 sumList.add(list);
                 list = new ArrayList<Work>();
             }
-            Work work = new Work();
-            work.setWorkDataType(DataResourceType.Crawl.getCode());
-            work.setWorkTag("hello");
-            AreaGeoInfo areaGeoInfo = getAreaGeoInfo(importData.getAddress());
-            work.setWorkLongitude(areaGeoInfo.getResult().getLocation().getLng());
-            work.setWorkLatitude(areaGeoInfo.getResult().getLocation().getLat());
-            work.setUserId(-1L);
-            Long[] category = findCategory(importData.getCategory());
-            work.setCategoryLevel1Id(category[0]);
-            work.setCategoryLevel2Id(category[1]);
-            work.setCategoryLevel3Id(category[2]);
-            work.setWorkAreaId(findAreaId(areaGeoInfo.getResult().getAddressComponent().getDistrict(), areaList));
-            work.setWorkCityId(findCityId(areaGeoInfo.getResult().getAddressComponent().getCity(), cityList));
-            work.setWorkProvinceId(findProvinceId(areaGeoInfo.getResult().getAddressComponent().getProvince(), provinceList));
-            work.setWorkAddress(importData.getAddress());
-            work.setWorkExperienceId(1L);
-            work.setWorkWelfareIds(new Long[]{});
-            work.setWorkStatus(WorkStatus.Active.getCode());
-            work.setWorkCreateTime(new Date());
-            work.setWorkUpdateTime(new Date());
-            work.setAgeId(1L);
-            work.setWorkGender(2);//http://api.map.baidu.com/geocoder/v2/?ak=X4R0e9z7r4L3onULLOwGBdAD&callback=renderReverse&location=22.659210205235,114.03049680522&output=xml&pois=1
-            work.setCompanyName(importData.getCompanyName());
-            work.setCompanyId(findCompany(importData.getCompanyName(), companyPager.getResultList()));
-            work.setWorkDesc(importData.getWorkDesc());
-            work.setWorkNeedPerson(Integer.valueOf(importData.getNeedPerson()));
-            work.setWorkWageId(findWage(importData.getWage()));
+            parseImportData(importData);
+            Work work = buildWork(importData);
             list.add(work);
+            Company company = buildCompany(importData);
+            companyList.add(company);
             count++;
         }
+        sumCompanyList.add(companyList);
+        List<Long> companyDeleteIds = new ArrayList<Long>();
+        for (int i = 0; i < sumCompanyList.size(); i++) {
+            companyDeleteIds.addAll((List<Long>) companyService.batchSaveCompany(sumCompanyList.get(i)));
+            System.out.println(i);
+        }
+//            companyProxy.deleteCompany(companyDeleteIds);
+
         sumList.add(list);
 
+        for (int i = 0; i < sumList.size(); i++) {
+            List<Work> works = sumList.get(i);
+            for (int j = 0; j <works.size(); j++) {
+                Work work = works.get(j);
+                work.setCompanyId(findCompany(work.getCompanyName(), companyPager.getResultList()));
+            }
+        }
         List<Long> deletIds = new ArrayList<Long>();
         for (int i = 0; i < sumList.size(); i++) {
             deletIds.addAll((List<Long>) workProxy.batchSaveWork(sumList.get(i)));
@@ -167,11 +164,40 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
         return null;
     }
 
+    private Work buildWork(ImportData importData) {
+        Work work = new Work();
+        work.setWorkDataType(DataResourceType.Crawl.getCode());
+        work.setWorkTag(DateUtils.getTimeNow(new Date(), CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS));
+        work.setWorkLongitude(importData.getWorkLongitude());
+        work.setWorkLatitude(importData.getWorkLatitude());
+        work.setUserId(-1L);
+        work.setCategoryLevel1Id(importData.getCategoryLevel1Id());
+        work.setCategoryLevel2Id(importData.getCategoryLevel2Id());
+        work.setCategoryLevel3Id(importData.getCategoryLevel3Id());
+        work.setWorkAreaId(importData.getWorkAreaId());
+        work.setWorkCityId(importData.getWorkCityId());
+        work.setWorkProvinceId(importData.getWorkProvinceId());
+        work.setWorkAddress(importData.getAddress());
+        work.setWorkExperienceId(importData.getWorkExperienceId());
+        work.setWorkWelfareIds(importData.getWorkWelfareIds());
+        work.setWorkStatus(WorkStatus.Active.getCode());
+        work.setWorkCreateTime(new Date());
+        work.setWorkUpdateTime(new Date());
+        work.setAgeId(importData.getAgeId());
+        work.setWorkGender(importData.getWorkGender() == null ? 0:1);//http://api.map.baidu.com/geocoder/v2/?ak=X4R0e9z7r4L3onULLOwGBdAD&callback=renderReverse&location=22.659210205235,114.03049680522&output=xml&pois=1
+        work.setCompanyName(importData.getCompanyName());
+        work.setCompanyId(importData.getCompanyId());
+        work.setWorkDesc(importData.getWorkDesc() == null?importData.getCompanyDesc(): importData.getWorkDesc());
+        work.setWorkNeedPerson(importData.getWorkNeedPerson());
+        work.setWorkWageId(importData.getWorkWageId());
+        work.setWorkImportOperatorId(-1L);
+        work.setWorkImportTime(new Date());
+        work.setWorkImportOperatorName("admin");
+        return work;
+    }
+
     @Override
     public ImportLogBo resume(ImportLogBo importLogBo, InputStream fileInputStream) {
-        List<Area> areaList = areaProxy.findAllArea();
-        List<City> cityList = cityProxy.findAllCity();
-        List<Province> provinceList = provinceProxy.findAllProvince();
         List<Resume> resumeList = new ArrayList<Resume>();
         List<List<Resume>> sumResumeList = new ArrayList<List<Resume>>();
         try {
@@ -261,21 +287,29 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
         }
     }
 
-    private AreaGeoInfo getAreaGeoInfo(String address) {
+    protected AreaGeoInfo getAreaGeoInfo(String address) {
         String baiduRequest = "http://api.map.baidu.com/geocoder/v2/?output=json&ak=X4R0e9z7r4L3onULLOwGBdAD&address=" + address;
         System.out.println(baiduRequest);
         String requestJson = HttpRequestUtils.sendGet(baiduRequest);
         System.out.println(requestJson);
-        GeocoderSearchResponse geocoderSearchResponse = JsonUtils.jsonToObject(requestJson, GeocoderSearchResponse.class);
-        String findAreaRequest = "http://api.map.baidu.com/geocoder/v2/?ak=X4R0e9z7r4L3onULLOwGBdAD&location=" + geocoderSearchResponse.getResult().getLocation().getLat() + "," + geocoderSearchResponse.getResult().getLocation().getLng() + "&output=json&pois=1";
-        System.out.println(findAreaRequest);
-        String requestAreaJson = HttpRequestUtils.sendGet(findAreaRequest);
-        System.out.println(requestAreaJson);
-        AreaGeoInfo areaGeoInfo = JsonUtils.jsonToObject(requestAreaJson, AreaGeoInfo.class);
+        AreaGeoInfo areaGeoInfo = null;
+        try {
+            GeocoderSearchResponse geocoderSearchResponse = JsonUtils.jsonToObject(requestJson, GeocoderSearchResponse.class);
+            if(geocoderSearchResponse.getStatus() == 1){
+                return null;
+            }
+            String findAreaRequest = "http://api.map.baidu.com/geocoder/v2/?ak=X4R0e9z7r4L3onULLOwGBdAD&location=" + geocoderSearchResponse.getResult().getLocation().getLat() + "," + geocoderSearchResponse.getResult().getLocation().getLng() + "&output=json&pois=1";
+            System.out.println(findAreaRequest);
+            String requestAreaJson = HttpRequestUtils.sendGet(findAreaRequest);
+            System.out.println(requestAreaJson);
+            areaGeoInfo = JsonUtils.jsonToObject(requestAreaJson, AreaGeoInfo.class);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return areaGeoInfo;
     }
 
-    private Long[] findCategory(String category) {
+    protected Long[] findCategory(String category) {
         if ("产品测试人员".equals(category)) {
             return new Long[]{102200300L, 102203300L, 102203305L};
         } else if ("作业人员".equals(category)) {
@@ -417,8 +451,8 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
 
     }
 
-    private static Long findAreaId(String areaName, List<Area> areaList) {
-        for (Area area : areaList) {
+    protected static Long findAreaId(String areaName, List<AreaBo> areaList) {
+        for (AreaBo area : areaList) {
             if (area.getAreaName().equals(areaName)) {
                 return area.getAreaId();
             }
@@ -426,8 +460,8 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
         return -1L;
     }
 
-    private static Long findCityId(String cityName, List<City> cityList) {
-        for (City city : cityList) {
+    protected static Long findCityId(String cityName, List<CityBo> cityList) {
+        for (CityBo city : cityList) {
             if (city.getCityName().equals(cityName)) {
                 return city.getCityId();
             }
@@ -435,8 +469,8 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
         return -1L;
     }
 
-    private static Long findProvinceId(String provinceName, List<Province> provinceList) {
-        for (Province province : provinceList) {
+    protected static Long findProvinceId(String provinceName, List<ProvinceBo> provinceList) {
+        for (ProvinceBo province : provinceList) {
             if (province.getProvinceName().equals(provinceName)) {
                 return province.getProvinceId();
             }
@@ -444,7 +478,7 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
         return -1L;
     }
 
-    private static Long companyScaleResolve(String scale) {
+    protected static Long companyScaleResolve(String scale) {
         if (scale == null) {
             return -1L;
         }
@@ -464,7 +498,7 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
         }
     }
 
-    private static Long companyScaleType(String type) {
+    protected static Long companyScaleType(String type) {
         if (type == null) {
             return -1L;
         }
@@ -494,8 +528,8 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
         }
     }
 
-    private Long findCompany(String companyName, List<Company> companyList) {
-        for (Company company : companyList) {
+    protected Long findCompany(String companyName, List<CompanyBo> companyList) {
+        for (CompanyBo company : companyList) {
             if (company.getCompanyName() != null && company.getCompanyName().trim().equals(companyName)) {
                 return company.getCompanyId();
             }
@@ -503,7 +537,7 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
         return -1L;
     }
 
-    private static Long findWage(String wage) {
+    protected static Long findWage(String wage) {
 
         if ("1500元以下".equals(wage)) {
             return 2L;
