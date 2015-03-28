@@ -3,6 +3,9 @@ package com.hdg.rjra.server.service;
 import com.hdg.rjra.rdb.proxy.domain.Area;
 import com.hdg.rjra.rdb.proxy.domain.City;
 import com.hdg.rjra.rdb.proxy.domain.Province;
+import com.hdg.rjra.server.model.bo.region.AreaBo;
+import com.hdg.rjra.server.model.bo.region.CityBo;
+import com.hdg.rjra.server.model.bo.region.ProvinceBo;
 
 import java.util.List;
 
@@ -11,15 +14,15 @@ import java.util.List;
  */
 public interface RegionService {
 
-    public Area findAreaByAreaId(Long areaId);
+    public AreaBo findAreaByAreaId(Long areaId);
 
-    public List<Area> findAreaByCityId(Long cityId);
+    public List<AreaBo> findAreaByCityId(Long cityId);
 
-    public City findCityByCityId(Long cityId);
+    public CityBo findCityByCityId(Long cityId);
 
-    public List<City> findCityByProvinceId(Long provinceId);
+    public List<CityBo> findCityByProvinceId(Long provinceId);
 
-    public Province findProvinceByProvinceId(Long provinceId);
+    public ProvinceBo findProvinceByProvinceId(Long provinceId);
 
-    public List<Province> findAllProvince();
+    public List<ProvinceBo> findAllProvince();
 }

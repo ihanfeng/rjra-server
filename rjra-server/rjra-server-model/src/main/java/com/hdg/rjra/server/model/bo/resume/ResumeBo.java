@@ -44,7 +44,7 @@ public class ResumeBo {
     private Integer distance;
     private Integer resumeDataType;
     private String resumeTag;
-    private String ageId;
+    private Long ageId;
 
     public Long getUserId() {
         return userId;
@@ -303,11 +303,11 @@ public class ResumeBo {
         this.resumeTag = resumeTag;
     }
 
-    public String getAgeId() {
+    public Long getAgeId() {
         return ageId;
     }
 
-    public void setAgeId(String ageId) {
+    public void setAgeId(Long ageId) {
         this.ageId = ageId;
     }
 }

@@ -68,9 +68,9 @@ public class ResumeController {
     }
 
 
-    @RequestMapping(value = "updatResumeStatus")
+    @RequestMapping(value = "updateResumeStatus")
     @ResponseBody
-    public ResponseEntity<String> updatResumeStatus(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
+    public ResponseEntity<String> updateResumeStatus(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = ErrorType.DEFFAULT;
         Integer data = null;
         try {
@@ -79,7 +79,7 @@ public class ResumeController {
         } catch (Exception e) {
             errorType = ErrorType.UNKNOW_ERROR;
             errorType.setMessage(e.toString());
-            LOG.error("updatResumeStatus->", e);
+            LOG.error("updateResumeStatus->", e);
         }
         return ResponseUtils.returnResponseEntity(errorType.getResponseError(), data);
     }

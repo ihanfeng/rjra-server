@@ -4,8 +4,10 @@ import com.hdg.common.utils.ResponseUtils;
 import com.hdg.rjra.base.enumerate.ImportResourceType;
 import com.hdg.rjra.base.error.ErrorType;
 import com.hdg.rjra.manager.web.filter.SessionToken;
+import com.hdg.rjra.server.model.bo.importlog.ImportData;
 import com.hdg.rjra.server.model.bo.importlog.ImportLogBo;
 import com.hdg.rjra.server.model.bo.manager.ManagerBo;
+import com.hdg.rjra.server.service.HSSFReadService;
 import com.hdg.rjra.server.service.ImportLogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.FileInputStream;
+import java.util.List;
 
 /**
  * Created by Administrator on 2015/3/24.
@@ -36,6 +39,8 @@ public class ImportController {
 
     @Autowired
     ImportLogService importService;
+    @Autowired
+    HSSFReadService hssfReadService;
 
     /**
      * 上传门头照
@@ -71,9 +76,11 @@ public class ImportController {
                 bo.setImportLogOperatorName("");
                 bo.setImportLogType(Integer.parseInt(importType));
                 if (ImportResourceType.Company.getCode() == bo.getImportLogType().intValue()) {
-                    data = importService.company(bo, (FileInputStream) file.getInputStream());
+                    List<ImportData> importDataList = hssfReadService.readExcel(file.getInputStream());
+                    data = importService.company(importDataList);
                 } else if (ImportResourceType.Work.getCode() == bo.getImportLogType().intValue()) {
-                    data = importService.work(bo, (FileInputStream) file.getInputStream());
+                    List<ImportData> importDataList = hssfReadService.readExcel(file.getInputStream());
+                    data = importService.work(importDataList);
                 } else if (ImportResourceType.Resume.getCode() == bo.getImportLogType().intValue()) {
                     data = importService.resume(bo, (FileInputStream) file.getInputStream());
                 }
