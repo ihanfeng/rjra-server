@@ -6,6 +6,9 @@ import com.hdg.rjra.base.error.ErrorType;
 import com.hdg.rjra.rdb.proxy.domain.Area;
 import com.hdg.rjra.rdb.proxy.domain.City;
 import com.hdg.rjra.rdb.proxy.domain.Province;
+import com.hdg.rjra.server.model.bo.region.AreaBo;
+import com.hdg.rjra.server.model.bo.region.CityBo;
+import com.hdg.rjra.server.model.bo.region.ProvinceBo;
 import com.hdg.rjra.server.model.param.region.RegionParam;
 import com.hdg.rjra.server.service.RegionService;
 import org.slf4j.Logger;
@@ -38,7 +41,7 @@ public class RegionController {
     @ResponseBody
     public ResponseEntity<String> findAreaByAreaId(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        Area data = null;
+        AreaBo data = null;
         try {
             RegionParam regionParam = JsonUtils.jsonToObject(param, RegionParam.class);
             data = regionService.findAreaByAreaId(regionParam.getAreaId());
@@ -54,7 +57,7 @@ public class RegionController {
     @ResponseBody
     public ResponseEntity<String> findAreaByCityId(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        List<Area> data = null;
+        List<AreaBo> data = null;
         try {
             RegionParam regionParam = JsonUtils.jsonToObject(param, RegionParam.class);
             data = regionService.findAreaByCityId(regionParam.getCityId());
@@ -70,7 +73,7 @@ public class RegionController {
     @ResponseBody
     public ResponseEntity<String> findCityByCityId(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        City data = null;
+        CityBo data = null;
         try {
             RegionParam regionParam = JsonUtils.jsonToObject(param, RegionParam.class);
             data = regionService.findCityByCityId(regionParam.getCityId());
@@ -86,7 +89,7 @@ public class RegionController {
     @ResponseBody
     public ResponseEntity<String> findCityByProvinceId(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        List<City> data = null;
+        List<CityBo> data = null;
         try {
             RegionParam regionParam = JsonUtils.jsonToObject(param, RegionParam.class);
             data = regionService.findCityByProvinceId(regionParam.getProvinceId());
@@ -102,7 +105,7 @@ public class RegionController {
     @ResponseBody
     public ResponseEntity<String> findProvinceByProvinceId(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        Province data = null;
+        ProvinceBo data = null;
         try {
             RegionParam regionParam = JsonUtils.jsonToObject(param, RegionParam.class);
             data = regionService.findProvinceByProvinceId(regionParam.getProvinceId());
@@ -118,7 +121,7 @@ public class RegionController {
     @ResponseBody
     public ResponseEntity<String> findAllProvince(HttpServletRequest request, @RequestParam(value = "param", required = true) String param) {
         ErrorType errorType = ErrorType.DEFFAULT;
-        List<Province> data = null;
+        List<ProvinceBo> data = null;
         try {
             data = regionService.findAllProvince();
         } catch (Exception e) {
