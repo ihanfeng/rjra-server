@@ -21,6 +21,7 @@ public class CompanyParam extends BaseParam {
     private String companyDesc;
     private Integer companyDataType;
     private String companyTag;
+    private Integer companyExamineStatus;
 
     public Long getCompanyId() {
         return companyId;
@@ -132,5 +133,13 @@ public class CompanyParam extends BaseParam {
 
     public void setCompanyTag(String companyTag) {
         this.companyTag = companyTag;
+    }
+
+    public Integer getCompanyExamineStatus() {
+        return companyExamineStatus;
+    }
+
+    public void setCompanyExamineStatus(Integer companyExamineStatus) {
+        this.companyExamineStatus = companyExamineStatus;
     }
 }
