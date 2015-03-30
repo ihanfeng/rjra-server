@@ -194,7 +194,7 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
         work.setCompanyName(importData.getCompanyName());
         work.setCompanyId(importData.getCompanyId());
         work.setWorkDesc(importData.getWorkDesc() == null ? importData.getCompanyDesc() : importData.getWorkDesc());
-        work.setWorkNeedPerson(importData.getWorkNeedPerson());
+        work.setWorkNeedPerson(importData.getWorkNeedPerson() == null ? 10 : importData.getWorkNeedPerson());
         work.setWorkWageId(importData.getWorkWageId());
         work.setWorkImportOperatorId(-1L);
         work.setWorkImportTime(new Date());
