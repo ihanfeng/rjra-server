@@ -46,7 +46,7 @@ public class UpdateUserLocation extends AbstractExecuter {
                     ps.setObject(1, lng);
                     ps.setObject(2, lat);
                     ps.setObject(3, new Date());
-                    ps.setObject(4, userId);
+                    ps.setObject(4, resumeId);
                     return ps;
                 }
             });
