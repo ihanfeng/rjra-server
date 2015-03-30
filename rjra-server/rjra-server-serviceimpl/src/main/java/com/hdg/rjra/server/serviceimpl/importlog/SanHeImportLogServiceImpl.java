@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class SanHeImportLogServiceImpl extends BaseImportLogServiceImpl {
 
+    @Override
+    protected String getTag() {
+        return "sanhe";
+    }
 
     @Override
     protected void adapterImportData(ImportData importData) {

@@ -14,6 +14,11 @@ public class ZhuoXunImportLogServiceImpl extends BaseImportLogServiceImpl {
 
 
     @Override
+    protected String getTag() {
+        return "zhuoxun";
+    }
+
+    @Override
     protected void adapterImportData(ImportData importData) {
 
         AreaGeoInfo areaGeoInfo = getAreaGeoInfo(importData.getAddress());

@@ -50,6 +50,7 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
     @Autowired
     IWorkProxy workProxy;
 
+    protected abstract String getTag();
     @Override
     public ImportLogBo company(List<ImportData> importDataList) throws IOException {
         List<AreaBo> areaList = regionService.findAllArea();
@@ -98,7 +99,7 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
         company.setCompanyCityId(importData.getCompanyCityId());
         company.setCompanyProvinceId(importData.getCompanyProvinceId());
         company.setCompanyDataType(DataResourceType.Crawl.getCode());
-        company.setCompanyTag(DateUtils.getTimeNow(new Date(), CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS));
+        company.setCompanyTag(getTag());
         company.setCompanyImportOperatorId(-1L);
         company.setCompanyImportTime(new Date());
         company.setCompanyImportOperatorName("admin");
@@ -172,7 +173,7 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
     private Work buildWork(ImportData importData) {
         Work work = new Work();
         work.setWorkDataType(DataResourceType.Crawl.getCode());
-        work.setWorkTag(DateUtils.getTimeNow(new Date(), CommonConstants.DATE_FORMAT_YYYYMMDDHHMMSS));
+        work.setWorkTag(getTag());
         work.setWorkLongitude(importData.getWorkLongitude());
         work.setWorkLatitude(importData.getWorkLatitude());
         work.setUserId(-1L);
@@ -189,7 +190,7 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
         work.setWorkCreateTime(new Date());
         work.setWorkUpdateTime(new Date());
         work.setAgeId(importData.getAgeId());
-        work.setWorkGender(importData.getWorkGender() == null ? 0 : 1);//http://api.map.baidu.com/geocoder/v2/?ak=X4R0e9z7r4L3onULLOwGBdAD&callback=renderReverse&location=22.659210205235,114.03049680522&output=xml&pois=1
+        work.setWorkGender(importData.getWorkGender() == null ? 0 : importData.getWorkGender());//http://api.map.baidu.com/geocoder/v2/?ak=X4R0e9z7r4L3onULLOwGBdAD&callback=renderReverse&location=22.659210205235,114.03049680522&output=xml&pois=1
         work.setCompanyName(importData.getCompanyName());
         work.setCompanyId(importData.getCompanyId());
         work.setWorkDesc(importData.getWorkDesc() == null ? importData.getCompanyDesc() : importData.getWorkDesc());

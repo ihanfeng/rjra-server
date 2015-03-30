@@ -14,6 +14,11 @@ public class GanjiImportLogServiceImpl extends BaseImportLogServiceImpl {
 
 
     @Override
+    protected String getTag() {
+        return "ganji";
+    }
+
+    @Override
     protected void adapterImportData(ImportData importData) {
 
         AreaGeoInfo areaGeoInfo = getAreaGeoInfo(importData.getAddress());

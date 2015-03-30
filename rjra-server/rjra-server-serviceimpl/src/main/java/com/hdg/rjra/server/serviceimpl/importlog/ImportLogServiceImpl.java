@@ -13,6 +13,11 @@ public class ImportLogServiceImpl extends BaseImportLogServiceImpl {
 
 
     @Override
+    protected String getTag() {
+        return "base";
+    }
+
+    @Override
     protected void adapterImportData(ImportData importData) {
     }
 }

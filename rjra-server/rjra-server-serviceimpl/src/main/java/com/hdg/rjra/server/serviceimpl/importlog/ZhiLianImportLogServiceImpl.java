@@ -14,6 +14,11 @@ public class ZhiLianImportLogServiceImpl extends BaseImportLogServiceImpl {
 
 
     @Override
+    protected String getTag() {
+        return "智联";
+    }
+
+    @Override
     protected void adapterImportData(ImportData importData) {
 
         AreaGeoInfo areaGeoInfo = getAreaGeoInfo(importData.getAddress());

@@ -30,7 +30,10 @@ import java.util.regex.Pattern;
  */
 @Service
 public class TongChengImportLogServiceImpl extends BaseImportLogServiceImpl {
-
+    @Override
+    protected String getTag() {
+        return "tongcheng";
+    }
     @Override
     protected void adapterImportData(ImportData importData) {
 
