@@ -13,6 +13,7 @@ import java.util.List;
  * Created by Administrator on 2015/3/27.
  */
 public class ImportData {
+    private boolean hasData= true;
     // 导入数据模型
     String companyName;
     String contactName;
@@ -79,7 +80,14 @@ public class ImportData {
     List<AreaBo> areaList;
     List<CityBo> cityList;
     List<ProvinceBo> provinceList;
-    List<CompanyBo> companyList;
+
+    public boolean isHasData() {
+        return hasData;
+    }
+
+    public void setHasData(boolean hasData) {
+        this.hasData = hasData;
+    }
 
     public String getCompanyName() {
         return companyName;
@@ -207,14 +215,6 @@ public class ImportData {
 
     public void setProvinceList(List<ProvinceBo> provinceList) {
         this.provinceList = provinceList;
-    }
-
-    public List<CompanyBo> getCompanyList() {
-        return companyList;
-    }
-
-    public void setCompanyList(List<CompanyBo> companyList) {
-        this.companyList = companyList;
     }
 
     public Long getCompanyTypeId() {

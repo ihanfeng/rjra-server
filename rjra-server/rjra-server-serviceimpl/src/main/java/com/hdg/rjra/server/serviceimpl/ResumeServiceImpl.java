@@ -6,8 +6,12 @@ import com.hdg.common.utils.CoordinateUtils;
 import com.hdg.common.utils.DateUtils;
 import com.hdg.rjra.base.enumerate.ResumeStatus;
 import com.hdg.rjra.rdb.proxy.daoproxy.IResumeProxy;
+import com.hdg.rjra.rdb.proxy.daoproxy.IUserCollectUserProxy;
+import com.hdg.rjra.rdb.proxy.daoproxy.IUserInviteUserProxy;
 import com.hdg.rjra.rdb.proxy.domain.Pager;
 import com.hdg.rjra.rdb.proxy.domain.Resume;
+import com.hdg.rjra.rdb.proxy.domain.UserCollectUser;
+import com.hdg.rjra.rdb.proxy.domain.UserInviteUser;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.ResumeMapping;
 import com.hdg.rjra.server.model.bo.file.AccountFileBo;
 import com.hdg.rjra.server.model.bo.resume.ResumeBo;
@@ -38,6 +42,12 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    IUserCollectUserProxy userCollectUserProxy;
+
+    @Autowired
+    IUserInviteUserProxy userInviteUserProxy;
 
     /**
      * 日志对象
@@ -78,6 +88,39 @@ public class ResumeServiceImpl implements ResumeService {
         return bo;
     }
 
+    private ResumeBo getResumeBo(Resume resume, Object userId) {
+        if (null == resume) {
+            return null;
+        }
+        ResumeBo bo = new ResumeBo();
+        ConversionUtils.conversion(resume, bo);
+        Long hadeImage = resume.getResumeUserHeadImageFile();
+        if (null != hadeImage) {
+            AccountFileBo userImageInfo = fileService.findAccountFileById(hadeImage);
+            bo.setResumeUserHeadImageFileDetail(userImageInfo);
+        }
+        if (resume.getResumeBirthday() != null) {
+            bo.setBirthday(DateUtils.getTimeNow(resume.getResumeBirthday(), CommonConstants.DATE_FORMAT_YYYYMMDD));
+        }
+        UserBo userBo = userService.findUserByResumeId(resume.getResumeId());
+        if (userBo != null) {
+            bo.setUserDetail(userBo);
+            bo.setUserId(userBo.getUserId());
+
+            if(userId != null){
+                UserCollectUser userCollectUser = userCollectUserProxy.findUserCollectUserByUserIdAndCollectUserId((Long) userId, bo.getUserId());
+                if(userCollectUser != null){
+                    bo.setCollectUser(true);
+                }
+                UserInviteUser userInviteUser = userInviteUserProxy.findUserInviteUserByUserIdAndInviteUserId((Long) userId, bo.getUserId());
+                if(userInviteUser != null){
+                    bo.setInviteUser(true);
+                }
+            }
+        }
+        return bo;
+    }
+
     @Override
     public Integer updatResumeStatus(Long resumeId, Integer status) {
         return resumeProxy.updatResumeStatus(resumeId, status);
@@ -101,7 +144,7 @@ public class ResumeServiceImpl implements ResumeService {
         Pager<ResumeBo> resumeBoPager = new Pager<ResumeBo>();
         List<ResumeBo> resumeBoList = new ArrayList<ResumeBo>();
         for (Resume resume : resumePager.getResultList()) {
-            resumeBoList.add(getResumeBo(resume));
+            resumeBoList.add(getResumeBo(resume, param.get(ResumeMapping.ResumeId)));
         }
         resumeBoPager.setResultList(resumeBoList);
         resumeBoPager.setTotalSize(resumePager.getTotalSize());

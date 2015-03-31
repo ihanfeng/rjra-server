@@ -40,9 +40,10 @@ public class TongChengImportLogServiceImpl extends BaseImportLogServiceImpl {
         String REGEXP = "\\[(.+)最新招聘信息\\]诚聘(.+)([^\\d])(\\d{4})?((\\d+)人|(若干)),工作地点位于(.+),公司规模(.+),薪资待遇(不限|(.+)元),工作经验(.+),学历要求(高中|大专|不限|中专),(.+)";
             String desc =importData.getCompanyDesc();
             if (!desc.matches(REGEXP)) {
+                importData.setHasData(false);
                 return ;
             }
-            Pattern p = Pattern.compile(REGEXP, Pattern.CASE_INSENSITIVE);
+            Pattern p = Pattern.compile(REGEXP);
             Matcher m = p.matcher(desc);
             String ads = "";
             if (m.find()) {
@@ -51,6 +52,7 @@ public class TongChengImportLogServiceImpl extends BaseImportLogServiceImpl {
                 Integer needPeople = StringUtils.isEmpty(m.group(6)) ? 1000 : Integer.parseInt(m.group(6));
                 ads = m.group(8);
                 String wage = m.group(12);
+                String category = m.group(11);
                 System.out.println(m.group(0));
                 System.out.println(m.group(1));
                 System.out.println(m.group(2));
@@ -70,6 +72,7 @@ public class TongChengImportLogServiceImpl extends BaseImportLogServiceImpl {
                 importData.setWorkDesc(workDesc);
                 importData.setWorkNeedPerson(needPeople);
                 importData.setWorkWageId(findWage(wage));
+                importData.setCategory(category);
             }
             importData.setAddress(ads + importData.getAddress());
             AreaGeoInfo areaGeoInfo = getAreaGeoInfo(importData.getAddress());

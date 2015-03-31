@@ -3,6 +3,7 @@ package com.hdg.rjra.server.serviceimpl.importlog;
 import com.hdg.rjra.base.enumerate.WorkStatus;
 import com.hdg.rjra.server.model.bo.geo.AreaGeoInfo;
 import com.hdg.rjra.server.model.bo.importlog.ImportData;
+import com.hdg.rjra.server.serviceimpl.importlog.BaseImportLogServiceImpl;
 import org.springframework.stereotype.Service;
 
 
@@ -10,17 +11,16 @@ import org.springframework.stereotype.Service;
  * Created by Administrator on 2015/3/26.
  */
 @Service
-public class GanjiImportLogServiceImpl extends BaseImportLogServiceImpl {
+public class BaixingImportLogServiceImpl extends BaseImportLogServiceImpl {
 
 
     @Override
     protected String getTag() {
-        return "ganji";
+        return "baixing";
     }
 
     @Override
     protected void adapterImportData(ImportData importData) {
-
         AreaGeoInfo areaGeoInfo = getAreaGeoInfo(importData.getAddress());
         if(areaGeoInfo != null) {
             importData.setWorkLongitude(areaGeoInfo.getResult().getLocation().getLng());

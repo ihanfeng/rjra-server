@@ -64,11 +64,14 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
             importData.setAreaList(areaList);
             importData.setCityList(cityList);
             importData.setProvinceList(provinceList);
+            parseImportData(importData);
+            if(!importData.isHasData()){
+                continue;
+            }
             if (count % 50 == 0) {
                 sumList.add(list);
                 list = new ArrayList<Company>();
             }
-            parseImportData(importData);
             Company company = buildCompany(importData);
             list.add(company);
             count++;
@@ -93,8 +96,8 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
         company.setCompanyEmail(importData.getEmail());
         company.setCompanyAddress(importData.getAddress());
         company.setCompanyDesc(importData.getCompanyDesc());
-        company.setCompanyType(importData.getCompanyScaleId());
-        company.setCompanyScale(importData.getCompanyScaleId());
+        company.setCompanyType(companyScaleType(importData.getCompanyType()));
+        company.setCompanyScale(companyScaleResolve(importData.getCompanyScale()));
         company.setCompanyAreaId(importData.getCompanyAreaId());
         company.setCompanyCityId(importData.getCompanyCityId());
         company.setCompanyProvinceId(importData.getCompanyProvinceId());
@@ -121,23 +124,26 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
         List<AreaBo> areaList = regionService.findAllArea();
         List<CityBo> cityList = regionService.findAllCity();
         List<ProvinceBo> provinceList = regionService.findAllProvince();
-        Pager<CompanyBo> companyPager = companyService.findAllCompanyByConditionPagerSimple(new CompanyBo(), 0, 999999);
         List<Work> list = new ArrayList<Work>();
         List<List<Work>> sumList = new ArrayList<List<Work>>();
         List<Company> companyList = new ArrayList<Company>();
         List<List<Company>> sumCompanyList = new ArrayList<List<Company>>();
         int count = 1;
-        for (int i = 0; i < importDataList.size(); i++) {
+        for (int i = 1; i < importDataList.size(); i++) {
             ImportData importData = importDataList.get(i);
             importData.setAreaList(areaList);
             importData.setCityList(cityList);
             importData.setProvinceList(provinceList);
-            importData.setCompanyList(companyPager.getResultList());
+            parseImportData(importData);
+            if(!importData.isHasData()){
+                continue;
+            }
             if (count % 50 == 0) {
                 sumList.add(list);
                 list = new ArrayList<Work>();
+                sumCompanyList.add(companyList);
+                companyList = new ArrayList<Company>();
             }
-            parseImportData(importData);
             Work work = buildWork(importData);
             list.add(work);
             Company company = buildCompany(importData);
@@ -154,6 +160,7 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
 
         sumList.add(list);
 
+        Pager<CompanyBo> companyPager = companyService.findAllCompanyByConditionPagerSimple(new CompanyBo(), 0, 999999);
         for (int i = 0; i < sumList.size(); i++) {
             List<Work> works = sumList.get(i);
             for (int j = 0; j < works.size(); j++) {
@@ -1967,7 +1974,7 @@ public abstract class BaseImportLogServiceImpl implements ImportLogService {
 
     protected Long findCompany(String companyName, List<CompanyBo> companyList) {
         for (CompanyBo company : companyList) {
-            if (company.getCompanyName() != null && company.getCompanyName().trim().equals(companyName)) {
+            if (company.getCompanyName() != null && company.getCompanyName().indexOf(companyName)!=-1) {
                 return company.getCompanyId();
             }
         }

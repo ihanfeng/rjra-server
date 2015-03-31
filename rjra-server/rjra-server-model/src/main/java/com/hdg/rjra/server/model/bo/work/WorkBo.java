@@ -41,6 +41,8 @@ public class WorkBo {
     private Long workImportOperatorId;
     private String workImportOperatorName;
     private Integer distance;
+    private Boolean applyWork;
+    private Boolean collectWork;
 
     public Long getWorkId() {
         return workId;
@@ -280,5 +282,21 @@ public class WorkBo {
 
     public void setDistance(Integer distance) {
         this.distance = distance;
+    }
+
+    public Boolean getApplyWork() {
+        return applyWork;
+    }
+
+    public void setApplyWork(Boolean applyWork) {
+        this.applyWork = applyWork;
+    }
+
+    public Boolean getCollectWork() {
+        return collectWork;
+    }
+
+    public void setCollectWork(Boolean collectWork) {
+        this.collectWork = collectWork;
     }
 }

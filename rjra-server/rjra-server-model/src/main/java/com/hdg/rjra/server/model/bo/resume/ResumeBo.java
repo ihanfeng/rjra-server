@@ -45,6 +45,8 @@ public class ResumeBo {
     private Integer resumeDataType;
     private String resumeTag;
     private Long ageId;
+    private Boolean collectUser;
+    private Boolean inviteUser;
 
     public Long getUserId() {
         return userId;
@@ -309,5 +311,21 @@ public class ResumeBo {
 
     public void setAgeId(Long ageId) {
         this.ageId = ageId;
+    }
+
+    public Boolean getCollectUser() {
+        return collectUser;
+    }
+
+    public void setCollectUser(Boolean collectUser) {
+        this.collectUser = collectUser;
+    }
+
+    public Boolean getInviteUser() {
+        return inviteUser;
+    }
+
+    public void setInviteUser(Boolean inviteUser) {
+        this.inviteUser = inviteUser;
     }
 }

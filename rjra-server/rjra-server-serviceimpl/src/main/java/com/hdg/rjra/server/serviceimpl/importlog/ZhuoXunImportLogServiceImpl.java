@@ -5,6 +5,9 @@ import com.hdg.rjra.server.model.bo.geo.AreaGeoInfo;
 import com.hdg.rjra.server.model.bo.importlog.ImportData;
 import org.springframework.stereotype.Service;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 /**
  * Created by Administrator on 2015/3/26.
@@ -34,5 +37,17 @@ public class ZhuoXunImportLogServiceImpl extends BaseImportLogServiceImpl {
         importData.setWorkStatus(WorkStatus.Active.getCode());
         importData.setAgeId(1L);
         importData.setWorkGender(2);
+
+//        String REGEXP = "\\[(.+)最新招聘信息\\]诚聘(.+)([^\\d])(\\d{4})?((\\d+)人|(若干)),工作地点位于(.+),公司规模(.+),薪资待遇(不限|(.+)元),工作经验(.+),学历要求(高中|大专|不限|中专),(.+)";
+//        String desc =importData.getCompanyDesc();
+//        if (!desc.matches(REGEXP)) {
+//            return ;
+//        }
+//        Pattern p = Pattern.compile(REGEXP, Pattern.CASE_INSENSITIVE);
+//        Matcher m = p.matcher(desc);
+//        String ads = "";
+//        if (m.find()) {
+//
+//        }
     }
 }

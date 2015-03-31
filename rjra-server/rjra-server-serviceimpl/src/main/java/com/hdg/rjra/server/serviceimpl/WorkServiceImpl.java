@@ -4,10 +4,7 @@ import com.hdg.common.utils.ConversionUtils;
 import com.hdg.common.utils.CoordinateUtils;
 import com.hdg.rjra.base.enumerate.GeoStatus;
 import com.hdg.rjra.base.enumerate.WorkStatus;
-import com.hdg.rjra.rdb.proxy.daoproxy.IAreaProxy;
-import com.hdg.rjra.rdb.proxy.daoproxy.ICityProxy;
-import com.hdg.rjra.rdb.proxy.daoproxy.IProvinceProxy;
-import com.hdg.rjra.rdb.proxy.daoproxy.IWorkProxy;
+import com.hdg.rjra.rdb.proxy.daoproxy.*;
 import com.hdg.rjra.rdb.proxy.domain.*;
 import com.hdg.rjra.rdb.proxy.domain.enumerate.WorkMapping;
 import com.hdg.rjra.server.model.bo.company.CompanyBo;
@@ -36,6 +33,12 @@ public class WorkServiceImpl implements WorkService {
      * 日志对象
      */
     private static final Logger LOG = LoggerFactory.getLogger(WorkServiceImpl.class);
+
+    @Autowired
+    IUserCollectWorkProxy userCollectWorkProxy;
+
+    @Autowired
+    IUserApplyWorkProxy userApplyWorkProxy;
 
     @Autowired
     IWorkProxy workProxy;
@@ -71,13 +74,36 @@ public class WorkServiceImpl implements WorkService {
         return bo;
     }
 
+    private WorkBo getWorkBo(Work work, Object userId) {
+        if (work == null) {
+            return null;
+        }
+        WorkBo bo = new WorkBo();
+        ConversionUtils.conversion(work, bo);
+        if (work.getCompanyId() != null) {
+            CompanyBo companyBo = companyService.findCompanyByCompanyId(work.getCompanyId());
+            bo.setCompanyDetail(companyBo);
+        }
+        if(userId != null){
+            UserCollectWork userCollectWork = userCollectWorkProxy.findUserCollectWorkByUserIdAndWorkId((Long) userId, work.getWorkId());
+            if(userCollectWork != null){
+                bo.setCollectWork(true);
+            }
+            UserApplyWork userApplyWork = userApplyWorkProxy.findUserApplyWorkByUserIdAndWorkId((Long) userId, work.getWorkId());
+            if(userApplyWork != null){
+                bo.setApplyWork(true);
+            }
+        }
+        return bo;
+    }
+
     @Override
     public Pager<WorkBo> findAllWorkByParamPager(Map<WorkMapping, Object> param, Integer firstResult, Integer sizeNo) {
         Pager<Work> workPager = workProxy.findAllWorkByParamPager(param, new Integer[]{WorkStatus.Active.getCode(), WorkStatus.Pause.getCode()}, firstResult, sizeNo);
         Pager<WorkBo> workBoPager = new Pager<WorkBo>();
         List<WorkBo> workBoList = new ArrayList<WorkBo>();
         for (Work work : workPager.getResultList()) {
-            workBoList.add(getWorkBo(work));
+            workBoList.add(getWorkBo(work, param.get(WorkMapping.WorkId)));
         }
         workBoPager.setResultList(workBoList);
         workBoPager.setTotalSize(workPager.getTotalSize());
@@ -90,7 +116,7 @@ public class WorkServiceImpl implements WorkService {
         Pager<WorkBo> workBoPager = new Pager<WorkBo>();
         List<WorkBo> workBoList = new ArrayList<WorkBo>();
         for (Work work : workPager.getResultList()) {
-            WorkBo workBo =  getWorkBo(work);
+            WorkBo workBo = getWorkBo(work);
             workBoList.add(workBo);
         }
         workBoPager.setResultList(workBoList);

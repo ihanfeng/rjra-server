@@ -50,6 +50,8 @@ public class ImportController {
     @Autowired
     ZhiLianImportLogServiceImpl zhiLianImportLogService;
     @Autowired
+    BaixingImportLogServiceImpl baixingImportLogService;
+    @Autowired
     HSSFReadService hssfReadService;
 
     /**
@@ -106,13 +108,14 @@ public class ImportController {
     }
 
     private void adepterService(Integer resourceType){
-        switch (resourceType)
+        switch (resourceType.intValue())
         {
-            case 1: importLogService = tongChengImportLogService;
-            case 2:  importLogService = ganjiImportLogService;
-            case 3:  importLogService = zhiLianImportLogService;
-            case 4:  importLogService = zhuoXunImportLogService;
-            case 5:  importLogService = sanHeImportLogService;
+            case 1: importLogService = tongChengImportLogService;break;
+            case 2:  importLogService = ganjiImportLogService;break;
+            case 3:  importLogService = zhiLianImportLogService;break;
+            case 4:  importLogService = zhuoXunImportLogService;break;
+            case 5:  importLogService = sanHeImportLogService;break;
+            case 6:  importLogService = sanHeImportLogService;break;
             default:  importLogService = zhuoXunImportLogService;
         }
     }
