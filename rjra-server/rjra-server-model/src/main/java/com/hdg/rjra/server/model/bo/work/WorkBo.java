@@ -41,8 +41,8 @@ public class WorkBo {
     private Long workImportOperatorId;
     private String workImportOperatorName;
     private Integer distance;
-    private Boolean applyWork;
-    private Boolean collectWork;
+    private Boolean applyWork = false;
+    private Boolean collectWork = false;
 
     public Long getWorkId() {
         return workId;

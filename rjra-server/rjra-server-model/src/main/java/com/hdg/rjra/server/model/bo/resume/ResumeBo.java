@@ -45,8 +45,8 @@ public class ResumeBo {
     private Integer resumeDataType;
     private String resumeTag;
     private Long ageId;
-    private Boolean collectUser;
-    private Boolean inviteUser;
+    private Boolean collectUser = false;
+    private Boolean inviteUser = false;
 
     public Long getUserId() {
         return userId;
